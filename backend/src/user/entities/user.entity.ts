@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Cart } from 'src/cart/entities/cart.entity';
+import { Shop } from 'src/shop/entities/shop.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -19,4 +27,10 @@ export class User {
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
+
+  @OneToMany(() => Shop, (shop) => shop.user, { onDelete: 'CASCADE' })
+  shop: Shop[];
+
+  @OneToOne(() => Cart, (cart) => cart.user, { onDelete: 'CASCADE' })
+  cart: Cart;
 }

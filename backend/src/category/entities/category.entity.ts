@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Food } from 'src/food/entities/food.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Category {
@@ -7,4 +8,7 @@ export class Category {
 
   @Column()
   description: string;
+
+  @OneToMany(() => Food, (food) => food.category, { onDelete: 'CASCADE' })
+  food: Food[];
 }
