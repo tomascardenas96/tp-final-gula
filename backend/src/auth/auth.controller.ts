@@ -22,6 +22,6 @@ export class AuthController {
 
   @Post('/login')
   login(@Body() userLogin: LoginDto) {
-    return
+    return this.authService.login(userLogin)
   }
 }
