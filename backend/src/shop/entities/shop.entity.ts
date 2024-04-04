@@ -1,4 +1,5 @@
 import { Food } from 'src/food/entities/food.entity';
+import { Invoice } from 'src/invoice/entities/invoice.entity';
 import { Post } from 'src/post/entities/post.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
@@ -39,4 +40,7 @@ export class Shop {
 
   @OneToMany(() => Food, (food) => food.shop, { onDelete: 'CASCADE' })
   food: Food[];
+
+  @OneToMany(() => Invoice, (invoice) => invoice.shop, { onDelete: 'CASCADE' })
+  invoice: Invoice;
 }

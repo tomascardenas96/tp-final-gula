@@ -1,4 +1,5 @@
 import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
+import { Invoice } from 'src/invoice/entities/invoice.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -25,4 +26,7 @@ export class Cart {
     onDelete: 'CASCADE',
   })
   food: FoodOnCart[];
+
+  @OneToMany(() => Invoice, (invoice) => invoice.cart, { onDelete: 'CASCADE' })
+  invoice: Invoice;
 }
