@@ -1,3 +1,4 @@
+import { Profile } from 'src/profile/entities/profile.entity';
 import { Cart } from '../../cart/entities/cart.entity';
 import { Shop } from '../../shop/entities/shop.entity';
 import {
@@ -33,4 +34,7 @@ export class User {
 
   @OneToOne(() => Cart, (cart) => cart.user, { onDelete: 'CASCADE' })
   cart: Cart;
+
+  @OneToOne(() => Profile, (profile) => profile.user, { onDelete: 'CASCADE' })
+  profile: Profile;
 }

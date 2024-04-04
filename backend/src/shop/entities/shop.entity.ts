@@ -42,5 +42,5 @@ export class Shop {
   food: Food[];
 
   @OneToMany(() => Invoice, (invoice) => invoice.shop, { onDelete: 'CASCADE' })
-  invoice: Invoice;
+  invoice: Invoice[];
 }
