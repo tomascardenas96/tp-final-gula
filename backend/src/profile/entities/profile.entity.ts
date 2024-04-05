@@ -15,6 +15,9 @@ export class Profile {
   @Column({ default: 0 })
   profilePicture: string;
 
+  @Column()
+  profileName: string;
+
   @Column({ default: 0 })
   coverPhoto: string;
 
