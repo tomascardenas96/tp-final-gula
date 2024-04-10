@@ -1,10 +1,11 @@
 import React from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 
 function Login() {
+  const token = localStorage.getItem("accessToken");
   const {
     userCredentials,
     handleChangeLogin,
@@ -13,6 +14,10 @@ function Login() {
     isWrongPassword,
     loginLoading,
   } = useLogin();
+
+  if(token) {
+    return <Navigate to="/home" />
+  }
 
   return (
     <>
@@ -53,7 +58,7 @@ function Login() {
                   />
                   {isWrongEmail && (
                     <>
-                      <BsExclamationTriangleFill className="login-error-indicator"/>
+                      <BsExclamationTriangleFill className="login-error-indicator" />
                       <p className="login-error">Usuario no encontrado</p>
                     </>
                   )}

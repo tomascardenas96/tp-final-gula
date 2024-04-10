@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
 .login-page_container {
   background: radial-gradient(
     var(--color-background-login-secondary),
@@ -107,7 +109,7 @@ div .login-page_slogan {
 
 .login-page_login {
   display: grid;
-  grid-template-rows: 3rem .9fr 2rem;
+  grid-template-rows: 3rem 0.9fr 2rem;
 }
 
 .login-page_login h1 {
@@ -134,7 +136,6 @@ div .login-page_slogan {
   color: var(--font-color-login);
   width: 100%;
   font-size: 0.8rem;
-  /* border: 1px solid black; */
   filter: drop-shadow(1px 1px 1px black);
   position: relative;
 }
@@ -145,32 +146,32 @@ div .login-page_slogan {
   outline: none;
   border-radius: 0.1rem;
   border: none;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
   color: rgba(50, 50, 50, 0.931);
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1rem;
 }
 
 .login-page_login form > label > .login-error-indicator {
   position: absolute;
-  color: rgb(255, 217, 1);
+  color: rgb(218, 196, 69);
   right: 3%;
   top: 49%;
   font-size: 1rem;
-  filter: drop-shadow(1px 0px 1px rgba(0, 0, 0, 0.769));
-  
+  /* filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)); */
 }
 
 .login-page_login form > label > .login-error {
   color: rgb(243, 243, 243);
-  font-size: .9rem;
+  font-size: 0.9rem;
   position: absolute;
-  top: 75%;
+  top: 73%;
+  font-family: "Titillium Web", sans-serif;
 }
-
 
 .login-page_login form > div {
   display: grid;
   align-items: end;
-
 }
 
 .login-page_login form input[type="submit"] {
