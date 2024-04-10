@@ -1,8 +1,19 @@
 import React from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
+import { BsExclamationTriangleFill } from "react-icons/bs";
 
 function Login() {
+  const {
+    userCredentials,
+    handleChangeLogin,
+    handleSubmitLogin,
+    isWrongEmail,
+    isWrongPassword,
+    loginLoading,
+  } = useLogin();
+
   return (
     <>
       <main className="login-page_container">
@@ -30,14 +41,38 @@ function Login() {
           <aside className="login-page_login_container">
             <div className="login-page_login">
               <h1>Ingresar</h1>
-              <form>
+              <form onSubmit={handleSubmitLogin}>
                 <label htmlFor="email">
                   Email
-                  <input type="text" name="email" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={userCredentials.email}
+                    onChange={handleChangeLogin}
+                    required
+                  />
+                  {isWrongEmail && (
+                    <>
+                      <BsExclamationTriangleFill className="login-error-indicator"/>
+                      <p className="login-error">Usuario no encontrado</p>
+                    </>
+                  )}
                 </label>
                 <label htmlFor="password">
                   Contraseña
-                  <input type="password" name="password" />
+                  <input
+                    type="password"
+                    name="password"
+                    value={userCredentials.password}
+                    onChange={handleChangeLogin}
+                    required
+                  />
+                  {isWrongPassword && (
+                    <>
+                      <BsExclamationTriangleFill className="login-error-indicator" />
+                      <p className="login-error">Contraseña incorrecta</p>
+                    </>
+                  )}
                 </label>
                 <div>
                   <input type="submit" value="Entrar" />

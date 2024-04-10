@@ -136,6 +136,7 @@ div .login-page_slogan {
   font-size: 0.8rem;
   /* border: 1px solid black; */
   filter: drop-shadow(1px 1px 1px black);
+  position: relative;
 }
 
 .login-page_login form > label > input {
@@ -148,10 +149,25 @@ div .login-page_slogan {
   color: rgba(50, 50, 50, 0.931);
 }
 
-/* .login-page_login form > label > input */
+.login-page_login form > label > .login-error-indicator {
+  position: absolute;
+  color: rgb(255, 217, 1);
+  right: 3%;
+  top: 49%;
+  font-size: 1rem;
+  filter: drop-shadow(1px 0px 1px rgba(0, 0, 0, 0.769));
+  
+}
+
+.login-page_login form > label > .login-error {
+  color: rgb(243, 243, 243);
+  font-size: .9rem;
+  position: absolute;
+  top: 75%;
+}
+
 
 .login-page_login form > div {
-  /* background-color: brown; */
   display: grid;
   align-items: end;
 
@@ -166,13 +182,11 @@ div .login-page_slogan {
 
 .login-page_login .sign-up_link,
 .login-page_login .sign-up_link > a {
-  /* background-color: lightgreen; */
   font-size: 0.9rem;
   display: grid;
   justify-content: center;
   color: var(--font-color-login);
   font-weight: lighter;
-  filter: drop-shadow(1px 1px 1px black);
 }
 
 @media screen and (max-width: 1000px),
