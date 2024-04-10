@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 
 .login-page_container {
   background: radial-gradient(
@@ -158,7 +158,6 @@ div .login-page_slogan {
   right: 3%;
   top: 49%;
   font-size: 1rem;
-  /* filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)); */
 }
 
 .login-page_login form > label > .login-error {
@@ -169,9 +168,13 @@ div .login-page_slogan {
   font-family: "Titillium Web", sans-serif;
 }
 
-.login-page_login form > div {
+.login-page_login form .submit-login-btn {
   display: grid;
   align-items: end;
+}
+
+.submit-login-btn_spinner {
+  position: relative;
 }
 
 .login-page_login form input[type="submit"] {
@@ -180,6 +183,30 @@ div .login-page_slogan {
   width: 100%;
   font-size: 1.2rem;
 }
+
+/* Comienza spinner */
+
+form
+  > .submit-login-btn
+  .submit-login-btn_spinner
+  .login-spinner
+  .loadership_CWZLE {
+  position: absolute;
+  right: -5%;
+  top: 15%;
+}
+
+form .login-spinner .loadership_CWZLE div {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 5px solid #4a4a4a33;
+}
+
+.loadership_CWZLE div:not(:nth-child(1)) {
+  border: 5px solid #ffffff;
+}
+
+/* Finaliza Spinner */
 
 .login-page_login .sign-up_link,
 .login-page_login .sign-up_link > a {

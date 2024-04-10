@@ -14,7 +14,7 @@ function useLogin() {
     e.preventDefault();
     setIsWrongEmail(null);
     setIsWrongPassword(null);
-    
+
     try {
       setLoginLoading(true);
       const response = await fetch("http://localhost:3000/auth/login", {

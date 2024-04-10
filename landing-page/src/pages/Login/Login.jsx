@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, Navigate } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 import { BsExclamationTriangleFill } from "react-icons/bs";
+import Spinner from "../../components/Common/Spinner";
 
 function Login() {
   const token = localStorage.getItem("accessToken");
@@ -15,8 +16,8 @@ function Login() {
     loginLoading,
   } = useLogin();
 
-  if(token) {
-    return <Navigate to="/home" />
+  if (token) {
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -79,8 +80,17 @@ function Login() {
                     </>
                   )}
                 </label>
-                <div>
-                  <input type="submit" value="Entrar" />
+                <div className="submit-login-btn">
+                  {loginLoading ? (
+                    <div className="submit-login-btn_spinner">
+                      <input type="submit" value="Entrar" />
+                      <div className="login-spinner">
+                        <Spinner />
+                      </div>
+                    </div>
+                  ) : (
+                    <input type="submit" value="Entrar" />
+                  )}
                 </div>
               </form>
               <p className="sign-up_link">
