@@ -1,0 +1,23 @@
+@font-face {
+  font-family: arial-rounded;
+  src: url("/assets/fonts/arial-rounded.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-global);
+}
+
+html {
+  font-size: 100%;
+}
+
+:root {
+  --color-background-login-primary: #ab0101;
+  --color-background-login-secondary: #ff4867;
+  --font-global: arial-rounded;
+  --font-main-color: #ed3237;
+  --font-color-login: #edf2f4;
+}

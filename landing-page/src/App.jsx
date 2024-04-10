@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile";
 import Shop from "./pages/Shop/Shop";
+import "./App.css";
 
 function App() {
   return (
