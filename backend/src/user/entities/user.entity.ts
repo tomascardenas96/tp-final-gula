@@ -18,13 +18,10 @@ export class User {
   email: string;
 
   @Column({ unique: false })
-  username: string;
+  name: string;
 
   @Column({ select: false })
   password: string;
-
-  @Column({ unique: true })
-  profilename: string;
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

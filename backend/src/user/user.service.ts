@@ -12,9 +12,9 @@ export class UserService {
   ) {}
 
   create(user: CreateUserDto): Promise<User> {
+  
     const newUser: User = this.userRepository.create({
       ...user,
-      profilename: user.email,
     });
 
     return this.userRepository.save(newUser);
@@ -27,15 +27,15 @@ export class UserService {
   async findByEmailWithPassword(email: string): Promise<User> {
     return await this.userRepository.findOne({
       where: { email },
-      select: ['userId', 'email', 'username', 'password', 'profilename', 'createdAt'],
+      select: ['userId', 'email', 'name', 'password', 'createdAt'],
     });
   }
 
-  async findByUserName(username: string) {
-    return await this.userRepository.findOneBy({ username });
+  async findByUserName(name: string) {
+    return await this.userRepository.findOneBy({ name });
   }
 
-  async findByProfileName(profilename: string) {
-    return await this.userRepository.findOneBy({ profilename });
-  }
+  // async findByProfileName(profilename: string) {
+  //   return await this.userRepository.findOneBy({ profilename });
+  // }
 }

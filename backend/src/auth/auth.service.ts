@@ -34,7 +34,7 @@ export class AuthService {
 
     return {
       email: user.email,
-      username: user.username,
+      username: user.name,
       message: 'Register succesfull',
     };
   }
@@ -52,8 +52,8 @@ export class AuthService {
     //Estos son los datos que van a ir encriptados dentro del token.
     const payload = {
       userId: user.userId,
-      profilename: user.profilename,
-      username: user.username,
+      // profilename: user.profilename,
+      username: user.name,
     };
 
     const secretKey = process.env.JWT_SECRET;
