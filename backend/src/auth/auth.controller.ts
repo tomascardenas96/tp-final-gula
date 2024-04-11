@@ -27,7 +27,7 @@ export class AuthController {
     return this.authService.login(userLogin);
   }
 
-  @UseGuards(AuthGuard)
+ @UseGuards(AuthGuard)
   @Get('/profile')
   profile() {
     return 'Perfil'
