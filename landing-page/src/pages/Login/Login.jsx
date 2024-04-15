@@ -3,7 +3,7 @@ import "./Login.css";
 import { Link, Navigate } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 import { BsExclamationTriangleFill } from "react-icons/bs";
-import Spinner from "../../components/Common/Spinner";
+import Spinner from "../../components/Common/Spinner/Spinner.jsx";
 
 function Login() {
   const token = localStorage.getItem("accessToken");

@@ -1,6 +1,5 @@
 import React from "react";
 import useRegister from "../../hooks/useRegister";
-import { BsExclamationTriangle } from "react-icons/bs";
 import "./Register.css";
 
 function Register() {
