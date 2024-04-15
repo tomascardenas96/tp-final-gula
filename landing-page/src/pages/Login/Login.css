@@ -109,7 +109,8 @@ div .login-page_slogan {
 
 .login-page_login {
   display: grid;
-  grid-template-rows: 3rem 0.9fr 2rem;
+  grid-template-rows: 3rem 0.85fr 2rem;
+  /* background-color: green; */
 }
 
 .login-page_login h1 {
@@ -125,7 +126,8 @@ div .login-page_slogan {
   /* background-color: lightslategray; */
   display: grid;
   grid-template-rows: repeat(3, 33%);
-  padding: 1rem 1rem 0.5rem;
+  /* padding: 1rem 1.5rem 0.5rem; */
+  padding: 0 4%;
 }
 
 .login-page_login form > label {
@@ -138,6 +140,7 @@ div .login-page_slogan {
   font-size: 0.8rem;
   filter: drop-shadow(1px 1px 1px black);
   position: relative;
+  gap: 5%;
 }
 
 .login-page_login form > label > input {
@@ -156,7 +159,7 @@ div .login-page_slogan {
   position: absolute;
   color: rgb(218, 196, 69);
   right: 3%;
-  top: 49%;
+  top: 52%;
   font-size: 1rem;
 }
 

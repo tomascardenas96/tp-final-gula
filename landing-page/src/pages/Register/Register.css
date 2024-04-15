@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+
+.register-page_container {
+  display: grid;
+  height: 100svh;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 97% 3%;
+}
+
+.register-page_form,
+.register-page_image {
+  /* background-color: lightblue; */
+  display: grid;
+  place-items: center;
+}
+
+/* .register-page_form {
+  background-color: #f8ffe545;
+  
+} */
+
+.register-page_form aside,
+.register-page_image aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  height: 65%;
+  /* background-color: rgb(27, 134, 24); */
+}
+
+.register-page_form aside {
+  /* background-color: rgb(80, 136, 78); */
+  /* border: 1px solid #2e2c2f81; */
+  border-radius: 0.1rem;
+  box-shadow: 1px 2px 5px 0.4px rgba(0, 0, 0, 0.226);
+  background-color: rgba(255, 255, 255, 0.661);
+}
+
+.register-page_form aside > h1 {
+  /* background-color: lightgray; */
+  font-family: "Sacramento", cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 6%;
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.698);
+}
+
+.register-page_form aside form {
+  width: 100%;
+  height: 100%;
+  /* background-color: lightpink; */
+  /* margin: 2%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 7%;
+}
+
+.register-page_form aside form > label {
+  display: grid;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #161925c9;
+  gap: 10%;
+}
+
+.register-page_form aside form > label > input {
+  outline: none;
+  height: 1.6rem;
+  border-radius: 0rem;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.727);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.431));
+  color: #161925;
+}
+
+.register-input-error {
+  /* position: absolute; */
+  margin-top: -2%;
+  font-size: 0.8rem;
+  color: rgb(215, 64, 64);
+}
+
+.button-24 {
+  background: #ff4742;
+  border: 1px solid #ff4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  letter-spacing: 0.05rem;
+  font-weight: 300;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ff4742;
+}
+
+.button-24:active {
+  opacity: 0.5;
+}
+
+.unabled-submit {
+  background: #00000044;
+}
+
+.register-page_image aside img {
+  width: 100%;
+}
+
+.unabled-submit:hover {
+  color: white;
+}
+
+.register-page_footer {
+  background-color: #2e2c2f;
+  grid-column: 1 / 3;
+}

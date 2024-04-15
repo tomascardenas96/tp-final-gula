@@ -25,7 +25,6 @@ function useLogin() {
         body: JSON.stringify(userCredentials),
       });
       const data = await response.json();
-      console.log(data);
       if (data.error) {
         if (data.message === "User non-existent") {
           setIsWrongEmail(true);
@@ -36,7 +35,7 @@ function useLogin() {
       }
       localStorage.setItem("accessToken", data.token);
     } catch (err) {
-      console.error("Error trying to login user", err);
+      console.error("Error trying to login user");
     } finally {
       setLoginLoading(false);
     }
