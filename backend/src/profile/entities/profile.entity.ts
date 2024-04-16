@@ -12,7 +12,7 @@ export class Profile {
   @PrimaryGeneratedColumn()
   profileId: number;
 
-  @Column({ default: 0 })
+  @Column({ default: '0' })
   profilePicture: string;
 
   @Column()
@@ -25,9 +25,8 @@ export class Profile {
   location: string;
 
   @Column()
-  birthDate: Date;
+  birthDate: string;
 
   @OneToOne(() => User, (user) => user.profile, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user' })
   user: User;
 }
