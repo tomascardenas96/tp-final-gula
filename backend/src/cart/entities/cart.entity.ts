@@ -15,11 +15,7 @@ export class Cart {
   @PrimaryGeneratedColumn()
   cartId: number;
 
-  @Column()
-  total: number;
-
   @OneToOne(() => User, (user) => user.cart, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'user' })
   user: User;
 
   @OneToMany(() => FoodOnCart, (foodOnCart) => foodOnCart.cart, {

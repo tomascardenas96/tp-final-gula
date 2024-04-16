@@ -4,6 +4,7 @@ import { Shop } from '../../shop/entities/shop.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -30,8 +31,10 @@ export class User {
   shop: Shop[];
 
   @OneToOne(() => Cart, (cart) => cart.user, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'cart' })
   cart: Cart;
 
   @OneToOne(() => Profile, (profile) => profile.user, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'profile' })
   profile: Profile;
 }

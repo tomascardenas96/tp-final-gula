@@ -9,7 +9,7 @@ export class CartController {
 
   @Post()
   create(@Body() createCartDto: CreateCartDto) {
-    return this.cartService.create(createCartDto);
+    return this.cartService.create();
   }
 
   @Get()

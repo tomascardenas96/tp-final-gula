@@ -17,8 +17,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async register(user: RegisterDto) {
-    const findUserByEmail = await this.userService.findByEmail(user.email);
+  async register({ email, name, password, location, birthDate }: RegisterDto) {
+    const findUserByEmail = await this.userService.findByEmail(email);
 
     if (findUserByEmail) {
       throw new BadRequestException('User already exists');
@@ -28,13 +28,16 @@ export class AuthService {
     const salt = await bcryptjs.genSalt(roundSalt);
 
     await this.userService.create({
-      ...user,
-      password: await bcryptjs.hash(user.password, salt),
+      email,
+      name,
+      location,
+      birthDate,
+      password: await bcryptjs.hash(password, salt),
     });
 
     return {
-      email: user.email,
-      username: user.name,
+      email: email,
+      username: name,
       message: 'Register succesfull',
     };
   }
@@ -52,7 +55,6 @@ export class AuthService {
     //Estos son los datos que van a ir encriptados dentro del token.
     const payload = {
       userId: user.userId,
-      // profilename: user.profilename,
       username: user.name,
     };
 
