@@ -9,6 +9,6 @@ function Protected() {
   }
 
   return <Outlet />;
-}
+ }
 
 export default Protected;

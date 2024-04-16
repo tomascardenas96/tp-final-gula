@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 function useRegister() {
   const [isRegisterLoading, setIsRegisterLoading] = useState(false);
   const [isRegisterError, setIsRegisterError] = useState(null);
-  const [passwordError, setPasswordError] = useState(true);
-  const [passwordConfirmError, setPasswordConfirmError] = useState(true);
-  const [userNameError, setUserNameError] = useState(true);
-  const [emailError, setEmailError] = useState(true);
-  const [locationError, setLocationError] = useState(true);
-  const [birthDateError, setBirthDateError] = useState(true);
-  const [userInputsError, setUserInputError] = useState(true);
+  const [passwordError, setPasswordError] = useState(null);
+  const [passwordConfirmError, setPasswordConfirmError] = useState(null);
+  const [userNameError, setUserNameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [locationError, setLocationError] = useState(null);
+  const [birthDateError, setBirthDateError] = useState(null);
+  const [userInputsError, setUserInputsError] = useState(null);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const [userData, setUserData] = useState({
     name: "",
@@ -21,11 +22,11 @@ function useRegister() {
 
   async function handleSubmitRegister(e) {
     e.preventDefault();
-    //Si hay error en un input, no se le permitira al usuario hacer submit.
+    //Si hay error en un input, no se le permitira al usuario hacer submit y hara un retorno vacio.
     if (userInputsError) {
-      verifyFields();
       return;
     }
+
     try {
       setIsRegisterLoading(true);
       const response = await fetch("http://localhost:3000/auth/register", {
@@ -36,8 +37,12 @@ function useRegister() {
         body: JSON.stringify(userData),
       });
       const data = await response.json();
-      if (data.error) {
-        throw new Error(data.message);
+      if (data.message === "email must be an email") {
+        setEmailError("Debe ser de tipo E-mail");
+        throw new Error();
+      } else if (data.message === "User already exists") {
+        setEmailError("Este e-mail ya esta siendo utilizado por otro usuario");
+        throw new Error();
       }
       alert("Registro exitoso! Seras redirigido hacia la pagina de inicio");
       window.location.href = "/";
@@ -51,21 +56,35 @@ function useRegister() {
 
   //Este useEffect se ejecuta cada vez que userData cambia para verificar que los valores de los input sean correctos.
   useEffect(() => {
+    // Si es el primer renderizado, establece userInputsError() en true
+    if (isFirstRender) {
+      setPasswordError(true);
+      setPasswordConfirmError(true);
+      setUserNameError(true);
+      setEmailError(true);
+      setLocationError(true);
+      setBirthDateError(true);
+      setUserInputsError(true);
+      setIsFirstRender(false); // Marca que ya no es el primer renderizado
+      return;
+    }
+
+    // Verifica los errores de entrada
     verifyInputsError();
   }, [userData]);
 
   function verifyInputsError() {
     if (
-      passwordError ||
-      passwordConfirmError ||
-      userNameError ||
-      emailError ||
-      locationError ||
-      birthDateError
+      !passwordError &&
+      !passwordConfirmError &&
+      !userNameError &&
+      !emailError &&
+      !locationError &&
+      !birthDateError
     ) {
-      setUserInputError(true);
+      setUserInputsError(null);
     } else {
-      setUserInputError(null);
+      setUserInputsError(true);
     }
   }
 
@@ -85,7 +104,10 @@ function useRegister() {
 
     if (name === "email") {
       if (!value.length) {
-        setEmailError(true);
+        setEmailError("Este campo no puede estar vacio");
+      } else if (!validateEmail(value)) {
+        // El formato del correo electrónico no es válido
+        setEmailError("El formato del correo electrónico no es válido");
       } else {
         setEmailError(null);
       }
@@ -93,7 +115,7 @@ function useRegister() {
 
     if (name === "password") {
       if (!value.length) {
-        setPasswordError(true);
+        setPasswordError("Este campo no puede estar vacio");
       } else if (value.length < 8 || value.length > 12) {
         setPasswordError("La contraseña debe contener entre 6 y 12 caracteres");
       } else {
@@ -103,7 +125,7 @@ function useRegister() {
 
     if (name === "confirm-password") {
       if (!value.length) {
-        setPasswordConfirmError(true);
+        setPasswordConfirmError("Este campo no puede estar vacio");
       } else if (value !== userData.password) {
         setPasswordConfirmError("Las contraseñas no coinciden");
       } else {
@@ -113,7 +135,7 @@ function useRegister() {
 
     if (name === "location") {
       if (!value.length) {
-        setLocationError(true);
+        setLocationError("Este campo no puede estar vacio");
       } else {
         setLocationError(null);
       }
@@ -121,7 +143,7 @@ function useRegister() {
 
     if (name === "birthDate") {
       if (!value.length) {
-        setBirthDateError(true);
+        setBirthDateError("Este campo no puede estar vacio");
       } else {
         setBirthDateError(null);
       }
@@ -138,32 +160,11 @@ function useRegister() {
     fieldsValidation(value, name);
   };
 
-  //Cuando el usuario presiona submit, este metodo detecta los campos vacios y le da una advertencia al usuario.
-  function verifyFields() {
-    if (emailError === true) {
-      setEmailError("Este campo no puede estar vacio");
-    }
-
-    if (passwordError === true) {
-      setPasswordError("Este campo no puede estar vacio");
-    }
-
-    if (passwordConfirmError === true) {
-      setPasswordConfirmError("Este campo no puede estar vacio");
-    }
-
-    if (userNameError === true) {
-      setUserNameError("Este campo no puede estar vacio");
-    }
-
-    if (locationError === true) {
-      setLocationError("Este campo no puede estar vacio");
-    }
-
-    if (birthDateError === true) {
-      setBirthDateError("Este campo no puede estar vacio");
-    }
-  }
+  // Expresión regular para validar el formato de correo electrónico
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   return {
     handleSubmitRegister,
