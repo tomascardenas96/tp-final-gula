@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { ProfileModule } from 'src/profile/profile.module';
 import { CartModule } from 'src/cart/cart.module';
 
+
 @Module({
   imports: [TypeOrmModule.forFeature([User]), ProfileModule, CartModule],
   controllers: [],
