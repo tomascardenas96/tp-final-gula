@@ -55,7 +55,8 @@ export class AuthService {
     //Estos son los datos que van a ir encriptados dentro del token.
     const payload = {
       userId: user.userId,
-      username: user.name,
+      email: user.email,
+      name: user.name,
     };
 
     const secretKey = process.env.JWT_SECRET;
