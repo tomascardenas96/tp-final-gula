@@ -28,8 +28,14 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard)
+  @Get('/home')
+  home() {
+    return 'Perfil';
+  }
+
+  @UseGuards(AuthGuard)
   @Get('/profile')
   profile() {
-    return 'Perfil'
+    return 'Perfil';
   }
 }
