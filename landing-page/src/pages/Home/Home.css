@@ -1,0 +1,19 @@
+.home-page_container {
+  width: 100%;
+  min-height: 120svh;
+  display: grid;
+  gap: 0.2rem;
+  grid-template-rows: 7rem 16rem 15rem 15rem 1fr 2rem;
+  grid-template-columns: 1fr 22rem;
+  grid-template-areas:
+    "header header"
+    "filter ads"
+    "categories ads"
+    "shop ads"
+    "posts posts"
+    "footer footer";
+}
+
+.home-page_container > * {
+  background-color: rgb(65, 229, 229);
+}
