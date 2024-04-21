@@ -1,3 +1,4 @@
 .footer_container {
     grid-area: footer;
+    background-color: rgb(158, 107, 107);
 }

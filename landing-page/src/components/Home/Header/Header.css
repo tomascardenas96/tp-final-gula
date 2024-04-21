@@ -1,7 +1,7 @@
 .header_container {
   grid-area: header;
   padding: 0.2rem;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 .header {
@@ -26,7 +26,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .header-search-image {
@@ -35,6 +35,8 @@
   /* border: 1px solid black; */
   border-radius: 50%;
   /* padding: .5rem; */
+  color: rgb(206, 41, 41);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
 }
 
 .header-search_form {
@@ -88,11 +90,11 @@
 }
 
 .header-logo {
-    display: grid;
-    place-content: center;
+  display: grid;
+  place-content: center;
 }
 
-.header-logo > img {
+.header-logo > a > img {
   width: 4.5rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
 }
@@ -104,26 +106,40 @@
   padding: 0 1.4rem;
   justify-content: end;
   align-items: center;
-  gap: .7rem;
+  gap: 1rem;
   cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.header-menu:hover {
+  background-color: rgb(244, 244, 244);
+}
+
+.header-menu:active {
+  background-color: rgb(231, 229, 229);
 }
 
 .header-menu_arrow {
-    color: rgba(172, 0, 0, 0.525);
-    margin-right: -.3rem;
+  color: rgba(172, 0, 0, 0.525);
+  margin-right: -.5rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
 }
 
 .header-menu p {
-    font-size: .95rem;
-    color: rgba(0, 0, 0, 0.784);
-    font-family: "Titillium Web", sans-serif;
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.784);
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
 }
 
 .header-menu img {
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.194);
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
-    border-radius: .2rem;
-    padding: .05rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.194);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+  border-radius: 0.2rem;
+  padding: 0.05rem;
+  object-fit: cover;
+  object-position: center;
 }

@@ -4,6 +4,10 @@
   display: grid;
   place-content: center;
   background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1100;
 }
 
 .loading-screen_container img {

@@ -1,3 +1,4 @@
 .food-categories_container {
     grid-area: categories;
+    background-color: lightyellow;
 }

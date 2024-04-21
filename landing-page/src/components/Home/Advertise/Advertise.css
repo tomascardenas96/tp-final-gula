@@ -1,3 +1,4 @@
 .advertise_container {
     grid-area: ads;
+    background-color: lightsalmon;
 }

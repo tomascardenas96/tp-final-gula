@@ -1,3 +1,4 @@
 .food-filter_container {
   grid-area: filter;
+  background-color: lightblue;
 }
