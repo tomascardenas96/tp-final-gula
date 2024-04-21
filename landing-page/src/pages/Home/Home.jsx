@@ -30,7 +30,7 @@ function Home() {
         <HomePosts />
         <Footer />
       </main>
-      {/* <input type="button" value="Cerrar sesion" onClick={handleLogOut} /> */}
+      <input type="button" value="Cerrar sesion" onClick={handleLogOut} />
     </>
   );
 }

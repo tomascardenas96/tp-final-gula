@@ -7,7 +7,7 @@
 }
 
 .loading-screen_container img {
-  width: 8rem;
+  width: 7rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
   animation: fadein .7s ease;
 }
