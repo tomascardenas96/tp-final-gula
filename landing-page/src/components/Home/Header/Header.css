@@ -1,6 +1,6 @@
 .header_container {
   grid-area: header;
-  padding: 0.2rem;
+  padding: 0.1rem;
   background-color: rgb(255, 255, 255);
 }
 
@@ -128,7 +128,7 @@
 
 .header-menu p {
   font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.784);
+  color: rgba(0, 0, 0, 0.622);
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
 }
