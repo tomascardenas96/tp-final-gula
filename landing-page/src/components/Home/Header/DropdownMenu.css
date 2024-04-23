@@ -6,7 +6,7 @@
   min-height: max-content;
   background-color: rgb(245, 245, 245);
   border-radius: 0.3rem;
-  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.281);
+  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.684);
   display: flex;
   justify-content: center;
   animation: slideInOut 0.5s ease forwards;
@@ -37,6 +37,7 @@
   font-size: 0.9rem;
   font-family: var(--secondary-font);
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.705);
 }
 
 .dropdown-menu li:hover {

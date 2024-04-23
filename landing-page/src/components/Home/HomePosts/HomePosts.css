@@ -1,4 +1,5 @@
 .home-posts_container {
   grid-area: posts;
-  background-color: lightslategray;
+  display: grid;
+  place-content: center;
 }
