@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { ProfileService } from 'src/profile/profile.service';
 import { CartService } from 'src/cart/cart.service';
 
@@ -48,6 +48,16 @@ export class UserService {
 
   async findByUserName(name: string) {
     return await this.userRepository.findOneBy({ name });
+  }
+
+  async findUserByQuery(name: string) {
+    try {
+      return await this.userRepository.find({
+        where: { name: ILike(`%${name}%`) },
+      });
+    } catch (err) {
+      throw new BadRequestException({ message: err });
+    }
   }
 
   // async findByProfileName(profilename: string) {
