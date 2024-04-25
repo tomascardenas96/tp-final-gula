@@ -15,6 +15,11 @@
   border: 2px solid rgba(0, 0, 0, 0.547);
   padding: 0.1rem;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.09);
+  transition: transform .3s ease;
+}
+
+.shop-card_icon:hover {
+  transform: scale(105%);
 }
 
 .shop-card_icon img {

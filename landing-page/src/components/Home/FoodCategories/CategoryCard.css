@@ -21,6 +21,14 @@
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.09);
 }
 
+.category-card_icon div {
+  transition: transform .3s ease;
+}
+
+.category-card_icon div:hover {
+  transform: scale(120%);
+}
+
 .category-card_container p {
   display: grid;
   text-align: center;
