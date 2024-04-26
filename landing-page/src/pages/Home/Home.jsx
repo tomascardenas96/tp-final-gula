@@ -7,10 +7,11 @@ import FoodCategories from "../../components/Home/FoodCategories/FoodCategories.
 import Shops from "../../components/Home/Shops/Shops.jsx";
 import HomePosts from "../../components/Home/HomePosts/HomePosts.jsx";
 import Footer from "../../components/Home/Footer/Footer.jsx";
-import Advertise from "../../components/Home/Advertise/Advertise.jsx";
 import useLogOut from "../../hooks/useLogOut";
 import "./Home.css";
 import SliceText from "../../components/Home/Slice-text/SliceText";
+import SiderMenu from "../../components/Home/Siders/Sider-menu";
+import SiderSettings from "../../components/Home/Siders/Sider-settings";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
@@ -25,11 +26,12 @@ function Home() {
       <main className="home-page_container">
         <Header />
         <SliceText />
+        <SiderMenu />
         <FoodFilter />
-        <Advertise />
         <FoodCategories />
         <Shops />
         <HomePosts />
+        <SiderSettings/>
         <Footer />
       </main>
     </>

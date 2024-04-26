@@ -11,19 +11,18 @@
 .food-categories_container h1 {
   font-size: 1.5rem;
   font-family: var(--secondary-font);
-  color: rgba(0, 0, 0, 0.756);
+  color: rgba(0, 0, 0, 0.634);
 }
 
 .food-categories_container .food-categories_cards {
   width: 85%;
   height: max-content;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.8rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 2%;
 }
 
 /* Estilos del scrollbar */

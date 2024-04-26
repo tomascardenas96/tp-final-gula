@@ -1,6 +1,5 @@
 .slice-text_container {
   grid-area: slice;
-  padding: 0 0.1rem;
   position: relative;
   overflow: hidden;
 }
@@ -13,6 +12,7 @@
   position: absolute;
   width: 100%;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149);
+  border-radius: .1rem;
 }
 
 .slice-text p {
@@ -25,6 +25,7 @@
   width: 100%;
   letter-spacing: 0.16rem;
   font-family: var(--font-secondary);
+  margin-top: .2%;
 }
 
 @keyframes slideText {
@@ -32,7 +33,7 @@
     transform: translateX(100%);
   }
   100% {
-    transform: translateX(-55%);
+    transform: translateX(-80%);
   }
 
   0% {
@@ -40,6 +41,6 @@
   }
 
   100% {
-    transform: translateX(-55%);
+    transform: translateX(-80%);
   }
 }

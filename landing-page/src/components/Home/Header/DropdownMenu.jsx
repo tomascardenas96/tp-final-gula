@@ -10,9 +10,7 @@ function DropdownMenu() {
   const token = localStorage.getItem("accessToken");
   const { handleLogOut, logOutLoading } = useLogOut();
 
-  if (logOutLoading) {
-    return <LoadingScreen />;
-  }
+
 
   return (
     <nav className="dropdown-menu_container">

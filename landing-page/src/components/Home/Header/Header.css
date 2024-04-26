@@ -1,7 +1,13 @@
 .header_container {
   grid-area: header;
   padding: 0.1rem;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.817);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  z-index: 1500;
+  height: 3.9rem;
 }
 
 .header {
@@ -10,15 +16,14 @@
   border-radius: 0.1rem;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149);
   display: grid;
-  grid-template-columns: 20rem 1fr max-content;
+  grid-template-columns: 16.3rem 1fr 13.8rem;
   gap: 0.1rem;
   align-items: center;
-  padding-right: 1.5rem;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
 
 .header-search {
-  height: 79%;
+  height: 78%;
   border-right: 1px solid rgba(0, 0, 0, 0.109);
 }
 
@@ -102,17 +107,18 @@
 }
 
 .header-menu {
-  height: 79%;
+  height: 78%;
   border-left: 1px solid rgba(0, 0, 0, 0.109);
   display: flex;
-  padding: 0 1.4rem;
   justify-content: end;
   align-items: center;
   gap: 1rem;
   cursor: pointer;
   user-select: none;
   position: relative;
-  transition: background-color .3s ease;
+  padding: 0 0.6rem;
+  transition: background-color 0.3s ease;
+  place-content: center;
 }
 
 .header-menu:hover {
@@ -125,12 +131,12 @@
 
 .header-menu_arrow {
   color: rgba(172, 0, 0, 0.525);
-  margin-right: -.5rem;
+  margin-left: -0.7em;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
 }
 
 .header-menu p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.622);
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;

@@ -17,7 +17,7 @@ function useLogin() {
 
     try {
       setLoginLoading(true);
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch("http://localhost:3070/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

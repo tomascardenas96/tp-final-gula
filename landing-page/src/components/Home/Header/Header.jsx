@@ -6,6 +6,7 @@ import { GiFullPizza } from "react-icons/gi";
 import useSearchBar from "../../../hooks/useSearchBar";
 import UseDropdownMenu from "../../../hooks/UseDropdownMenu";
 import DropdownMenu from "./DropdownMenu";
+import { MdArrowRight } from "react-icons/md";
 import "./Header.css";
 
 function Header() {
@@ -43,12 +44,12 @@ function Header() {
           </Link>
         </div>
         <div className="header-menu" onClick={handleDropdownMenu}>
-          <IoIosArrowDropdown className="header-menu_arrow" />
           <p>{user?.name}</p>
           <img
             src="../../../../assets/images/papas-fritas.jpg"
             alt="profile-picture_home-page-gula"
           />
+          <MdArrowRight className="header-menu_arrow" />
         </div>
         {isDropdownMenuOpen && <DropdownMenu />}
       </div>
