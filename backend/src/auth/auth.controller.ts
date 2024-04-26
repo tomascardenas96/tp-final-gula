@@ -27,9 +27,15 @@ export class AuthController {
     return this.authService.login(userLogin);
   }
 
+  @UseGuards(AuthGuard)
+  @Get('/home')
+  home() {
+    return 'Perfil';
+  }
+
  @UseGuards(AuthGuard)
   @Get('/profile')
   profile() {
-    return 'Perfil'
+    return 'Perfil';
   }
 }
