@@ -85,7 +85,7 @@ function useGetAllCategories() {
     async function getCategories() {
       try {
         setCategoriesLoading(true);
-        const response = await fetch("http://localhost:3000/category", {
+        const response = await fetch("http://localhost:3070/category", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
