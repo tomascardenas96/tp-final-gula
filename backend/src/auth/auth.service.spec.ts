@@ -6,10 +6,24 @@ import { JwtService } from "@nestjs/jwt";
 import { BadRequestException } from "@nestjs/common";
 import { User } from "src/user/entities/user.entity";
 import { RegisterDto } from "./dto/register.dto";
+//agregamos importacion de la biblioteca bcryptjs para hash
+//import bcryptjs, { compare, genSalt } from 'bcryptjs';
+import bcryptjs from 'bcryptjs';
+
+
+//mock bcryptjs
+jest.mock('bcryptjs',()=>({
+    genSalt:jest.fn(),
+    hash:jest.fn(),
+    compare:jest.fn(),
+}));
+
 
 describe('AuthService', () =>{
     let service: AuthService;
     let UserServiceMock:jest.Mocked<UserService>;
+
+
 
     beforeEach(async()=>{
         //creamos una instancia mock de UserService
@@ -19,12 +33,13 @@ describe('AuthService', () =>{
             findByUserName: jest.fn(),
             create: jest.fn(),
         } as unknown  as jest.Mocked<UserService>;
-        
+         
+
         const jwtServiceMock={
             //define los metodos que necesitas en tu mock Jwtservice
         };
         
-        
+        //inicializamos el modulo de prueba
         const module: TestingModule= await Test.createTestingModule({
             providers:[AuthService,
                 {
@@ -143,10 +158,63 @@ describe('AuthService', () =>{
         };
         await expect(service.register(invalidDto2)).rejects.toThrowError(BadRequestException);
     })
+
+/*PENDIENTE================================================================================ */
+    /*Validación de contraseñas: Podrías agregar pruebas para 
+    verificar que las contraseñas se estén hasheando 
+    correctamente antes de ser almacenadas en la base de datos. 
+    Esto puede incluir pruebas para garantizar que el hash de 
+    la contraseña sea único y que se genere correctamente con 
+    diferentes rondas de sal.*/
+
+   /* it('should hash password before storing it in th database', async()=>{
+        //user's example
+        const user:RegisterDto={
+            email: 'test@example.com',
+            name: 'Test User',
+            password: 'password123',
+            location: 'Test Location',
+            birthDate: '05/10/1990',
+        };
+        const salt= 'mocked-Salt';
+        const hashedPassword='mocked-hash';
+
+        //mockea la generacion de la salt y el hash de la contraseña
+        (bcryptjs.genSalt as jest.Mock).mockResolvedValue(salt);
+        (bcryptjs.hash as jest.Mock).mockResolvedValue(hashedPassword);
+
+        await service.register(user);
+        //verifica que el metodo hash de bcryptjs haya sido llamado correctamente
+        expect(bcryptjs.genSalt).toHaveBeenCalledWith(10);
+        expect(bcryptjs.hash).toHaveBeenCalledWith(user.password,salt);
+            
+        //esto seria un usuario guardado en la DB por eso ya tiene que tener formato de la entidad User
+        const UserRegistered:User={
+            userId:1,
+            email: 'test@example.com',
+            name: 'Test User',
+            password: hashedPassword,
+            createdAt:new Date(),
+            shop:[],
+            cart:null,
+            profile:null
+        }*/ 
+/*pendiente===========================================================================*/
+
+        //const IsPasswordHased= await bcryptjs.compare(user.password,UserRegistered.password)
+        //expect(IsPasswordHased).toBeTruthy();
+        //call the Register Method
+        //await service.register(user);
+    
+   // })
+
+
 });
 
-/*Validación de contraseñas: Podrías agregar pruebas para verificar que las contraseñas se estén hasheando correctamente antes de ser almacenadas en la base de datos. Esto puede incluir pruebas para garantizar que el hash de la contraseña sea único y que se genere correctamente con diferentes rondas de sal.
 
+
+
+/*
 Pruebas de integración: Aunque no es necesario en todas las aplicaciones, podrías considerar escribir pruebas de integración que prueben la interacción entre el servicio de autenticación y el servicio de usuario (UserService). Esto podría incluir pruebas para garantizar que se llame correctamente al método findByEmail y create del servicio de usuario.
 
 Manejo de errores: Asegúrate de que el servicio maneje correctamente cualquier error que pueda surgir durante el proceso de registro. Por ejemplo, podrías probar qué sucede si hay un error al crear un usuario en la base de datos (create del UserService falla).
