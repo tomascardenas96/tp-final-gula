@@ -2,17 +2,18 @@
   position: absolute;
   top: 3.9rem;
   right: 1.1rem;
-  width: 20rem;
+  width: 18rem;
   min-height: max-content;
   background-color: rgb(245, 245, 245);
   border-radius: 0.3rem;
   box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.684);
   display: flex;
   justify-content: center;
-  animation: slideInOut 0.5s ease forwards;
+  animation: slideInOut 0.2s ease forwards;
   max-height: 0;
   overflow: hidden;
-  z-index: 1000;
+  z-index: 1500;
+  overflow: visible;
 }
 
 @keyframes slideInOut {
@@ -26,7 +27,7 @@
 
 .dropdown-menu {
   display: flex;
-  width: 89%;
+  width: 94%;
   flex-direction: column;
   list-style: none;
 }
@@ -34,19 +35,28 @@
 .dropdown-menu li {
   padding: 0.85rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.097);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-family: var(--secondary-font);
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.705);
+  transition: background-color .3s ease;
+  border-radius: .2rem;
+}
+
+.dropdown-menu li:first-child {
+  margin-top: .3rem;
+}
+
+.dropdown-menu li:last-child {
+  margin-bottom: .3rem;
 }
 
 .dropdown-menu li:hover {
-  background-color: rgb(240, 240, 240);
+  background-color: rgba(241, 91, 91, 0.165);
 }
 
 .dropdown-menu li a {
   text-decoration: none;
-  color: rgba(53, 53, 53, 0.89);
+  color: rgba(0, 0, 0, 0.646);
 }
 
 .dropdown-menu li.dropdown-menu_shops a {

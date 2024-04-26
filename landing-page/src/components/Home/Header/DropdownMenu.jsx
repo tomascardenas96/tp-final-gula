@@ -7,11 +7,11 @@ import "./DropdownMenu.css";
 import LoadingScreen from "../../Common/Spinner/LoadingScreen";
 
 function DropdownMenu() {
-  const token = localStorage.getItem("accessToken")
+  const token = localStorage.getItem("accessToken");
   const { handleLogOut, logOutLoading } = useLogOut();
 
-  if(logOutLoading) {
-    return <LoadingScreen />
+  if (logOutLoading) {
+    return <LoadingScreen />;
   }
 
   return (

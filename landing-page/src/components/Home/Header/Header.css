@@ -13,6 +13,8 @@
   grid-template-columns: 20rem 1fr max-content;
   gap: 0.1rem;
   align-items: center;
+  padding-right: 1.5rem;
+  border-radius: .3rem;
 }
 
 .header-search {
@@ -110,6 +112,7 @@
   cursor: pointer;
   user-select: none;
   position: relative;
+  transition: background-color .3s ease;
 }
 
 .header-menu:hover {
@@ -117,7 +120,7 @@
 }
 
 .header-menu:active {
-  background-color: rgb(231, 229, 229);
+  background-color: rgb(216, 216, 216);
 }
 
 .header-menu_arrow {
