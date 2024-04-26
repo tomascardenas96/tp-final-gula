@@ -1,0 +1,83 @@
+.dropdown-menu_container {
+  position: absolute;
+  top: 3.9rem;
+  right: 1.1rem;
+  width: 18rem;
+  min-height: max-content;
+  background-color: rgb(245, 245, 245);
+  border-radius: 0.3rem;
+  box-shadow: 1px 1px 4px .2px rgba(0, 0, 0, 0.684);
+  display: flex;
+  justify-content: center;
+  animation: slideInOut 0.2s ease forwards;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 1500;
+  overflow: visible;
+}
+
+@keyframes slideInOut {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 100%;
+  }
+}
+
+.dropdown-menu {
+  display: flex;
+  width: 94%;
+  flex-direction: column;
+  list-style: none;
+}
+
+.dropdown-menu li {
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.097);
+  font-size: 0.88rem;
+  font-family: var(--secondary-font);
+  cursor: pointer;
+  transition: background-color .3s ease;
+  border-radius: .2rem;
+}
+
+.dropdown-menu li:first-child {
+  margin-top: .3rem;
+}
+
+.dropdown-menu li:last-child {
+  margin-bottom: .3rem;
+}
+
+.dropdown-menu li:hover {
+  background-color: rgba(241, 91, 91, 0.165);
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.646);
+}
+
+.dropdown-menu li.dropdown-menu_shops a {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: rgba(53, 53, 53, 0.731);
+}
+
+.menu-shops_icon {
+  color: rgba(204, 19, 19, 0.673);
+}
+
+li.dropdown-menu_add-shop,
+li.dropdown-menu_add-shop > a {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(169, 22, 22, 0.59);
+}

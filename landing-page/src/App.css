@@ -15,9 +15,10 @@ html {
 }
 
 :root {
-  --color-background-login-primary: #a61818;
-  --color-background-login-secondary: #ff4867;
-  --font-global: arial-rounded;
+  --color-background-login-primary: #ce3535fb;
+  --color-background-login-secondary: #f86464fb;
+  --font-global: "arial-rounded", sans-serif;
+  --secondary-font: "Titillium Web", sans-serif;
   --font-main-color: #ed3237;
   --font-color-login: #edf2f4;
 }

@@ -1,0 +1,148 @@
+.header_container {
+  grid-area: header;
+  padding: 0.1rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.header {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.1rem;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149);
+  display: grid;
+  grid-template-columns: 20rem 1fr max-content;
+  gap: 0.1rem;
+  align-items: center;
+  padding-right: 1.5rem;
+  border-radius: .3rem;
+}
+
+.header-search {
+  height: 79%;
+  border-right: 1px solid rgba(0, 0, 0, 0.109);
+}
+
+.header-search > div {
+  display: flex;
+  /* background-color: red; */
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.header-search-image {
+  width: 2rem;
+  height: 2rem;
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  /* padding: .5rem; */
+  color: rgb(206, 41, 41);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+}
+
+.header-search_form {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  /* background-color: blue; */
+  display: grid;
+  align-items: center;
+}
+
+.header-search-input {
+  width: 100%;
+  height: 74.5%;
+  border-radius: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.362);
+  border: none;
+  background-color: rgb(237, 237, 237);
+  outline: none;
+  padding-left: 1.2rem;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 0.1rem;
+  padding-left: 1.4rem;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.header-search-icon {
+  position: absolute;
+  left: 1.6rem;
+  top: 33%;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.526);
+}
+
+.header-search-input::placeholder {
+  /* color: red; */
+  display: grid;
+  align-items: center;
+  padding-left: 3rem;
+  height: 100%;
+  font-size: 1rem;
+  padding-left: 1.5rem;
+  position: absolute;
+  left: 1.3rem;
+  top: 13%;
+}
+
+.header-search-input:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.131);
+}
+
+.header-logo {
+  display: grid;
+  place-content: center;
+}
+
+.header-logo > a > img {
+  width: 4.5rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+}
+
+.header-menu {
+  height: 79%;
+  border-left: 1px solid rgba(0, 0, 0, 0.109);
+  display: flex;
+  padding: 0 1.4rem;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background-color .3s ease;
+}
+
+.header-menu:hover {
+  background-color: rgb(244, 244, 244);
+}
+
+.header-menu:active {
+  background-color: rgb(216, 216, 216);
+}
+
+.header-menu_arrow {
+  color: rgba(172, 0, 0, 0.525);
+  margin-right: -.5rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+}
+
+.header-menu p {
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.622);
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+}
+
+.header-menu img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.194);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+  border-radius: 0.2rem;
+  padding: 0.05rem;
+  object-fit: cover;
+  object-position: center;
+}
