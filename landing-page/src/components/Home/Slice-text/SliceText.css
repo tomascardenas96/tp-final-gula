@@ -1,0 +1,45 @@
+.slice-text_container {
+  grid-area: slice;
+  padding: 0 0.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.slice-text {
+  background-color: rgba(0, 0, 0, 0.669);
+  height: 100%;
+  color: white;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149);
+}
+
+.slice-text p {
+  filter: drop-shadow(0 0 1.5px rgb(0, 0, 0));
+  font-size: 0.95rem;
+  height: 100%;
+  display: inline-block;
+  align-items: center;
+  animation: slideText 15s linear infinite;
+  width: 100%;
+  letter-spacing: 0.16rem;
+  font-family: var(--font-secondary);
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-55%);
+  }
+
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-55%);
+  }
+}

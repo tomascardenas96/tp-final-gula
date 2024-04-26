@@ -1,0 +1,55 @@
+.advertise_container {
+  grid-area: ads;
+  padding-right: 0.1rem;
+}
+
+.advertise {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.274);
+  gap: 0.1rem;
+  grid-template-rows: 15rem 16rem 16rem;
+  background: rgba(0, 0, 0, 0.067);
+}
+
+.advertise > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.advertise > div img,
+.advertise > div a {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.1rem;
+  padding: 0.08rem;
+}
+
+.ads_grey-layout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1200;
+  background: radial-gradient(rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.182));
+  transition: opacity 0.3s ease;
+}
+.ads_grey-layout:hover {
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 950px) {
+  .advertise_container {
+    display: none;
+  }
+}

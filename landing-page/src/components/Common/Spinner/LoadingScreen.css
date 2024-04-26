@@ -1,0 +1,27 @@
+.loading-screen_container {
+  width: 100%;
+  height: 100svh;
+  display: grid;
+  place-content: center;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.loading-screen_container img {
+  width: 7rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+  animation: fadein .7s ease;
+}
+
+@keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

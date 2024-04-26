@@ -12,6 +12,8 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
+import { ActiveUser } from 'src/common/decorator/active-user.decorator';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -29,8 +31,8 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get('/home')
-  home() {
-    return 'Perfil';
+  home(@ActiveUser() user: ActiveUserInterface) {
+    return user;
   }
 
   @UseGuards(AuthGuard)

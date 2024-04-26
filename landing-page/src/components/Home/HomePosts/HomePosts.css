@@ -1,0 +1,6 @@
+.home-posts_container {
+  grid-area: posts;
+  display: grid;
+  place-content: center;
+  /* background-color: rgb(212 212 212 / 28%); */
+}

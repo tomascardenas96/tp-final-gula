@@ -5,8 +5,10 @@ function useLogOut() {
 
   function handleLogOut() {
     setLogOutLoading(true);
-    localStorage.clear();
-    location.reload();
+    setTimeout(() => {
+      localStorage.clear();
+      location.reload();
+    }, 1000);
   }
 
   return { handleLogOut, logOutLoading };
