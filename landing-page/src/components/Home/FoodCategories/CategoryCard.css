@@ -10,13 +10,13 @@
 }
 
 .category-card_icon {
-  height: 6.5rem;
-  width: 6.5rem;
+  height: 7rem;
+  width: 7rem;
   border-radius: 50%;
   border: 2px solid rgba(0, 0, 0, 0.547);
   display: grid;
   place-content: center;
-  font-size: 2.1rem;
+  font-size: 2.4rem;
   color: rgb(63, 58, 58);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.547));
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.09);

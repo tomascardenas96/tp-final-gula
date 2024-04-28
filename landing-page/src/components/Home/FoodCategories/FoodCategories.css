@@ -18,11 +18,11 @@
   width: 85%;
   height: max-content;
   display: flex;
-  gap: 1.8rem;
+  gap: 2.6rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-left: .9%;
+  padding-left: 2%;
   /* padding-right: 3%; */
 }
 

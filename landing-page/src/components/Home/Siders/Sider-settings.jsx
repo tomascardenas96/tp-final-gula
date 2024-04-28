@@ -21,15 +21,19 @@ function SiderSettings() {
         <ul>
           <li>
             <GoGear />
+            Cuenta
           </li>
           <li>
             <TfiWorld />
+            Idioma
           </li>
           <li>
             <TfiLayoutCtaBtnLeft />
+            Sobre nosotros
           </li>
           <li onClick={handleLogOut}>
             <CiLogout />
+            Salir
           </li>
         </ul>
         {/* <div>

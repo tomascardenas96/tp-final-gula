@@ -1,27 +1,25 @@
 .sider-settings_container {
   grid-area: sider-settings;
-  padding: 0.1rem;
   position: fixed;
-  width: 5rem;
+  width: 15rem;
   height: 100%;
   top: 4rem;
   right: 0;
-  box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.205);
 }
 
 .sider-settings {
   width: 100%;
   height: 100%;
-  /* border-left: 1px solid rgba(0, 0, 0, 0.064);
-  border-right: 1px solid rgba(0, 0, 0, 0.064); */
+  /* border-left: 1px solid rgba(0, 0, 0, 0.064); */
+  border-right: 1px solid rgba(0, 0, 0, 0.094);
   color: rgba(0, 0, 0, 0.634);
   display: grid;
   justify-items: center;
   padding-top: 0rem;
   align-content: space-between;
   position: relative;
-  background-color: rgba(240, 240, 240, 0.368);
-  
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.205);
 }
 
 .sider-settings ul {
@@ -29,8 +27,7 @@
   width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  
+  gap: 0.1rem;
 }
 
 .sider-settings ul > li {
@@ -38,7 +35,7 @@
   gap: 0.6rem;
   align-items: center;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   padding: 0.7rem;
   border-radius: 0.2rem;
   transition: background-color 0.2s ease;
