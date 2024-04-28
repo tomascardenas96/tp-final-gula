@@ -5,6 +5,7 @@ import { TfiLayoutCtaBtnLeft } from "react-icons/tfi";
 import { CiLogout } from "react-icons/ci";
 import useLogOut from "../../../hooks/useLogOut";
 import LoadingScreen from "../../Common/Spinner/LoadingScreen";
+import { BsShop } from "react-icons/bs";
 import "./Sider-settings.css";
 
 function SiderSettings() {
@@ -19,20 +20,31 @@ function SiderSettings() {
       <div className="sider-settings">
         <ul>
           <li>
-            <GoGear /> Cuenta
+            <GoGear />
           </li>
           <li>
-            <TfiWorld /> Idioma
+            <TfiWorld />
           </li>
           <li>
             <TfiLayoutCtaBtnLeft />
-            Sobre Nosotros
           </li>
           <li onClick={handleLogOut}>
-            <CiLogout /> Cerrar sesion
+            <CiLogout />
           </li>
         </ul>
-        <div></div>
+        {/* <div>
+          <div className="sider-shop">
+            <BsShop className="sider_shop-icon" />
+            <p>COMERCIOS</p>
+            <div className="sider_shop-icon-number">0</div>
+          </div>
+          <p>Agregar un nuevo comercio</p>
+        </div> */}
+        {/* <div className="sider-setting_slogan">
+          <h1>Tenés hambre?</h1>
+          <h1>Tenés</h1>
+          <img src="../../../../assets/images/Logo-gula-bg.png" alt="" />
+        </div> */}
       </div>
     </div>
   );

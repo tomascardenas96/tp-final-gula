@@ -4,6 +4,7 @@ import { FaBook } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import "./Sider-menu.css";
 
 function SiderMenu() {
@@ -12,26 +13,62 @@ function SiderMenu() {
       <div className="sider-menu">
         <ul>
           <li>
-            <FaHome className="sider-menu_icon" />
-            INICIO
+            <NavLink
+              to={""}
+              className={({ isActive }) =>
+                isActive ? "sider-menu_active" : null
+              }
+            >
+              <FaHome className="sider-menu_icon" />
+              INICIO
+            </NavLink>
           </li>
           <li>
-            <FaBook className="sider-menu_icon" />
-            PUBLICACIONES
+            <NavLink
+              to={""}
+              className={({ isActive }) =>
+                isActive ? "sider-menu_active" : null
+              }
+            >
+              <FaBook className="sider-menu_icon" />
+              PUBLICACIONES
+            </NavLink>
           </li>
           <li>
-            <FaEnvelope className="sider-menu_icon" />
-            MENSAJES
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive ? "sider-menu_active" : null
+              }
+            >
+              <FaEnvelope className="sider-menu_icon" />
+              MENSAJES
+            </NavLink>
           </li>
           <li>
-            <FaBell className="sider-menu_icon" />
-            NOTIFICACIONES
+            <NavLink
+              to={""}
+              className={({ isActive }) =>
+                isActive ? "sider-menu_active" : null
+              }
+            >
+              <FaBell className="sider-menu_icon" />
+              NOTIFICACIONES
+            </NavLink>
           </li>
           <li>
-            <FaShoppingCart className="sider-menu_icon" />
-            CARRITO
+            <NavLink
+              to={""}
+              className={({ isActive }) =>
+                isActive ? "sider-menu_active" : null
+              }
+            >
+              <FaShoppingCart className="sider-menu_icon" />
+              CARRITO
+            </NavLink>
           </li>
         </ul>
+
       </div>
     </div>
   );

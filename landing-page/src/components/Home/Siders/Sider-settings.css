@@ -2,31 +2,35 @@
   grid-area: sider-settings;
   padding: 0.1rem;
   position: fixed;
-  width: 14rem;
-  /* background-color: red; */
+  width: 5rem;
   height: 100%;
   top: 4rem;
   right: 0;
-  /* z-index: 1000; */
+  box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.205);
 }
 
 .sider-settings {
   width: 100%;
   height: 100%;
-  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  /* border-left: 1px solid rgba(0, 0, 0, 0.064);
+  border-right: 1px solid rgba(0, 0, 0, 0.064); */
   color: rgba(0, 0, 0, 0.634);
   display: grid;
   justify-items: center;
-  padding-top: 0.7rem;
+  padding-top: 0rem;
+  align-content: space-between;
+  position: relative;
+  background-color: rgba(240, 240, 240, 0.368);
+  
 }
 
 .sider-settings ul {
-  width: 100%;
   list-style: none;
-  width: 85%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 0.3rem;
+  
 }
 
 .sider-settings ul > li {
@@ -34,4 +38,78 @@
   gap: 0.6rem;
   align-items: center;
   cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.7rem;
+  border-radius: 0.2rem;
+  transition: background-color 0.2s ease;
+}
+
+.sider-settings ul > li:hover {
+  background-color: rgba(0, 0, 0, 0.058);
+}
+
+.sider-settings > div {
+  width: 85%;
+  /* height: 8rem; */
+  /* background-color: rgba(2, 2, 2, 0.108); */
+  position: absolute;
+  bottom: 7rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+}
+
+.sider-shop {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  /* position: relative; */
+}
+
+.sider-shop .sider_shop-icon-number {
+  /* position: absolute; */
+  background-color: rgba(203, 27, 27, 0.684);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin-left: -0.2rem;
+  font-size: 0.6rem;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.sider-shop p {
+  font-family: var(--secondary-font);
+  cursor: pointer;
+}
+
+.sider-settings > div > p {
+  font-family: var(--secondary-font);
+  color: rgba(203, 27, 27, 0.809);
+  font-weight: light;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sider-setting_slogan {
+  width: 90%;
+  /* background-color: rgba(0, 0, 0, 0.094); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sider-setting_slogan h1 {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.778);
+}
+
+.sider-setting_slogan img {
+  margin-top: 0.4rem;
+  width: 6.5rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.743));
 }

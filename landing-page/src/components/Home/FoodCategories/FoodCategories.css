@@ -22,7 +22,8 @@
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-left: 2%;
+  padding-left: .9%;
+  /* padding-right: 3%; */
 }
 
 /* Estilos del scrollbar */

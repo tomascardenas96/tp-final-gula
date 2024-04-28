@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
-import { IoIosArrowDropdown } from "react-icons/io";
 import { GiFullPizza } from "react-icons/gi";
 import useSearchBar from "../../../hooks/useSearchBar";
-import UseDropdownMenu from "../../../hooks/UseDropdownMenu";
-import DropdownMenu from "./DropdownMenu";
 import { MdArrowRight } from "react-icons/md";
 import "./Header.css";
 
@@ -13,7 +10,6 @@ function Header() {
   const user = JSON.parse(localStorage.getItem("user"));
   const { handleSubmitSearchBar, handleChangeSearchBar, isEmptyInput } =
     useSearchBar();
-  const { handleDropdownMenu, isDropdownMenuOpen } = UseDropdownMenu();
 
   return (
     <header className="header_container">
@@ -43,15 +39,14 @@ function Header() {
             />
           </Link>
         </div>
-        <div className="header-menu" onClick={handleDropdownMenu}>
+        <div className="header-menu">
           <p>{user?.name}</p>
           <img
-            src="../../../../assets/images/papas-fritas.jpg"
+            src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
             alt="profile-picture_home-page-gula"
           />
           <MdArrowRight className="header-menu_arrow" />
         </div>
-        {isDropdownMenuOpen && <DropdownMenu />}
       </div>
     </header>
   );

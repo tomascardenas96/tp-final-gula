@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <>
-      <main className="home-page_container">
+      <main className="home-page_container" id="home-page">
         <Header />
         <SliceText />
         <SiderMenu />

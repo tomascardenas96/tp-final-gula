@@ -12,14 +12,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .food-filter h1 {
   color: rgb(226, 226, 226);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.962));
   letter-spacing: 0.14rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .food-filter .food-filter_input-field {
@@ -27,7 +27,7 @@
 }
 
 .food-filter input {
-  width: 28rem;
+  width: 33rem;
   height: 2.2rem;
   border-radius: 0.2rem;
   outline: none;

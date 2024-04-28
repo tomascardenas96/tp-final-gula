@@ -2,40 +2,75 @@
   grid-area: sider-menu;
   display: grid;
   padding: 0.1rem;
-  background-color: white;
   position: fixed;
   height: 100%;
-  width: 16.5rem;
+  width: 15rem;
   top: 4rem;
+  box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.137);
 }
 
 .sider-menu {
   width: 100%;
   height: 100%;
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: rgba(240, 240, 240, 0.368);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 8rem;
+  align-items: center;
 }
 
 .sider-menu ul {
-  /* background-color: red; */
+  /* background-color: blue; */
+  width: 100%;
   display: grid;
-  height: 28%;
+  height: 29%;
   align-content: space-around;
   justify-content: start;
-  padding-left: 1rem;
+  padding-left: 0.7rem;
   padding-top: 0.4rem;
+  position: relative;
 }
 
-.sider-menu ul > li {
-  font-size: .95rem;
+.sider-menu ul > li,
+.sider-menu ul > li > a {
+  font-size: 0.95rem;
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  color: rgba(0, 0, 0, 0.634);
-  letter-spacing: .03rem;
+  color: rgba(0, 0, 0, 0.753);
+  letter-spacing: 0.03rem;
   cursor: pointer;
+  text-decoration: none;
+  font-size: 0.93rem;
 }
 
 .sider-menu_icon {
-  color: rgba(0, 0, 0, 0.831);
-  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.675);
+  font-size: 1.1rem;
+  /* position: absolute;
+  left: 0.7rem; */
+}
+
+.sider-menu_active {
+  color: red;
+}
+
+.sider-menu_slogan {
+  width: 90%;
+  /* background-color: rgba(0, 0, 0, 0.094); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sider-menu_slogan h1 {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.778);
+}
+
+.sider-menu_slogan img {
+  margin-top: 0.4rem;
+  width: 6.5rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.743));
 }
