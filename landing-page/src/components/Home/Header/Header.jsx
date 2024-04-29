@@ -44,7 +44,6 @@ function Header() {
             src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
             alt="profile-picture_home-page-gula"
           />
-          <MdArrowRight className="header-menu_arrow" />
         </div>
       </div>
     </header>

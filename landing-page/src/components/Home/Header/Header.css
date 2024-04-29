@@ -130,15 +130,6 @@
   background-color: rgb(216, 216, 216);
 }
 
-.header-menu_arrow {
-  color: rgba(172, 0, 0, 0.525);
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
-  /* background-color: red; */
-  /* padding */
-  position: absolute;
-  right: 0;
-}
-
 .header-menu p {
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.622);

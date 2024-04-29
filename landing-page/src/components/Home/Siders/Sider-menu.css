@@ -90,6 +90,7 @@
   grid-template-rows: 1fr 1fr;
   cursor: pointer;
   user-select: none;
+  transition: background-color .3s ease;
 }
 
 .sider-menu_user-data:hover {
