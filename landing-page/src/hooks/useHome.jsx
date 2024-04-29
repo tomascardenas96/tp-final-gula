@@ -9,7 +9,7 @@ function useHome() {
     async function getAuthorizationToHome() {
       setHomeLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/auth/home", {
+        const response = await fetch("http://localhost:3070/auth/home", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
