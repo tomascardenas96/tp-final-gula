@@ -6,6 +6,7 @@ import { CiLogout } from "react-icons/ci";
 import { BsShop } from "react-icons/bs";
 import LoadingScreen from "../../Common/Spinner/LoadingScreen.jsx";
 import useLogOut from "../../../hooks/useLogOut.jsx";
+
 import "./Sider-settings-navbar.css";
 
 function SiderSettingsNavbar() {
@@ -14,6 +15,7 @@ function SiderSettingsNavbar() {
   if (logOutLoading) {
     return <LoadingScreen />;
   }
+  
   return (
     <nav className="sider-menu-navbar_container">
       <ul>

@@ -1,55 +1,37 @@
 .sider-settings_container {
   grid-area: sider-settings;
   position: fixed;
-  width: 4rem;
+  width: 3rem;
   height: 100%;
   top: 0;
   right: 0;
-  /* display: none; */
 }
 
 .sider-settings {
   width: 100%;
   height: 100%;
-  /* border-right: 1px solid rgba(0, 0, 0, 0.094); */
   color: rgba(0, 0, 0, 0.634);
-  display: grid;
-  padding-top: 0rem;
+  display: flex;
+  padding-bottom: 5rem;
   position: relative;
-  /* box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.205); */
   display: flex;
-  justify-content: center;
-  align-items: start;
-  top: 3.97rem;
-  background-color: rgba(0, 0, 0, 0.026);
-  border-radius: 0.2rem;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.164);
-  border: 1px solid rgba(0, 0, 0, 0.149);
-  border-radius: 0.1rem;
-}
-
-.sider-settings > div {
-  width: 85%;
-  /* height: 8rem; */
-  /* background-color: rgba(2, 2, 2, 0.108); */
-  position: absolute;
-  bottom: 7rem;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
   flex-direction: column;
-  /* background-color: red; */
+  justify-content: space-between;
+  align-items: center;
+  top: 4.02rem;
+  background-color: rgb(245, 245, 245);
+  box-shadow: -1px 0px 4px 1px rgba(0, 0, 0, 0.077);
+  border-radius: 0.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.135);
 }
 
 .sider-shop {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  /* position: relative; */
 }
 
 .sider-shop .sider_shop-icon-number {
-  /* position: absolute; */
   background-color: rgba(203, 27, 27, 0.684);
   width: 1rem;
   height: 1rem;
@@ -84,4 +66,36 @@
   margin-top: 0.4rem;
   width: 6.5rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.743));
+}
+
+.sider-settings .sider-settings_border {
+  width: 1rem;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.026);
+  box-shadow: -1px 1px 5px 0.5px rgba(0, 0, 0, 0.221);
+  z-index: 1600;
+}
+
+.sider-settings_whatsapp-icon {
+  width: 76%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: rgb(28, 162, 28);
+  border-top: 1px solid rgba(0, 0, 0, 0.143);
+  /* background-color: red; */
+  padding: 0.5rem 0;
+}
+
+.wa-icon {
+  transition: transform .3s;
+}
+
+.wa-icon:hover {
+  transform: scale(1.2);
 }

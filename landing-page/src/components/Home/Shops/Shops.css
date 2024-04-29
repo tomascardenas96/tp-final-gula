@@ -19,12 +19,12 @@
   height: max-content;
   width: 92%;
   display: flex;
-  gap: 4.3rem;
+  gap: 4.4rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: visible;
   padding: .5rem 0 .5rem 3.5%;
-  padding-left: 3.8%;
+  padding-left: 4.4%;
 }
 
 /* Estilos del scrollbar */

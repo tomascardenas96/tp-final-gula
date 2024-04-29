@@ -12,6 +12,7 @@ import SliceText from "../../components/Home/Slice-text/SliceText";
 import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import LoadingScreen from "../../components/Common/Spinner/LoadingScreen";
+import SiderContext from "../../components/Home/Siders/SiderContext";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
@@ -23,15 +24,17 @@ function Home() {
   return (
     <>
       <main className="home-page_container" id="home-page">
-        <Header />
-        <SliceText />
-        <SiderMenu />
-        <FoodFilter />
-        <FoodCategories />
-        <Shops />
-        <HomePosts />
-        <SiderSettings />
-        <Footer />
+        <SiderContext>
+          <Header />
+          <SliceText />
+          <SiderMenu />
+          <FoodFilter />
+          <FoodCategories />
+          <Shops />
+          <HomePosts />
+          <SiderSettings />
+          <Footer />
+        </SiderContext>
       </main>
     </>
   );

@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 import { GiFullPizza } from "react-icons/gi";
 import useSearchBar from "../../../hooks/useSearchBar";
-import { MdArrowRight } from "react-icons/md";
 import "./Header.css";
+import useLogOut from "../../../hooks/useLogOut";
+import { removeHeaderContext } from "../Siders/SiderContext";
 
 function Header() {
-  const user = JSON.parse(localStorage.getItem("user"));
   const { handleSubmitSearchBar, handleChangeSearchBar, isEmptyInput } =
     useSearchBar();
+  const { isRemovedHeader } = useContext(removeHeaderContext);
 
   return (
-    <header className="header_container">
+    <header
+      className={isRemovedHeader ? "header_container_remove" : "header_container"}
+    >
       <div className="header">
         <div className="header-search">
           <div>

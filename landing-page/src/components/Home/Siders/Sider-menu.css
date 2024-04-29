@@ -4,8 +4,9 @@
   position: fixed;
   height: 100%;
   width: 17rem;
-  top: 3.97rem;
-  background-color: rgba(0, 0, 0, 0.026);
+  top: 3.96rem;
+  background-color: rgb(245, 245, 245);
+  padding-left: .1rem;
 }
 
 .sider-menu {
@@ -16,11 +17,12 @@
   justify-content: space-between;
   padding-bottom: 8rem;
   align-items: center;
-  /* box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149); */
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.086);
   border: 1px solid rgba(0, 0, 0, 0.149);
-  border-radius: 0.1rem;
+  border-top: none;
+  border-radius: 0.2rem;
   padding: 1.2rem 0 6rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.135);
 }
 
 .sider-menu ul {
@@ -31,8 +33,8 @@
   align-content: space-around;
   justify-content: start;
   padding-left: 0.9rem;
-  padding-top: 0.4rem;
-  gap: 2.3rem;
+  padding-top: 0.5rem;
+  gap: 2.1rem;
   position: relative;
 }
 
