@@ -1,7 +1,8 @@
 .food-filter_container {
   grid-area: filter;
   /* background-color: lightblue; */
-  /* padding-left: 0.1rem; */
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 .food-filter {

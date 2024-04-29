@@ -40,7 +40,6 @@ function Header() {
           </Link>
         </div>
         <div className="header-menu">
-          <p>{user?.name}</p>
           <img
             src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
             alt="profile-picture_home-page-gula"

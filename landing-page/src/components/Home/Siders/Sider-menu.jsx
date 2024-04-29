@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 import "./Sider-menu.css";
 
 function SiderMenu() {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div className="sider-menu_container">
       <div className="sider-menu">
@@ -68,7 +70,16 @@ function SiderMenu() {
             </NavLink>
           </li>
         </ul>
-
+        <div className="sider-menu_user-data">
+          <div className="sider-menu_user-data_picture">
+            <img
+              src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
+              alt=""
+            />
+          </div>
+          <div className="sider-menu_user-data-name">{user?.name}</div>
+          <div className="sider-menu_user-data-profile-name">{user?.email}</div>
+        </div>
       </div>
     </div>
   );

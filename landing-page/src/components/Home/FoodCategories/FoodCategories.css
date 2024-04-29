@@ -15,15 +15,14 @@
 }
 
 .food-categories_container .food-categories_cards {
-  width: 85%;
+  width: 80%;
   height: max-content;
   display: flex;
-  gap: 2.6rem;
+  gap: 2rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-left: 2%;
-  /* padding-right: 3%; */
+  padding-left: 1%;
 }
 
 /* Estilos del scrollbar */

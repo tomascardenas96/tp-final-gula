@@ -1,6 +1,5 @@
 import React from "react";
 import useHome from "../../hooks/useHome";
-import LoadingScreen from "../../components/Common/Spinner/LoadingScreen";
 import Header from "../../components/Home/Header/Header.jsx";
 import FoodFilter from "../../components/Home/FoodFilter/FoodFilter.jsx";
 import FoodCategories from "../../components/Home/FoodCategories/FoodCategories.jsx";
@@ -12,12 +11,12 @@ import "./Home.css";
 import SliceText from "../../components/Home/Slice-text/SliceText";
 import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
+import LoadingScreen from "../../components/Common/Spinner/LoadingScreen";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
-  const { logOutLoading } = useLogOut();
 
-  if (homeLoading || logOutLoading) {
+  if (homeLoading) {
     return <LoadingScreen />;
   }
 
@@ -31,7 +30,7 @@ function Home() {
         <FoodCategories />
         <Shops />
         <HomePosts />
-        <SiderSettings/>
+        <SiderSettings />
         <Footer />
       </main>
     </>

@@ -1,48 +1,31 @@
 .sider-settings_container {
   grid-area: sider-settings;
   position: fixed;
-  width: 15rem;
+  width: 4rem;
   height: 100%;
-  top: 4rem;
+  top: 0;
   right: 0;
+  /* display: none; */
 }
 
 .sider-settings {
   width: 100%;
   height: 100%;
-  /* border-left: 1px solid rgba(0, 0, 0, 0.064); */
-  border-right: 1px solid rgba(0, 0, 0, 0.094);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.094); */
   color: rgba(0, 0, 0, 0.634);
   display: grid;
-  justify-items: center;
   padding-top: 0rem;
-  align-content: space-between;
   position: relative;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.205);
-}
-
-.sider-settings ul {
-  list-style: none;
-  width: 95%;
+  /* box-shadow: 1px 1px 5px 0.5px rgba(0, 0, 0, 0.205); */
   display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.sider-settings ul > li {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 0.7rem;
+  justify-content: center;
+  align-items: start;
+  top: 3.97rem;
+  background-color: rgba(0, 0, 0, 0.026);
   border-radius: 0.2rem;
-  transition: background-color 0.2s ease;
-}
-
-.sider-settings ul > li:hover {
-  background-color: rgba(0, 0, 0, 0.058);
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.164);
+  border: 1px solid rgba(0, 0, 0, 0.149);
+  border-radius: 0.1rem;
 }
 
 .sider-settings > div {
@@ -90,14 +73,6 @@
   font-size: 0.9rem;
   cursor: pointer;
   text-decoration: underline;
-}
-
-.sider-setting_slogan {
-  width: 90%;
-  /* background-color: rgba(0, 0, 0, 0.094); */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .sider-setting_slogan h1 {
