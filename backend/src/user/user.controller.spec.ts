@@ -7,6 +7,9 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { ProfileService } from 'src/profile/profile.service';
 import { CartService } from 'src/cart/cart.service';
+import { Cart } from 'src/cart/entities/cart.entity';
+import { Profile } from 'src/profile/entities/profile.entity';
+import { JwtService } from '@nestjs/jwt';
 
 
 describe('UserController', () => {
@@ -18,12 +21,21 @@ describe('UserController', () => {
       controllers: [UserController],
       providers:[
         UserService,
+        JwtService,
         ProfileService,
         CartService,
         {
           provide:getRepositoryToken(User),//obtenemos el token del repositorio del user
           useClass:Repository,//simula un repositorio, se podria usar un mock
         },
+        {
+          provide:getRepositoryToken(Cart),
+          useClass:Repository,
+        },
+        {
+          provide:getRepositoryToken(Profile),
+          useClass:Repository,
+        }
       ],
     }).compile();
 
