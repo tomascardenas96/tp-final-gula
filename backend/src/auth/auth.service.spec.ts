@@ -7,11 +7,12 @@ import { BadRequestException } from "@nestjs/common";
 import { User } from "src/user/entities/user.entity";
 import { RegisterDto } from "./dto/register.dto";
 //agregamos importacion de la biblioteca bcryptjs para hash
-//import bcryptjs, { compare, genSalt } from 'bcryptjs';
-import bcryptjs from 'bcryptjs';
+import * as bcryptjs from 'bcryptjs';
+
 
 
 //mock bcryptjs
+
 jest.mock('bcryptjs',()=>({
     genSalt:jest.fn(),
     hash:jest.fn(),
@@ -94,6 +95,8 @@ describe('AuthService', () =>{
         expect(result).toEqual(expectedResponse)
     });
 
+    /*================================================================================ */
+
     /*Test for exist user:
     Crea otro caso de prueba donde intentas registrar 
     un usuario con un correo electrónico que ya está 
@@ -133,6 +136,8 @@ describe('AuthService', () =>{
         //de igual forma cumple con su trabajo en las verciones nuevas
     });
 
+    /*================================================================================ */
+
     /*Validación de datos de entrada: Asegúrate de que la función register maneje adecuadamente 
     casos donde los datos de entrada no son válidos. Por ejemplo, podrías probar qué sucede si 
     se proporcionan datos faltantes o incorrectos en el objeto RegisterDto. */
@@ -140,9 +145,7 @@ describe('AuthService', () =>{
         //case email missing
         const invalidDto1: RegisterDto={
             email:null,
-            name: 'Test User',                          //revisar test no pasa porque perimite un email nulo.
-                                                        //modificar DTO(preguntar tomy) o agregar validaciones 
-                                                        //en metodo register
+            name: 'Test User',                          
             password: 'password123',
             location: 'Test Location',
             birthDate: '05/10/1990',
@@ -151,7 +154,7 @@ describe('AuthService', () =>{
         // Caso: nombre y contraseña nulos
         const invalidDto2: RegisterDto = {
             email: 'test@example.com',
-            name: null,                                  //revissar lo mismo de arriba
+            name: null,                                 
             password: null,
             location: 'Test Location',
             birthDate: '05/10/1990',
@@ -159,7 +162,7 @@ describe('AuthService', () =>{
         await expect(service.register(invalidDto2)).rejects.toThrowError(BadRequestException);
     })
 
-/*PENDIENTE================================================================================ */
+/*================================================================================ */
     /*Validación de contraseñas: Podrías agregar pruebas para 
     verificar que las contraseñas se estén hasheando 
     correctamente antes de ser almacenadas en la base de datos. 
@@ -167,48 +170,64 @@ describe('AuthService', () =>{
     la contraseña sea único y que se genere correctamente con 
     diferentes rondas de sal.*/
 
-   /* it('should hash password before storing it in th database', async()=>{
-        //user's example
-        const user:RegisterDto={
+    it('should hash password before storing it in th database', async()=>{
+               
+        const userRegister:RegisterDto={
             email: 'test@example.com',
             name: 'Test User',
             password: 'password123',
             location: 'Test Location',
             birthDate: '05/10/1990',
         };
-        const salt= 'mocked-Salt';
-        const hashedPassword='mocked-hash';
+       
+        //pueba de salt y hash
+        const roundSalt = 10;
+        //console.log('antes de generar el salt')
+        const salt = await bcryptjs.genSalt(roundSalt);
+        //console.log('despues de generar el salt',salt);
 
-        //mockea la generacion de la salt y el hash de la contraseña
-        (bcryptjs.genSalt as jest.Mock).mockResolvedValue(salt);
-        (bcryptjs.hash as jest.Mock).mockResolvedValue(hashedPassword);
-
-        await service.register(user);
-        //verifica que el metodo hash de bcryptjs haya sido llamado correctamente
-        expect(bcryptjs.genSalt).toHaveBeenCalledWith(10);
-        expect(bcryptjs.hash).toHaveBeenCalledWith(user.password,salt);
-            
-        //esto seria un usuario guardado en la DB por eso ya tiene que tener formato de la entidad User
-        const UserRegistered:User={
+        //console.log('antes de genrear el hash', userRegister.password)
+        
+        const userRegistered:User={
             userId:1,
             email: 'test@example.com',
             name: 'Test User',
-            password: hashedPassword,
+            password: await bcryptjs.hash(userRegister.password, salt),
             createdAt:new Date(),
             shop:[],
             cart:null,
-            profile:null
-        }*/ 
-/*pendiente===========================================================================*/
+            profile:null,
+        };
+        //console.log('despues de genrar el hash',userRegistered.password)
+        const comparePassword= await bcryptjs.compare(userRegister.password,userRegistered.password)
+        expect(comparePassword).toBeTruthy;
+    })
+        
+        //otro metodo
+        it('shoud check if methods genSalt and hash are called correctly',async()=>{
 
-        //const IsPasswordHased= await bcryptjs.compare(user.password,UserRegistered.password)
-        //expect(IsPasswordHased).toBeTruthy();
-        //call the Register Method
-        //await service.register(user);
-    
-   // })
-
-
+            //user's register example
+            const user:RegisterDto={
+                email: 'test@example.com',
+                name: 'Test User',
+                password: 'password123',
+                location: 'Test Location',
+                birthDate: '05/10/1990',
+            };
+            
+            const salt= 'mocked-Salt';
+            const hashedPassword='mocked-hash';
+            
+            
+            //mockea la generacion de la salt y el hash de la contraseña
+            (bcryptjs.genSalt as jest.Mock).mockResolvedValue(salt);
+            (bcryptjs.hash as jest.Mock).mockResolvedValue(hashedPassword);
+            
+            await service.register(user);
+            //verifica que el metodo hash de bcryptjs haya sido llamado correctamente
+            expect(bcryptjs.genSalt).toHaveBeenCalledWith(10);
+            expect(bcryptjs.hash).toHaveBeenCalledWith(user.password,salt);
+        })
 });
 
 

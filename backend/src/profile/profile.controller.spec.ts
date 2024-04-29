@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProfileController } from './profile.controller';
-import { ProfileService } from './profile.service';
 //agrego importaciones
+import { ProfileService } from './profile.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Profile } from './entities/profile.entity';
 import { Repository } from 'typeorm';
