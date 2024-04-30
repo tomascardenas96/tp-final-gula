@@ -19,10 +19,9 @@
   justify-content: space-between;
   align-items: center;
   top: 4.02rem;
-  background-color: rgb(245, 245, 245);
-  box-shadow: -1px 0px 4px 1px rgba(0, 0, 0, 0.077);
+  background-color: rgb(255, 255, 255);
   border-radius: 0.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.135);
+  border: 1px solid rgba(0, 0, 0, 0.208);
 }
 
 .sider-shop {
@@ -94,6 +93,7 @@
 
 .wa-icon {
   transition: transform .3s;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.228));
 }
 
 .wa-icon:hover {

@@ -4,9 +4,8 @@
   position: fixed;
   height: 100%;
   width: 17rem;
-  top: 3.96rem;
-  background-color: rgb(245, 245, 245);
-  padding-left: .1rem;
+  top: 4rem;
+  background-color: rgb(255, 255, 255);
 }
 
 .sider-menu {
@@ -17,19 +16,15 @@
   justify-content: space-between;
   padding-bottom: 8rem;
   align-items: center;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.086);
-  border: 1px solid rgba(0, 0, 0, 0.149);
-  border-top: none;
   border-radius: 0.2rem;
   padding: 1.2rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.135);
+
 }
 
 .sider-menu ul {
   width: 100%;
   display: grid;
-  /* height: 34%; */
-  /* background-color: red; */
   align-content: space-around;
   justify-content: start;
   padding-left: 0.9rem;
