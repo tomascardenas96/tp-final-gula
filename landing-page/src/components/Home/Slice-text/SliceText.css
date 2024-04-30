@@ -30,8 +30,8 @@
   /* background-color: red; */
   width: 100%;
   letter-spacing: 0.16rem;
-  font-family: var(--font-secondary);
-  margin-top: .1%;
+  font-family: var(--secondary-font);
+  /* margin-top: .1%; */
 }
 
 @keyframes slideText {

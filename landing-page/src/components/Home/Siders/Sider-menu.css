@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
 .sider-menu_container {
   grid-area: sider-menu;
   display: grid;
@@ -17,9 +19,8 @@
   padding-bottom: 8rem;
   align-items: center;
   border-radius: 0.2rem;
-  padding: 1.2rem 0 6rem 0;
+  padding: 0.5rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.135);
-
 }
 
 .sider-menu ul {
@@ -27,9 +28,7 @@
   display: grid;
   align-content: space-around;
   justify-content: start;
-  padding-left: 0.9rem;
-  padding-top: 0.5rem;
-  gap: 2.1rem;
+  gap: 0.5rem;
   position: relative;
 }
 
@@ -44,14 +43,23 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 0.97rem;
-  width: 100%;
+  width: 17rem;
+  padding: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.sider-menu ul > li:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.098);
+}
+
+.sider-menu ul > li:active {
+  background-color: rgba(0, 0, 0, 0.198);
 }
 
 .sider-menu_icon {
   color: rgba(0, 0, 0, 0.675);
   font-size: 1.1rem;
-  /* position: absolute;
-  left: 0.7rem; */
 }
 
 .sider-menu_active {
@@ -60,7 +68,6 @@
 
 .sider-menu_slogan {
   width: 90%;
-  /* background-color: rgba(0, 0, 0, 0.094); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,32 +87,29 @@
 .sider-menu_user-data {
   width: 85%;
   height: 4rem;
-  /* background-color: rgba(255, 0, 0, 0.389); */
   display: grid;
   border-radius: 5rem;
   grid-template-columns: 4rem 1fr;
   grid-template-rows: 1fr 1fr;
   cursor: pointer;
   user-select: none;
-  transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
+  padding-left: 0.4rem;
 }
 
 .sider-menu_user-data:hover {
-  background-color: rgba(0, 0, 0, 0.185);
-
+  background-color: rgba(0, 0, 0, 0.098);
 }
 
 .sider-menu_user-data:active {
-  background-color: rgba(0, 0, 0, 0.272);
-
+  background-color: rgba(0, 0, 0, 0.198);
 }
 
 .sider-menu_user-data_picture {
   grid-row: 1 / 3;
   border-radius: 50%;
-  /* background-color: rgba(0, 128, 0, 0.418); */
   display: grid;
-  place-content: center; 
+  place-content: center;
   padding: 1rem;
   position: relative;
 }
@@ -122,23 +126,23 @@
 }
 
 .sider-menu_user-data-name {
-  /* background-color: pink; */
   border-radius: 0 3rem 0 0;
   display: grid;
   align-items: end;
   font-weight: bold;
-  font-family: var(--secondary-font);
-  font-size: .9rem;
-  padding-left: .3rem;
+  font-size: 0.9rem;
+  padding-left: 0.4rem;
+  padding-bottom: 0.1rem;
+  font-family: var(--tertiary-font);
 }
 
 .sider-menu_user-data-profile-name {
-  /* background-color: brown; */
   border-radius: 0 0 3rem 0;
   align-items: start;
   display: grid;
-  font-family: var(--secondary-font);
-  font-size: .99rem;
-  padding-left: .3rem;
+  font-size: 0.85rem;
+  padding-left: 0.4rem;
+  padding-top: 0.1rem;
   color: rgba(0, 0, 0, 0.777);
+  font-family: var(--tertiary-font);
 }

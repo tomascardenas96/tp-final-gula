@@ -4,21 +4,20 @@
   align-items: center;
   width: 6rem;
   height: 100%;
-  gap: 0.4rem;
+  gap: 0.6rem;
   cursor: pointer;
-  /* background-color: red; */
 }
 
 .category-card_icon {
   height: 6.7rem;
   width: 6.7rem;
   border-radius: 50%;
-  border: 2px solid rgba(0, 0, 0, 0.547);
+  border: 1.5px solid rgba(0, 0, 0, 0.547);
   display: grid;
   place-content: center;
   font-size: 2.25rem;
   color: rgb(63, 58, 58);
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.547));
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.878));
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.09);
 }
 
@@ -27,7 +26,6 @@
 }
 
 .category-card_icon:hover {
-  /* transform: scale(120%); */
   font-size: 3rem;
 }
 
@@ -37,4 +35,6 @@
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0));
   font-weight: 600;
   color: rgba(0, 0, 0, 0.736);
+  font-family: var(--secondary-font);
+  font-size: .95rem;
 }

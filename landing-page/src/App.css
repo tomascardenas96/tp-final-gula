@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
 @font-face {
   font-family: arial-rounded;
   src: url("/assets/fonts/arial-rounded.ttf");
@@ -19,6 +21,7 @@ html {
   --color-background-login-secondary: #f86464fb;
   --font-global: "arial-rounded", sans-serif;
   --secondary-font: "Titillium Web", sans-serif;
+  --tertiary-font: "Plus Jakarta Sans", sans-serif;
   --font-main-color: #ed3237;
   --font-color-login: #edf2f4;
 }
