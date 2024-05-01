@@ -6,6 +6,14 @@
   align-items: center;
   gap: 1.5rem;
   padding-top: 1.2%;
+  justify-items: center;
+  /* padding: 0 0.2rem 0 0.2rem; */
+}
+
+.food-categories {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .food-categories_container h1 {
