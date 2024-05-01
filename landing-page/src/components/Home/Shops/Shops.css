@@ -4,14 +4,14 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   /* background-color: red; */
 }
 
 .shops_container h1 {
   font-size: 1.5rem;
   font-family: var(--secondary-font);
-  color: rgba(0, 0, 0, 0.756);
+  color: rgba(0, 0, 0, 0.634);
   /* background-color: green; */
 }
 
@@ -19,11 +19,12 @@
   height: max-content;
   width: 92%;
   display: flex;
-  gap: 5rem;
+  gap: 4.4rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 0.5rem 2rem;
+  padding: .5rem 0 .5rem 3.5%;
+  padding-left: 4.35%;
 }
 
 /* Estilos del scrollbar */

@@ -1,0 +1,111 @@
+.sider-settings_container {
+  grid-area: sider-settings;
+  position: fixed;
+  width: 3rem;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
+.sider-settings {
+  width: 100%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.634);
+  display: flex;
+  padding-top: .1rem;
+  padding-bottom: 5.3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  top: 3.985rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.208);
+}
+
+.sider-shop {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.sider-shop .sider_shop-icon-number {
+  background-color: rgba(203, 27, 27, 0.684);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin-left: -0.2rem;
+  font-size: 0.6rem;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.sider-shop p {
+  font-family: var(--secondary-font);
+  cursor: pointer;
+}
+
+.sider-settings > div > p {
+  font-family: var(--secondary-font);
+  color: rgba(203, 27, 27, 0.809);
+  font-weight: light;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sider-setting_slogan h1 {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.778);
+}
+
+.sider-setting_slogan img {
+  margin-top: 0.4rem;
+  width: 6.5rem;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.743));
+}
+
+.sider-settings .sider-settings_border {
+  width: 1rem;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.026);
+  box-shadow: -1px 1px 5px 0.5px rgba(0, 0, 0, 0.221);
+  z-index: 1600;
+}
+
+.sider-settings_whatsapp-icon {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: rgb(28, 162, 28);
+  border-top: 1px solid rgba(0, 0, 0, 0.143);
+  /* background-color: red; */
+  padding: 0.8rem 0 0 0;
+}
+
+.wa-icon {
+  transition: transform 0.3s;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.228));
+  width: 100%;
+  height: 100%;
+  padding: .2rem;
+  border-radius: .1rem;
+}
+
+.wa-icon:hover {
+  transform: scale(1.2);
+  /* background-color: rgba(0, 0, 0, 0.098); */
+}
+
+.wa-icon:active {
+  background-color: rgba(0, 0, 0, 0.198);
+}

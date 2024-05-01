@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
-import { IoIosArrowDropdown } from "react-icons/io";
 import { GiFullPizza } from "react-icons/gi";
 import useSearchBar from "../../../hooks/useSearchBar";
-import UseDropdownMenu from "../../../hooks/UseDropdownMenu";
-import DropdownMenu from "./DropdownMenu";
 import "./Header.css";
+import useLogOut from "../../../hooks/useLogOut";
+import { removeHeaderContext } from "../Siders/SiderContext";
 
 function Header() {
-  const user = JSON.parse(localStorage.getItem("user"));
   const { handleSubmitSearchBar, handleChangeSearchBar, isEmptyInput } =
     useSearchBar();
-  const { handleDropdownMenu, isDropdownMenuOpen } = UseDropdownMenu();
+  const { isRemovedHeader } = useContext(removeHeaderContext);
 
   return (
-    <header className="header_container">
+    <header
+      className={isRemovedHeader ? "header_container_remove" : "header_container"}
+    >
       <div className="header">
         <div className="header-search">
           <div>
@@ -42,15 +42,12 @@ function Header() {
             />
           </Link>
         </div>
-        <div className="header-menu" onClick={handleDropdownMenu}>
-          <IoIosArrowDropdown className="header-menu_arrow" />
-          <p>{user?.name}</p>
+        <div className="header-menu">
           <img
-            src="../../../../assets/images/papas-fritas.jpg"
+            src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
             alt="profile-picture_home-page-gula"
           />
         </div>
-        {isDropdownMenuOpen && <DropdownMenu />}
       </div>
     </header>
   );

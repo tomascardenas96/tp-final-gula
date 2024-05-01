@@ -1,7 +1,8 @@
 .food-filter_container {
   grid-area: filter;
   /* background-color: lightblue; */
-  padding-left: 0.1rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 .food-filter {
@@ -12,14 +13,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .food-filter h1 {
   color: rgb(226, 226, 226);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.962));
   letter-spacing: 0.14rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .food-filter .food-filter_input-field {
@@ -27,7 +28,7 @@
 }
 
 .food-filter input {
-  width: 28rem;
+  width: 33rem;
   height: 2.2rem;
   border-radius: 0.2rem;
   outline: none;
