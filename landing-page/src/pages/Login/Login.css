@@ -151,7 +151,7 @@ div .login-page_slogan {
   border: none;
   padding-left: 0.5rem;
   color: rgba(50, 50, 50, 0.931);
-  font-family: "Titillium Web", sans-serif;
+  font-family: var(--secondary-font);
   font-size: 1rem;
 }
 
@@ -217,7 +217,8 @@ form .login-spinner .loadership_CWZLE div {
   display: grid;
   justify-content: center;
   color: var(--font-color-login);
-  font-weight: lighter;
+  font-family: var(--secondary-font);
+  font-weight: 300;
 }
 
 @media screen and (max-width: 1000px),

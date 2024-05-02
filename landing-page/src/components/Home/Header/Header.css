@@ -70,6 +70,64 @@
   transition: all 0.2s ease;
 }
 
+.header-search_form .header-search_results-list {
+  width: 130%;
+  padding: 0.2rem;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.256);
+  top: 2.6rem;
+  left: -2.7rem;
+  border-radius: 0.2rem;
+  z-index: 900;
+  color: rgba(0, 0, 0, 0.914);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem 0.6rem 0.5rem;
+  max-height: 20.6rem;
+  overflow-y: scroll;
+}
+
+.header-search_results-container {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.header-search_results-container > div {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2.7rem 1fr;
+  gap: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.header-search_results-divider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.178);
+}
+
+.header-search_results-container > div li {
+  display: flex;
+  align-items: center;
+  font-family: var(--secondary-font);
+}
+
+.type-search {
+  color: rgba(0, 0, 0, 0.691);
+  font-size: 0.8rem;
+  font-family: var(--secondary-font);
+}
+
+.header-search_results-container li > img {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.1rem;
+  border-radius: 50%;
+}
+
 .header-search-icon {
   position: absolute;
   left: 1.6rem;
