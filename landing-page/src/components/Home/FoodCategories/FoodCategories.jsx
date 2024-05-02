@@ -8,8 +8,6 @@ function FoodCategories() {
   const { categories, categoriesLoading, categoriesError, categoryIcons } =
     useGetAllCategories();
 
-  console.log(categories);
-
   return (
     <section className="food-categories_container">
       <h1>Categorias</h1>
