@@ -21,6 +21,11 @@ export class ShopController {
     return this.shopService.create(createShopDto);
   }
 
+  @Get()
+  getAllShops() {
+    return this.shopService.getAllShops();
+  }
+
   @Get('filter')
   findShopByQuery(@Query('shop') shop: string) {
     return this.shopService.findShopByQuery(shop);
