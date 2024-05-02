@@ -12,9 +12,13 @@ function FoodCategories() {
 
   return (
     <section className="food-categories_container">
-      <h1 >Categorias</h1>
+      <h1>Categorias</h1>
       <div className="food-categories">
-        {!categoriesLoading ? (
+        {categoriesLoading ? (
+          <div className="food-categories_spinner-container">
+            <Spinner className="food-categories_spinner" />
+          </div>
+        ) : (
           <div className="food-categories_cards">
             {categories.map((category, index) => (
               <CategoryCard
@@ -23,10 +27,6 @@ function FoodCategories() {
                 title={category.description}
               />
             ))}
-          </div>
-        ) : (
-          <div className="food-categories_spinner-container">
-            <Spinner className="food-categories_spinner" />
           </div>
         )}
       </div>

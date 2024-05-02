@@ -126,7 +126,7 @@
 }
 
 .sider-menu_user-data-name {
-  border-radius: 0 3rem 0 0;
+  /* border-radius: 0 3rem 0 0; */
   display: grid;
   align-items: end;
   font-weight: bold;
@@ -134,15 +134,21 @@
   padding-left: 0.4rem;
   padding-bottom: 0.1rem;
   font-family: var(--tertiary-font);
+  width: 85%;
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 .sider-menu_user-data-profile-name {
-  border-radius: 0 0 3rem 0;
+  /* border-radius: 0 0 3rem 0; */
   align-items: start;
+  /* background-color: red; */
   display: grid;
   font-size: 0.85rem;
   padding-left: 0.4rem;
   padding-top: 0.1rem;
   color: rgba(0, 0, 0, 0.777);
+  width: 85%;
   font-family: var(--tertiary-font);
+  overflow: hidden;
 }

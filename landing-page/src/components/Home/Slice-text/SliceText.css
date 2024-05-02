@@ -16,7 +16,7 @@
   position: absolute;
   width:99.5%;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149);
-  border-radius: .1rem;
+  border-radius: .1rem .1rem 0 0;
   overflow: hidden;
 }
 
