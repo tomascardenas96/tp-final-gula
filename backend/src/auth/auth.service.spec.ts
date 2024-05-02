@@ -23,8 +23,6 @@ describe('AuthService', () =>{
     let service: AuthService;
     let UserServiceMock:jest.Mocked<UserService>;
 
-
-
     beforeEach(async()=>{
         //creamos una instancia mock de UserService
         UserServiceMock={
@@ -34,7 +32,6 @@ describe('AuthService', () =>{
             create: jest.fn(),
         } as unknown  as jest.Mocked<UserService>;
          
-
         const jwtServiceMock={
             //define los metodos que necesitas en tu mock Jwtservice
         };
@@ -126,6 +123,7 @@ describe('AuthService', () =>{
             location:'Test Location',
             birthDate:'05/10/1990',
         }
+        //simulamos el comportamiento de UserService utilizando el mock UserServiceMock que ya hemos definido
         //simulamos que se encuentra un usuario con este correo electronico
         UserServiceMock.findByEmail.mockResolvedValueOnce(existingUser)
 
@@ -162,12 +160,9 @@ describe('AuthService', () =>{
     })
 
 /*================================================================================ */
-    /*Validación de contraseñas: Podrías agregar pruebas para 
+    /*Validación de contraseñas:Pruebas para 
     verificar que las contraseñas se estén hasheando 
-    correctamente antes de ser almacenadas en la base de datos. 
-    Esto puede incluir pruebas para garantizar que el hash de 
-    la contraseña sea único y que se genere correctamente con 
-    diferentes rondas de sal.*/
+    correctamente antes de ser almacenadas en la base de datos.*/
 
     it('should hash password before storing it in th database', async()=>{
                
@@ -202,7 +197,7 @@ describe('AuthService', () =>{
         expect(comparePassword).toBeTruthy;
     })
         
-        //otro metodo
+        //verifica que los metodos genSalt y hash sean llamados correctamente
         it('shoud check if methods genSalt and hash are called correctly',async()=>{
 
             //user's register example
@@ -367,8 +362,6 @@ describe('AuthService', () =>{
 
 
 });
-
-
 
 
 /*
