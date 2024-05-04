@@ -21,6 +21,7 @@
   border-radius: 0.2rem;
   padding: 0.5rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.135);
+  border-top: none;
 }
 
 .sider-menu ul {
@@ -66,24 +67,6 @@
   color: red;
 }
 
-.sider-menu_slogan {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sider-menu_slogan h1 {
-  font-size: 1.1rem;
-  color: rgba(0, 0, 0, 0.778);
-}
-
-.sider-menu_slogan img {
-  margin-top: 0.4rem;
-  width: 6.5rem;
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.743));
-}
-
 .sider-menu_user-data {
   width: 85%;
   height: 4rem;
@@ -94,7 +77,7 @@
   cursor: pointer;
   user-select: none;
   transition: background-color 0.3s ease;
-  padding-left: 0.4rem;
+  padding-left: 0.3rem;
 }
 
 .sider-menu_user-data:hover {
@@ -114,6 +97,18 @@
   position: relative;
 }
 
+.sider-menu_user-data_spinner .loadership_CWZLE div {
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 27%;
+  border: 5px solid #75747485;
+}
+
+.sider-menu_user-data_spinner .loadership_CWZLE div:not(:nth-child(1)) {
+  border: 5px solid #ffffff;
+}
+
 .sider-menu_user-data_picture > img {
   width: 3rem;
   height: 3rem;
@@ -131,7 +126,7 @@
   align-items: end;
   font-weight: bold;
   font-size: 0.9rem;
-  padding-left: 0.4rem;
+  padding-left: 0.2rem;
   padding-bottom: 0.1rem;
   font-family: var(--tertiary-font);
   width: 85%;
@@ -145,7 +140,7 @@
   /* background-color: red; */
   display: grid;
   font-size: 0.85rem;
-  padding-left: 0.4rem;
+  padding-left: 0.2rem;
   padding-top: 0.1rem;
   color: rgba(0, 0, 0, 0.777);
   width: 85%;

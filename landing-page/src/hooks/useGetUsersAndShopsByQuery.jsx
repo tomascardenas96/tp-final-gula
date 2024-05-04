@@ -3,8 +3,6 @@ import { useState } from "react";
 function useGetUsersAndShopsByQuery() {
   const token = localStorage.getItem("accessToken");
   const [headerFilter, setHeaderFilter] = useState([]);
-  // const [shops, setShops] = useState([]);
-  // const [users, setUsers] = useState([]);
   const [headerFilterLoading, setHeaderFilterLoading] = useState(false);
   const [headerFilterError, setHeaderFilterError] = useState(false);
   const [filterInput, setFilterInput] = useState("");
@@ -71,11 +69,12 @@ function useGetUsersAndShopsByQuery() {
       return;
     }
     setFilterInput(value);
-
-    //Llama a las funciones para obtener sus respectivos datos.
     getShopsByQuery(value);
     getUsersByQuery(value);
-    // setHeaderFilter({ shops: [{ ...shops }], users: [{ ...users }] });
+  }
+
+  function clearInput() {
+    setFilterInput("");
   }
 
   const isEmptyField = filterInput.length === 0;
@@ -87,6 +86,7 @@ function useGetUsersAndShopsByQuery() {
     handleChangeHeaderFilter,
     headerFilter,
     filterInput,
+    clearInput
   };
 }
 

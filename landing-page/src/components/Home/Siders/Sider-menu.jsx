@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useJwt } from "react-jwt";
 import "./Sider-menu.css";
+import Spinner from "../../Common/Spinner/Spinner";
 
 function SiderMenu() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("accessToken");
+  const { decodedToken, isExpired } = useJwt(token);
+  const [user, setUser] = useState(decodedToken);
+
+  useEffect(() => {
+    setUser(decodedToken);
+  }, [decodedToken]);
 
   return (
     <div className="sider-menu_container">
@@ -77,8 +85,18 @@ function SiderMenu() {
               alt=""
             />
           </div>
-          <div className="sider-menu_user-data-name">{user?.name}</div>
-          <div className="sider-menu_user-data-profile-name">{user?.email}</div>
+          {!user ? (
+            <div className="sider-menu_user-data_spinner">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              <div className="sider-menu_user-data-name">{user?.name}</div>
+              <div className="sider-menu_user-data-profile-name">
+                {user?.email}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

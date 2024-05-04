@@ -75,7 +75,7 @@
   z-index: 900;
   display: grid;
   gap: 0.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .food-filter_results-list_spinner {

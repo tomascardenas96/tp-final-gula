@@ -23,6 +23,7 @@
   background-color: rgb(255, 255, 255);
   border-radius: 0.1rem;
   border: 1px solid rgba(0, 0, 0, 0.208);
+  border-top: none;
 }
 
 .sider-shop {
