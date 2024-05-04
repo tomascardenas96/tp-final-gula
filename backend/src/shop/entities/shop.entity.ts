@@ -28,6 +28,9 @@ export class Shop {
   @Column({ unique: true })
   profilename: string;
 
+  @Column({default: 'https://pubimg.band.uol.com.br/files/cb1fe227a30b77daa9cb.webp'})
+  picture: string;
+
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 

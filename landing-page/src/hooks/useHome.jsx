@@ -21,7 +21,6 @@ function useHome() {
           localStorage.clear();
           setIsAuthorized(false);
         }
-        localStorage.setItem("user", JSON.stringify(data));
       } catch (err) {
         console.error(err);
       } finally {

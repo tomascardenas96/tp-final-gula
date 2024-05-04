@@ -1,42 +1,47 @@
 .header_container {
   grid-area: header;
-  padding: 0.1rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 100%;
+  height: 3.9rem;
   background-color: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 1500;
+}
+
+.header_container_remove {
+  display: none;
 }
 
 .header {
   width: 100%;
   height: 100%;
   border-radius: 0.1rem;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.149);
   display: grid;
-  grid-template-columns: 20rem 1fr max-content;
+  border: 1px solid rgba(0, 0, 0, 0.208);
+  grid-template-columns: 17rem 1fr 3rem;
   gap: 0.1rem;
   align-items: center;
-  padding-right: 1.5rem;
-  border-radius: .3rem;
 }
 
 .header-search {
-  height: 79%;
-  border-right: 1px solid rgba(0, 0, 0, 0.109);
+  height: 70%;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.144));
+  border-right: 1px solid rgba(0, 0, 0, 0.135);
 }
 
 .header-search > div {
   display: flex;
-  /* background-color: red; */
   height: 100%;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
 .header-search-image {
   width: 2rem;
   height: 2rem;
-  /* border: 1px solid black; */
   border-radius: 50%;
-  /* padding: .5rem; */
   color: rgb(206, 41, 41);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
 }
@@ -45,50 +50,148 @@
   position: relative;
   width: 80%;
   height: 100%;
-  /* background-color: blue; */
   display: grid;
   align-items: center;
 }
 
 .header-search-input {
-  width: 100%;
+  width: 90%;
   height: 74.5%;
   border-radius: 3rem;
-  border: 1px solid rgba(0, 0, 0, 0.362);
   border: none;
-  background-color: rgb(237, 237, 237);
+  background-color: rgba(0, 0, 0, 0.068);
   outline: none;
-  padding-left: 1.2rem;
+  padding: 0 0.8rem;
   font-size: 1rem;
   position: relative;
-  padding-bottom: 0.1rem;
-  padding-left: 1.4rem;
+  padding: 0 2rem .1rem 1.4rem;
   font-family: "Titillium Web", sans-serif;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.header-search_results-list_close-modal {
+  position: absolute;
+  right: 1.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  padding: 0.1rem;
+  display: grid;
+  place-content: center;
+}
+
+.header-search_results-list_close-modal:hover {
+  color: rgb(123, 123, 123);
+}
+
+.header-search_results-list_close-modal:active {
+  color: rgb(167, 167, 167);
+}
+
+.header-search_form .header-search_results-list {
+  width: 140%;
+  padding: 0.2rem;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.256);
+  top: 2.6rem;
+  left: -2.7rem;
+  border-radius: 0.2rem;
+  z-index: 900;
+  color: rgba(0, 0, 0, 0.914);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem 0.6rem 0.7rem;
+  max-height: 20.6rem;
+  overflow-y: auto;
+}
+
+.header-search_results-container {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.header-search-bar_no-results {
+  display: flex;
+  justify-content: center;
+  padding: 0.4rem;
+  color: rgba(0, 0, 0, 0.631);
+}
+
+.header-search_results-container > div {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2.7rem 1fr;
+  gap: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  padding: 0.7rem 0;
+}
+
+.header-search_results-divider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.178);
+}
+
+.header-search_results-container > div li {
+  display: flex;
+  align-items: center;
+  font-family: var(--secondary-font);
+}
+
+.type-search {
+  color: rgba(0, 0, 0, 0.691);
+  font-size: 0.8rem;
+  font-family: var(--secondary-font);
+  margin-top: -0.2rem;
+}
+
+.header-search_results-container li > img {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.1rem;
+  border-radius: 50%;
 }
 
 .header-search-icon {
   position: absolute;
   left: 1.6rem;
   top: 33%;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.526);
 }
 
 .header-search-input::placeholder {
-  /* color: red; */
   display: grid;
   align-items: center;
   padding-left: 3rem;
   height: 100%;
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding-left: 1.5rem;
   position: absolute;
   left: 1.3rem;
-  top: 13%;
+  top: 15%;
 }
 
-.header-search-input:focus {
-  outline: 1px solid rgba(0, 0, 0, 0.131);
+.header-search_results-container .header-search_results_see-more {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding: 0;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.723);
+  height: 100%;
+  /* background-color: red; */
+  margin-top: 0.1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.332);
 }
 
 .header-logo {
@@ -102,47 +205,34 @@
 }
 
 .header-menu {
-  height: 79%;
-  border-left: 1px solid rgba(0, 0, 0, 0.109);
+  height: 70%;
   display: flex;
-  padding: 0 1.4rem;
   justify-content: end;
   align-items: center;
-  gap: 1rem;
   cursor: pointer;
   user-select: none;
   position: relative;
-  transition: background-color .3s ease;
+  padding: 0 0.6rem;
+  transition: background-color 0.3s ease;
+  place-content: center;
+  border-left: 1px solid rgba(0, 0, 0, 0.135);
 }
 
 .header-menu:hover {
-  background-color: rgb(244, 244, 244);
+  background-color: rgba(0, 0, 0, 0.098);
 }
 
 .header-menu:active {
-  background-color: rgb(216, 216, 216);
-}
-
-.header-menu_arrow {
-  color: rgba(172, 0, 0, 0.525);
-  margin-right: -.5rem;
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
-}
-
-.header-menu p {
-  font-size: 0.95rem;
-  color: rgba(0, 0, 0, 0.622);
-  font-family: "Titillium Web", sans-serif;
-  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.198);
 }
 
 .header-menu img {
   width: 2.5rem;
   height: 2.5rem;
   border: 1px solid rgba(0, 0, 0, 0.194);
+  padding: 0.15rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
   border-radius: 0.2rem;
-  padding: 0.05rem;
   object-fit: cover;
   object-position: center;
 }

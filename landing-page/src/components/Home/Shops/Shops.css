@@ -5,25 +5,35 @@
   justify-content: start;
   align-items: center;
   gap: 1rem;
-  /* background-color: red; */
 }
 
 .shops_container h1 {
   font-size: 1.5rem;
   font-family: var(--secondary-font);
-  color: rgba(0, 0, 0, 0.756);
-  /* background-color: green; */
+  color: rgba(0, 0, 0, 0.634);
 }
 
 .shops_container .shop_cards {
   height: max-content;
   width: 92%;
   display: flex;
-  gap: 5rem;
+  gap: 3.5rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0 0.5rem 3.5%;
+  padding-left: 3.45%;
+  padding-right: 1%;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.shops_container .shop_cards .shop_cards-spinner {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+  margin-left: -2.4%;
 }
 
 /* Estilos del scrollbar */
