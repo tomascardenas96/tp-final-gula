@@ -3,13 +3,11 @@ import { useState } from "react";
 function useGetUsersAndShopsByQuery() {
   const token = localStorage.getItem("accessToken");
   const [headerFilter, setHeaderFilter] = useState([]);
-  const [shops, setShops] = useState([]);
-  const [users, setUsers] = useState([]);
   const [headerFilterLoading, setHeaderFilterLoading] = useState(false);
   const [headerFilterError, setHeaderFilterError] = useState(false);
   const [filterInput, setFilterInput] = useState("");
 
-  async function getShopsByQuery({ value }) {
+  async function getShopsByQuery(value) {
     try {
       setHeaderFilterLoading(true);
       const response = await fetch(
@@ -26,7 +24,10 @@ function useGetUsersAndShopsByQuery() {
       if (data.error) {
         throw new Error(data.error);
       }
-      setShops(data);
+      setHeaderFilter((prevHeaderFilter) => ({
+        ...prevHeaderFilter,
+        shops: data,
+      }));
     } catch (err) {
       setHeaderFilterError("Error trying to get list of shops", err);
     } finally {
@@ -34,7 +35,7 @@ function useGetUsersAndShopsByQuery() {
     }
   }
 
-  async function getUsersByQuery({ value }) {
+  async function getUsersByQuery(value) {
     try {
       setHeaderFilterLoading(true);
       const response = await fetch(
@@ -51,7 +52,10 @@ function useGetUsersAndShopsByQuery() {
       if (data.error) {
         throw new Error(data.error);
       }
-      setUsers(data);
+      setHeaderFilter((prevHeaderFilter) => ({
+        ...prevHeaderFilter,
+        users: data,
+      }));
     } catch (err) {
       setHeaderFilterError("Error trying to get list of users", err);
     } finally {
@@ -67,7 +71,10 @@ function useGetUsersAndShopsByQuery() {
     setFilterInput(value);
     getShopsByQuery(value);
     getUsersByQuery(value);
-    setHeaderFilter([{ ...shops, ...users }]);
+  }
+
+  function clearInput() {
+    setFilterInput("");
   }
 
   const isEmptyField = filterInput.length === 0;
@@ -78,7 +85,8 @@ function useGetUsersAndShopsByQuery() {
     isEmptyField,
     handleChangeHeaderFilter,
     headerFilter,
-    filterInput
+    filterInput,
+    clearInput
   };
 }
 

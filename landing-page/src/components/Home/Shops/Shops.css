@@ -4,8 +4,7 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 1.3rem;
-  /* background-color: red; */
+  gap: 1rem;
 }
 
 .shops_container h1 {
@@ -18,13 +17,15 @@
   height: max-content;
   width: 92%;
   display: flex;
-  gap: 4.4rem;
+  gap: 3.5rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: visible;
   padding: 0.5rem 0 0.5rem 3.5%;
-  padding-left: 4.35%;
+  padding-left: 3.45%;
+  padding-right: 1%;
   height: 100%;
+  overflow-y: hidden;
 }
 
 .shops_container .shop_cards .shop_cards-spinner {

@@ -36,7 +36,10 @@ function FoodFilter() {
                 </div>
               ) : foodsByQuery.length ? (
                 foodsByQuery.map((food) => (
-                  <ul key={food.id} className="food-filter_results-list_card">
+                  <ul
+                    key={food.foodId}
+                    className="food-filter_results-list_card"
+                  >
                     <div></div>
                     <li className="results-list_card-image list-card_item">
                       <img

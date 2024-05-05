@@ -72,10 +72,10 @@
   border-radius: 0.2rem;
   position: absolute;
   top: 2.4rem;
-  z-index: 1000;
+  z-index: 900;
   display: grid;
   gap: 0.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .food-filter_results-list_spinner {
