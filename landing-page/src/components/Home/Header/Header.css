@@ -27,7 +27,7 @@
 .header-search {
   height: 70%;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.144));
-  border-right: 1px solid rgba(0, 0, 0, 0.135);
+  /* border-right: 1px solid rgba(0, 0, 0, 0.135); */
 }
 
 .header-search > div {
@@ -215,7 +215,7 @@
   padding: 0 0.6rem;
   transition: background-color 0.3s ease;
   place-content: center;
-  border-left: 1px solid rgba(0, 0, 0, 0.135);
+  /* border-left: 1px solid rgba(0, 0, 0, 0.135); */
 }
 
 .header-menu:hover {

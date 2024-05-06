@@ -6,6 +6,8 @@
   height: 100%;
   gap: 0.6rem;
   cursor: pointer;
+  /* background-color: red; */
+  padding-top: .5rem;
 }
 
 .category-card_icon {
@@ -15,14 +17,14 @@
   border: 1.5px solid rgba(0, 0, 0, 0.547);
   display: grid;
   place-content: center;
-  font-size: 2.25rem;
+  font-size: 2.1rem;
   color: rgb(63, 58, 58);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.878));
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.09);
 }
 
 .category-card_icon div {
-  transition: font-size .3s ease;
+  transition: font-size 0.3s ease;
 }
 
 .category-card_icon:hover {
@@ -36,5 +38,5 @@
   font-weight: 600;
   color: rgba(0, 0, 0, 0.736);
   font-family: var(--secondary-font);
-  font-size: .95rem;
+  font-size: 0.95rem;
 }

@@ -57,7 +57,7 @@
 
 .register-page_form aside > h1 {
   /* background-color: lightgray; */
-  font-family: "Satisfy", cursive;
+  font-family: var(--font-global);
   font-weight: 400;
   font-style: normal;
   margin-top: 6%;

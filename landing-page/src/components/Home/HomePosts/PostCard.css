@@ -1,0 +1,13 @@
+.post-card_container {
+  width: 100%;
+  min-height: 20rem;
+  display: grid;
+  place-items: center;
+}
+
+.post-card {
+  width: 65%;
+  min-height: 90%;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.135);
+}

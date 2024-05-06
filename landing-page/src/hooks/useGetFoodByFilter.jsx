@@ -42,6 +42,10 @@ function useGetFoodByFilter() {
     getFoodsByQuery(value);
   };
 
+  function cleanInput() {
+    setFilterInput("");
+  }
+
   const isEmptyField = filterInput.length === 0;
 
   return {
@@ -52,6 +56,7 @@ function useGetFoodByFilter() {
     handleChangeFoodByFilter,
     filterInput,
     isEmptyField,
+    cleanInput
   };
 }
 
