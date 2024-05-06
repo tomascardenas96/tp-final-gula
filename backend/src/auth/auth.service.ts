@@ -54,6 +54,13 @@ export class AuthService {
   } 
 
   async login({ email, password }: LoginDto) {
+    //****** */
+    //console.log(password);
+    //const roundSalt = 10;
+    //const salt = await bcryptjs.genSalt(roundSalt);
+    //const passwordhash= await bcryptjs.hash(password, salt);
+    //console.log(passwordhash);
+    //*////
     const user = await this.userService.findByEmailWithPassword(email);
     if (!user) {
       throw new NotFoundException('User non-existent');
