@@ -8,12 +8,12 @@ import { MdOutlineMessage } from "react-icons/md";
 import { LuDot } from "react-icons/lu";
 import "./PostCard.css";
 
-function PostCard({ image, name, body, stars, time }) {
+function PostCard({ profilePicture, name, body, stars, time, image }) {
   return (
     <article className="post-card_container">
       <div className="post-card">
         <div className="post-card_left-side">
-          <img src={image} alt="post-card-gula-picture" />
+          <img src={profilePicture} alt="post-card-gula-picture" />
         </div>
         <div className="post-card_right-side">
           <section className="post-card_header">
@@ -30,6 +30,11 @@ function PostCard({ image, name, body, stars, time }) {
           </section>
           <section className="post-card_body">
             <p>{body}</p>
+            {image && (
+              <div className="post-card_body-image">
+                <img src={image} alt="" />
+              </div>
+            )}
           </section>
           <section className="post-card_options">
             <div className="post-card_options-like">

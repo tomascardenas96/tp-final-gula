@@ -12,21 +12,28 @@ function HomePosts() {
     <section className="home-posts_container">
       <div className="home-posts_advice">
         <img
+          className="home-posts_advice-1"
           src="../../../../assets/videos/burger.gif"
           alt="Descripción de la imagen"
         />
         <img
-          src="../../../../assets/videos/burger.gif"
+          className="home-posts_advice-2"
+          src="../../../../assets/videos/advice-2.gif"
+          alt="Descripción de la imagen"
+        />
+        <img
+          className="home-posts_advice-3"
+          src="../../../../assets/videos/advice-3.gif"
           alt="Descripción de la imagen"
         />
       </div>
-      <h1 className="home-posts_posts">Publicaciones</h1>
       <main className="home-posts">
-        {posts?.map((post) => (
+        {posts?.reverse().map((post) => (
           <PostCard
             key={post.postId}
-            image={post.shop.picture}
+            profilePicture={post.shop.picture}
             name={post.shop.name}
+            image={post.image}
             time={timeElapsed(post.postedAt)}
             body={post.description}
             stars={post.stars}
