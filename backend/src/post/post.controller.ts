@@ -13,8 +13,8 @@ export class PostController {
   }
 
   @Get()
-  findAll() {
-    return this.postService.findAll();
+  getAllPosts() {
+    return this.postService.getAllPosts();
   }
 
   @Get(':id')
