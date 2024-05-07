@@ -18,6 +18,9 @@ export class Post {
   @Column({ default: 0 })
   stars: number;
 
+  @Column({ nullable: true })
+  image: string;
+
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   postedAt: Date;
 

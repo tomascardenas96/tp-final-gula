@@ -23,6 +23,14 @@ export class PostService {
     }
   }
 
+  recommendPost() {
+    
+  }
+
+  unrecommendPost() {
+
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} post`;
   }
