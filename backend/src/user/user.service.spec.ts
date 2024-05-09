@@ -10,6 +10,7 @@ import { Cart } from 'src/cart/entities/cart.entity';
 import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 import { CreateProfileDto } from 'src/profile/dto/create-profile.dto';
 import { CreateCartDto } from 'src/cart/dto/create-cart.dto';
+import { profile } from 'console';
 
 describe('UserService', () => {
   let service: UserService;
@@ -25,60 +26,42 @@ describe('UserService', () => {
       findByEmailWithPassword: jest.fn(),
       findByUserName: jest.fn(),
       findUserByQuery: jest.fn(),
-      //irian todos los nombre de los metodos del user.service
+      // Defino todos los métodos que necesito en el mock de user.service
     };
+    //mock de como debe qeudar guardado el objeto final para comparacion
     const newUser:User={
             userId:1,
-            email: 'existingMail.com',
-            name: 'Existing User',
+            email:'test@example.com',
+            name: 'Test User',
             password: 'password123',
             createdAt:new Date(),
             shop:[],
             cart:new Cart,
             profile:new Profile,
     };
-    //esto creo q es al pedo
+    //con esto agrego el mock del metodo save a los metodos de user.service
     userRepositoryMock={
       ...baseUserRepositoryMock,
       save:jest.fn().mockResolvedValue(newUser)
-    };//con esto agrefo el mock del metodo save a los metodos de user.service
-    
-    //cualquier cosa borra aca
-    const CreateUserDto={
-      email: 'test@example.com',
-      name: 'Test User',
-      password: 'password123',
-      location: 'Test Location',
-      birthDate: '05/10/1990',
     };
-
+    
     profileServiceMock = {
-      create:jest.fn().mockResolvedValue({
-        profileName: CreateUserDto.email,//son aprametros de CreateProfileDto
-        location: CreateUserDto.location,//son aprametros de CreateProfileDto
-        birthDate: CreateUserDto.birthDate,//son aprametros de CreateProfileDto
-      } as Profile),
+      create:jest.fn().mockResolvedValue({} as Profile),//creo un objeto profile simulado
       findAll:jest.fn(),
       findOne:jest.fn(),
       update:jest.fn(),
       remove:jest.fn(),
-      //creo un objeto profile simulado
-      // Define los métodos que necesitas en tu mock de ProfileService
+      // Defino todos los métodos que necesito en el mock de ProfileService
     };
 
 
     cartServiceMock = {
-      create:jest.fn().mockResolvedValue({
-        //cartId:1,
-        //user: new User,
-        //food: new Array<FoodOnCart>,
-        //invoice: []
-      } as Cart),
+      create:jest.fn().mockResolvedValue({} as Cart),//creo un objeto pcart simulado
       findAll:jest.fn(),
       findOne:jest.fn(),
       update:jest.fn(),
       remove:jest.fn(),
-      // Define los métodos que necesitas en tu mock de CartService
+      // Defino los métodos que necesitas en tu mock de CartService
     };
 
     //configuramos el modulo de prueba para los mocks
@@ -118,16 +101,6 @@ describe('UserService', () => {
         birthDate: '05/10/1990',
       };
 
-      //nuevo usuario creado
-      /*const newUser:User={
-        ...CreateUserDto,
-        userId:1,
-        createdAt:new Date(),
-        shop:[],
-        cart:null,
-        profile:null     
-      };*/
-
       //new profile creado para asignar a user
       /*const newProfile:Profile={
         profileId: 1,
@@ -161,14 +134,17 @@ describe('UserService', () => {
 
       //objeto final creado
       const newCreatedUser:User={
-        ...CreateUserDto,
         userId:1,
+        email:CreateUserDto.email,
+        name:CreateUserDto.name,
+        password:CreateUserDto.password,
         createdAt:new Date(),
         shop:[],
-        cart:await cartServiceMock.create(),
-        profile:await profileServiceMock.create(newCreateProfileDTO),
+        cart:new Cart,
+        profile:new Profile,
       }
-
+      //await cartServiceMock.create(),
+      //await profileServiceMock.create(newCreateProfileDTO),
         //configuramos los mocks para simular el conportamiento de los servicios
         userRepositoryMock.create.mockResolvedValueOnce(newCreatedUser);//espero que el metodo crete resulva devolviendo newUSer;
         /*Al simular el comportamiento de userRepositoryMock.create, 
@@ -178,24 +154,16 @@ describe('UserService', () => {
         Puedes hacer esto usando Promise.resolve(newUser) */
 
         //lo que espero
-        console.log('objeto qeu espero recibir',newCreatedUser)
+        console.log('objeto qeu espero recibir',newCreatedUser) 
 
         const result= await service.create(CreateUserDto);
         console.log('objeto que llega',result)//llega vacio cart y profile
-        expect(result).not.toEqual(newCreatedUser) 
-        /*expect(result).toEqual(expect.objectContaining({
-          userId: 1,
-          email: 'test@example.com',
-          name: 'Test User',
-          password: 'password123',
-          location: 'Test Location',
-          birthDate: '05/10/1990',
-          createdAt: expect.any(Date), // Se espera que la fecha de creación sea de tipo Date
-          shop: [],
-          cart: newCart,
-          profile: newProfile,
-        }));*/
-        //expect(userRepositoryMock.create).toHaveBeenCalledWith(CreateUserDto)
+        expect(result).toStrictEqual({//toStrictEqual, que realiza una comparación en profundidad de los objetos, asegurándose de que todas las propiedades y sus valores sean idénticos.
+          ...newCreatedUser,
+          createdAt:expect.any(Date),// Ignora la comparación de la propiedad createdAt
+          cart:expect.any(Cart),// Asegura que la propiedad cart no esté vacía
+          profile:expect.any(Profile),}) // Asegura que la propiedad cart no esté vacía
+     
       /*NOTA: en realidad no pasa, lo que quiero demostrar es que llamando al metodo create
       de user.service y pasando como parametro CreteUserDto me creara un usuario qeu en sus propiedades
       contiene cart que se creara en el momento y ademas profile que hara lo msimo q cart.
