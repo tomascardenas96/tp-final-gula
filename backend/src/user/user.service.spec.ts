@@ -163,7 +163,7 @@ describe('UserService', () => {
           createdAt:expect.any(Date),// Ignora la comparación de la propiedad createdAt
           cart:expect.any(Cart),// Asegura que la propiedad cart no esté vacía
           profile:expect.any(Profile),}) // Asegura que la propiedad cart no esté vacía
-     
+      
       /*NOTA: en realidad no pasa, lo que quiero demostrar es que llamando al metodo create
       de user.service y pasando como parametro CreteUserDto me creara un usuario qeu en sus propiedades
       contiene cart que se creara en el momento y ademas profile que hara lo msimo q cart.
