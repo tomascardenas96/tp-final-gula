@@ -5,7 +5,7 @@
 }
 
 .post-card {
-  width: 75%;
+  width: 60%;
   min-height: 100%;
   display: grid;
   gap: 0.1rem;
@@ -55,7 +55,8 @@
 .post-card_header-user p {
   font-family: var(--tertiary-font);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.828);
 }
 
 .post-card_header-user span {
@@ -99,12 +100,11 @@
 
 .post-card_body p {
   font-family: var(--tertiary-font);
-  font-size: .92rem;
+  font-size: .9rem;
   line-height: 1.36rem;
 }
 
 .post-card_options {
-  /* background-color: red; */
   display: grid;
   grid-template-columns: 1fr 2rem;
   align-items: center;
@@ -128,6 +128,8 @@
 .post-card_options-like span {
   font-size: 0.75rem;
   font-family: var(--secondary-font);
+  /* background-color: red; */
+  margin-top: 9%;
 }
 
 .post-card_options-share {

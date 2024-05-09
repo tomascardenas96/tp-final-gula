@@ -8,7 +8,15 @@ import { MdOutlineMessage } from "react-icons/md";
 import { LuDot } from "react-icons/lu";
 import "./PostCard.css";
 
-function PostCard({ profilePicture, name, body, stars, time, image }) {
+function PostCard({
+  profilePicture,
+  name,
+  body,
+  stars,
+  time,
+  image,
+  profilename,
+}) {
   return (
     <article className="post-card_container">
       <div className="post-card">
@@ -20,7 +28,7 @@ function PostCard({ profilePicture, name, body, stars, time, image }) {
             <div className="post-card_header-user">
               <p>{name}</p>
               <span>
-                @donbartolo <LuDot /> {time}
+                @{profilename} <LuDot /> {time}
               </span>
             </div>
             <div className="post-card_header-options">

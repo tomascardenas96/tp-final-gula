@@ -9,7 +9,6 @@
 }
 
 .shop-card_icon {
-  border-radius: 0.2rem;
   border: 1.5px solid rgba(0, 0, 0, 0.547);
   padding: 0.2rem;
   padding-bottom: 0rem;
@@ -25,7 +24,6 @@
 .shop-card_icon img {
   object-fit: cover;
   object-position: center;
-  border-radius: 0.2rem;
   height: 9rem;
   width: 11rem;
 }

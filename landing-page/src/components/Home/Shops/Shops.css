@@ -4,8 +4,10 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: .5rem;
+  /* background-color: red; */
+  height: 100%;
 }
 
 .shops_container h1 {

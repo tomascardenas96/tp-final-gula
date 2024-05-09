@@ -6,13 +6,13 @@ import { FaBell } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useJwt } from "react-jwt";
-import "./Sider-menu.css";
 import Spinner from "../../Common/Spinner/Spinner";
+import "./Sider-menu.css";
 
 function SiderMenu() {
   const token = localStorage.getItem("accessToken");
   const { decodedToken, isExpired } = useJwt(token);
-  const [user, setUser] = useState(decodedToken);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     setUser(decodedToken);
@@ -26,7 +26,7 @@ function SiderMenu() {
             <NavLink
               to={""}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaHome className="sider-menu_icon" />
@@ -35,9 +35,9 @@ function SiderMenu() {
           </li>
           <li>
             <NavLink
-              to={""}
+              to={"#posts"}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaBook className="sider-menu_icon" />
@@ -48,7 +48,7 @@ function SiderMenu() {
             <NavLink
               to={"/"}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaEnvelope className="sider-menu_icon" />
@@ -59,7 +59,7 @@ function SiderMenu() {
             <NavLink
               to={""}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaBell className="sider-menu_icon" />
@@ -70,7 +70,7 @@ function SiderMenu() {
             <NavLink
               to={""}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaShoppingCart className="sider-menu_icon" />

@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 120svh;
   display: grid;
-  grid-template-rows: 4rem 1.6rem 15rem 15rem 17rem 1fr 15rem;
+  grid-template-rows: 4rem 1.6rem 15rem 15rem 18rem 1fr 15rem;
   grid-template-columns: 17rem minmax(750px, 1fr) 2.9rem;
   grid-template-areas:
     "header header header"
