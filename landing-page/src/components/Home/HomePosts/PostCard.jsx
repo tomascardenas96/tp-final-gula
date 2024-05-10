@@ -2,9 +2,8 @@ import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { GoShareAndroid } from "react-icons/go";
-import { MdOutlineStarOutline } from "react-icons/md";
-import { MdOutlineStarPurple500 } from "react-icons/md";
-import { MdOutlineMessage } from "react-icons/md";
+import { FaRegStar } from "react-icons/fa6";
+import { FaRegMessage } from "react-icons/fa6";
 import { LuDot } from "react-icons/lu";
 import "./PostCard.css";
 
@@ -19,6 +18,7 @@ function PostCard({
 }) {
   return (
     <article className="post-card_container">
+      <div className="post-card_divider"></div>
       <div className="post-card">
         <div className="post-card_left-side">
           <img src={profilePicture} alt="post-card-gula-picture" />
@@ -48,10 +48,12 @@ function PostCard({
             <div className="post-card_options-like">
               {/* <MdOutlineStarPurple500 /> */}
               <div>
-                <MdOutlineStarOutline /> <span>{stars}</span>
+                <FaRegStar className="post-card_header-options_star" />{" "}
+                <span>{stars}</span>
               </div>
               <div>
-                <MdOutlineMessage /> <span>150</span>
+                <FaRegMessage className="post-card_header-options_message" />{" "}
+                <span>150</span>
               </div>
             </div>
             <div className="post-card_options-share">

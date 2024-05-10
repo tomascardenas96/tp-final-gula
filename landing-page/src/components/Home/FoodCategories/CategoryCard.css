@@ -6,7 +6,6 @@
   height: 100%;
   gap: 0.6rem;
   cursor: pointer;
-  /* background-color: red; */
   padding-top: .5rem;
 }
 
@@ -14,7 +13,7 @@
   height: 6.7rem;
   width: 6.7rem;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.547);
+  border: 1.5px solid rgba(0, 0, 0, 0.389);
   display: grid;
   place-content: center;
   font-size: 2.2rem;

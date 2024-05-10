@@ -36,15 +36,21 @@ function useGetPosts() {
   //Funcion que compara dos fechas y retorna la diferencia de horario aproximada.
   function timeElapsed(date) {
     const parsedTime = moment(date);
-    const diff = moment().diff(parsedTime, "minutes");
-    const hours = Math.floor(diff / 60);
-    const minutes = diff % 60;
-
-    if (hours === 0) {
-      return `${minutes}min`;
+    const diff = moment().diff(parsedTime, "seconds");
+    const hours = Math.floor(diff / 3600);
+    const minutes = Math.floor((diff % 3600) / 60);
+    const seconds = diff % 60;
+  
+    if (hours >= 24) {
+      const days = Math.floor(hours / 24);
+      return `${days}d`;
     } else {
-      if (minutes === 0) {
-        return `${hours}h`;
+      if (hours === 0) {
+        if (minutes === 0) {
+          return `${seconds}s`;
+        } else {
+          return `${minutes}min`;
+        }
       } else {
         return `${hours}h`;
       }
