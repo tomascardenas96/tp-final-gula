@@ -11,6 +11,7 @@ import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 import { CreateProfileDto } from 'src/profile/dto/create-profile.dto';
 import { CreateCartDto } from 'src/cart/dto/create-cart.dto';
 import { profile } from 'console';
+import { BadRequestException } from '@nestjs/common';
 
 describe('UserService', () => {
   let service: UserService;
@@ -42,7 +43,10 @@ describe('UserService', () => {
     //con esto agrego el mock del metodo save a los metodos de user.service
     userRepositoryMock={
       ...baseUserRepositoryMock,
-      save:jest.fn().mockResolvedValue(newUser)
+      save:jest.fn().mockResolvedValue(newUser),
+      find:jest.fn(),//iniciamos el mock con una funcion vacia
+      findOne:jest.fn(),//iniciamos un mock con una funcion vacia
+      findOneBy:jest.fn(),
     };
     
     profileServiceMock = {
@@ -128,10 +132,7 @@ describe('UserService', () => {
       };
       //creador de carritoDTO
       const createCartDto:CreateCartDto={
-
       }
-
-
       //objeto final creado
       const newCreatedUser:User={
         userId:1,
@@ -143,41 +144,150 @@ describe('UserService', () => {
         cart:new Cart,
         profile:new Profile,
       }
-      //await cartServiceMock.create(),
-      //await profileServiceMock.create(newCreateProfileDTO),
         //configuramos los mocks para simular el conportamiento de los servicios
         userRepositoryMock.create.mockResolvedValueOnce(newCreatedUser);//espero que el metodo crete resulva devolviendo newUSer;
         /*Al simular el comportamiento de userRepositoryMock.create, 
         necesitas asegurarte de que devuelva una promesa que se resuelva 
-        con el nuevo usuario creado. Dado que newUser es un objeto, debemos 
-        envolverlo dentro de una promesa para que se comporte correctamente. 
-        Puedes hacer esto usando Promise.resolve(newUser) */
+        con el nuevo usuario creado.*/
 
         //lo que espero
-        console.log('objeto qeu espero recibir',newCreatedUser) 
+       // console.log('objeto qeu espero recibir',newCreatedUser) 
 
         const result= await service.create(CreateUserDto);
-        console.log('objeto que llega',result)//llega vacio cart y profile
+       // console.log('objeto que llega',result)//llega vacio cart y profile
         expect(result).toStrictEqual({//toStrictEqual, que realiza una comparación en profundidad de los objetos, asegurándose de que todas las propiedades y sus valores sean idénticos.
           ...newCreatedUser,
           createdAt:expect.any(Date),// Ignora la comparación de la propiedad createdAt
           cart:expect.any(Cart),// Asegura que la propiedad cart no esté vacía
           profile:expect.any(Profile),}) // Asegura que la propiedad cart no esté vacía
-      
-      /*NOTA: en realidad no pasa, lo que quiero demostrar es que llamando al metodo create
-      de user.service y pasando como parametro CreteUserDto me creara un usuario qeu en sus propiedades
-      contiene cart que se creara en el momento y ademas profile que hara lo msimo q cart.
-      profile es creado ccon el metodo de userServiceProfile.create el cual es llamado en
-      userService dentro del metodo create. 
-      entonces al crear un usuario me debe crear un profile con las propiedades de ProfileCreteDTO
-      y meter el obejto creado dentro de la propiedad profile del objeto user Creado. lo mismo hace cart
-      o sea que objeto creado en userService.create debe contener un objeto profile y cart
-      **** la prueba esta mal hecha ya que solo muestra que el obejto de entrada y de salida no son iguales.
-      l que tengo qeu demostrar es que el obejto creado (user) contenga los obejtos profile y cart respectivamente*/
-      
-      
+    });
+  });
+  //method findUserByQuery driving error 🤣
+  describe('findUserByQuery',()=>{
+    it('should retunr users matching the query',async()=>{
+      //simulamos una cosulta que coincide con usuarios existentes
+      const query='Adrian';
+
+      //configuramos el mock del repositorio para que devulva usuarios
+      userRepositoryMock.find.mockResolvedValueOnce([
+        { userId:1,
+          email:'adrian@example.com',
+          name:'adrian gomez',
+          password:'password123',
+          createdAt:new Date(),
+          shop:[],
+          cart:new Cart,
+          profile:new Profile,},
+        
+        { userId:2,
+          email:'rodriguez@example.com',
+          name:'adrian rodriguez',
+          password:'password123',
+          createdAt:new Date(),
+          shop:[],
+          cart:new Cart,
+          profile:new Profile,}
+      ]);
+      //ejecutamos el metodo y esperamos que devuelva los 
+      //usuarios que coinciden con la consulta
+      const result= await service.findUserByQuery(query);
+      expect(result).toHaveLength(2);//comprobamos que se devuelban dos usuarios que coinciden con la query
+      expect(result).toContainEqual(expect.objectContaining({name:'adrian gomez'}));
+      expect(result).toContainEqual(expect.objectContaining({name:'adrian rodriguez'}));
+    });
+    it('should throw a badRequestException if an error occurs',async()=>{
+      const query= 'adrian';//simulamos consulta
+
+      //configuramos el mock del repositorio para que lance una exception
+      userRepositoryMock.find.mockRejectedValueOnce(new Error('Database error'));
+
+      //ejecutamos el metodo y esperamos que lance una badRequestException
+      await expect(service.findUserByQuery(query)).rejects.toThrow(BadRequestException);
+    });
+  });//describe 
+  describe('findByEmailWithPassword',()=>{
+    it('should return user with specified email and selected fields', async()=>{
+      //mock del usuario creado
+      const userCreated:User={
+        userId:1,
+        email:'test@example.com',
+        name:'test user',
+        password:'password123',
+        createdAt:new Date(),
+        shop:[],
+        cart:new Cart,
+        profile:new Profile,
+      }
+      //mock que ingresara el usuario
+      const email= 'test@example.com'
+
+      //configuramos el comportamiento del mock del repositorio
+      //para que cuando se llame al metodo findOne y se le pase algo responda con un usuario creado
+      userRepositoryMock.findOne.mockResolvedValueOnce(userCreated);
+
+      //llamamos al metodo fiindByEmailWithPassword
+      const result= await service.findByEmailWithPassword(email);
+
+      //comprobamos que se llamo al metodo findOne con los parametros correctos
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({
+        where:{email},
+        select:['userId','email','name','password','createdAt']
       });
-  }) 
-}); 
+      expect(result).toEqual(userCreated); 
+    });//final IT
+
+    it('should throw BadRequestException if an error occurs during database operation', async () => {
+      // Mock del correo electrónico para provocar un error
+      const email = 'test@example.com';
+
+      // Configurar el comportamiento del mock del repositorio para que arroje un error
+      userRepositoryMock.findOne.mockRejectedValueOnce(new BadRequestException('Database error'));
+
+      // Llamar al método findByEmailWithPassword y esperar que arroje una excepción
+      await expect(service.findByEmailWithPassword(email)).rejects.toThrowError(BadRequestException);
+    });
+
+  });//final describe
+  describe('findByEmail',()=>{
+    it('should return user with specific email',async()=>{
+      //mock del mail a buscar
+      const email='test@example.com';
+      //usuario creado en la database y se espera como resultado
+      const expectedUser: User={
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'password123',
+        createdAt: new Date(),
+        shop:[],
+        cart: new Cart,
+        profile: new Profile,
+      };
+
+      //configuracion de mock, esperamos que resuelva la promesa con expeectedUser
+      userRepositoryMock.findOneBy.mockResolvedValueOnce(expectedUser);
+
+      //llamamos al metodo findByEmail
+      const result= await service.findByEmail(email);
+
+      expect(result).toEqual(expectedUser); 
+      expect(userRepositoryMock.findOneBy).toHaveBeenCalledWith({email})
+    });
+
+    it('should return null if user with specific email does not exist', async ()=>{
+      //mokeamos el email inexistente
+      const email= 'noExistingEmail@example.com';
+      //configuramos el mock para que resulva la promesa con Null
+      userRepositoryMock.findOneBy.mockResolvedValueOnce(null);
+      //llamamos al metodo del serrvice
+      const result= await service.findByEmail(email);
+
+      expect(result).toBeNull();
+      //verificamos que el metodo findOneBy haya sido llamado con un obejto que contenga la propiedad EMAIL
+      expect(userRepositoryMock.findOneBy).toHaveBeenCalledWith({email});
+    })
+  })
+ 
+}); //final test
  
       

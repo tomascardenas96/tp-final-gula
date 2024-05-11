@@ -50,13 +50,16 @@ export class UserService {
     return await this.userRepository.findOneBy({ name });
   }
 
-  async findUserByQuery(name: string) {
+  async findUserByQuery(name: string) {//utiliza un patron de coincidencia parcial
     try {
+      //intenta buscar usuarios cuyos nombres coincidan parcialmente con el nombre pasado porparametro
       return await this.userRepository.find({
-        where: { name: ILike(`%${name}%`) },
+        where: { name: ILike(`%${name}%`) },// Utiliza ILike para realizar una búsqueda case-insensitive y parcial
+      // Esto significa que no es sensible a mayúsculas y minúsculas y encuentra coincidencias parciales.
       });
     } catch (err) {
-      throw new BadRequestException({ message: err });
+      // Si ocurre un error durante la búsqueda, se lanza una excepción BadRequestException con un mensaje de error
+      throw new BadRequestException({ message: err });// Lanza una excepción con el error capturado
     }
   }
 

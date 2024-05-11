@@ -1,0 +1,16 @@
+metodos mock utilizados:Este método configura el valor que se devolverá 
+una vez (o una cantidad específica de veces) cuando la función o 
+método simulado sea invocado. Después de que se cumpla el 
+número especificado de llamadas, la función o método volverá a 
+comportarse como lo haría normalmente (devolverá undefined si no 
+se configura de otra manera).
+
+mockResolvedValue:Este método establece el valor que se 
+devolverá cada vez que la función o método simulado sea 
+invocado. Esto significa que, independientemente del número 
+de veces que se llame a la función o método, siempre devolverá 
+el mismo valor configurado.
+
+toHaveBeenCalledWith:para verificar el comportamiento de las funciones 
+y métodos durante las pruebas unitarias, asegurando que se estén 
+llamando correctamente con los argumentos esperados. Puede hacerse con mas de un argumento. 
