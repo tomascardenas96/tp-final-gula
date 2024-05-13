@@ -30,6 +30,10 @@ export class ShopService {
     }
   }
 
+  getShopByName(name: string) {
+    return this.shopRepository.findOneBy({ name });
+  }
+
   async getShopsByActiveUser(user: ActiveUserInterface) {
     try {
       const activeUser = await this.userService.findByEmail(user.email);
