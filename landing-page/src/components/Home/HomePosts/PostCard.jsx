@@ -5,6 +5,7 @@ import { GoShareAndroid } from "react-icons/go";
 import { FaRegStar } from "react-icons/fa6";
 import { FaRegMessage } from "react-icons/fa6";
 import { LuDot } from "react-icons/lu";
+import { FaStar } from "react-icons/fa6";
 import "./PostCard.css";
 
 function PostCard({
@@ -46,7 +47,7 @@ function PostCard({
           </section>
           <section className="post-card_options">
             <div className="post-card_options-like">
-              {/* <MdOutlineStarPurple500 /> */}
+            {/* <FaStar /> */}
               <div>
                 <FaRegStar className="post-card_header-options_star" />{" "}
                 <span>{stars}</span>

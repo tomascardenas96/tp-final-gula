@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdOutlineBrokenImage } from "react-icons/md";
 import { CiFaceSmile } from "react-icons/ci";
 import "./NewPost.css";
@@ -6,6 +6,7 @@ import useGetShopsByActiveUser from "../../../hooks/useGetShopsByActiveUser";
 import { IoIosArrowDown } from "react-icons/io";
 import useNewPost from "../../../hooks/useNewPost";
 import { ToastContainer, toast } from "react-toastify";
+import { FaArrowLeft } from "react-icons/fa6";
 import "react-toastify/dist/ReactToastify.css";
 
 function NewPost() {
@@ -21,6 +22,7 @@ function NewPost() {
     selectedShop,
     handleShopSelect,
     notify,
+    inputCharacters,
   } = useNewPost();
 
   return (
@@ -53,6 +55,12 @@ function NewPost() {
                       </option>
                     ))}
                   </select>
+                  <div>
+                    <FaArrowLeft />
+                    <h2>
+                      Selecciona un comercio para realizar una publicacion
+                    </h2>
+                  </div>
                 </>
               )}
             </div>
@@ -87,7 +95,20 @@ function NewPost() {
               </>
             )}
           </div>
+          <div className="new-post-send-characters">
+            <p>{inputCharacters}/255</p>
+          </div>
           <div className="new-post-send_button">
+            {newPostLoading && (
+              <div className="new-post-send_button-loader">
+                <div className="loadership_VVQYE">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            )}
             {!isShopsEmpty ? (
               <button
                 className="new-post-send_button_btn"
