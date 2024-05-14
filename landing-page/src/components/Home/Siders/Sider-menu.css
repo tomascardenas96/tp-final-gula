@@ -6,8 +6,9 @@
   position: fixed;
   height: 100%;
   width: 17rem;
-  top: 4rem;
-  background-color: rgb(255, 255, 255);
+  top: 3.93rem;
+  background-color: #f9f7f7;
+  z-index: 1100;
 }
 
 .sider-menu {
@@ -18,10 +19,10 @@
   justify-content: space-between;
   padding-bottom: 8rem;
   align-items: center;
-  border-radius: 0.2rem;
   padding: 0.5rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.135);
   border-top: none;
+  padding-top: .9rem;
 }
 
 .sider-menu ul {
@@ -41,16 +42,17 @@
   align-items: center;
   color: rgba(0, 0, 0, 0.753);
   letter-spacing: 0.03rem;
-  cursor: pointer;
+  cursor: default;
   text-decoration: none;
   font-size: 0.97rem;
   width: 17rem;
   padding: 0.4rem;
+  padding-left: .5rem;
   transition: all 0.2s ease;
 }
 
 .sider-menu ul > li:hover {
-  cursor: pointer;
+  /* cursor: pointer; */
   background-color: rgba(0, 0, 0, 0.098);
 }
 
@@ -68,13 +70,13 @@
 }
 
 .sider-menu_user-data {
-  width: 85%;
-  height: 4rem;
+  width: 90%;
+  height: 4.5rem;
   display: grid;
   border-radius: 5rem;
   grid-template-columns: 4rem 1fr;
   grid-template-rows: 1fr 1fr;
-  cursor: pointer;
+  /* cursor: pointer; */
   user-select: none;
   transition: background-color 0.3s ease;
   padding-left: 0.3rem;
@@ -132,6 +134,7 @@
   width: 85%;
   overflow: hidden;
   text-wrap: nowrap;
+  color: rgba(0, 0, 0, 0.693);
 }
 
 .sider-menu_user-data-profile-name {

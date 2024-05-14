@@ -4,6 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import "./FoodFilter.css";
 import useGetFoodByFilter from "../../../hooks/useGetFoodByFilter";
+import { IoMdClose } from "react-icons/io";
 
 function FoodFilter() {
   const {
@@ -14,6 +15,7 @@ function FoodFilter() {
     handleChangeFoodByFilter,
     filterInput,
     isEmptyField,
+    cleanInput,
   } = useGetFoodByFilter();
 
   return (
@@ -27,7 +29,13 @@ function FoodFilter() {
             onChange={handleChangeFoodByFilter}
             value={filterInput}
           />
-          <CiSearch className="food-filter_search-icon" />
+          {isEmptyField && <CiSearch className="food-filter_search-icon" />}
+          {!isEmptyField && (
+            <IoMdClose
+              className="food-filter_search-icon food-filter_close-icon"
+              onClick={cleanInput}
+            />
+          )}
           {!isEmptyField && (
             <div className="food-filter_results-list">
               {foodByQueryLoading ? (

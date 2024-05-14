@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 import { GiFullPizza } from "react-icons/gi";
 import { removeHeaderContext } from "../Siders/SiderContext";
-import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import { IoMdClose } from "react-icons/io";
+import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import "./Header.css";
 
 function Header() {
@@ -39,7 +39,10 @@ function Header() {
               />
               {!isEmptyField && (
                 <div className="header-search_results-list_close-modal">
-                  <IoMdClose onClick={clearInput} className="header-search_results-list_close-modal-icon"/>
+                  <IoMdClose
+                    onClick={clearInput}
+                    className="header-search_results-list_close-modal-icon"
+                  />
                 </div>
               )}
               {!isEmptyField && (

@@ -5,6 +5,7 @@
   height: 100%;
   top: 0;
   right: 0;
+  z-index: 1100;
 }
 
 .sider-settings {
@@ -12,18 +13,18 @@
   height: 100%;
   color: rgba(0, 0, 0, 0.634);
   display: flex;
-  padding-top: .1rem;
-  padding-bottom: 5.3rem;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  top: 3.985rem;
-  background-color: rgb(255, 255, 255);
-  border-radius: 0.1rem;
+  top: 3.93rem;
+  border-radius: 0 0.1rem 0 0;
+  background-color: #f9f7f7;
   border: 1px solid rgba(0, 0, 0, 0.208);
   border-top: none;
+  padding-top: 0.4rem;
+  padding-bottom: 6rem;
 }
 
 .sider-shop {
@@ -98,8 +99,8 @@
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.228));
   width: 100%;
   height: 100%;
-  padding: .2rem;
-  border-radius: .1rem;
+  padding: 0.2rem;
+  border-radius: 0.1rem;
 }
 
 .wa-icon:hover {
