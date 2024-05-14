@@ -19,7 +19,9 @@ export class PostService {
     private readonly shopService: ShopService,
   ) {}
 
-  //Esta funcion toma 3 parametros, user es para verificar que el usuario es propietario del comercio desde el cual quiere realizar una publicacion, description es el cuerpo del mensaje donde viajara lo que quiere publicar el usuario y shopName proveniente de la url, para identificar el nombre del comercio que va a realizar la operacion.
+  //Esta funcion toma 3 parametros, user es para verificar que el usuario es propietario del comercio desde
+  //el cual quiere realizar una publicacion, description es el cuerpo del mensaje donde viajara lo que quiere 
+  //publicar el usuario y shopName proveniente de la url, para identificar el nombre del comercio que va a realizar la operacion.
   async newPost(
     user: ActiveUserInterface,
     { description }: CreatePostDto,

@@ -26,8 +26,8 @@ export class ShopService {
     try {
       return this.shopRepository.find();
     } catch (err) {
-      throw new BadGatewayException({ errorMessage: err });
-    }
+      throw new BadGatewayException({ errorMessage: 'database error' });
+    }//modifique el mensaje de error que lanzaba.
   }
 
   getShopByName(name: string) {
