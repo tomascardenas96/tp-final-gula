@@ -46,7 +46,7 @@ describe('UserService', () => {
       save:jest.fn().mockResolvedValue(newUser),
       find:jest.fn(),//iniciamos el mock con una funcion vacia
       findOne:jest.fn(),//iniciamos un mock con una funcion vacia
-      findOneBy:jest.fn(),
+      findOneBy:jest.fn(),//iniciamos un mock con una funcion vacia
     };
     
     profileServiceMock = {
@@ -93,6 +93,9 @@ describe('UserService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+/*====================================================================================================================== */
+//Create Method
+/*====================================================================================================================== */
 
   describe('create',()=>{
     it('should create a new User',async ()=>{
@@ -104,17 +107,6 @@ describe('UserService', () => {
         location: 'Test Location',
         birthDate: '05/10/1990',
       };
-
-      //new profile creado para asignar a user
-      /*const newProfile:Profile={
-        profileId: 1,
-        profilePicture: 'link',
-        profileName: CreateUserDto.email,
-        coverPhoto: 'coverFoto',
-        location: CreateUserDto.location,
-        birthDate: CreateUserDto.birthDate,
-        user: new User
-      };*/
 
       //creador profileDTO
       const newCreateProfileDTO:CreateProfileDto={
@@ -162,6 +154,11 @@ describe('UserService', () => {
           profile:expect.any(Profile),}) // Asegura que la propiedad cart no esté vacía
     });
   });
+  
+  /*====================================================================================================================== */
+  //FindUserByQuery Method
+  /*====================================================================================================================== */
+
   //method findUserByQuery driving error 🤣
   describe('findUserByQuery',()=>{
     it('should retunr users matching the query',async()=>{
@@ -195,6 +192,7 @@ describe('UserService', () => {
       expect(result).toContainEqual(expect.objectContaining({name:'adrian gomez'}));
       expect(result).toContainEqual(expect.objectContaining({name:'adrian rodriguez'}));
     });
+  
     it('should throw a badRequestException if an error occurs',async()=>{
       const query= 'adrian';//simulamos consulta
 
@@ -205,6 +203,10 @@ describe('UserService', () => {
       await expect(service.findUserByQuery(query)).rejects.toThrow(BadRequestException);
     });
   });//describe 
+  
+  /*====================================================================================================================== */
+  //findByEmailWithPassword method
+  /*====================================================================================================================== */
   describe('findByEmailWithPassword',()=>{
     it('should return user with specified email and selected fields', async()=>{
       //mock del usuario creado
@@ -246,8 +248,11 @@ describe('UserService', () => {
       // Llamar al método findByEmailWithPassword y esperar que arroje una excepción
       await expect(service.findByEmailWithPassword(email)).rejects.toThrowError(BadRequestException);
     });
-
   });//final describe
+
+  /*====================================================================================================================== */
+//findByEmail method
+/*====================================================================================================================== */
   describe('findByEmail',()=>{
     it('should return user with specific email',async()=>{
       //mock del mail a buscar
@@ -270,7 +275,8 @@ describe('UserService', () => {
       //llamamos al metodo findByEmail
       const result= await service.findByEmail(email);
 
-      expect(result).toEqual(expectedUser); 
+      expect(result).toEqual(expectedUser);//esperamos que el resultado sea un usuario con email requerido
+      //verificamos que el metodo findOneBy sea llamado con el campo email 
       expect(userRepositoryMock.findOneBy).toHaveBeenCalledWith({email})
     });
 
@@ -285,6 +291,47 @@ describe('UserService', () => {
       expect(result).toBeNull();
       //verificamos que el metodo findOneBy haya sido llamado con un obejto que contenga la propiedad EMAIL
       expect(userRepositoryMock.findOneBy).toHaveBeenCalledWith({email});
+    });
+  });
+
+  describe('findByUserName',()=>{
+    it('should return a user when a matching name is found',async ()=>{
+      //mock del nombre del usuario
+      const name='Test User';
+      //usuario creado en la database y se espera como resultado
+      const expectedUser: User={
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'password123',
+        createdAt: new Date(),
+        shop:[],
+        cart: new Cart,
+        profile: new Profile,
+      };
+      //configuramos el mock, esperamos que resuelva la promesa con el expectedUSer
+      userRepositoryMock.findOneBy.mockResolvedValueOnce(expectedUser);
+
+      //invocamos al metodo findByUserName y esperamos el resultado
+      const result= await service.findByUserName(name);
+      //verificamos que el metodo findOneBy haya sido llamado con el nombre correcto
+      expect(result).toEqual(expectedUser);
+    });
+
+    it('should return null when no matching nam,e is found', async()=>{
+      //definimos un nombre que no estarra en la database
+      const name= 'NonExisting name';
+
+      //configuramos el comportamiento del mock parra que devuelba null
+      userRepositoryMock.findOneBy.mockResolvedValueOnce(null);
+     
+      //llamamos al metodo del userSevice findByUserName y esperamos el resultado
+      const result= await service.findByUserName(name);
+
+      //verificamos que el metodo findOneBy haya sido llamado con el nombre correcto
+      expect(userRepositoryMock.findOneBy).toHaveBeenCalledWith({name});
+      expect(result).toBeNull()
+      
     })
   })
  
