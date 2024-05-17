@@ -26,13 +26,13 @@ export class ShopService {
     try {
       return this.shopRepository.find();
     } catch (err) {
-      throw new BadGatewayException({ errorMessage: 'database error' });
+    }
+      throw new BadGatewayException({ errorMessage: 'database error' });//indica que el servidor recibió una respuesta inválida del servidor ascendente mientras intentaba cumplir la solicitud del cliente.
     }//modifique el mensaje de error que lanzaba.
-  }
 
-  getShopByName(name: string) {
-    return this.shopRepository.findOneBy({ name });
-  }
+  async getShopByName(name: string):Promise<Shop> {
+    return await this.shopRepository.findOneBy({ name });
+  }//tomy modifique esto. agrege que tiene qeu devolver una proesa y agrege el async await
 
   async getShopsByActiveUser(user: ActiveUserInterface) {
     try {

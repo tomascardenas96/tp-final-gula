@@ -16,6 +16,9 @@ import { Profile } from 'src/profile/entities/profile.entity';
 import { CartService } from 'src/cart/cart.service';
 import { Cart } from 'src/cart/entities/cart.entity';
 import { BadGatewayException } from '@nestjs/common';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { ActiveUser } from 'src/common/decorator/active-user.decorator';
+
 
 
 describe('ShopService', () => {
@@ -121,6 +124,8 @@ describe('ShopService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+  //======================================================================
+  //======================================================================
   describe('create',()=>{
   /*  it('should add or create a new shop',async ()=>{
       const newShop:Shop={
@@ -144,7 +149,8 @@ describe('ShopService', () => {
       //expect(result).
      });*/   //final it
   });//final describe CREATE
-
+//======================================================================
+//======================================================================
 describe('getAllShops',()=>{
   it('should return an array the shops',async ()=>{
     //simulamos un array de shops
@@ -169,8 +175,180 @@ describe('getAllShops',()=>{
     await expect(service.getAllShops()).rejects.toThrowError(BadGatewayException);
     expect(shopRepositoryMock.find).toHaveBeenCalled(); 
   });//final IT
-})
+});//final describe
+//======================================================================
+//======================================================================
+describe('getShopByName',()=>{
+  it('should return a shop with the specified name from the array of the shops',async ()=>{
+    //tienda a buscar
+    const shopName='ShopName';
+    
+    //array de tiendas mock
+    //shop mocked
+     const shops: Shop[] = [
+        {
+          shopId: 1,
+          name: 'ShopName',
+          location: 'Location1',
+          phone: '123456789',
+          profilename: 'ProfileName1',
+          picture: 'PictureLink1',
+          createdAt: new Date(),
+          user: new User(),
+          post: [],
+          food: [],
+          invoice: [],
+        },
+        {
+          shopId: 2,
+          name: 'AnotherShop',
+          location: 'Location2',
+          phone: '987654321',
+          profilename: 'ProfileName2',
+          picture: 'PictureLink2',
+          createdAt: new Date(),
+          user: new User(),
+          post: [],
+          food: [],
+          invoice: [],
+        },
+      ];
+    //configuro el mock para que resuelva la promesa debolviendo el nombre o null
+    shopRepositoryMock.findOneBy.mockImplementation(({ name }) => {
+      return Promise.resolve(shops.find(shop => shop.name === name) || null);
+    });
 
+    //llamamos al metodo del servicio y pasamos parametro a bsucar
+    const result = await service.getShopByName(shopName);
 
+    expect(shopRepositoryMock.findOneBy).toHaveBeenCalledWith({name:shopName});//esperamos qeu el metodo sea llamado con el nombre de la tienda
+    expect(result).toEqual(shops[0]);//esperamos que el objeto encontrado, sea en este caso, el del nombre'shopName' que es el sub-indice 0;
+  });//final it
+
+  it('should return null if no shop is found in the array of shops',async ()=>{
+    const shopName= 'noExistNameShop';//nombre que no existira
+
+    //array de tiendas mock
+    //shop mocked
+    const shops: Shop[] = [
+      {
+        shopId: 1,
+        name: 'ShopName',
+        location: 'Location1',
+        phone: '123456789',
+        profilename: 'ProfileName1',
+        picture: 'PictureLink1',
+        createdAt: new Date(),
+        user: new User(),
+        post: [],
+        food: [],
+        invoice: [],
+      },
+      {
+        shopId: 2,
+        name: 'AnotherShop',
+        location: 'Location2',
+        phone: '987654321',
+        profilename: 'ProfileName2',
+        picture: 'PictureLink2',
+        createdAt: new Date(),
+        user: new User(),
+        post: [],
+        food: [],
+        invoice: [],
+      },
+    ];
+    //configuramos el mock para que devuelba la promesa de la tienda o un valor nulo en caso de que no exista
+    shopRepositoryMock.findOneBy.mockImplementation(({name})=>{
+      return Promise.resolve(shops.find(shop=>shop.name===name)|| null);
+    });
+
+    //llamamos al servicio
+    const result= await service.getShopByName(shopName);
+
+    expect(shopRepositoryMock.findOneBy).toHaveBeenCalledWith({name:shopName});
+    //esperramos que el metodo se llame con un  numbre inexistente
+    expect(result).toBeNull();
+  });
+//agregar para exepciones cuando tomy finalice el metodo.
+});//final describe
+
+//======================================================================
+//======================================================================
+describe('getShopsByActiveUser',()=>{
+  /*Escenarios de Prueba: Probaremos dos escenarios principales:
+Caso exitoso donde el usuario es encontrado y se retornan las tiendas.
+Caso donde ocurre un error y se lanza una excepción BadGatewayException.**/
+  it('should return shops for the active user',async ()=>{
+    
+    //datos de usuario activo
+    const user_Interface:ActiveUserInterface={
+      userId:1,
+      email:'test@example.com',
+      name:'userName'};
+
+    const emailvalidString=user_Interface.email
+    
+    //usuario activo
+    const userActive:User={
+      userId:1,
+      email:'test@example.com',
+      name:'userName',
+      password:'password123',
+      createdAt:new Date(),
+      shop:[],
+      cart:new Cart,
+      profile:new Profile,
+    }
+    
+    //array de tiendas
+    const shops: Shop[] = [
+      {
+        shopId: 1,
+        name: 'Test Shop',//nombre de la tienda
+        location: 'Location1',
+        phone: '123456789',
+        profilename: 'ProfileName1',
+        picture: 'PictureLink1',
+        createdAt: new Date(),
+        user: userActive,//indica que el usuario esta activo
+        post: [],
+        food: [],
+        invoice: [],
+      },
+      {
+        shopId: 2,
+        name: 'AnotherShop',
+        location: 'Location2',
+        phone: '987654321',
+        profilename: 'ProfileName2',
+        picture: 'PictureLink2',
+        createdAt: new Date(),
+        user: null,//no esta activo
+        post: [],
+        food: [],
+        invoice: [],
+      },
+    ];
+    //Mockeamos findByEmail para que devuelva un activeUser
+    userServiceMock.findByEmail.mockResolvedValue(userActive);//devolvera un usuario activo
+    shopRepositoryMock.find.mockResolvedValue([shops[0]]);//debe devolver solo las tiendas del ussuario activo
+
+    //llamamos al metodod del servicio
+    const result= await service.getShopsByActiveUser(user_Interface);
+   
+    //recibe como parametro los datos de la interface del ussuario activo.
+    //console.log('esto es lo que recibo en result',result);
+    expect(userServiceMock.findByEmail).toHaveBeenCalledWith(user_Interface.email);
+   // expect(shopRepositoryMock.find).toHaveBeenCalledWith({where: {user:userActive} });
+    //verifica q solo se incluyan las tiendas que tiene usuario activo
+    //expect(result).toEqual([shops[0]]);  
+    
+  }); 
+   
+});//final describe
+
+ 
+ 
 });//final
   

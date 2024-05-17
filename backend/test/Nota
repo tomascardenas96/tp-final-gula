@@ -21,3 +21,7 @@ toBeNull: el objeto devuelto debe ser null
 toEqual: el objeto devuelto debe ser igual a...
 
 toBe: el obejto devuelto debe ser...
+
+mockImplementation:Define una implementación personalizada: En lugar de devolver un valor fijo, puedes definir una función que contiene la lógica que deseas que ejecute la función simulada.
+Argumentos dinámicos: La implementación personalizada puede utilizar los argumentos que se pasan a la función simulada para determinar qué devolver. En el ejemplo, usamos el argumento name para buscar en el array de tiendas.
+Retorno de valores: Puede devolver diferentes valores basados en condiciones, permitiendo pruebas más realistas y robustas.
