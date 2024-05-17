@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
+import { HiScissors } from "react-icons/hi2";
 import PostCard from "./PostCard.jsx";
 
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
@@ -37,6 +38,7 @@ function HomePosts() {
       <main className="home-posts">
         <div className="home-posts_section">
           <div className="home-posts_section-line"></div>
+          <HiScissors className="home-posts_section-scissors" />
           <h1 id="posts">Publicaciones</h1>
         </div>
         <div className="home-posts_new-post_container">

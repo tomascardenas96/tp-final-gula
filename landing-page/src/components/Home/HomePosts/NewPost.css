@@ -9,7 +9,7 @@
 
 .new-post .new-post_divider {
   position: absolute;
-  width: 65%;
+  width: 60%;
   height: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.119);
   border-radius: 0.2rem;
@@ -189,7 +189,8 @@
 
 .new-post-send-characters {
   display: flex;
-  color:  rgba(76, 76, 76, 0.698);
+  font-size: 0.85rem;
+  color: rgba(76, 76, 76, 0.698);
   font-weight: bold;
 }
 
@@ -276,6 +277,7 @@
 
 .Toastify__toast {
   right: 3rem;
+  bottom: 1rem;
 }
 
 .new-post-send_button-loader {

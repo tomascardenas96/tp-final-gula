@@ -12,6 +12,7 @@ import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import LoadingScreen from "../../components/Common/Spinner/LoadingScreen";
 import SiderContext from "../../components/Home/Siders/SiderContext";
 import "./Home.css";
+import Messages from "../../components/Home/Messages/Messages";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
@@ -32,6 +33,7 @@ function Home() {
           <Shops />
           <HomePosts />
           <SiderSettings />
+          <Messages />
           <Footer />
         </SiderContext>
       </main>

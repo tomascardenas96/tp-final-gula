@@ -39,6 +39,7 @@ function useNewPost() {
         throw new Error(data.message);
       }
       successNotify();
+      setInputCharacters(0);
       setNewPostInput({ description: "" });
     } catch (err) {
       const errorMessage = err.message;
