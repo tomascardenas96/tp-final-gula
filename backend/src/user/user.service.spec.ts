@@ -10,7 +10,6 @@ import { Cart } from 'src/cart/entities/cart.entity';
 import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 import { CreateProfileDto } from 'src/profile/dto/create-profile.dto';
 import { CreateCartDto } from 'src/cart/dto/create-cart.dto';
-import { profile } from 'console';
 import { BadRequestException } from '@nestjs/common';
 
 describe('UserService', () => {
