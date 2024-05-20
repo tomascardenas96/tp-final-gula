@@ -1,34 +1,32 @@
-import { WebSocketGateway, SubscribeMessage, MessageBody } from '@nestjs/websockets';
+import {
+  WebSocketGateway as WebSocketGatewayDecorator,
+  SubscribeMessage,
+  MessageBody,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+  WebSocketServer,
+} from '@nestjs/websockets';
 import { SocketService } from './socket.service';
 import { CreateSocketDto } from './dto/create-socket.dto';
 import { UpdateSocketDto } from './dto/update-socket.dto';
+import { Server } from 'socket.io';
 
-@WebSocketGateway()
-export class SocketGateway {
-  constructor(private readonly socketService: SocketService) {}
+@WebSocketGatewayDecorator(8001, { cors: '*' })
+export class GulaSocketGateway
+  implements OnGatewayConnection, OnGatewayDisconnect
+{
+  @WebSocketServer()
+  server: Server;
 
-  @SubscribeMessage('createSocket')
-  create(@MessageBody() createSocketDto: CreateSocketDto) {
-    return this.socketService.create(createSocketDto);
+  handleConnection(client: any) {
+    console.log(`Cliente conectado: ${client.id}`);
   }
 
-  @SubscribeMessage('findAllSocket')
-  findAll() {
-    return this.socketService.findAll();
+  handleDisconnect(client: any) {
+    console.log(`Cliente desconectado: ${client.id}`);
   }
 
-  @SubscribeMessage('findOneSocket')
-  findOne(@MessageBody() id: number) {
-    return this.socketService.findOne(id);
-  }
-
-  @SubscribeMessage('updateSocket')
-  update(@MessageBody() updateSocketDto: UpdateSocketDto) {
-    return this.socketService.update(updateSocketDto.id, updateSocketDto);
-  }
-
-  @SubscribeMessage('removeSocket')
-  remove(@MessageBody() id: number) {
-    return this.socketService.remove(id);
+  handleNewPost(payload: any) {
+    this.server.emit('newPostSocket', payload);
   }
 }
