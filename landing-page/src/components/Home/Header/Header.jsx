@@ -87,10 +87,10 @@ function Header() {
                         No hay resultados
                       </p>
                     )}
-                    {!headerFilter.shops.length ||
-                      (headerFilter.users.length && (
+                    {!headerFilter.shops?.length ||
+                      (!headerFilter.users?.length && (
                         <div className="header-search_results_see-more">
-                          <li>Ver mas</li>
+                          <li><a href="">Ver mas</a></li>
                         </div>
                       ))}
                   </ul>

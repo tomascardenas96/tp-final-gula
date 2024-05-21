@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding-left: .35rem;
+  padding-left: 0.35rem;
 }
 
 .header-search-image {
@@ -63,11 +63,24 @@
   padding: 0 0.8rem;
   font-size: 1rem;
   position: relative;
-  padding: 0 2rem .1rem 1.4rem;
+  padding: 0 2rem 0.1rem 1.4rem;
   font-family: "Titillium Web", sans-serif;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  color: rgba(0, 0, 0, 0.526);
+}
+
+.header-search-input::placeholder {
+  display: grid;
+  align-items: center;
+  padding-left: 3rem;
+  height: 100%;
+  font-size: 0.8rem;
+  padding-left: 1.2rem;
+  position: absolute;
+  left: 1.2rem;
+  top: 18%;
 }
 
 .header-search_results-list_close-modal {
@@ -159,22 +172,10 @@
 
 .header-search-icon {
   position: absolute;
-  left: 1.6rem;
+  left: 1.2rem;
   top: 33%;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.526);
-}
-
-.header-search-input::placeholder {
-  display: grid;
-  align-items: center;
-  padding-left: 3rem;
-  height: 100%;
-  font-size: 0.9rem;
-  padding-left: 1.5rem;
-  position: absolute;
-  left: 1.3rem;
-  top: 15%;
 }
 
 .header-search_results-container .header-search_results_see-more {

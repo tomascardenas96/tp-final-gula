@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import io from "socket.io-client";
 import moment from "moment";
 
 function useGetPosts() {
@@ -7,31 +8,43 @@ function useGetPosts() {
   const [postsLoading, setPostsLoading] = useState(false);
   const [postsError, setPostsError] = useState(null);
 
-  useEffect(() => {
-    async function getShops() {
-      try {
-        setPostsLoading(true);
-        const response = await fetch("http://localhost:3070/post", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        if (data.error) {
-          throw new Error(data.error);
-        }
-        setPosts(data);
-      } catch (err) {
-        setPostsError(err);
-      } finally {
-        setPostsLoading(false);
+  const getShops = useCallback(async () => {
+    try {
+      setPostsLoading(true);
+      const response = await fetch("http://localhost:3070/post", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
       }
+      setPosts(data);
+    } catch (err) {
+      setPostsError(err);
+    } finally {
+      setPostsLoading(false);
     }
-
-    getShops();
   }, [token]);
+
+  useEffect(() => {
+    getShops();
+  }, [posts]);
+
+  useEffect(() => {
+    const socket = io("http://localhost:8001");
+
+    socket.on("newPostSocket", (newPost) => {
+      setPosts((prev) => [...prev, newPost]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [token, setPosts]);
 
   //Funcion que compara dos fechas y retorna la diferencia de horario aproximada.
   function timeElapsed(date) {
@@ -40,7 +53,7 @@ function useGetPosts() {
     const hours = Math.floor(diff / 3600);
     const minutes = Math.floor((diff % 3600) / 60);
     const seconds = diff % 60;
-  
+
     if (hours >= 24) {
       const days = Math.floor(hours / 24);
       return `${days}d`;
