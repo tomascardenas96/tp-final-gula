@@ -4,8 +4,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { ILike, Repository } from 'typeorm';
-import { ProfileService } from 'src/profile/profile.service';
-import { CartService } from 'src/cart/cart.service';
+import { ProfileService } from '../profile/profile.service';
+import { CartService } from '../cart/cart.service';
 
 @Injectable()
 export class UserService {

@@ -1,6 +1,6 @@
-import { Category } from 'src/category/entities/category.entity';
-import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
-import { Shop } from 'src/shop/entities/shop.entity';
+import { Category } from '../../category/entities/category.entity';
+import { FoodOnCart } from '../../food_on_cart/entities/food_on_cart.entity';
+import { Shop } from '../../shop/entities/shop.entity';
 import {
   Column,
   Entity,

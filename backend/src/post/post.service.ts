@@ -8,9 +8,9 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from './entities/post.entity';
 import { Repository } from 'typeorm';
-import { ShopService } from 'src/shop/shop.service';
-import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-import { UserService } from 'src/user/user.service';
+import { ShopService } from '../shop/shop.service';
+import { ActiveUserInterface } from '../common/interface/active-user.interface';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class PostService {

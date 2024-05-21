@@ -1,7 +1,7 @@
-import { Food } from 'src/food/entities/food.entity';
-import { Invoice } from 'src/invoice/entities/invoice.entity';
-import { Post } from 'src/post/entities/post.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Food } from '../../food/entities/food.entity';
+import { Invoice } from '../../invoice/entities/invoice.entity';
+import { Post } from '../../post/entities/post.entity';
+import { User } from '../../user/entities/user.entity';
 import {
   Column,
   Entity,

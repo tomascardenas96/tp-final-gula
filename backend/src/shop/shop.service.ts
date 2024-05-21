@@ -8,8 +8,8 @@ import { UpdateShopDto } from './dto/update-shop.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Shop } from './entities/shop.entity';
 import { ILike, Repository } from 'typeorm';
-import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-import { UserService } from 'src/user/user.service';
+import { ActiveUserInterface } from '../common/interface/active-user.interface';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class ShopService {
