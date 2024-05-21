@@ -10,9 +10,8 @@ import SlideText from "../../components/Home/Slide-text/SlideText";
 import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import LoadingScreen from "../../components/Common/Spinner/LoadingScreen";
-import SiderContext from "../../components/Home/Siders/SiderContext";
-import "./Home.css";
 import Messages from "../../components/Home/Messages/Messages";
+import "./Home.css";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
@@ -24,7 +23,6 @@ function Home() {
   return (
     <>
       <main className="home-page_container" id="home-page">
-        <SiderContext>
           <Header />
           <SlideText />
           <SiderMenu />
@@ -35,7 +33,6 @@ function Home() {
           <SiderSettings />
           <Messages />
           <Footer />
-        </SiderContext>
       </main>
     </>
   );

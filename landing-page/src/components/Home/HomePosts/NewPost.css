@@ -37,7 +37,7 @@
   padding-right: 0.1rem;
   object-fit: cover;
   object-position: center;
-  padding-top: 2.1rem;
+  padding-top: 0.5rem;
   /* background-color: green; */
 }
 
@@ -48,8 +48,7 @@
 }
 
 .new-post-body {
-  padding-right: 1.4rem;
-  padding-left: .6rem;
+  padding-left: 0.6rem;
 }
 
 .new-post-body .new-post-body_shop-choose {
@@ -162,7 +161,6 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding-right: 1.5rem;
 }
 
 .new-post-send_div {
@@ -198,6 +196,10 @@
   font-size: 0.85rem;
   color: rgba(76, 76, 76, 0.698);
   font-weight: bold;
+}
+
+.new-post-send-characters p {
+  font-family: var(--tertiary-font);
 }
 
 .new-post-send .new-post-send_button {

@@ -22,7 +22,7 @@
   padding: 0.5rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.135);
   border-top: none;
-  padding-top: .9rem;
+  padding-top: 0.9rem;
 }
 
 .sider-menu ul {
@@ -46,13 +46,13 @@
   text-decoration: none;
   font-size: 0.92rem;
   width: 17rem;
-  padding: 0.4rem;
-  padding-left: .5rem;
+  padding: 0.35rem;
+  padding-left: 0.5rem;
   transition: all 0.2s ease;
+  font-family: var(--secondary-font);
 }
 
 .sider-menu ul > li:hover {
-  /* cursor: pointer; */
   background-color: rgba(0, 0, 0, 0.098);
 }
 
