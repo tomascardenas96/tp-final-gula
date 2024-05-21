@@ -24,7 +24,7 @@ export class ShopController {
   @Post()
   create(@Body() createShopDto: CreateShopDto) {
     return this.shopService.create(createShopDto);
-  }
+  }///falta ahcer el metidi en el servicio
 
   @Get()
   getAllShops() {

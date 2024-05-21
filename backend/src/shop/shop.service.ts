@@ -20,7 +20,7 @@ export class ShopService {
 
   create(createShopDto: CreateShopDto) {
     return 'This action adds a new shop';
-  }
+  }////falta hacer
 
   getAllShops() {
     try {
