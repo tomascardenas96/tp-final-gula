@@ -21,11 +21,6 @@ import { AuthGuard } from '../auth/guard/auth.guard';
 export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
-  @Post()
-  create(@Body() createShopDto: CreateShopDto) {
-    return this.shopService.create(createShopDto);
-  }
-
   @Get()
   getAllShops() {
     return this.shopService.getAllShops();

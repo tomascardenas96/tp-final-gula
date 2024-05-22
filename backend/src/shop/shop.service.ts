@@ -18,10 +18,6 @@ export class ShopService {
     private readonly userService: UserService,
   ) {}
 
-  create(createShopDto: CreateShopDto) {
-    return 'This action adds a new shop';
-  }
-
   getAllShops() {
     try {
       return this.shopRepository.find();

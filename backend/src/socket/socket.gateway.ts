@@ -1,14 +1,9 @@
 import {
   WebSocketGateway as WebSocketGatewayDecorator,
-  SubscribeMessage,
-  MessageBody,
   OnGatewayConnection,
   OnGatewayDisconnect,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { SocketService } from './socket.service';
-import { CreateSocketDto } from './dto/create-socket.dto';
-import { UpdateSocketDto } from './dto/update-socket.dto';
 import { Server } from 'socket.io';
 
 @WebSocketGatewayDecorator(8001, { cors: '*' })

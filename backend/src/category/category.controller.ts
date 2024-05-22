@@ -18,11 +18,6 @@ import { AuthGuard } from '../auth/guard/auth.guard';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoryService.create(createCategoryDto);
-  }
-
   @Get()
   findAll() {
     return this.categoryService.findAllCategories();
