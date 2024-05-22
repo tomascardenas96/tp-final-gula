@@ -1,4 +1,4 @@
-import { Shop } from 'src/shop/entities/shop.entity';
+import { Shop } from '../../shop/entities/shop.entity';
 import {
   Column,
   Entity,

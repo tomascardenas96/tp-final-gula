@@ -96,7 +96,7 @@ function NewPost() {
             )}
           </div>
           <div className="new-post-send-characters">
-            <p>{inputCharacters}/255</p>
+            <p>- {inputCharacters}/255 -</p>
           </div>
           <div className="new-post-send_button">
             {newPostLoading && (

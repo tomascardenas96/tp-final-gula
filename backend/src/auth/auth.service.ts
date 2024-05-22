@@ -4,8 +4,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-//modifique la importacion de user.service
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 import { RegisterDto } from './dto/register.dto';
 import * as bcryptjs from 'bcryptjs';
 import { LoginDto } from './dto/login.dto';

@@ -1,6 +1,6 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { AuthGuard } from '../auth/guard/auth.guard';
 
 @UseGuards(AuthGuard)
 @Controller('user')

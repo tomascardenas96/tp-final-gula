@@ -1,4 +1,4 @@
-import { Profile } from 'src/profile/entities/profile.entity';
+import { Profile } from '../../profile/entities/profile.entity';
 import { Cart } from '../../cart/entities/cart.entity';
 import { Shop } from '../../shop/entities/shop.entity';
 import {

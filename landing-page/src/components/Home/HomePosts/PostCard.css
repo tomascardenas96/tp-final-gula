@@ -5,9 +5,11 @@
   position: relative;
 }
 
+/* .post-card_container */
+
 .post-card_divider {
   position: absolute;
-  width: 65%;
+  width: 60%;
   height: 100%;
   /* background-color: red; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.119);
@@ -19,13 +21,22 @@
   min-height: 100%;
   display: grid;
   gap: 0.1rem;
-  /* background-color: lightgoldenrodyellow; */
-  /* grid-template-rows: 1fr 1rem; */
   grid-template-columns: 4rem 1fr;
+  min-height: 0;
+  overflow: hidden;
+  animation: maximize-card 0.3s ease;
+}
+
+@keyframes maximize-card {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
 }
 
 .post-card_left-side {
-  /* background-color: lightblue; */
   display: flex;
   justify-content: end;
   padding-right: 0.1rem;
@@ -36,7 +47,6 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  /* border: 2.6px solid rgba(225, 48, 48, 0.815); */
   cursor: pointer;
 }
 
@@ -65,7 +75,7 @@
 .post-card_header-user p {
   font-family: var(--tertiary-font);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.87rem;
   color: rgba(0, 0, 0, 0.828);
   cursor: pointer;
   display: flex;

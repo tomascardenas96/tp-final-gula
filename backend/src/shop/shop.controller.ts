@@ -12,9 +12,9 @@ import {
 import { ShopService } from './shop.service';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
-import { ActiveUser } from 'src/common/decorator/active-user.decorator';
-import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { ActiveUser } from '../common/decorator/active-user.decorator';
+import { ActiveUserInterface } from '../common/interface/active-user.interface';
+import { AuthGuard } from '../auth/guard/auth.guard';
 
 @UseGuards(AuthGuard)
 @Controller('shop')

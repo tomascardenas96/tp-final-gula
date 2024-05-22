@@ -11,9 +11,9 @@ import {
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { AuthGuard } from 'src/auth/guard/auth.guard';
-import { ActiveUser } from 'src/common/decorator/active-user.decorator';
-import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { AuthGuard } from '../auth/guard/auth.guard';
+import { ActiveUser } from '../common/decorator/active-user.decorator';
+import { ActiveUserInterface } from '../common/interface/active-user.interface';
 
 @UseGuards(AuthGuard)
 @Controller('post')

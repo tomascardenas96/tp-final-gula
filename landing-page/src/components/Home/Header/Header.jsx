@@ -87,9 +87,12 @@ function Header() {
                         No hay resultados
                       </p>
                     )}
-                    <div className="header-search_results_see-more">
-                      <li>Ver mas</li>
-                    </div>
+                    {!headerFilter.shops?.length ||
+                      (!headerFilter.users?.length && (
+                        <div className="header-search_results_see-more">
+                          <li><a href="">Ver mas</a></li>
+                        </div>
+                      ))}
                   </ul>
                 </div>
               )}

@@ -6,7 +6,7 @@
   grid-template-columns: 17rem minmax(750px, 1fr) 2.9rem;
   grid-template-areas:
     "header header header"
-    "sider-menu slice sider-settings"
+    "sider-menu slide sider-settings"
     "sider-menu filter sider-settings"
     "sider-menu categories sider-settings"
     "sider-menu shop sider-settings"
@@ -24,7 +24,7 @@
     grid-template-columns: minmax(500px, 1fr) minmax(200px ,20rem);
     grid-template-areas:
       "header header"
-      "slice slice"
+      "slide slide"
       "filter filter"
       "categories categories"
       "shop shop"

@@ -18,7 +18,6 @@ function useNewPost() {
     setNewPostError(null);
     try {
       // Verificamos que haya sido seleccionado al menos un comercio, y nos aseguramos que su valor no sea el que viene por defecto.
-      console.log(selectedShop);
       if (!selectedShop || selectedShop === "Seleccione un comercio") {
         throw new Error("Shop select must not be empty");
       }
@@ -39,6 +38,7 @@ function useNewPost() {
         throw new Error(data.message);
       }
       successNotify();
+      setInputCharacters(0);
       setNewPostInput({ description: "" });
     } catch (err) {
       const errorMessage = err.message;
