@@ -13,8 +13,7 @@ export class Profile {
   profileId: number;
 
   @Column({
-    default:
-      'https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1716249600&semt=ais_user',
+    default: 'default-profile_gula.jpg',
   })
   profilePicture: string;
 
