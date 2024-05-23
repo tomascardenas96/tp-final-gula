@@ -6,14 +6,12 @@
   margin-top: 1rem;
   /* background-color: red; */
   margin-bottom: 0.6rem;
-  padding-right: 2rem;
 }
 
 .new-post .new-post_divider {
   position: absolute;
   width: 60%;
   height: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.119);
   border-radius: 0.2rem;
   z-index: -1;
   /* background-color: red; */
@@ -24,10 +22,15 @@
   width: 60%;
   grid-template-columns: 4rem 1fr;
   grid-template-rows: minmax(10rem, 1fr) 4rem;
-  padding-bottom: 0.2rem;
   user-select: none;
   /* background-color: lightblue; */
   padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.107);
+  /* border-left: none;
+  border-right: none; */
+  border-radius: .2rem;
 }
 
 .new-post-profile-picture {
@@ -37,7 +40,7 @@
   padding-right: 0.1rem;
   object-fit: cover;
   object-position: center;
-  padding-top: 0.5rem;
+  padding-top: 2.5rem;
   /* background-color: green; */
 }
 
@@ -161,13 +164,8 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-}
-
-.new-post-send_div {
-  position: absolute;
-  z-index: -1;
-  width: 40rem;
-  height: 100%;
+  padding-top: .4rem;
+  padding-right: .4rem;
 }
 
 .new-post-send .new-post-send-options {

@@ -76,7 +76,6 @@
   border-radius: 5rem;
   grid-template-columns: 4rem 1fr;
   grid-template-rows: 1fr 1fr;
-  /* cursor: pointer; */
   user-select: none;
   transition: background-color 0.3s ease;
   padding-left: 0.3rem;
@@ -95,7 +94,7 @@
   border-radius: 50%;
   display: grid;
   place-content: center;
-  padding: 1rem;
+  margin-top: 6%;
   position: relative;
 }
 
@@ -123,13 +122,11 @@
 }
 
 .sider-menu_user-data-name {
-  /* border-radius: 0 3rem 0 0; */
   display: grid;
   align-items: end;
   font-weight: bold;
   font-size: 0.9rem;
   padding-left: 0.2rem;
-  padding-bottom: 0.1rem;
   font-family: var(--tertiary-font);
   width: 85%;
   overflow: hidden;
@@ -138,13 +135,10 @@
 }
 
 .sider-menu_user-data-profile-name {
-  /* border-radius: 0 0 3rem 0; */
   align-items: start;
-  /* background-color: red; */
   display: grid;
   font-size: 0.85rem;
   padding-left: 0.2rem;
-  padding-top: 0.1rem;
   color: rgba(0, 0, 0, 0.777);
   width: 85%;
   font-family: var(--tertiary-font);

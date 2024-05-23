@@ -7,12 +7,15 @@ import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useJwt } from "react-jwt";
 import Spinner from "../../Common/Spinner/Spinner";
+import useGetProfile from "../../../hooks/useGetProfile";
 import "./Sider-menu.css";
 
 function SiderMenu() {
   const token = localStorage.getItem("accessToken");
   const { decodedToken, isExpired } = useJwt(token);
   const [user, setUser] = useState(null);
+  const { activeProfile } = useGetProfile();
+  const { userImageURL } = useGetProfile();
 
   useEffect(() => {
     setUser(decodedToken);
@@ -80,10 +83,7 @@ function SiderMenu() {
         </ul>
         <div className="sider-menu_user-data">
           <div className="sider-menu_user-data_picture">
-            <img
-              src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
-              alt=""
-            />
+            <img src={userImageURL} alt="profile-picture-gula-side-menu" />
           </div>
           {!user ? (
             <div className="sider-menu_user-data_spinner">

@@ -7,21 +7,28 @@
 }
 
 .shop-card_icon {
-  transition: transform 0.3s ease;
-}
-
-.shop-card_icon:hover {
-  transform: scale(105%);
+  transition: all 0.3s ease;
+  height: 9.3rem;
+  width: 16rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.389);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.149);
+  padding: 0.04rem;
+  border-radius: 1rem 0 1rem 0;
+  overflow: hidden;
 }
 
 .shop-card_icon img {
   object-fit: cover;
   object-position: center;
-  height: 9.3rem;
-  width: 11rem;
-  border: 1.5px solid rgba(0, 0, 0, 0.389);
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.149);
-  padding: .03rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem 0 1rem 0;
+}
+
+.shop-card_icon img:hover {
+  transform: scale(110%);
+  opacity: .85;
 }
 
 .shop-card_container p {

@@ -12,7 +12,6 @@
   width: 60%;
   height: 100%;
   /* background-color: red; */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.119);
   z-index: -1;
 }
 
@@ -25,6 +24,10 @@
   min-height: 0;
   overflow: hidden;
   animation: maximize-card 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.107);
+  /* box-shadow: 0 0 5px .1px rgba(0, 0, 0, 0.108); */
+  border-radius: .2rem;
+  padding: .5rem 0 0 0
 }
 
 @keyframes maximize-card {

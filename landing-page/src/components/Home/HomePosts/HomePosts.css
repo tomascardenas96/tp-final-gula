@@ -54,7 +54,6 @@
   font-size: 1.5rem;
   transform: translateY(-50%);
   color: rgba(228, 35, 35, 0.869);
-  /* filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.333)); */
   width: 3rem;
   background-color: white;
 }
@@ -62,7 +61,7 @@
 .home-posts_section-line {
   width: 100%;
   position: absolute;
-  border-top: 2px dashed rgba(0, 0, 0, 0.122); 
+  border-top: 1.4px solid rgba(0, 0, 0, 0.084); 
   top: 65%;
   transform: translateY(-50%);
   z-index: -1;
@@ -88,5 +87,5 @@
 .home-posts_post-cards {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: .6rem;
 }

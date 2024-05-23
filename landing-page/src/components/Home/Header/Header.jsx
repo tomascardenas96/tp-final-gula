@@ -6,6 +6,7 @@ import { removeHeaderContext } from "../Siders/SiderContext";
 import { IoMdClose } from "react-icons/io";
 import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import "./Header.css";
+import useGetProfile from "../../../hooks/useGetProfile";
 
 function Header() {
   const {
@@ -18,6 +19,9 @@ function Header() {
     clearInput,
   } = useGetUsersAndShopsByQuery();
   const { isRemovedHeader } = useContext(removeHeaderContext);
+  const { userImageURL } = useGetProfile();
+
+  console.log(userImageURL);
 
   return (
     <header
@@ -90,7 +94,9 @@ function Header() {
                     {!headerFilter.shops?.length ||
                       (!headerFilter.users?.length && (
                         <div className="header-search_results_see-more">
-                          <li><a href="">Ver mas</a></li>
+                          <li>
+                            <a href="">Ver mas</a>
+                          </li>
                         </div>
                       ))}
                   </ul>
@@ -109,10 +115,7 @@ function Header() {
           </Link>
         </div>
         <div className="header-menu">
-          <img
-            src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
-            alt="profile-picture_home-page-gula"
-          />
+          <img src={userImageURL} alt="profile-picture_home-page-gula" />
         </div>
       </div>
     </header>
