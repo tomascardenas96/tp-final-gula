@@ -50,20 +50,20 @@ describe('UserService', () => {
     
     profileServiceMock = {
       create:jest.fn().mockResolvedValue({} as Profile),//creo un objeto profile simulado
-      findAll:jest.fn(),
-      findOne:jest.fn(),
-      update:jest.fn(),
-      remove:jest.fn(),
+      //findAll:jest.fn(),
+      //findOne:jest.fn(),
+      //update:jest.fn(),
+      //remove:jest.fn(),
       // Defino todos los métodos que necesito en el mock de ProfileService
     };
 
 
     cartServiceMock = {
       create:jest.fn().mockResolvedValue({} as Cart),//creo un objeto pcart simulado
-      findAll:jest.fn(),
-      findOne:jest.fn(),
-      update:jest.fn(),
-      remove:jest.fn(),
+      //findAll:jest.fn(),
+      //findOne:jest.fn(),
+      //update:jest.fn(),
+      //remove:jest.fn(),
       // Defino los métodos que necesitas en tu mock de CartService
     };
 

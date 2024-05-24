@@ -81,11 +81,11 @@ describe('ShopService', () => {
     postServiceMock={
       newPost:jest.fn(),
       getAllPosts:jest.fn(),
-      recommendPost:jest.fn(),
-      unrecommendPost:jest.fn(),
-      findOne:jest.fn(),
-      update:jest.fn(),
-      remove:jest.fn(),
+     // recommendPost:jest.fn(),
+     // unrecommendPost:jest.fn(),
+     // findOne:jest.fn(),
+     // update:jest.fn(),
+     //remove:jest.fn(),
     };
     ProfileServiceMock={
       create:jest.fn(),
@@ -418,6 +418,7 @@ Caso donde ocurre un error y se lanza una excepción BadGatewayException.**/
     })).rejects.toThrowError(BadGatewayException);
   }); 
 });//final describe
+*/ 
 
  describe('findShopByQuery',()=>{
   it('should return an array of shop matching the query', async()=>{
@@ -474,6 +475,5 @@ Caso donde ocurre un error y se lanza una excepción BadGatewayException.**/
     await expect(service.findShopByQuery(shopName)).rejects.toThrowError(errorMessage)
   });  //final it
  })//final describe 
-*/ 
 });//final 
    
