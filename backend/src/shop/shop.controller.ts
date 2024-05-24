@@ -22,8 +22,8 @@ export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
   @Post()
-  create(@Body() createShopDto: CreateShopDto) {
-    return this.shopService.create(createShopDto);
+  create(@Body() createShopDto: CreateShopDto,@ActiveUser() activeUser:ActiveUserInterface) {
+    return this.shopService.create(createShopDto,activeUser);
   }///falta ahcer el metidi en el servicio
 
   @Get()

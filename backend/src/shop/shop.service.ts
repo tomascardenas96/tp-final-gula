@@ -10,6 +10,7 @@ import { Shop } from './entities/shop.entity';
 import { ILike, Repository } from 'typeorm';
 import { ActiveUserInterface } from '../common/interface/active-user.interface';
 import { UserService } from '../user/user.service';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class ShopService {
@@ -18,8 +19,21 @@ export class ShopService {
     private readonly userService: UserService,
   ) {}
 
-  create(createShopDto: CreateShopDto) {
-    return 'This action adds a new shop';
+
+
+  async create(shop: CreateShopDto,activeUser:ActiveUserInterface):Promise<Shop> {
+    //se crea una nueva tienda
+    
+    const user:User = await this.userService.findByEmail(activeUser.email);
+    const newShop:Shop= this.shopRepository.create({
+      name:shop.name,
+      location:shop.location,
+      phone:shop.phone,
+      profilename:shop.profilename,
+      picture:shop.picture,
+      user:user
+    })
+    return this.shopRepository.save(newShop);
   }////falta hacer
 
   getAllShops() {
