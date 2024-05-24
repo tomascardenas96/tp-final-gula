@@ -20,7 +20,7 @@
   height: max-content;
   width: 92%;
   display: flex;
-  gap: 3.5rem;
+  gap: 2rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: visible;

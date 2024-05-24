@@ -12,7 +12,9 @@ export class Profile {
   @PrimaryGeneratedColumn()
   profileId: number;
 
-  @Column({ default: '0' })
+  @Column({
+    default: 'default-profile_gula.jpg',
+  })
   profilePicture: string;
 
   @Column()

@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  BadGatewayException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,6 +11,7 @@ import { User } from './entities/user.entity';
 import { ILike, Repository } from 'typeorm';
 import { ProfileService } from '../profile/profile.service';
 import { CartService } from '../cart/cart.service';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 
 @Injectable()
 export class UserService {
@@ -63,7 +69,21 @@ export class UserService {
     }
   }
 
-  // async findByProfileName(profilename: string) {
-  //   return await this.userRepository.findOneBy({ profilename });
-  // }
+  async findProfileByActiveUser(activeUser: ActiveUserInterface) {
+    try {
+      const user = await this.findByEmail(activeUser.email);
+      if (!user) {
+        throw new NotFoundException('User service: user cannot be found');
+      }
+      const profile = await this.profileService.findProfileByUser(user);
+      return profile;
+    } catch (err) {
+      if (err instanceof NotFoundException) {
+        throw err;
+      }
+      throw new BadGatewayException(
+        'User service: error in method findProfileByActiveUser',
+      );
+    }
+  }
 }

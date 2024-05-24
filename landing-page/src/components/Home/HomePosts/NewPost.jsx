@@ -81,7 +81,6 @@ function NewPost() {
           )}
         </div>
         <div className="new-post-send">
-          <div className="new-post-send_div"></div>
           <div className="new-post-send-options">
             {!isShopsEmpty ? (
               <>

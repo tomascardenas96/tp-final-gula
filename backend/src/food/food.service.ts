@@ -11,10 +11,6 @@ export class FoodService {
     @InjectRepository(Food) private readonly foodRepository: Repository<Food>,
   ) {}
 
-  create(createFoodDto: CreateFoodDto) {
-    return 'This action adds a new food';
-  }
-
   findFoodByQuery(query: string) {
     try {
       return this.foodRepository.find({

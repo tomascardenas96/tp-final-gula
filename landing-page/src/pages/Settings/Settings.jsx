@@ -3,6 +3,7 @@ import "./Settings.css";
 import Header from "../../components/Home/Header/Header";
 import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
+import Messages from "../../components/Home/Messages/Messages"
 
 function Settings() {
   return (
@@ -10,6 +11,7 @@ function Settings() {
       <Header />
       <SiderMenu />
       <SiderSettings />
+      <Messages />
     </div>
   );
 }

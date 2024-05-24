@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
-import { HiScissors } from "react-icons/hi2";
-import { BsFillMegaphoneFill } from "react-icons/bs";
 import PostCard from "./PostCard.jsx";
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
 import NewPost from "./NewPost.jsx";
@@ -37,7 +35,6 @@ function HomePosts() {
       <main className="home-posts">
         <div className="home-posts_section">
           <div className="home-posts_section-line"></div>
-          <BsFillMegaphoneFill className="home-posts_section-icon" />
           <h1 id="posts">Publicaciones</h1>
         </div>
         <div className="home-posts_new-post_container">

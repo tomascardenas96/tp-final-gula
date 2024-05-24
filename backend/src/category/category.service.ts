@@ -12,10 +12,6 @@ export class CategoryService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
-  }
-
   findAllCategories() {
     try {
       return this.categoryRepository.find();
