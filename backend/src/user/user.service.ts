@@ -12,6 +12,7 @@ import { ILike, Repository } from 'typeorm';
 import { ProfileService } from '../profile/profile.service';
 import { CartService } from '../cart/cart.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { UpdateProfileDto } from '../user/dto/update-profile';
 
 @Injectable()
 export class UserService {
@@ -82,5 +83,22 @@ export class UserService {
         'User service: error in method findProfileByActiveUser',
       );
     }
+  }
+
+  async updateActiveUserProfile(
+    file: Express.Multer.File,
+    activeUser: ActiveUserInterface,
+    updatedProfile: UpdateProfileDto,
+  ) {
+
+    const user = await this.userRepository.findOne({
+      where: { email: activeUser.email },
+    });
+
+    return await this.profileService.updateActiveUserProfile(
+      file,
+      user,
+      updatedProfile,
+    );
   }
 }
