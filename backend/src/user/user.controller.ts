@@ -16,6 +16,7 @@ import { AuthGuard } from '../auth/guard/auth.guard';
 import { ActiveUser } from 'src/common/decorator/active-user.decorator';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { UpdateProfileDto } from '../user/dto/update-profile';
+import { UpdateAccountDto } from './dto/update-account.dto';
 
 @UseGuards(AuthGuard)
 @Controller('user')
@@ -32,6 +33,7 @@ export class UserController {
     return this.userService.findProfileByActiveUser(activeUser);
   }
 
+  //Metodo para actualizar los datos de perfil del usuario activo.
   @Patch('profile/update')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -55,6 +57,19 @@ export class UserController {
     @ActiveUser() activeUser: ActiveUserInterface,
     @Body() updatedProfile: UpdateProfileDto,
   ) {
-    return this.userService.updateActiveUserProfile(file, activeUser, updatedProfile);
+    return this.userService.updateActiveUserProfile(
+      file,
+      activeUser,
+      updatedProfile,
+    );
+  }
+
+  //Metodo para actualizar los datos de cuenta del usuario activo.
+  @Patch('update')
+  updateAccountInfo(
+    @Body() updatedAccount: UpdateAccountDto,
+    @ActiveUser() activeUser: ActiveUserInterface,
+  ) {
+    return this.userService.updateAccountInfo(updatedAccount, activeUser);
   }
 }

@@ -5,7 +5,6 @@ import {
   BadGatewayException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { ILike, Repository } from 'typeorm';
@@ -14,6 +13,8 @@ import { CartService } from '../cart/cart.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { UpdateProfileDto } from '../user/dto/update-profile';
 import { Profile } from 'src/profile/entities/profile.entity';
+import * as bcryptjs from 'bcryptjs';
+import { UpdateAccountDto } from './dto/update-account.dto';
 
 @Injectable()
 export class UserService {
@@ -44,7 +45,13 @@ export class UserService {
   }
 
   async findByEmail(email: string): Promise<User> {
-    return await this.userRepository.findOneBy({ email });
+    try {
+      return await this.userRepository.findOneBy({ email });
+    } catch (err) {
+      throw new BadGatewayException(
+        'User service: error trying to find user by email',
+      );
+    }
   }
 
   async findByEmailWithPassword(email: string): Promise<User> {
@@ -100,14 +107,71 @@ export class UserService {
     activeUser: ActiveUserInterface,
     updatedProfile: UpdateProfileDto,
   ): Promise<Profile> {
-    const user: User = await this.userRepository.findOne({
-      where: { email: activeUser.email },
-    });
+    try {
+      const user: User = await this.userRepository.findOne({
+        where: { email: activeUser.email },
+      });
 
-    return await this.profileService.updateActiveUserProfile(
-      file,
-      user,
-      updatedProfile,
-    );
+      if (!user) {
+        throw new NotFoundException(
+          'User service: user not found. updateActiveUserProfile method',
+        );
+      }
+
+      return await this.profileService.updateActiveUserProfile(
+        file,
+        user,
+        updatedProfile,
+      );
+    } catch (err) {
+      if (err instanceof NotFoundException) {
+        throw err;
+      }
+      throw new BadGatewayException(
+        'User service: error trying to update profile. updateActiveUserProfile method ',
+      );
+    }
+  }
+
+  async updateAccountInfo(
+    updateAccount: UpdateAccountDto,
+    activeUser: ActiveUserInterface,
+  ): Promise<User> {
+    try {
+      const user: User = await this.userRepository.findOne({
+        where: { email: activeUser.email },
+      });
+
+      if (!user) {
+        throw new NotFoundException(
+          'User service: user not found. updateAccountInfo method',
+        );
+      }
+
+      //Si el usuario envia una contraseña, se realiza el procedimiento de hashing. De lo contrario esta porcion no se ejecutara
+      let hashedPassword: string;
+      if (updateAccount.password) {
+        const salt = await bcryptjs.genSalt(10);
+        hashedPassword = await bcryptjs.hash(updateAccount.password, salt);
+      }
+
+      const updatedUser: User = {
+        ...user,
+        ...updateAccount,
+        password: hashedPassword ? hashedPassword : user.password,
+      };
+
+      const newAccountInfo: User = this.userRepository.create(updatedUser);
+
+      return this.userRepository.save(newAccountInfo);
+    } catch (err) {
+      if (err instanceof NotFoundException) {
+        throw err;
+      }
+
+      throw new BadGatewayException(
+        'User service: error trying to update user account info. updateAccountInfo method',
+      );
+    }
   }
 }
