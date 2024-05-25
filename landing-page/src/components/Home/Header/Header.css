@@ -4,7 +4,7 @@
   -webkit-backdrop-filter: blur(10px);
   width: 100%;
   height: 4rem;
-  background-color: #f9f7f7;
+  background-color: #f3f3f3;
   position: fixed;
   z-index: 1500;
 }
@@ -18,7 +18,7 @@
   height: 100%;
   border-radius: 0.1rem;
   display: grid;
-  border: 1px solid rgba(0, 0, 0, 0.122);
+  border: 1px solid rgba(0, 0, 0, 0.084);
   grid-template-columns: 17rem 1fr 3rem;
   align-items: center;
 }

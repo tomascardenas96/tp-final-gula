@@ -8,10 +8,13 @@ import useNewPost from "../../../hooks/useNewPost";
 import { ToastContainer, toast } from "react-toastify";
 import { FaArrowLeft } from "react-icons/fa6";
 import "react-toastify/dist/ReactToastify.css";
+import useGetProfile from "../../../hooks/useGetProfile";
 
 function NewPost() {
   const { shops, shopsLoading, shopsError, isShopsEmpty } =
     useGetShopsByActiveUser();
+
+  const { userImageURL } = useGetProfile();
 
   const {
     handleSubmitNewPost,
@@ -31,8 +34,8 @@ function NewPost() {
       <form onSubmit={handleSubmitNewPost}>
         <div className="new-post-profile-picture">
           <img
-            src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
-            alt=""
+            src={userImageURL}
+            alt="new-post-gula"
           />
         </div>
         <div className="new-post-body">

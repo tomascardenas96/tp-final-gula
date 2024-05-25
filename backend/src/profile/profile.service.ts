@@ -1,4 +1,8 @@
-import { BadGatewayException, Injectable } from '@nestjs/common';
+import {
+  BadGatewayException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,13 +18,13 @@ export class ProfileService {
   ) {}
 
   //Metodo utilizado en la creacion del usuario (userService) para crear un nuevo perfil automaticamente cuando se crea el usuario, asignandoselo al mismo.
-  create(profileDto: CreateProfileDto) {
-    const profile = this.profileRepository.create({ ...profileDto });
+  create(profileDto: CreateProfileDto): Promise<Profile> {
+    const profile: Profile = this.profileRepository.create({ ...profileDto });
 
     return this.profileRepository.save(profile);
   }
 
-  findProfileByUser(user: User) {
+  findProfileByUser(user: User): Promise<Profile> {
     try {
       return this.profileRepository.findOne({
         where: { profileId: user.userId },
@@ -29,6 +33,35 @@ export class ProfileService {
       throw new BadGatewayException(
         'ProfileService: Error trying to find profile by id',
       );
+    }
+  }
+
+  async updateActiveUserProfile(
+    file: Express.Multer.File,
+    user: User,
+    updatedProfile?: UpdateProfileDto,
+  ): Promise<Profile> {
+    try {
+      const profile: Profile = await this.profileRepository.findOne({
+        where: { user },
+      });
+
+      if (!profile) {
+        throw new NotFoundException('Profile service: Profile not found');
+      }
+
+      const newProfile: Profile = this.profileRepository.create({
+        ...profile,
+        ...updatedProfile,
+        profilePicture: file?.filename,
+      });
+
+      return this.profileRepository.save(newProfile);
+    } catch (err) {
+      if (err instanceof NotFoundException) {
+        throw err;
+      }
+      throw new BadGatewayException('Profile service: Error trying to ');
     }
   }
 }

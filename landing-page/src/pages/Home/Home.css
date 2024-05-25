@@ -12,6 +12,7 @@
     "sider-menu shop sider-settings"
     "sider-menu posts sider-settings"
     "sider-menu footer sider-settings";
+    background-color: #f9f7f7;
 }
 
 @media screen and (max-width: 950px) {

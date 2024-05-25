@@ -23,14 +23,11 @@
   grid-template-columns: 4rem 1fr;
   grid-template-rows: minmax(10rem, 1fr) 4rem;
   user-select: none;
-  /* background-color: lightblue; */
   padding-right: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.107);
-  /* border-left: none;
-  border-right: none; */
-  border-radius: .2rem;
+  border-radius: .5rem;
 }
 
 .new-post-profile-picture {
@@ -42,12 +39,14 @@
   object-position: center;
   padding-top: 2.5rem;
   /* background-color: green; */
+
 }
 
 .new-post-profile-picture img {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
+  box-shadow: 1px 1px 5px .2px rgba(0, 0, 0, 0.157);
 }
 
 .new-post-body {
