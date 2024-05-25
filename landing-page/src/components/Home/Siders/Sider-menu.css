@@ -7,7 +7,7 @@
   height: 100%;
   width: 17rem;
   top: 3.93rem;
-  background-color: #f9f7f7;
+  background-color: #f3f3f3;
   z-index: 1100;
 }
 
@@ -119,6 +119,7 @@
   position: absolute;
   top: 12%;
   left: 12%;
+  box-shadow: 1px 1px 5px .2px rgba(0, 0, 0, 0.289);
 }
 
 .sider-menu_user-data-name {
