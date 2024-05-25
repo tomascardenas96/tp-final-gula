@@ -13,6 +13,7 @@ import { ProfileService } from '../profile/profile.service';
 import { CartService } from '../cart/cart.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { UpdateProfileDto } from '../user/dto/update-profile';
+import { Profile } from 'src/profile/entities/profile.entity';
 
 @Injectable()
 export class UserService {
@@ -53,11 +54,17 @@ export class UserService {
     });
   }
 
-  async findByUserName(name: string) {
-    return await this.userRepository.findOneBy({ name });
+  async findByUserName(name: string): Promise<User> {
+    try {
+      return await this.userRepository.findOneBy({ name });
+    } catch (err) {
+      throw new BadGatewayException(
+        'User service: Error trying to find user by name',
+      );
+    }
   }
 
-  async findUserByQuery(name: string) {
+  async findUserByQuery(name: string): Promise<User[]> {
     try {
       return await this.userRepository.find({
         where: { name: ILike(`%${name}%`) },
@@ -67,13 +74,16 @@ export class UserService {
     }
   }
 
-  async findProfileByActiveUser(activeUser: ActiveUserInterface) {
+  async findProfileByActiveUser(
+    activeUser: ActiveUserInterface,
+  ): Promise<Profile> {
     try {
-      const user = await this.findByEmail(activeUser.email);
+      const user: User = await this.findByEmail(activeUser.email);
       if (!user) {
         throw new NotFoundException('User service: user cannot be found');
       }
-      const profile = await this.profileService.findProfileByUser(user);
+      const profile: Profile =
+        await this.profileService.findProfileByUser(user);
       return profile;
     } catch (err) {
       if (err instanceof NotFoundException) {
@@ -89,9 +99,8 @@ export class UserService {
     file: Express.Multer.File,
     activeUser: ActiveUserInterface,
     updatedProfile: UpdateProfileDto,
-  ) {
-
-    const user = await this.userRepository.findOne({
+  ): Promise<Profile> {
+    const user: User = await this.userRepository.findOne({
       where: { email: activeUser.email },
     });
 
