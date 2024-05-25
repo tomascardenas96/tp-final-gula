@@ -47,7 +47,7 @@ export class ProfileService {
       });
 
       if (!profile) {
-        throw new NotFoundException('Profile not found');
+        throw new NotFoundException('Profile service: Profile not found');
       }
 
       const newProfile: Profile = this.profileRepository.create({
