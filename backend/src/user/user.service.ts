@@ -106,10 +106,16 @@ export class UserService {
     activeUser: ActiveUserInterface,
     updatedProfile: UpdateProfileDto,
   ): Promise<Profile> {
+    //busca un usuario en la base de datos
     const user: User = await this.userRepository.findOne({
       where: { email: activeUser.email },
     });
-
+    //verifica si el usuario no se encontro y lanza excepcion
+    if(!user){
+      throw new NotFoundException('User not found');
+    }
+    //si el user se encuentra llama al metodo 'updateActiveUserProfile'
+    //del profileService 
     return await this.profileService.updateActiveUserProfile(
       file,
       user,

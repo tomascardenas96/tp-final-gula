@@ -171,16 +171,20 @@ describe('AuthController',()=>{
     sea el mensaje esperado, en este caso, "Perfil". Esto asegura que el método 
     profile devuelva el mensaje correcto al usuario. */
     describe('profile',()=>{
-        it('should retunr profile message for authenticated user', async ()=>{
-            //simulamos el mensaje de perfil esperado
-            const expecteMessage= 'Perfil';
+        it('should retunr active user for authenticated user', async ()=>{
+            //simulamos un usuario activo por interface
+            const activeUser:ActiveUserInterface={
+                userId:1,
+                email:'test@example.com',
+                name:'test user',
+            };
 
-            //espia el metodo prifile del controlador para simular el retorno del mensaje del perdil
-            jest.spyOn(controller,'profile').mockImplementationOnce(()=>expecteMessage);
+            //espia el metodo prifile: simulamos el guard permitiendo acceso
+            jest.spyOn(controller,'profile').mockImplementationOnce(()=>activeUser);
             //ejecutamos la prueba
-            const result= await controller.profile();
+            const result= await controller.profile(activeUser);
             //verificamos que se devuelva el mensjae de perfil esperado
-            expect(result).toEqual(expecteMessage)
+            expect(result).toEqual(activeUser);
         });
     });
 }); 

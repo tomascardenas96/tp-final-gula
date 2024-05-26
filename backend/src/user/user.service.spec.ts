@@ -10,12 +10,15 @@ import { Cart } from 'src/cart/entities/cart.entity';
 import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 import { CreateProfileDto } from 'src/profile/dto/create-profile.dto';
 import { CreateCartDto } from 'src/cart/dto/create-cart.dto';
-import { BadRequestException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, NotFoundException } from '@nestjs/common';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { Readable } from 'stream';
+import { UpdateProfileDto } from './dto/update-profile';
 
 describe('UserService', () => {
   let service: UserService;
   let userRepositoryMock:any;//definimos any para evistar probloemas con las propiedades
-  let profileServiceMock:Partial<jest.Mocked<ProfileService>>;
+  let profileServiceMock:any;//Partial<jest.Mocked<ProfileService>>;
   let cartServiceMock:Partial<jest.Mocked<CartService>>;
  
   beforeEach(async () => {
@@ -26,6 +29,8 @@ describe('UserService', () => {
       findByEmailWithPassword: jest.fn(),
       findByUserName: jest.fn(),
       findUserByQuery: jest.fn(),
+      findProfileByActiveUser:jest.fn(),
+      updateActiveUserProfile:jest.fn(),
       // Defino todos los métodos que necesito en el mock de user.service
     };
     //mock de como debe qeudar guardado el objeto final para comparacion
@@ -48,8 +53,17 @@ describe('UserService', () => {
       findOneBy:jest.fn(),//iniciamos un mock con una funcion vacia
     };
     
+    const baseProfileServiceMock={
+      save:jest.fn(),
+      findOne:jest.fn(),
+      //se peuden agregar mas metodos
+    }
+
     profileServiceMock = {
+      ...baseProfileServiceMock,
       create:jest.fn().mockResolvedValue({} as Profile),//creo un objeto profile simulado
+      findProfileByUser:jest.fn(),
+      updateActiveUserProfile:jest.fn(), 
       //findAll:jest.fn(),
       //findOne:jest.fn(),
       //update:jest.fn(),
@@ -332,8 +346,204 @@ describe('UserService', () => {
       expect(result).toBeNull()
       
     })
-  })
- 
+  });
+  /*====================================================================================================================== */
+  //findProfileByActiveUser
+  /*====================================================================================================================== */
+  describe('findProfileByActiveUser',()=>{
+    it('should return profile for active user', async()=>{
+      //mock de la interface de un user activo
+      const activeUser: ActiveUserInterface={
+        userId:1,
+        email:'test@example.com',
+        name:'test user',
+      };
+      //mock del user activo
+      const user:User={
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'password123',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+      //mock del profile del usuario
+      const profile:Profile={
+        profileId:1,
+        profilePicture:'photoUser',
+        profileName:'Test user',
+        coverPhoto:'photo',
+        location:'location test',
+        birthDate:'date',
+        user:user,
+      };
+      //configuracion del test
+      //al llamar al metodo findByEmail tieen qeu devolver un usuario
+      jest.spyOn(service,'findByEmail').mockResolvedValueOnce(user);
+      //al llamar al metodo findProfileByUser tiene q devolver un profile
+      jest.spyOn(profileServiceMock,'findProfileByUser').mockResolvedValueOnce(profile);
+
+      //llamada al metodo findProfileActiveUser 
+      const result= await service.findProfileByActiveUser(activeUser);
+
+      //esperamos que..
+      expect(result).toEqual(profile);
+      expect(service.findByEmail).toHaveBeenCalledWith(activeUser.email);
+      expect(profileServiceMock.findProfileByUser).toHaveBeenCalledWith(user);
+    });
+
+    it('should throw notFoundException when user is not found', async()=>{
+      //mock de un interface de usuario activa
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'notfound@example.com',
+        name: 'Test User',
+      };
+
+      //configuracion de la respuesta esperada 
+      //esperamos que al buscar el ususario el metodo devuelba NULL
+      jest.spyOn(service,'findByEmail').mockResolvedValueOnce(null);
+      //esperamos que lanse una excepcion
+      await expect(service.findProfileByActiveUser(activeUser)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe('updateActiveUserProfile',()=>{
+    it('should update profile successfully',async()=>{
+      //mock de un file
+      const file: Express.Multer.File = {
+        filename: 'profile-pic.jpg',
+        path: '',
+        mimetype: '',
+        size: 0,
+        buffer: Buffer.from(''),
+        fieldname: '',
+        originalname: '',
+        encoding: '',
+        stream:new Readable,
+        destination: '',
+      };
+      //mock de usuario activo
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //mock del usuario
+      const user:User = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'password123',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+      //mock de un profile
+      const profile:Profile={
+        profileId:1,
+        profilePicture:'old-pic.jpg',
+        profileName:'Test user',
+        coverPhoto:'photo',
+        location:'location test',
+        birthDate:'date',
+        user:user,
+      };
+      //campo a actualizar
+      const UpdateProfile:UpdateProfileDto={
+        location: 'new location'
+      };
+      //mock findOne del user para que luego de la llamada devuelba un user
+      userRepositoryMock.findOne.mockResolvedValueOnce(user);
+
+      //mock updateActiveUserProfile del ProfileService
+      profileServiceMock.updateActiveUserProfile.mockResolvedValueOnce({
+        ...profile,
+        ...UpdateProfile,
+        profilePicture:file.filename, 
+      });
+      const result= await service.updateActiveUserProfile(file,activeUser,UpdateProfile);
+      expect(result).toEqual({
+        ...profile,
+        ...UpdateProfile,
+        profilePicture:file.filename,
+      });
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({where:{email:activeUser.email}});
+      expect(profileServiceMock.updateActiveUserProfile).toHaveBeenCalledWith(file,user,UpdateProfile);
+    });
+
+    it('should throw NotFoundException if user not found', async () => {
+      const file: Express.Multer.File = {
+        filename: 'profile-pic.jpg',
+        path: '',
+        mimetype: '',
+        size: 0,
+        buffer: Buffer.from(''),
+        fieldname: '',
+        originalname: '',
+        encoding: '',
+        stream: new Readable(),
+        destination: '',
+      };
+
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+
+      userRepositoryMock.findOne.mockResolvedValueOnce(null);
+
+      await expect(service.updateActiveUserProfile(file, activeUser, {})).rejects.toThrow(NotFoundException);
+
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({ where: { email: activeUser.email } });
+    });
+
+    it('should handle errors from profileService.updateActiveUserProfile', async () => {
+      const file: Express.Multer.File = {
+        filename: 'profile-pic.jpg',
+        path: '',
+        mimetype: '',
+        size: 0,
+        buffer: Buffer.from(''),
+        fieldname: '',
+        originalname: '',
+        encoding: '',
+        stream: new Readable(),
+        destination: '',
+      };
+
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+
+      const user: User = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'password123',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+
+      userRepositoryMock.findOne.mockResolvedValueOnce(user);
+      //configuro al metodo updateActiveUserProfile para que lance una badGatewayExecption
+      profileServiceMock.updateActiveUserProfile.mockRejectedValueOnce(new BadGatewayException('Unexpected error'));
+
+      await expect(service.updateActiveUserProfile(file, activeUser, {})).rejects.toThrow(BadGatewayException);
+
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({ where: { email: activeUser.email } });
+      expect(profileServiceMock.updateActiveUserProfile).toHaveBeenCalledWith(file, user, {});
+    });
+
+  });//final describe
 }); //final test
  
-      
+       
