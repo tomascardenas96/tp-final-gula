@@ -9,17 +9,12 @@ import { useJwt } from "react-jwt";
 import Spinner from "../../Common/Spinner/Spinner";
 import useGetProfile from "../../../hooks/useGetProfile";
 import "./Sider-menu.css";
+import useGetActiveUser from "../../../hooks/useGetActiveUser";
 
 function SiderMenu() {
   const token = localStorage.getItem("accessToken");
-  const { decodedToken, isExpired } = useJwt(token);
-  const [user, setUser] = useState(null);
-  const { activeProfile } = useGetProfile();
-  const { userImageURL } = useGetProfile();
-
-  useEffect(() => {
-    setUser(decodedToken);
-  }, [decodedToken]);
+  const { activeProfile, userImageURL } = useGetProfile();
+  const { activeUser, activeuserError, activeuserLoading } = useGetActiveUser();
 
   return (
     <div className="sider-menu_container">
@@ -85,15 +80,17 @@ function SiderMenu() {
           <div className="sider-menu_user-data_picture">
             <img src={userImageURL} alt="profile-picture-gula-side-menu" />
           </div>
-          {!user ? (
+          {!activeUser ? (
             <div className="sider-menu_user-data_spinner">
               <Spinner />
             </div>
           ) : (
             <>
-              <div className="sider-menu_user-data-name">{user?.name}</div>
+              <div className="sider-menu_user-data-name">
+                {activeUser?.name}
+              </div>
               <div className="sider-menu_user-data-profile-name">
-                {user?.email}
+                {activeUser?.email}
               </div>
             </>
           )}

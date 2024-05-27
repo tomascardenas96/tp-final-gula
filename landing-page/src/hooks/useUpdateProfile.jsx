@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+//CUMSTOM HOOK NECESARIO PARA ACTUALIZAR LOS DATOS DE PERFIL DEL USUARIO ACTIVO.
+
+import { useEffect, useState } from "react";
 import useGetProfile from "./useGetProfile";
 
 function useUpdateProfile() {

@@ -9,10 +9,13 @@ import "./Settings.css";
 import useGetProfile from "../../hooks/useGetProfile";
 import useUpdateProfile from "../../hooks/useUpdateProfile";
 import { FaCamera } from "react-icons/fa6";
+import useUpdateAccount from "../../hooks/useUpdateAccount";
 
 function Settings() {
   const navigate = useNavigate();
   const { userImageURL, userImageName } = useGetProfile();
+
+  // Custom hook para actualizar los datos de perfil
   const {
     handleFileChange,
     updateProfileInput,
@@ -20,6 +23,15 @@ function Settings() {
     handleSubmitUpload,
     selectedFile,
   } = useUpdateProfile();
+
+  // Custom hook para actualizar los datos de usuario
+  const {
+    uploadAccountError,
+    uploadAccountLoading,
+    userInput,
+    handleSubmitUploadAccount,
+    handleChangeUploadAccount,
+  } = useUpdateAccount();
 
   function goBack() {
     navigate(-1);
@@ -40,6 +52,7 @@ function Settings() {
         </div>
         <div className="settings-page_body-form">
           <div className="settings-page_body-form_info-profile">
+            {/* Formulario para cambiar datos de perfil */}
             <form onSubmit={handleSubmitUpload}>
               <h1>Datos de perfil</h1>
               <label htmlFor="profilePicture">Foto de perfil</label>
@@ -52,7 +65,7 @@ function Settings() {
                 />
                 <label htmlFor="select-picture">
                   <p className="info-profile_picture-photo">Foto</p>
-                  <FaCamera className="info-profile_picture-icon"/>
+                  <FaCamera className="info-profile_picture-icon" />
                   <input
                     type="file"
                     id="select-picture"
@@ -88,12 +101,23 @@ function Settings() {
             </form>
           </div>
           <div className="settings-page_body-form_info-account">
-            <form>
+            {/* Formulario para cambiar datos de la cuenta */}
+            <form onSubmit={handleSubmitUploadAccount}>
               <h1>Datos de cuenta</h1>
-              <label htmlFor="">Nombre completo</label>
-              <input type="text" />
-              <label htmlFor="">Contraseña</label>
-              <input type="text" />
+              <label htmlFor="name">Nombre completo</label>
+              <input
+                type="text"
+                name="name"
+                onChange={handleChangeUploadAccount}
+                value={userInput.name}
+              />
+              <label htmlFor="password">Contraseña</label>
+              <input
+                type="password"
+                name="password"
+                onChange={handleChangeUploadAccount}
+                value={userInput.password}
+              />
               <input type="submit" value="Guardar" />
             </form>
           </div>
