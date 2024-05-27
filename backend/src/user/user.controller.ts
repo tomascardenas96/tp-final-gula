@@ -33,6 +33,12 @@ export class UserController {
     return this.userService.findProfileByActiveUser(activeUser);
   }
 
+  //Metodo que devuelve un objeto con los datos completos del usuario activo.
+  @Get('active')
+  getActiveUser(@ActiveUser() activeUser: ActiveUserInterface) {
+    return this.userService.getActiveUser(activeUser);
+  }
+
   //Metodo para actualizar los datos de perfil del usuario activo.
   @Patch('profile/update')
   @UseInterceptors(

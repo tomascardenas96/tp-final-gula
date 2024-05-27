@@ -81,6 +81,31 @@ export class UserService {
     }
   }
 
+  async getActiveUser(activeUser: ActiveUserInterface): Promise<User> {
+    try {
+      const user: User = await this.userRepository.findOne({
+        where: { email: activeUser.email },
+      });
+
+      if (!user) {
+        throw new NotFoundException({
+          message: 'User service: user not found',
+          method: 'getActiveUser',
+        });
+      }
+
+      return user;
+    } catch (err) {
+      if (err instanceof NotFoundException) {
+        throw err;
+      }
+      throw new BadGatewayException({
+        message: 'User service: error trying to get active user by token',
+        method: 'getActiveUser',
+      });
+    }
+  }
+
   async findProfileByActiveUser(
     activeUser: ActiveUserInterface,
   ): Promise<Profile> {
@@ -102,11 +127,12 @@ export class UserService {
     }
   }
 
+  //---------> Metodo para actualizar los datos del perfil (Los datos que estan en la tabla 'Profile'), incluyendo foto de perfil si el usuario lo deseara <---------.
   async updateActiveUserProfile(
     file: Express.Multer.File,
     activeUser: ActiveUserInterface,
     updatedProfile: UpdateProfileDto,
-  ): Promise<Profile> {
+  ): Promise<any> {
     try {
       const user: User = await this.userRepository.findOne({
         where: { email: activeUser.email },
@@ -118,11 +144,13 @@ export class UserService {
         );
       }
 
-      return await this.profileService.updateActiveUserProfile(
+      const updateProfile = await this.profileService.updateActiveUserProfile(
         file,
         user,
         updatedProfile,
       );
+
+      return updateProfile;
     } catch (err) {
       if (err instanceof NotFoundException) {
         throw err;
@@ -133,6 +161,7 @@ export class UserService {
     }
   }
 
+  //---------> Metodo para actualizar los datos de la cuenta (Los datos que estan en la tabla 'User') <---------
   async updateAccountInfo(
     updateAccount: UpdateAccountDto,
     activeUser: ActiveUserInterface,
@@ -155,9 +184,10 @@ export class UserService {
         hashedPassword = await bcryptjs.hash(updateAccount.password, salt);
       }
 
+      //Hace verificaciones antes de actualizar los datos de la cuenta; Si el usuario coloca un input vacio el valor va a ser igual a como estaba antes.
       const updatedUser: User = {
         ...user,
-        ...updateAccount,
+        name: updateAccount.name ? updateAccount.name : user.name,
         password: hashedPassword ? hashedPassword : user.password,
       };
 
