@@ -7,6 +7,8 @@
   background-color: #f3f3f3;
   position: fixed;
   z-index: 1500;
+  border: 1px solid rgba(0, 0, 0, 0.135);
+  border-bottom: none;
 }
 
 .header_container_remove {
@@ -18,14 +20,13 @@
   height: 100%;
   border-radius: 0.1rem;
   display: grid;
-  border: 1px solid rgba(0, 0, 0, 0.084);
-  grid-template-columns: 17rem 1fr 3rem;
+  /* border: 1px solid rgba(0, 0, 0, 0.084); */
+  grid-template-columns: 17rem 1fr 2.9rem;
   align-items: center;
 }
 
 .header-search {
-  height: 70%;
-  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.144));
+  height: 100%;
 }
 
 .header-search > div {
@@ -47,18 +48,26 @@
 
 .header-search_form {
   position: relative;
-  width: 80%;
+  width: 70%;
   height: 100%;
   display: grid;
   align-items: center;
 }
 
+.header-search_form .header-search_form_divider {
+  position: absolute;
+  width: 17rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.067);
+  bottom: 0;
+  left: -4.1rem;
+}
+
 .header-search-input {
   width: 90%;
-  height: 74.5%;
+  height: 47%;
   border-radius: 3rem;
   border: none;
-  background-color: rgba(0, 0, 0, 0.068);
+  background-color: rgba(0, 0, 0, 0.03);
   outline: none;
   padding: 0 0.8rem;
   font-size: 1rem;
@@ -69,6 +78,7 @@
   display: flex;
   align-items: center;
   color: rgba(0, 0, 0, 0.526);
+  border: 1px solid rgba(0, 0, 0, 0.119);
 }
 
 .header-search-input::placeholder {
@@ -79,8 +89,9 @@
   font-size: 0.8rem;
   padding-left: 1.2rem;
   position: absolute;
-  left: 1.2rem;
-  top: 18%;
+  left: 1.1rem;
+  top: 14%;
+  color: rgba(0, 0, 0, 0.803);
 }
 
 .header-search_results-list_close-modal {
@@ -173,9 +184,9 @@
 .header-search-icon {
   position: absolute;
   left: 1.2rem;
-  top: 33%;
+  top: 38%;
   font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.526);
+  color: rgba(0, 0, 0, 0.803);
 }
 
 .header-search_results-container .header-search_results_see-more {
@@ -195,6 +206,8 @@
 .header-logo {
   display: grid;
   place-content: center;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.135);
 }
 
 .header-logo > a > img {

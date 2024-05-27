@@ -76,5 +76,5 @@
 .home-posts_post-cards {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: .8rem;
 }

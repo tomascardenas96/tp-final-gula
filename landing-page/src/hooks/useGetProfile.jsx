@@ -32,7 +32,7 @@ function useGetProfile() {
     setUserImageURL(imageUrl);
   }, [userImageName]);
 
-  return { activeProfile, userImageURL };
+  return { activeProfile, userImageURL, userImageName };
 }
 
 export default useGetProfile;

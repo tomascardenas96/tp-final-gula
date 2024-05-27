@@ -12,7 +12,7 @@
     "sider-menu shop sider-settings"
     "sider-menu posts sider-settings"
     "sider-menu footer sider-settings";
-    background-color: #f9f7f7;
+  background-color: #f9f7f7;
 }
 
 @media screen and (max-width: 950px) {
@@ -22,7 +22,7 @@
     display: grid;
     gap: 0.1rem;
     grid-template-rows: 4rem 1.6rem 15rem 15rem 17rem 1fr 2rem;
-    grid-template-columns: minmax(500px, 1fr) minmax(200px ,20rem);
+    grid-template-columns: minmax(500px, 1fr) minmax(200px, 20rem);
     grid-template-areas:
       "header header"
       "slide slide"
@@ -35,13 +35,15 @@
 }
 
 @media screen and (max-width: 1200px) {
-  html, body {
+  html,
+  body {
     font-size: 90% !important;
   }
 }
 
 @media screen and (max-width: 1050px) {
-  html, body {
+  html,
+  body {
     font-size: 80% !important;
   }
 }
