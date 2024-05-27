@@ -22,7 +22,7 @@
   overflow: hidden;
   animation: maximize-card 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.244);
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   padding: 0.5rem 0 0 0;
 }
 
@@ -125,7 +125,7 @@
 
 .post-card_body p {
   font-family: var(--tertiary-font);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   line-height: 1.36rem;
 }
 

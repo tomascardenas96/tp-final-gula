@@ -35,7 +35,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0rem;
+  /* gap: 0rem; */
 }
 
 .home-posts_section {
@@ -50,7 +50,7 @@
 .home-posts_section-line {
   width: 100%;
   position: absolute;
-  border-top: 1px solid rgba(0, 0, 0, 0.107);
+  border-top: 1px solid rgba(0, 0, 0, 0.135);
   top: 65%;
   transform: translateY(-50%);
   z-index: -1;
@@ -61,7 +61,7 @@
 }
 
 .home-posts_section h1 {
-  background-color: #f9f7f7;
+  background-color: #ffffff;
   padding: 0 2rem;
   font-size: 1.5rem;
   font-family: var(--secondary-font);
@@ -79,5 +79,5 @@
   display: flex;
   flex-direction: column;
   gap: .4rem;
-  margin-top: 1rem;
+  margin-top: .35rem;
 }
