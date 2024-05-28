@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+.sider-menu_container {
+  grid-area: sider-menu;
+  display: grid;
+  position: fixed;
+  height: 100%;
+  width: 17rem;
+  top: 3rem;
+  background-color: #f3f3f3;
+  z-index: 1100;
+}
+
+.sider-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 8rem;
+  align-items: center;
+  padding: 0.5rem 0 6rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.135);
+  border-top: none;
+  padding-top: 0.9rem;
+}
+
+.sider-menu ul {
+  width: 100%;
+  display: grid;
+  align-content: space-around;
+  justify-content: start;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.sider-menu ul > li,
+.sider-menu ul > li > a {
+  font-size: 0.95rem;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.753);
+  letter-spacing: 0.03rem;
+  cursor: default;
+  text-decoration: none;
+  font-size: 0.92rem;
+  width: 17rem;
+  padding: 0.35rem;
+  padding-left: 0.5rem;
+  transition: all 0.2s ease;
+  font-family: var(--secondary-font);
+}
+
+.sider-menu ul > li:hover {
+  background-color: rgba(0, 0, 0, 0.098);
+}
+
+.sider-menu ul > li:active {
+  background-color: rgba(0, 0, 0, 0.198);
+}
+
+.sider-menu_icon {
+  color: rgba(0, 0, 0, 0.675);
+  font-size: 1.1rem;
+}
+
+.sider-menu_active {
+  color: red;
+}
+
+.sider-menu_user-data {
+  width: 90%;
+  height: 4.5rem;
+  display: grid;
+  border-radius: 5rem;
+  grid-template-columns: 4rem 1fr;
+  grid-template-rows: 1fr 1fr;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  padding-left: 0.3rem;
+}
+
+.sider-menu_user-data:hover {
+  background-color: rgba(0, 0, 0, 0.098);
+}
+
+.sider-menu_user-data:active {
+  background-color: rgba(0, 0, 0, 0.198);
+}
+
+.sider-menu_user-data_picture {
+  grid-row: 1 / 3;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  margin-top: 6%;
+  position: relative;
+}
+
+.sider-menu_user-data_spinner .loadership_CWZLE div {
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 27%;
+  border: 5px solid #75747485;
+}
+
+.sider-menu_user-data_spinner .loadership_CWZLE div:not(:nth-child(1)) {
+  border: 5px solid #ffffff;
+}
+
+.sider-menu_user-data_picture > img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 12%;
+  left: 12%;
+  box-shadow: 1px 1px 5px .2px rgba(0, 0, 0, 0.289);
+}
+
+.sider-menu_user-data-name {
+  display: grid;
+  align-items: end;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding-left: 0.2rem;
+  font-family: var(--tertiary-font);
+  width: 85%;
+  overflow: hidden;
+  text-wrap: nowrap;
+  color: rgba(0, 0, 0, 0.693);
+}
+
+.sider-menu_user-data-profile-name {
+  align-items: start;
+  display: grid;
+  font-size: 0.85rem;
+  padding-left: 0.2rem;
+  color: rgba(0, 0, 0, 0.777);
+  width: 85%;
+  font-family: var(--tertiary-font);
+  overflow: hidden;
+}

@@ -117,7 +117,7 @@ function useRegister() {
       if (!value.length) {
         setPasswordError("Este campo no puede estar vacio");
       } else if (value.length < 8 || value.length > 12) {
-        setPasswordError("La contraseña debe contener entre 6 y 12 caracteres");
+        setPasswordError("La contraseña debe contener entre 8 y 12 caracteres");
       } else {
         setPasswordError(null);
       }

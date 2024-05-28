@@ -1,7 +1,7 @@
-import { Food } from 'src/food/entities/food.entity';
-import { Invoice } from 'src/invoice/entities/invoice.entity';
-import { Post } from 'src/post/entities/post.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Food } from '../../food/entities/food.entity';
+import { Invoice } from '../../invoice/entities/invoice.entity';
+import { Post } from '../../post/entities/post.entity';
+import { User } from '../../user/entities/user.entity';
 import {
   Column,
   Entity,
@@ -28,10 +28,18 @@ export class Shop {
   @Column({ unique: true })
   profilename: string;
 
+  @Column({
+    default: 'https://pubimg.band.uol.com.br/files/cb1fe227a30b77daa9cb.webp',
+  })
+  picture: string;
+
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @ManyToOne(() => User, (user) => user.shop, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.shop, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   @JoinColumn({ name: 'user' })
   user: User;
 

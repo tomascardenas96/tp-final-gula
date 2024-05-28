@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { SocketModule } from './socket/socket.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { ProfileModule } from './profile/profile.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -36,6 +37,11 @@ import { ProfileModule } from './profile/profile.module';
     SocketModule,
     InvoiceModule,
     ProfileModule,
+    //Para poder acceder a una ruta estatica, como es este caso la carpeta uploads donde se guardan las fotos que suben los usuarios.
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'assets/uploads/profile'),
+      serveRoot: '/assets/uploads/profile',
+    }),
   ],
   controllers: [],
   providers: [],

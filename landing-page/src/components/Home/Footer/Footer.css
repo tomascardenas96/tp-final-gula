@@ -1,4 +1,12 @@
 .footer_container {
-    grid-area: footer;
-    background-color: rgba(212, 212, 212, 0.638);
+  grid-area: footer;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  z-index: 1000;
+  display: grid;
+  place-content: center;
+  color: white;
+  border-radius: 0.1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.137);
+  display: none;
 }
