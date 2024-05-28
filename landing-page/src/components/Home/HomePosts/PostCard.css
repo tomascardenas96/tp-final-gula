@@ -21,8 +21,8 @@
   min-height: 0;
   overflow: hidden;
   animation: maximize-card 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.244);
-  border-radius: 0.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: none;
   padding: 0.5rem 0 0 0;
 }
 
@@ -116,11 +116,16 @@
   width: 100%;
   padding-top: 0.5rem;
   cursor: pointer;
+  /* background-color: red; */
+  display: flex;
+  align-items: start;
 }
 
 .post-card_body-image img {
   max-width: 100%;
-  border-radius: 0.2rem;
+  /* height: 100%; */
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.185);
 }
 
 .post-card_body p {

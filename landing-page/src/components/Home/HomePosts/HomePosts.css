@@ -50,7 +50,7 @@
 .home-posts_section-line {
   width: 100%;
   position: absolute;
-  border-top: 1px solid rgba(0, 0, 0, 0.135);
+  border-top: 1px solid rgba(0, 0, 0, 0.311);
   top: 65%;
   transform: translateY(-50%);
   z-index: -1;
@@ -78,6 +78,4 @@
 .home-posts_post-cards {
   display: flex;
   flex-direction: column;
-  gap: .4rem;
-  margin-top: .35rem;
 }
