@@ -8,6 +8,7 @@ import LoadingScreen from "../../Common/Spinner/LoadingScreen.jsx";
 import useLogOut from "../../../hooks/useLogOut.jsx";
 
 import "./Sider-settings-navbar.css";
+import { NavLink } from "react-router-dom";
 
 function SiderSettingsNavbar() {
   const { handleLogOut, logOutLoading } = useLogOut();
@@ -19,31 +20,41 @@ function SiderSettingsNavbar() {
   return (
     <nav className="sider-menu-navbar_container">
       <ul>
-        <div>
-          <li>
-            <GoGear className="sider-menu-navbar_icons" />
-          </li>
-        </div>
-        <div>
-          <li>
-            <TfiWorld className="sider-menu-navbar_icons" />
-          </li>
-        </div>
-        <div>
-          <li>
-            <TfiLayoutCtaBtnLeft className="sider-menu-navbar_icons" />
-          </li>
-        </div>
-        <div>
-          <li>
-            <BsShop className="sider-menu-navbar_icons" />
-          </li>
-        </div>
-        <div>
-          <li onClick={handleLogOut}>
-            <CiLogout className="sider-menu-navbar_icons sider-menu-navbar_icon-logout" />
-          </li>
-        </div>
+        <NavLink to="/settings">
+          <div>
+            <li>
+              <GoGear className="sider-menu-navbar_icons" />
+            </li>
+          </div>
+        </NavLink>
+        <NavLink to="">
+          <div>
+            <li>
+              <TfiWorld className="sider-menu-navbar_icons" />
+            </li>
+          </div>
+        </NavLink>
+        <NavLink to="">
+          <div>
+            <li>
+              <TfiLayoutCtaBtnLeft className="sider-menu-navbar_icons" />
+            </li>
+          </div>
+        </NavLink>
+        <NavLink to="">
+          <div>
+            <li>
+              <BsShop className="sider-menu-navbar_icons" />
+            </li>
+          </div>
+        </NavLink>
+        <a>
+          <div>
+            <li onClick={handleLogOut}>
+              <CiLogout className="sider-menu-navbar_icons sider-menu-navbar_icon-logout" />
+            </li>
+          </div>
+        </a>
       </ul>
     </nav>
   );

@@ -2,32 +2,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 11rem;
-  height: 12rem;
-  gap: 0.6rem;
+  gap: 0.4rem;
   cursor: pointer;
 }
 
 .shop-card_icon {
-  border-radius: 0.2rem;
-  border: 1.5px solid rgba(0, 0, 0, 0.547);
-  padding: 0.2rem;
-  padding-bottom: 0rem;
+  transition: all 0.3s ease;
+  height: 9.3rem;
+  width: 16rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.389);
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.149);
-  transition: transform 0.3s ease;
-  /* background-color: blue; */
-}
-
-.shop-card_icon:hover {
-  transform: scale(105%);
+  padding: 0.04rem;
+  border-radius: 1rem 0 1rem 0;
+  overflow: hidden;
 }
 
 .shop-card_icon img {
   object-fit: cover;
   object-position: center;
-  border-radius: 0.2rem;
-  height: 9rem;
-  width: 11rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem 0 1rem 0;
+}
+
+.shop-card_icon img:hover {
+  transform: scale(110%);
+  opacity: .85;
 }
 
 .shop-card_container p {

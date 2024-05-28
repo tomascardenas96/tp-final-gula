@@ -8,13 +8,13 @@
 .food-filter {
   background: linear-gradient(to bottom, #f94343fb, #f86464fb);
   height: 100%;
-  border-radius: 0 0 .1rem .1rem;
+  border-radius: 0 0 0.1rem 0.1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.077);
 }
 
 .food-filter h1 {
@@ -64,6 +64,18 @@
   color: #ff0000;
 }
 
+.food-filter_close-icon {
+  cursor: pointer;
+}
+
+.food-filter_close-icon:hover {
+  color: rgb(123, 123, 123);
+}
+
+.food-filter_close-icon:active {
+  color: rgb(167, 167, 167);
+}
+
 .food-filter_results-list {
   width: 100%;
   max-height: 20rem;
@@ -71,7 +83,7 @@
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.256);
   border-radius: 0.2rem;
   position: absolute;
-  top: 2.4rem;
+  top: 2.3rem;
   z-index: 900;
   display: grid;
   gap: 0.5rem;
@@ -83,7 +95,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .food-filter_results-list_spinner .loadership_CWZLE {
@@ -103,9 +114,8 @@
 }
 
 .food-filter_results-list_spinner .loadership_CWZLE div:not(:nth-child(1)) {
-
   border: 5px solid #ffffff;
- }
+}
 
 .food-filter_results-list .food-filter_results-list_card {
   list-style: none;

@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 import { GiFullPizza } from "react-icons/gi";
 import { removeHeaderContext } from "../Siders/SiderContext";
-import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import { IoMdClose } from "react-icons/io";
+import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import "./Header.css";
+import useGetProfile from "../../../hooks/useGetProfile";
 
 function Header() {
   const {
@@ -18,6 +19,7 @@ function Header() {
     clearInput,
   } = useGetUsersAndShopsByQuery();
   const { isRemovedHeader } = useContext(removeHeaderContext);
+  const { userImageURL } = useGetProfile();
 
   return (
     <header
@@ -30,6 +32,7 @@ function Header() {
           <div>
             <GiFullPizza className="header-search-image" />
             <form className="header-search_form">
+              <div className="header-search_form_divider"></div>
               <input
                 type="text"
                 className="header-search-input"
@@ -39,7 +42,10 @@ function Header() {
               />
               {!isEmptyField && (
                 <div className="header-search_results-list_close-modal">
-                  <IoMdClose onClick={clearInput} className="header-search_results-list_close-modal-icon"/>
+                  <IoMdClose
+                    onClick={clearInput}
+                    className="header-search_results-list_close-modal-icon"
+                  />
                 </div>
               )}
               {!isEmptyField && (
@@ -84,9 +90,14 @@ function Header() {
                         No hay resultados
                       </p>
                     )}
-                    <div className="header-search_results_see-more">
-                      <li>Ver mas</li>
-                    </div>
+                    {!headerFilter.shops?.length ||
+                      (!headerFilter.users?.length && (
+                        <div className="header-search_results_see-more">
+                          <li>
+                            <a href="">Ver mas</a>
+                          </li>
+                        </div>
+                      ))}
                   </ul>
                 </div>
               )}
@@ -103,10 +114,7 @@ function Header() {
           </Link>
         </div>
         <div className="header-menu">
-          <img
-            src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
-            alt="profile-picture_home-page-gula"
-          />
+          <img src={userImageURL} alt="profile-picture_home-page-gula" />
         </div>
       </div>
     </header>

@@ -7,7 +7,7 @@ function ShopCard({ url, title }) {
       <div className="shop-card_icon">
         <img
           src={url}
-          alt=""
+          alt="shop-card_gula"
         />
       </div>
       <p>{title}</p>

@@ -6,20 +6,25 @@ import Profile from "./pages/Profile/Profile";
 import Shop from "./pages/Shop/Shop";
 import "./App.css";
 import Protected from "./components/Common/Protected/Protected";
+import Settings from "./pages/Settings/Settings";
+import SiderContext from "./components/Home/Siders/SiderContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<Protected />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/shop" element={<Shop />} />
-          </Route>
-        </Routes>
+        <SiderContext>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route element={<Protected />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/shop" element={<Shop />} />
+            </Route>
+          </Routes>
+        </SiderContext>
       </BrowserRouter>
     </>
   );

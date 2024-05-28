@@ -6,17 +6,15 @@ import { FaBell } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useJwt } from "react-jwt";
-import "./Sider-menu.css";
 import Spinner from "../../Common/Spinner/Spinner";
+import useGetProfile from "../../../hooks/useGetProfile";
+import "./Sider-menu.css";
+import useGetActiveUser from "../../../hooks/useGetActiveUser";
 
 function SiderMenu() {
   const token = localStorage.getItem("accessToken");
-  const { decodedToken, isExpired } = useJwt(token);
-  const [user, setUser] = useState(decodedToken);
-
-  useEffect(() => {
-    setUser(decodedToken);
-  }, [decodedToken]);
+  const { activeProfile, userImageURL } = useGetProfile();
+  const { activeUser, activeuserError, activeuserLoading } = useGetActiveUser();
 
   return (
     <div className="sider-menu_container">
@@ -26,7 +24,7 @@ function SiderMenu() {
             <NavLink
               to={""}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaHome className="sider-menu_icon" />
@@ -35,9 +33,9 @@ function SiderMenu() {
           </li>
           <li>
             <NavLink
-              to={""}
+              to={"#posts"}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaBook className="sider-menu_icon" />
@@ -48,7 +46,7 @@ function SiderMenu() {
             <NavLink
               to={"/"}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaEnvelope className="sider-menu_icon" />
@@ -59,7 +57,7 @@ function SiderMenu() {
             <NavLink
               to={""}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaBell className="sider-menu_icon" />
@@ -70,7 +68,7 @@ function SiderMenu() {
             <NavLink
               to={""}
               className={({ isActive }) =>
-                isActive ? "sider-menu_active" : null
+                isActive ? null : "sider-menu_active"
               }
             >
               <FaShoppingCart className="sider-menu_icon" />
@@ -80,20 +78,19 @@ function SiderMenu() {
         </ul>
         <div className="sider-menu_user-data">
           <div className="sider-menu_user-data_picture">
-            <img
-              src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
-              alt=""
-            />
+            <img src={userImageURL} alt="profile-picture-gula-side-menu" />
           </div>
-          {!user ? (
+          {!activeUser ? (
             <div className="sider-menu_user-data_spinner">
               <Spinner />
             </div>
           ) : (
             <>
-              <div className="sider-menu_user-data-name">{user?.name}</div>
+              <div className="sider-menu_user-data-name">
+                {activeUser?.name}
+              </div>
               <div className="sider-menu_user-data-profile-name">
-                {user?.email}
+                {activeUser?.email}
               </div>
             </>
           )}

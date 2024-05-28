@@ -16,11 +16,6 @@ import { UpdateFoodDto } from './dto/update-food.dto';
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}
 
-  @Post()
-  create(@Body() createFoodDto: CreateFoodDto) {
-    return this.foodService.create(createFoodDto);
-  }
-
   @Get('filter')
   findFoodByQuery(@Query('food') food: string) {
     return this.foodService.findFoodByQuery(food);

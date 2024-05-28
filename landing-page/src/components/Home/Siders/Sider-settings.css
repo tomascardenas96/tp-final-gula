@@ -5,6 +5,7 @@
   height: 100%;
   top: 0;
   right: 0;
+  z-index: 1100;
 }
 
 .sider-settings {
@@ -12,18 +13,18 @@
   height: 100%;
   color: rgba(0, 0, 0, 0.634);
   display: flex;
-  padding-top: .1rem;
-  padding-bottom: 5.3rem;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  top: 3.985rem;
-  background-color: rgb(255, 255, 255);
-  border-radius: 0.1rem;
-  border: 1px solid rgba(0, 0, 0, 0.208);
+  top: 3rem;
+  border-radius: 0 0.1rem 0 0;
+  background-color: #f3f3f3;
+  border: 1px solid rgba(0, 0, 0, 0.135);
   border-top: none;
+  padding-top: 0.4rem;
+  padding-bottom: 5rem;
 }
 
 .sider-shop {
@@ -83,6 +84,7 @@
 
 .sider-settings_whatsapp-icon {
   width: 70%;
+  /* background-color: grey; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,16 +92,15 @@
   color: rgb(28, 162, 28);
   border-top: 1px solid rgba(0, 0, 0, 0.143);
   /* background-color: red; */
-  padding: 0.8rem 0 0 0;
+  padding: 0.6rem 0 0 0;
 }
 
 .wa-icon {
   transition: transform 0.3s;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.228));
-  width: 100%;
-  height: 100%;
-  padding: .2rem;
-  border-radius: .1rem;
+  /* padding: 0.2rem; */
+  border-radius: 0.1rem;
+  /* background-color: red; */
 }
 
 .wa-icon:hover {

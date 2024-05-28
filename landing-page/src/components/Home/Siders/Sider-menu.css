@@ -6,8 +6,9 @@
   position: fixed;
   height: 100%;
   width: 17rem;
-  top: 4rem;
-  background-color: rgb(255, 255, 255);
+  top: 3rem;
+  background-color: #f3f3f3;
+  z-index: 1100;
 }
 
 .sider-menu {
@@ -18,10 +19,10 @@
   justify-content: space-between;
   padding-bottom: 8rem;
   align-items: center;
-  border-radius: 0.2rem;
   padding: 0.5rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.135);
   border-top: none;
+  padding-top: 0.9rem;
 }
 
 .sider-menu ul {
@@ -41,16 +42,17 @@
   align-items: center;
   color: rgba(0, 0, 0, 0.753);
   letter-spacing: 0.03rem;
-  cursor: pointer;
+  cursor: default;
   text-decoration: none;
-  font-size: 0.97rem;
+  font-size: 0.92rem;
   width: 17rem;
-  padding: 0.4rem;
+  padding: 0.35rem;
+  padding-left: 0.5rem;
   transition: all 0.2s ease;
+  font-family: var(--secondary-font);
 }
 
 .sider-menu ul > li:hover {
-  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.098);
 }
 
@@ -68,13 +70,12 @@
 }
 
 .sider-menu_user-data {
-  width: 85%;
-  height: 4rem;
+  width: 90%;
+  height: 4.5rem;
   display: grid;
   border-radius: 5rem;
   grid-template-columns: 4rem 1fr;
   grid-template-rows: 1fr 1fr;
-  cursor: pointer;
   user-select: none;
   transition: background-color 0.3s ease;
   padding-left: 0.3rem;
@@ -93,7 +94,7 @@
   border-radius: 50%;
   display: grid;
   place-content: center;
-  padding: 1rem;
+  margin-top: 6%;
   position: relative;
 }
 
@@ -118,30 +119,27 @@
   position: absolute;
   top: 12%;
   left: 12%;
+  box-shadow: 1px 1px 5px .2px rgba(0, 0, 0, 0.289);
 }
 
 .sider-menu_user-data-name {
-  /* border-radius: 0 3rem 0 0; */
   display: grid;
   align-items: end;
   font-weight: bold;
   font-size: 0.9rem;
   padding-left: 0.2rem;
-  padding-bottom: 0.1rem;
   font-family: var(--tertiary-font);
   width: 85%;
   overflow: hidden;
   text-wrap: nowrap;
+  color: rgba(0, 0, 0, 0.693);
 }
 
 .sider-menu_user-data-profile-name {
-  /* border-radius: 0 0 3rem 0; */
   align-items: start;
-  /* background-color: red; */
   display: grid;
   font-size: 0.85rem;
   padding-left: 0.2rem;
-  padding-top: 0.1rem;
   color: rgba(0, 0, 0, 0.777);
   width: 85%;
   font-family: var(--tertiary-font);
