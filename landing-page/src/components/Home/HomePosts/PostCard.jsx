@@ -47,7 +47,7 @@ function PostCard({
           </section>
           <section className="post-card_options">
             <div className="post-card_options-like">
-            {/* <FaStar /> */}
+              {/* <FaStar /> */}
               <div>
                 <FaRegStar className="post-card_header-options_star" />{" "}
                 <span>{stars}</span>

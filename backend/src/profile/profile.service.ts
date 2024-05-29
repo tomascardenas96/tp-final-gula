@@ -50,9 +50,18 @@ export class ProfileService {
         throw new NotFoundException('Profile service: Profile not found');
       }
 
+      //Hace verificaciones antes de actualizar el perfil; Si el usuario coloca un input vacio el valor va a ser igual a como estaba antes.
       const newProfile: Profile = this.profileRepository.create({
         ...profile,
-        ...updatedProfile,
+        profileName: updatedProfile.profileName
+          ? updatedProfile.profileName
+          : profile.profileName,
+        location: updatedProfile.location
+          ? updatedProfile.location
+          : profile.location,
+        birthDate: updatedProfile.birthDate
+          ? updatedProfile.birthDate
+          : profile.birthDate,
         profilePicture: file?.filename,
       });
 
@@ -61,7 +70,11 @@ export class ProfileService {
       if (err instanceof NotFoundException) {
         throw err;
       }
-      throw new BadGatewayException('Profile service: Error trying to ');
+      throw new BadGatewayException({
+        message:
+          'Profile service: Error trying to update active user profile information',
+        method: 'updateActiveUserProfile',
+      });
     }
   }
 }

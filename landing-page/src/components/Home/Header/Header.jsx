@@ -21,8 +21,6 @@ function Header() {
   const { isRemovedHeader } = useContext(removeHeaderContext);
   const { userImageURL } = useGetProfile();
 
-  console.log(userImageURL);
-
   return (
     <header
       className={
@@ -34,6 +32,7 @@ function Header() {
           <div>
             <GiFullPizza className="header-search-image" />
             <form className="header-search_form">
+              <div className="header-search_form_divider"></div>
               <input
                 type="text"
                 className="header-search-input"

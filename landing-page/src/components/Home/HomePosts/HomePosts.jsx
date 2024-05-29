@@ -46,6 +46,7 @@ function HomePosts() {
             .reverse()
             .map((post) => (
               <PostCard
+                className="prueba"
                 key={post.postId}
                 profilePicture={post.shop.picture}
                 profilename={post.shop.profilename}

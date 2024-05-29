@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 100%;
   gap: 4rem;
-  margin-top: 2.3rem;
+  margin-top: 2.5rem;
   justify-content: center;
   align-items: center;
 }
@@ -35,7 +35,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0rem;
+  /* gap: 0rem; */
 }
 
 .home-posts_section {
@@ -50,21 +50,23 @@
 .home-posts_section-line {
   width: 100%;
   position: absolute;
-  border-top: 1px solid rgba(0, 0, 0, 0.107);
+  border-top: 1px solid rgba(0, 0, 0, 0.311);
   top: 65%;
   transform: translateY(-50%);
   z-index: -1;
+  z-index: 1;
   filter: drop-shadow(1px 2.5px 1px rgba(0, 0, 0, 0.135));
   border-radius: 1rem;
   margin-left: 0.2rem;
 }
 
 .home-posts_section h1 {
-  background-color: #f9f7f7;
+  background-color: #ffffff;
   padding: 0 2rem;
   font-size: 1.5rem;
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.634);
+  z-index: 2;
 }
 
 .home-posts_new-post_container {
@@ -76,5 +78,4 @@
 .home-posts_post-cards {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
 }

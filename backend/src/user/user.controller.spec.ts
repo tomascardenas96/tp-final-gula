@@ -13,7 +13,7 @@ import { JwtService } from '@nestjs/jwt';
 import { BadRequestException } from '@nestjs/common';
 import { Readable } from 'stream';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-
+import { UpdateProfileDto } from './dto/update-profile';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -54,7 +54,7 @@ describe('UserController', () => {
     it('should update profile successfully', async () => {
       // Simula el archivo de carga
       const file =  {
-        filename: 'file',
+        filename: 'profile-pic.jpg',
         path: '',
         mimetype: 'image/jpg',
         size: 1024,//tamaño simulado del archivo
@@ -72,7 +72,12 @@ describe('UserController', () => {
         email: 'test@example.com',
         name: 'Test User',
       }; 
-      const updatedProfile = {}; // Simula el perfil actualizado
+      const updatedProfile:UpdateProfileDto = {
+        file:file,
+        profileName:'new profile name',
+        location:'new location',
+        birthDate:'2024-05-29',
+      }; // Simula el perfil actualizado
       const updatedProfileResult = {} as Profile; // Simula el perfil actualizado devuelto
 
       jest.spyOn(service, 'updateActiveUserProfile').mockResolvedValueOnce(updatedProfileResult);
@@ -103,7 +108,12 @@ describe('UserController', () => {
         email: 'test@example.com',
         name: 'Test User',
       }; 
-      const updatedProfile = {}; // Simula el perfil actualizado
+      const updatedProfile = {
+        file:file,
+        profileName:'new profile name',
+        location:'new location',
+        birthDate:'2024-05-29',
+      }; // Simula el perfil actualizado
 
       jest.spyOn(service, 'updateActiveUserProfile').mockRejectedValueOnce(new BadRequestException('Error updating profile'));
 

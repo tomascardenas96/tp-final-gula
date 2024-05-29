@@ -1,6 +1,9 @@
 import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateProfileDto {
+  @IsOptional()
+  file: Express.Multer.File;
+  
   @IsString()
   @IsOptional()
   profileName?: string;

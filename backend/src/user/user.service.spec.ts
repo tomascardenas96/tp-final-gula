@@ -454,7 +454,10 @@ describe('UserService', () => {
       };
       //campo a actualizar
       const UpdateProfile:UpdateProfileDto={
-        location: 'new location'
+        file:file,
+        profileName:'new profile name',
+        location:'new location',
+        birthDate:'2024-05-29',
       };
       //mock findOne del user para que luego de la llamada devuelba un user
       userRepositoryMock.findOne.mockResolvedValueOnce(user);
@@ -494,10 +497,16 @@ describe('UserService', () => {
         email: 'test@example.com',
         name: 'Test User',
       };
+      const updatedProfile:UpdateProfileDto = {
+        file:file,
+        profileName:'new profile name',
+        location:'new location',
+        birthDate:'2024-05-29',
+      }; // Simula el perfil actualizado
 
-      userRepositoryMock.findOne.mockResolvedValueOnce(null);
+      userRepositoryMock.findOne.mockResolvedValueOnce(null); 
 
-      await expect(service.updateActiveUserProfile(file, activeUser, {})).rejects.toThrow(NotFoundException);
+      await expect(service.updateActiveUserProfile(file, activeUser, updatedProfile)).rejects.toThrow(NotFoundException);
 
       expect(userRepositoryMock.findOne).toHaveBeenCalledWith({ where: { email: activeUser.email } });
     });
@@ -533,14 +542,21 @@ describe('UserService', () => {
         profile: null,
       };
 
+      const updateProfile:UpdateProfileDto={
+        file:file,
+        profileName:'new profile name',
+        location:'new location',
+        birthDate:'2024-05-29',
+      }
+
       userRepositoryMock.findOne.mockResolvedValueOnce(user);
       //configuro al metodo updateActiveUserProfile para que lance una badGatewayExecption
       profileServiceMock.updateActiveUserProfile.mockRejectedValueOnce(new BadGatewayException('Unexpected error'));
 
-      await expect(service.updateActiveUserProfile(file, activeUser, {})).rejects.toThrow(BadGatewayException);
+      await expect(service.updateActiveUserProfile(file, activeUser, updateProfile)).rejects.toThrow(BadGatewayException);
 
       expect(userRepositoryMock.findOne).toHaveBeenCalledWith({ where: { email: activeUser.email } });
-      expect(profileServiceMock.updateActiveUserProfile).toHaveBeenCalledWith(file, user, {});
+      expect(profileServiceMock.updateActiveUserProfile).toHaveBeenCalledWith(file, user, updateProfile);
     });
 
   });//final describe
