@@ -220,13 +220,14 @@
 
 .header-menu {
   height: 70%;
+  /* width: 100%; */
   display: flex;
   justify-content: end;
   align-items: center;
   cursor: pointer;
   user-select: none;
   position: relative;
-  padding: 0 0.6rem;
+  /* padding: 0 0.6rem; */
   transition: background-color 0.3s ease;
   place-content: center;
 }
@@ -240,10 +241,10 @@
 }
 
 .header-menu img {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.194);
-  padding: 0.15rem;
+  padding: 0.05rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
   border-radius: 0.2rem;
   object-fit: cover;

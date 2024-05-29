@@ -21,15 +21,19 @@
 .loading-screen_container img {
   width: 7rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
-  animation: fadein .7s ease;
+  animation: fadein 1.5s infinite;
 }
 
 @keyframes fadein {
-    0% {
-      opacity: 0;
-    }
-  
-    100% {
-      opacity: 1;
-    }
+  0% {
+    opacity: 1;
   }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

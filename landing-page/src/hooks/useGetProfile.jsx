@@ -4,6 +4,7 @@ function useGetProfile() {
   const token = localStorage.getItem("accessToken");
   const [userImageURL, setUserImageURL] = useState("");
   const [userImageName, setUserImageName] = useState("");
+  const [activeUserLoading, setActiveUserLoading] = useState(true);
   const [activeProfile, setActiveProfile] = useState({});
 
   useEffect(() => {
@@ -21,6 +22,7 @@ function useGetProfile() {
         setUserImageName(data.profilePicture);
       } catch (err) {
       } finally {
+        setActiveUserLoading(false);
       }
     }
 
@@ -32,7 +34,7 @@ function useGetProfile() {
     setUserImageURL(imageUrl);
   }, [userImageName]);
 
-  return { activeProfile, userImageURL, userImageName };
+  return { activeProfile, userImageURL, userImageName, activeUserLoading };
 }
 
 export default useGetProfile;
