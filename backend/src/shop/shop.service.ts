@@ -34,7 +34,7 @@ export class ShopService {
       user:user
     })
     return this.shopRepository.save(newShop);
-  }////falta hacer
+  };
 
   getAllShops() {
     try {

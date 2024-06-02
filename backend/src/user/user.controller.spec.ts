@@ -50,6 +50,88 @@ describe('UserController', () => {
     expect(controller).toBeDefined();
   });
 
+  describe('findUserByQuery',()=>{
+    it('should call findUserByQuery with the correct parameter', async()=>{
+      //mock de la query
+      const name= 'user';
+      //mock del usuario con el que deberia machtear
+      const result:User[]=[{
+        userId:1,
+        email:'adrian@example.com',
+        name:'Test user',
+        password:'password123',
+        createdAt:new Date(),
+        shop:[],
+        cart:new Cart,
+        profile:new Profile
+      },];
+     
+      //configuramos el mock para que resuelva devolviendo solo el match
+      jest.spyOn(service,'findUserByQuery').mockResolvedValue(result)
+      //esperamos que al pasar la query devuelba el objeto indicado
+      expect(await controller.findUserByQuery(name)).toBe(result);
+      //esperamos que el metodo del servicio sea llamado con la query
+      expect(service.findUserByQuery).toHaveBeenCalledWith(name);
+
+    });
+      it('should handle errors correctly', async () => {
+        //mock de la query
+        const name = 'John';
+        //mock del error que espero recibir
+        const error = new BadRequestException('Some error');
+  
+        //espio al metodo del servicio y indico que debe devolver un error
+        jest.spyOn(service, 'findUserByQuery').mockRejectedValue(error);
+        //espero qeu cuando se llame al metodo desde el controllador
+        // con el parametro correcto devuelba un error
+        await expect(controller.findUserByQuery(name)).rejects.toThrow(BadRequestException);
+        //esperoq eu el metodo en el servicio sea llamado con el aprametro de la query
+        expect(service.findUserByQuery).toHaveBeenCalledWith(name);
+    });
+  });
+
+  describe('findProfileByActiveUser',()=>{
+    it('should call findProfileByActiveUser with the correct parameter',async ()=>{
+
+      // Simula el usuario activo
+      const activeUser: ActiveUserInterface = {
+      userId: 1,
+      email: 'test@example.com',
+      name: 'Test User',
+    }; 
+    //mock del user activo
+    const user:User={
+      userId: 1,
+      email: 'test@example.com',
+      name: 'Test User',
+      password: 'password123',
+      createdAt: new Date(),
+      shop: [],
+      cart: null,
+      profile: null,
+    };
+      //mock del profile del usuario
+      const profile:Profile={
+        profileId:1,
+        profilePicture:'photoUser',
+        profileName:'Test user',
+        coverPhoto:'photo',
+        location:'location test',
+        birthDate:'date',
+        user:user,
+      };
+      //indicamos a jest qeu debe devolver un profile  
+      jest.spyOn(service,'findProfileByActiveUser').mockResolvedValue(profile);
+      //esperamos que el valor devuelto sea un perfil
+      expect(await controller.findProfileByActiveUser(activeUser)).toBe(profile);
+      //esperamos que el servicio sea llamado con los aprametros indicados
+      expect(await service.findProfileByActiveUser).toHaveBeenCalledWith(activeUser); 
+    });//final it
+  });//final describe
+ 
+ 
+  describe('getActiveUser',()=>{});//final describe
+  
   describe('updateActiveUserProfile', () => {
     it('should update profile successfully', async () => {
       // Simula el archivo de carga
@@ -120,6 +202,10 @@ describe('UserController', () => {
       await expect(controller.updateActiveUserProfile(file, activeUser, updatedProfile)).rejects.toThrowError(BadRequestException);
     });
   });
+ 
+ 
+ 
+  describe('updateAccountInfo',()=>{});
 });
 
 

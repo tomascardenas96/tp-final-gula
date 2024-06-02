@@ -224,6 +224,7 @@ describe('getAllShops',()=>{
     expect(result).toEqual(shops);
     expect(shopRepositoryMock.find).toHaveBeenCalled()
   });
+  
   it('should throw a badGatewayException if an error occurs',async ()=>{
     const errorMessage= 'database error';
     //configuro el mock para que se arroje el error como respuesta
@@ -332,6 +333,7 @@ describe('getShopByName',()=>{
 });//final describe
 
 //======================================================================
+//funciona mal pedir ayuda!
 //======================================================================
 
 //describe('getShopsByActiveUser',()=>{

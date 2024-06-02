@@ -195,12 +195,12 @@ export class UserService {
 
       const newAccountInfo: User = this.userRepository.create(updatedUser);
 
-      return this.userRepository.save(newAccountInfo);
+      return await this.userRepository.save(newAccountInfo);//tomy agrege el await para capturar todos los errores async
     } catch (err) {
       if (err instanceof NotFoundException) {
         throw err;
       }
-
+      //transforma cualquier error inesperado en una BadGatewayException
       throw new BadGatewayException(
         'User service: error trying to update user account info. updateAccountInfo method',
       );
