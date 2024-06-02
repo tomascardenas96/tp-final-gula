@@ -22,7 +22,10 @@ function PostCard({
       <div className="post-card_divider"></div>
       <div className="post-card">
         <div className="post-card_left-side">
-          <img src={profilePicture} alt="post-card-gula-picture" />
+          <img
+            src={`http://localhost:3070/assets/uploads/shop/profile/${profilePicture}`}
+            alt="post-card-gula-picture"
+          />
         </div>
         <div className="post-card_right-side">
           <section className="post-card_header">

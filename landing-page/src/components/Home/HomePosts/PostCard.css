@@ -48,6 +48,8 @@
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 1px 1px 5px 0.2px rgba(0, 0, 0, 0.157);
+  object-fit: cover;
+  object-position: center;
 }
 
 .post-card_right-side {

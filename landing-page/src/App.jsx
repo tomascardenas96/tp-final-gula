@@ -8,6 +8,7 @@ import "./App.css";
 import Protected from "./components/Common/Protected/Protected";
 import Settings from "./pages/Settings/Settings";
 import SiderContext from "./components/Home/Siders/SiderContext";
+import ShopsManagment from "./pages/Shops-managment/ShopsManagment";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/shop" element={<Shop />} />
+              <Route path="/shop-profile" element={<Shop />} />
+              <Route path="/shops-managment" element={<ShopsManagment />} />
             </Route>
           </Routes>
         </SiderContext>

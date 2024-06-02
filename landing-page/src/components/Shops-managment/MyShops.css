@@ -1,0 +1,7 @@
+.my-shops_container {
+  width: 100%;
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  padding: 0 2rem;
+}

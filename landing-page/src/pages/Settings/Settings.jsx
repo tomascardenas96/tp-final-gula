@@ -3,16 +3,16 @@ import Header from "../../components/Home/Header/Header";
 import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import Messages from "../../components/Home/Messages/Messages";
-import { useNavigate } from "react-router-dom";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import "./Settings.css";
 import useGetProfile from "../../hooks/useGetProfile";
 import useUpdateProfile from "../../hooks/useUpdateProfile";
-import { FaCamera } from "react-icons/fa6";
 import useUpdateAccount from "../../hooks/useUpdateAccount";
+import { useNavigate } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaCamera } from "react-icons/fa6";
+import SettingsHeader from "../../components/Shops-managment/SettingsHeader";
+import "./Settings.css";
 
 function Settings() {
-  const navigate = useNavigate();
   const { userImageURL, userImageName } = useGetProfile();
   const { activeUserLoading } = useGetProfile();
 
@@ -34,23 +34,12 @@ function Settings() {
     handleChangeUploadAccount,
   } = useUpdateAccount();
 
-  function goBack() {
-    navigate(-1);
-  }
   return (
     <div className="settings-page_container">
       <Header />
       <SiderMenu />
       <section className="settings-page_body">
-        <div className="settings-page_body-header">
-          <IoMdArrowRoundBack
-            onClick={goBack}
-            className="settings-page_body-header_arrow"
-          />
-          <h1 className="settings-page_body-header_account">
-            Configuracion de cuenta
-          </h1>
-        </div>
+        <SettingsHeader title="Configuracion de cuenta" />
         <div className="settings-page_body-form">
           <div className="settings-page_body-form_info-profile">
             {/* Formulario para cambiar datos de perfil */}
