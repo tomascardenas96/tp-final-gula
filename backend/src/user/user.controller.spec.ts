@@ -14,6 +14,7 @@ import { BadRequestException } from '@nestjs/common';
 import { Readable } from 'stream';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { UpdateProfileDto } from './dto/update-profile';
+import { UpdateAccountDto } from './dto/update-account.dto';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -130,7 +131,37 @@ describe('UserController', () => {
   });//final describe
  
  
-  describe('getActiveUser',()=>{});//final describe
+  describe('getActiveUser',()=>{
+    it('should call getActiveUser whit correct parameters',async ()=>{
+      // Simula el usuario activo
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      }; 
+      //mock del user activo
+    const user:User={
+      userId: 1,
+      email: 'test@example.com',
+      name: 'Test User',
+      password: 'password123',
+      createdAt: new Date(),
+      shop: [],
+      cart: null,
+      profile: null,
+    };
+      //configuro el test para que cuando se llame al metodo del servicio me devuelba un usuario
+      jest.spyOn(service,'getActiveUser').mockResolvedValue(user);
+      //llamo al metodo del controlador
+      const result= await controller.getActiveUser(activeUser);
+      //verifico que el metodo del servicio haya sido llamado con los aprametros correctos
+      expect(service.getActiveUser).toHaveBeenCalledWith(activeUser);
+      //verifico que el resultado sea el esperado
+      expect(result).toBe(user);      
+      //espero que el controllador se le pase un parametro correcto y devuelba un user
+      expect(await controller.getActiveUser(activeUser)).toBe(user);
+    });//final it
+  });//final describe
   
   describe('updateActiveUserProfile', () => {
     it('should update profile successfully', async () => {
@@ -205,7 +236,52 @@ describe('UserController', () => {
  
  
  
-  describe('updateAccountInfo',()=>{});
+  describe('updateAccountInfo',()=>{
+    it('should call updateAccountInfo with the correct parameters',async ()=>{
+      // Simula el usuario activo
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //mock de datos de una cuenta
+      const UpdateAccount:UpdateAccountDto={
+        name:'update name',
+        password:'newPassword123',
+      };
+      //mock del user activo
+      const user:User={
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'password123',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+      //mock del user activo
+      const UpdatedUSer:User={
+        userId: 1,
+        email: 'test@example.com',
+        name: 'update name',
+        password: 'hashedPassword123',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+      //configuramos el mock para que el servicio retorne el usuario acualizado
+      jest.spyOn(service,'updateAccountInfo').mockResolvedValue(UpdatedUSer);
+
+      //llamamos al controllador con los parametros correctos
+      const result= await controller.updateAccountInfo(UpdateAccount,activeUser);
+      //verificamos que el metodo del servicio fue llamado con los parametros correctos
+      expect(service.updateAccountInfo).toHaveBeenCalledWith(UpdateAccount,activeUser);
+      //verificamos que el resultado es un usuario actualizado
+      expect(result).toEqual(UpdatedUSer);
+    });//final it
+  });//final decribe
 });
 
 
