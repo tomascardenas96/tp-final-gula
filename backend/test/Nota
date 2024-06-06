@@ -1,0 +1,27 @@
+metodos mock utilizados:
+mockResolvedValueOnce: Este método configura el valor que se devolverá 
+una vez (o una cantidad específica de veces) cuando la función o 
+método simulado sea invocado. Después de que se cumpla el 
+número especificado de llamadas, la función o método volverá a 
+comportarse como lo haría normalmente (devolverá undefined si no 
+se configura de otra manera).
+
+mockResolvedValue:Este método establece el valor que se 
+devolverá cada vez que la función o método simulado sea 
+invocado. Esto significa que, independientemente del número 
+de veces que se llame a la función o método, siempre devolverá 
+el mismo valor configurado.
+
+toHaveBeenCalledWith:para verificar el comportamiento de las funciones 
+y métodos durante las pruebas unitarias, asegurando que se estén 
+llamando correctamente con los argumentos esperados. Puede hacerse con mas de un argumento. 
+
+toBeNull: el objeto devuelto debe ser null
+
+toEqual: el objeto devuelto debe ser igual a...
+
+toBe: el obejto devuelto debe ser...
+
+mockImplementation:Define una implementación personalizada: En lugar de devolver un valor fijo, puedes definir una función que contiene la lógica que deseas que ejecute la función simulada.
+Argumentos dinámicos: La implementación personalizada puede utilizar los argumentos que se pasan a la función simulada para determinar qué devolver. En el ejemplo, usamos el argumento name para buscar en el array de tiendas.
+Retorno de valores: Puede devolver diferentes valores basados en condiciones, permitiendo pruebas más realistas y robustas.

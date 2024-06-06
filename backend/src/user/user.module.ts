@@ -6,6 +6,7 @@ import { ProfileModule } from '../profile/profile.module';
 import { CartModule } from '../cart/cart.module';
 import { UserController } from './user.controller';
 
+
 @Module({
   imports: [TypeOrmModule.forFeature([User]), ProfileModule, CartModule],
   controllers: [UserController],

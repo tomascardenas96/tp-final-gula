@@ -35,7 +35,7 @@ export class AuthController {
     return user;
   }
 
-  @UseGuards(AuthGuard)
+ @UseGuards(AuthGuard)
   @Get('/profile')
   profile(@ActiveUser() user: ActiveUserInterface) {
     return user;
