@@ -170,18 +170,15 @@
 
 .form_submit input[type="submit"] {
   width: 20rem;
+  height: 2.5rem;
   border-radius: 0.1rem;
   outline: none;
-  border: none;
-  color: rgb(28, 27, 27);
-  border: 2px solid rgba(0, 0, 0, 0.593);
-  color: rgba(0, 0, 0, 0.593);
   background: linear-gradient(#d00000ec, #d00000b2);
-  height: 2.5rem;
   border: none;
   color: white;
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   font-family: var(--secondary-font);
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.197);
+  padding-top: .23%;
 }
