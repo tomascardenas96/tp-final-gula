@@ -39,8 +39,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     ProfileModule,
     //Para poder acceder a una ruta estatica, como es este caso la carpeta uploads donde se guardan las fotos que suben los usuarios.
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'assets/uploads/profile'),
-      serveRoot: '/assets/uploads/profile',
+      rootPath: join(__dirname, '..', 'assets'),
+      serveRoot: '/assets',
     }),
   ],
   controllers: [],

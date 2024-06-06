@@ -21,6 +21,7 @@ export class ShopService {
   ) {}
 
   async createNewShop(
+    file: Express.Multer.File,
     createShopDto: CreateShopDto,
     activeUser: ActiveUserInterface,
   ): Promise<Shop> {
@@ -35,6 +36,7 @@ export class ShopService {
 
       const newShop: Shop = this.shopRepository.create({
         ...createShopDto,
+        picture: file?.filename,
         user,
       });
 

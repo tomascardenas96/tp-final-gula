@@ -12,7 +12,4 @@ export class CreateShopDto {
 
   @IsString()
   profilename: string;
-
-  @IsString()
-  picture: string;
 }
