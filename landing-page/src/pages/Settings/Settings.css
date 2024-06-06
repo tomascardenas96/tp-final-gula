@@ -31,7 +31,6 @@
 }
 
 .settings-page_body-form .settings-page_body-form_info-profile > form {
-  /* background-color: lightcoral; */
   padding: 1.5rem 2rem 4rem 2rem;
   border-radius: 1rem;
   width: 100%;
@@ -40,7 +39,7 @@
   display: grid;
   grid-template-columns: 8rem 1fr;
   grid-template-rows: 2rem 8rem repeat(4, 2rem);
-  background-color: #f3f3f3;
+  background-color: #f9f9f9;
 }
 
 .settings-page_body-form .settings-page_body-form_info-profile form h1,
@@ -52,7 +51,7 @@
   font-family: var(--secondary-font);
   font-size: 1.15rem;
   color: rgba(0, 0, 0, 0.763);
-  /* text-decoration: underline; */
+  /* background-color: red; */
 }
 
 .settings-page_body-form
@@ -71,6 +70,7 @@
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.593);
   font-size: 0.9rem;
+  /* background-color: red; */
 }
 
 .settings-page_body-form .info-profile_picture-img {
@@ -85,8 +85,6 @@
 }
 
 .settings-page_body-form .info-profile_picture label {
-  /*  */
-  /* height: 100%; */
   display: flex;
   align-self: end;
   width: 10rem;
@@ -98,6 +96,7 @@
   border: 2px solid rgba(0, 0, 0, 0.482);
   border-radius: 0.1rem;
   font-family: var(--secondary-font);
+  /* background-color: red; */
 }
 
 .settings-page_body-form
@@ -107,6 +106,7 @@
   /* background-color: green; */
   display: flex;
   justify-content: end;
+  /* background-color: red; */
 }
 
 .settings-page_body-form
@@ -114,10 +114,11 @@
   label
   > .info-profile_picture-icon {
   font-size: 0.8rem;
-  /* background-color: green; */
   height: 100%;
   margin-left: 0.8rem;
   color: rgba(0, 0, 0, 0.482);
+  /* background-color: red; */
+  /* width: 100%; */
 }
 
 .settings-page_body-form .info-profile_picture label input[type="file"] {
@@ -142,7 +143,6 @@
 
 .settings-page_body-form .settings-page_body-form_info-profile > form > input,
 .settings-page_body-form .settings-page_body-form_info-account > form > input {
-  /* background-color: grey; */
   border-radius: 0.2rem;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.578);
@@ -150,6 +150,7 @@
   padding-bottom: 0.4%;
   font-family: var(--secondary-font);
   background-color: transparent;
+  /* background-color: red; */
 }
 
 .settings-page_body-form
@@ -190,5 +191,5 @@
   display: grid;
   grid-template-columns: 8rem 1fr;
   grid-template-rows: 2rem repeat(3, 2rem);
-  background-color: #f3f3f3;
+  background-color: #f9f9f9;
 }

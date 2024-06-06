@@ -63,7 +63,7 @@ function useUpdateProfile() {
     updateProfileInput,
     handleChangeUpload,
     handleSubmitUpload,
-    selectedFile
+    selectedFile,
   };
 }
 

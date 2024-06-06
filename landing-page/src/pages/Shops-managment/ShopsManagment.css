@@ -14,3 +14,12 @@
   grid-template-rows: 3rem 1fr;
   gap: 1rem;
 }
+
+.shops-managment_body .your-shops {
+  font-family: var(--secondary-font);
+  justify-self: center;
+  color: rgba(0, 0, 0, 0.727);
+  /* text-decoration: underline; */
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+}

@@ -6,6 +6,7 @@ import React from "react";
 import SettingsHeader from "../../components/Shops-managment/SettingsHeader";
 import "./ShopsManagment.css";
 import MyShops from "../../components/Shops-managment/MyShops";
+import NewShop from "../../components/Shops-managment/NewShop";
 
 function ShopsManagment() {
   return (
@@ -15,6 +16,8 @@ function ShopsManagment() {
         <SiderMenu />
         <div className="shops-managment_body">
           <SettingsHeader title="Comercios" />
+          <NewShop />
+          <h1 className="your-shops">Tus comercios</h1>
           <MyShops />
         </div>
         <SiderSettings />
