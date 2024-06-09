@@ -7,7 +7,7 @@
   background-color: #ffffff;
   position: fixed;
   z-index: 1500;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   border-bottom: none;
 }
 
@@ -20,7 +20,7 @@
   height: 100%;
   border-radius: 0.1rem;
   display: grid;
-  border-bottom: 1px solid rgba(255, 19, 19, 0.060);
+  border-bottom: 1px solid rgba(255, 19, 19, 0.06);
   grid-template-columns: 17rem 1fr 2.9rem;
   align-items: center;
 }
@@ -36,7 +36,6 @@
   justify-content: center;
   gap: 0.5rem;
   padding-left: 0rem;
-  
 }
 
 .header-search-image {
@@ -69,7 +68,7 @@
   height: 60%;
   border-radius: 3rem;
   border: none;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(245, 245, 245);
   outline: none;
   padding: 0 0.8rem;
   font-size: 1rem;
@@ -80,8 +79,8 @@
   display: flex;
   align-items: center;
   color: rgba(0, 0, 0, 0.526);
-  /* border: 1px solid rgba(0, 0, 0, 0.119); */
-  /* background-color: red; */
+  font-size: 0.74rem;
+  color: rgba(0, 0, 0, 0.803);
 }
 
 .header-search-input::placeholder {
@@ -89,17 +88,17 @@
   align-items: center;
   padding-left: 3rem;
   height: 100%;
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   padding-left: 1.2rem;
   position: absolute;
   left: 1rem;
-  top:  16.3%;
+  top: 10.5%;
   color: rgba(0, 0, 0, 0.803);
 }
 
 .header-search_results-list_close-modal {
   position: absolute;
-  right: 1.7rem;
+  right: 0.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
   width: 1.5rem;
@@ -111,11 +110,11 @@
 }
 
 .header-search_results-list_close-modal:hover {
-  color: rgb(123, 123, 123);
+  background-color: rgba(123, 123, 123, 0.167);
 }
 
 .header-search_results-list_close-modal:active {
-  color: rgb(167, 167, 167);
+  background-color: rgba(123, 123, 123, 0.067);
 }
 
 .header-search_form .header-search_results-list {
@@ -187,7 +186,7 @@
 .header-search-icon {
   position: absolute;
   left: 1.2rem;
-  top: 36%;
+  top: 34.5%;
   font-size: 0.74rem;
   color: rgba(0, 0, 0, 0.803);
 }
@@ -210,24 +209,24 @@
   display: grid;
   place-content: center;
   height: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.050);
+  margin-top: 0.1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header-logo > a > img {
   width: 3.3rem;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
+  margin-top: 6%;
 }
 
 .header-menu {
   height: 70%;
-  /* width: 100%; */
   display: flex;
   justify-content: end;
   align-items: center;
   cursor: pointer;
   user-select: none;
   position: relative;
-  /* padding: 0 0.6rem; */
   transition: background-color 0.3s ease;
   place-content: center;
 }
@@ -249,5 +248,4 @@
   border-radius: 0.2rem;
   object-fit: cover;
   object-position: center;
-  /* background-color: red; */
 }

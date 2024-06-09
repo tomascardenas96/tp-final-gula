@@ -5,8 +5,8 @@ import { GiFullPizza } from "react-icons/gi";
 import { removeHeaderContext } from "../Siders/SiderContext";
 import { IoMdClose } from "react-icons/io";
 import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
-import "./Header.css";
 import useGetProfile from "../../../hooks/useGetProfile";
+import "./Header.css";
 
 function Header() {
   const {
@@ -36,7 +36,7 @@ function Header() {
               <input
                 type="text"
                 className="header-search-input"
-                placeholder="Buscar en Gula..."
+                placeholder="Buscar en Gula"
                 onChange={handleChangeHeaderFilter}
                 value={filterInput}
               />

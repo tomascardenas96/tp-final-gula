@@ -9,7 +9,7 @@ import {
   Query,
   UseGuards,
   UseInterceptors,
-  UploadedFile
+  UploadedFile,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -64,6 +64,11 @@ export class ShopController {
   @Get('filter')
   findShopByQuery(@Query('shop') shop: string) {
     return this.shopService.findShopByQuery(shop);
+  }
+
+  @Get('filter/profile/:profilename')
+  findShopByProfileName(@Param('profilename') profilename: string) {
+    return this.shopService.getShopByProfileName(profilename);
   }
 }
 
