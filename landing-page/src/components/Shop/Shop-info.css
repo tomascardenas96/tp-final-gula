@@ -1,0 +1,219 @@
+.shop-info_container {
+  grid-area: shop-info;
+  height: 100%;
+  position: relative;
+}
+
+.shop-info_container .shop-info {
+  width: 23rem;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: none;
+  position: fixed;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.shop-info_image {
+  width: 100%;
+  height: 22rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.shop-info_image img {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.075);
+  padding: 0.1rem;
+}
+
+.shop-info_header {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 4.1rem 1fr 7.5rem;
+}
+
+.shop-info_header .shop-title {
+  /* background-color: red; */
+}
+
+.shop-info_header .shop-title h1,
+.shop-info_header .shop-title h2 {
+  font-family: var(--secondary-font);
+  display: flex;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.734);
+}
+
+.shop-info_header .shop-state {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: .9rem;
+}
+
+.shop-contact {
+  /* background-color: lightcyan; */
+}
+
+.shop-contact .shop-contact_list {
+  /* background-color: lightcoral; */
+  display: grid;
+  grid-template-rows: 8rem 1fr;
+}
+
+.shop-schedules_paragraph {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: var(--secondary-font);
+  /* width: 100%; */
+  /* height: 2rem; */
+  margin-left: 1.55rem;
+  /* background-color: red; */
+  display: grid;
+  /* grid-template-rows: 1fr 1fr; */
+  grid-template-columns: 4rem 1fr;
+  column-gap: .6rem;
+  row-gap: .4rem;
+}
+
+.shop-schedules_paragraph .am-pm {
+  font-weight: bold;
+}
+
+.shop-contact_list li .shop-schedules_paragraph div {
+  /* display: grid;
+  grid-template-columns: 1rem 1fr; */
+  /* background-color: green; */
+}
+
+.shop-schedules_paragraph p {
+  font-family: var(--secondary-font);
+  font-size: 0.95rem;
+  display: grid;
+  /* background-color: red; */
+}
+
+.shop-contact .shop-contact_list-icon {
+  height: 2rem;
+  color: rgb(249, 37, 37);
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.325));
+}
+
+.shop-contact .shop-contact_list li {
+  display: flex;
+  /* background-color: red; */
+  justify-content: start;
+  flex-direction: column;
+  margin-left: 1.3rem;
+  gap: 0.5rem;
+  color: rgba(0, 0, 0, 0.734);
+  /* color: rgb(249, 37, 37); */
+  letter-spacing: 0.01rem;
+}
+
+.shop-contact .shop-contact_list li .shop-schedules {
+  display: flex;
+  gap: .5rem;
+  /* background-color: red; */
+  height: 1.5rem;
+  align-items: center ;
+}
+
+.shop-contact .shop-contact_list li .shop-schedules h1 {
+  height: 100%;
+}
+
+.shop-contact .shop-contact_list .shop-phone {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+.shop-contact .shop-contact_list .shop-phone p {
+  font-family: var(--secondary-font);
+  margin-left: 1.55rem;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 0.95rem;
+  margin-top: .25rem;
+}
+
+.shop-contact .shop-contact_list li h1 {
+  font-family: var(--secondary-font);
+  font-size: 1.13rem;
+  height: 2rem;
+  /* background-color: red; */
+}
+
+.shop-info_header .shop-state p {
+  font-family: var(--secondary-font);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.shop-info_header .shop-state .shop-state_icon {
+  color: rgb(29, 181, 29);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 0.9%;
+  filter: drop-shadow(0px 0px 1.5px rgba(29, 181, 29, 0.873));
+}
+
+.shop-info_header .shop-title h1 {
+  font-size: 1.3rem;
+}
+
+.shop-info_header .shop-title h2 {
+  font-size: 1.08rem;
+  color: rgba(0, 0, 0, 0.689);
+  font-weight: 600;
+}
+
+.shop-contact ul.shop-contact_list {
+  /* background-color: green; */
+  height: 20rem;
+  margin-top: 7rem;
+  width: 100%;
+}
+
+.shop-statistics {
+  /* background-color: grey; */
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.shop-statistics_posts {
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-rows: 2rem 2rem;
+}
+
+.shop-statistics_posts h1,
+.shop-statistics_posts p {
+  font-family: var(--secondary-font);
+  display: grid;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.734);
+  height: 100%;
+}
+
+.shop-statistics_posts h1 {
+  font-size: 1rem;
+  align-items: end;
+}
+
+.shop-statistics_posts p {
+  align-items: start;
+  font-size: 1.1rem;
+  display: flex;
+}

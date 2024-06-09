@@ -3,6 +3,7 @@
   display: grid;
   place-items: center;
   position: relative;
+  /* background-color: red; */
 }
 
 .post-card_divider {
@@ -24,6 +25,8 @@
   border: 1px solid rgba(0, 0, 0, 0.080);
   border-bottom: none;
   padding: 0.5rem 0 0 0;
+  padding: .5rem 0;
+  
 }
 
 @keyframes maximize-card {

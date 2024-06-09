@@ -1,0 +1,11 @@
+.shop-profile_container {
+  display: grid;
+  grid-template-columns: 23rem minmax(750px, 1fr) 3rem;
+  grid-template-rows: 3rem 1fr;
+  grid-template-areas: "header header header" "shop-info body sider-settings";
+}
+
+.shop-profile_body {
+  grid-area: body;
+  width: 100%;
+}
