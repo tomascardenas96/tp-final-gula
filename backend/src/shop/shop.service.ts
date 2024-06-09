@@ -51,7 +51,7 @@ export class ShopService {
     }
   }
 
-  getAllShops() {
+  getAllShops(): Promise<Shop[]> {
     try {
       return this.shopRepository.find();
     } catch (err) {
@@ -59,11 +59,23 @@ export class ShopService {
     }
   }
 
-  getShopByName(name: string) {
+  getShopByName(name: string): Promise<Shop> {
     return this.shopRepository.findOneBy({ name });
   }
 
-  async getShopsByActiveUser(user: ActiveUserInterface) {
+  getShopByProfileName(profilename: string): Promise<Shop> {
+    try {
+      return this.shopRepository.findOne({
+        where: { profilename },
+      });
+    } catch (err) {
+      throw new BadGatewayException(
+        'Shop service: error getting shop by profile name - getShopByProfileName method ',
+      );
+    }
+  }
+
+  async getShopsByActiveUser(user: ActiveUserInterface): Promise<Shop[]> {
     try {
       const activeUser = await this.userService.findByEmail(user.email);
       return this.shopRepository.find({ where: { user: activeUser } });
@@ -72,7 +84,7 @@ export class ShopService {
     }
   }
 
-  findShopByQuery(shop: string) {
+  findShopByQuery(shop: string): Promise<Shop[]> {
     try {
       return this.shopRepository.find({
         where: { name: ILike(`%${shop}%`) },

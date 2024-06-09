@@ -35,7 +35,7 @@ export class AuthController {
     return user;
   }
 
- @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   @Get('/profile')
   profile(@ActiveUser() user: ActiveUserInterface) {
     return user;
@@ -50,6 +50,12 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('shops')
   shops(@ActiveUser() user: ActiveUserInterface) {
+    return user;
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('shop-profile/:profilename')
+  shopProfile(@ActiveUser() user: ActiveUserInterface) {
     return user;
   }
 }
