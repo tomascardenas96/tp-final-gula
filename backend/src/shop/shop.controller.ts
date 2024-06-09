@@ -22,7 +22,7 @@ import { AuthGuard } from '../auth/guard/auth.guard';
 import { extname } from 'path';
 
 @UseGuards(AuthGuard)
-@Controller('shop')
+@Controller('shop')                                          // esta es la ruta a la cual el usuario hace la peticion a http.... /shop
 export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
@@ -66,3 +66,4 @@ export class ShopController {
     return this.shopService.findShopByQuery(shop);
   }
 }
+
