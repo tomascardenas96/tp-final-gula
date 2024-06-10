@@ -46,4 +46,10 @@ export class AuthController {
   settings(@ActiveUser() user: ActiveUserInterface) {
     return user;
   }
+
+  @UseGuards(AuthGuard)
+  @Get('shops')
+  shops(@ActiveUser() user: ActiveUserInterface) {
+    return user;
+  }
 }

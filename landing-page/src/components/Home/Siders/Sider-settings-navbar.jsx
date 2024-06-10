@@ -41,7 +41,7 @@ function SiderSettingsNavbar() {
             </li>
           </div>
         </NavLink>
-        <NavLink to="">
+        <NavLink to="/shops-managment">
           <div>
             <li>
               <BsShop className="sider-menu-navbar_icons" />

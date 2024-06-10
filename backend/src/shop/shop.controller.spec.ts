@@ -102,19 +102,30 @@ describe('ShopController', () => {
         location:'test location',
         phone:'123456',
         profilename:'test profileName',
-        picture:' test.jpg',
-        user: {} as User//
       }
+       // Mock del archivo que se va a subir
+       const file: Express.Multer.File = {
+        fieldname: 'picture',
+        originalname: 'test.jpg',
+        encoding: '7bit',
+        mimetype: 'image/jpeg',
+        size: 12345,
+        buffer: Buffer.from(''),
+        stream: null,
+        destination: '',
+        filename: 'test.jpg',
+        path: '',
+      };
   
 
         //luego de usar el metodo create el resultado debe ser una tienda del tipo SHOP
         const result={shopId:1,...baseShops};//agrego el id a los datos de una tienda
         //llamo al metodo del servicio
-        jest.spyOn(service,'create').mockImplementation(async()=>result)
+        jest.spyOn(service,'createNewShop').mockImplementation(async()=>result)
         //espero que el controlador llame al metodo create con los parametros correctos
-        expect(await controller.create(createShopDto,activeUser)).toBe(result);
+        expect(await controller.createNewShop(file,createShopDto,activeUser)).toBe(result);
         //espero qeu el metodo create del servicio sea llamado con parametros correctos
-        expect(service.create).toHaveBeenCalledWith(createShopDto,activeUser);
+        expect(service.createNewShop).toHaveBeenCalledWith(file,createShopDto,activeUser);
     });
   });//discribe */
 

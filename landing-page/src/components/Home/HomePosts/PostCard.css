@@ -21,7 +21,7 @@
   min-height: 0;
   overflow: hidden;
   animation: maximize-card 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.080);
   border-bottom: none;
   padding: 0.5rem 0 0 0;
 }
@@ -48,6 +48,8 @@
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 1px 1px 5px 0.2px rgba(0, 0, 0, 0.157);
+  object-fit: cover;
+  object-position: center;
 }
 
 .post-card_right-side {

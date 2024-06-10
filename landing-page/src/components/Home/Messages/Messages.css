@@ -6,7 +6,7 @@
   height: 2.9rem;
   display: grid;
   grid-template-columns: 3.5rem 1fr 4rem;
-  background-color: #f3f3f3;
+  background-color: #ffffff;
   border-radius: 0.6rem 0.6rem 0 0;
   cursor: pointer;
   user-select: none;

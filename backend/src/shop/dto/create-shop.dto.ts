@@ -1,5 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
-import { User } from 'src/user/entities/user.entity';
+import { IsString } from 'class-validator';
 
 export class CreateShopDto {
   @IsString()
@@ -13,10 +12,4 @@ export class CreateShopDto {
 
   @IsString()
   profilename: string;
-
-  @IsString()
-  picture: string;
-
-  @IsNotEmpty()
-  user: User;
 }

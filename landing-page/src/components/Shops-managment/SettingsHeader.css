@@ -1,0 +1,32 @@
+.settings-header_container {
+  display: flex;
+  align-items: end;
+  padding-left: 1.3rem;
+  gap: 0.3rem;
+}
+
+.settings-header_arrow {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: rgb(63, 63, 63);
+  border-radius: 50%;
+  padding: 0.54rem;
+  transition: all 0.3s ease;
+}
+
+.settings-header_arrow:hover {
+  background-color: rgba(0, 0, 0, 0.098);
+}
+
+.settings-header_arrow:active {
+  background-color: rgba(0, 0, 0, 0.198);
+}
+
+.settings-header_container h1 {
+  user-select: none;
+  font-size: 1rem;
+  color: rgb(63, 63, 63);
+  font-family: var(--tertiary-font);
+  letter-spacing: 0.01rem;
+  padding-bottom: 0.68%;
+}

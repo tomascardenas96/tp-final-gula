@@ -4,10 +4,10 @@
   -webkit-backdrop-filter: blur(10px);
   width: 100%;
   height: 3rem;
-  background-color: #f3f3f3;
+  background-color: #ffffff;
   position: fixed;
   z-index: 1500;
-  border: 1px solid rgba(0, 0, 0, 0.135);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-bottom: none;
 }
 
@@ -20,7 +20,7 @@
   height: 100%;
   border-radius: 0.1rem;
   display: grid;
-  /* border: 1px solid rgba(0, 0, 0, 0.084); */
+  border-bottom: 1px solid rgba(255, 19, 19, 0.060);
   grid-template-columns: 17rem 1fr 2.9rem;
   align-items: center;
 }
@@ -35,7 +35,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding-left: 0.35rem;
+  padding-left: 0rem;
+  
 }
 
 .header-search-image {
@@ -44,7 +45,7 @@
   border-radius: 50%;
   color: rgb(206, 41, 41);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.323));
-  margin-bottom: .7%;
+  margin-bottom: 0.7%;
 }
 
 .header-search_form {
@@ -53,23 +54,22 @@
   height: 100%;
   display: grid;
   align-items: center;
-  padding-bottom: .3%;
+  padding-bottom: 0.3%;
 }
 
 .header-search_form .header-search_form_divider {
   position: absolute;
   width: 17rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.067);
   bottom: 0;
   left: -4.1rem;
 }
 
 .header-search-input {
-  width: 90%;
+  width: 100%;
   height: 60%;
   border-radius: 3rem;
   border: none;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgb(255, 255, 255);
   outline: none;
   padding: 0 0.8rem;
   font-size: 1rem;
@@ -80,7 +80,7 @@
   display: flex;
   align-items: center;
   color: rgba(0, 0, 0, 0.526);
-  border: 1px solid rgba(0, 0, 0, 0.119);
+  /* border: 1px solid rgba(0, 0, 0, 0.119); */
   /* background-color: red; */
 }
 
@@ -93,7 +93,7 @@
   padding-left: 1.2rem;
   position: absolute;
   left: 1rem;
-  top: 13.9%;
+  top:  16.3%;
   color: rgba(0, 0, 0, 0.803);
 }
 
@@ -210,7 +210,7 @@
   display: grid;
   place-content: center;
   height: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.135);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.050);
 }
 
 .header-logo > a > img {

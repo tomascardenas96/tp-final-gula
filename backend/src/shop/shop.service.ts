@@ -2,6 +2,7 @@ import {
   Injectable,
   ForbiddenException,
   BadGatewayException,
+  NotFoundException,
 } from '@nestjs/common';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
@@ -19,34 +20,48 @@ export class ShopService {
     private readonly userService: UserService,
   ) {}
 
+  async createNewShop(
+    file: Express.Multer.File,
+    createShopDto: CreateShopDto,
+    activeUser: ActiveUserInterface,
+  ): Promise<Shop> {
+    try {
+      const user: User = await this.userService.getActiveUser(activeUser);
 
+      if (!user) {
+        throw new NotFoundException(
+          'Shop service: user not found - createNewShop method',
+        );
+      }
 
-  async create(shop: CreateShopDto,activeUser:ActiveUserInterface):Promise<Shop> {
-    //se crea una nueva tienda
-    
-    const user:User = await this.userService.findByEmail(activeUser.email);
-    const newShop:Shop= this.shopRepository.create({
-      name:shop.name,
-      location:shop.location,
-      phone:shop.phone,
-      profilename:shop.profilename,
-      picture:shop.picture,
-      user:user
-    })
-    return this.shopRepository.save(newShop);
-  };
+      const newShop: Shop = this.shopRepository.create({
+        ...createShopDto,
+        picture: file?.filename,
+        user,
+      });
+
+      return this.shopRepository.save(newShop);
+    } catch (err) {
+      if (err instanceof NotFoundException) {
+        throw err;
+      }
+      throw new BadGatewayException(
+        'Shop service: error trying to create new shop - createNewShop method',
+      );
+    }
+  }
 
   getAllShops() {
     try {
       return this.shopRepository.find();
     } catch (err) {
+      throw new BadGatewayException({ errorMessage: err });
     }
-      throw new BadGatewayException({ errorMessage: 'database error' });//indica que el servidor recibió una respuesta inválida del servidor ascendente mientras intentaba cumplir la solicitud del cliente.
-    }//modifique el mensaje de error que lanzaba.
+  }
 
-  async getShopByName(name: string):Promise<Shop> {
-    return await this.shopRepository.findOneBy({ name });
-  }//tomy modifique esto. agrege que tiene qeu devolver una proesa y agrege el async await
+  getShopByName(name: string) {
+    return this.shopRepository.findOneBy({ name });
+  }
 
   async getShopsByActiveUser(user: ActiveUserInterface) {
     try {
