@@ -54,7 +54,7 @@ describe('PostService', () => {
 
     //creamos el mock con los metodos de ShopService
     shopServiceMock={
-      create:jest.fn(),
+      createNewShop:jest.fn(),
       getAllShops:jest.fn(),
       getShopByName:jest.fn(),
       getShopsByActiveUser:jest.fn(),
@@ -195,18 +195,39 @@ describe('PostService', () => {
     it('should handle unexpected errors', async () => {
       const shop = { user: { email: activeUser.email } } as Shop; 
       shopServiceMock.getShopByName.mockResolvedValue(shop);
-      postRepositoryMock.save.mockRejectedValue(new Error('Unexpected error'));
+      postRepositoryMock.save.mockRejectedValue(new Error('Failed to create a new post'));
 
       await expect(service.newPost(activeUser, createPost, shopName)).rejects.toThrow(
-        new BadRequestException('Failed to create a new post', 'Unexpected error'),
+        new BadRequestException('Failed to create a new post'),
       );
     });
- 
-
   });//final describe
 
 
+  describe('getAllPosts', () => {
+    it('should return all posts with relations', async () => {
+      const posts = [
+        { id: 1, description: 'Post 1', shop: { id: 1, name: 'Shop 1' } },
+        { id: 2, description: 'Post 2', shop: { id: 2, name: 'Shop 2' } },
+      ];
+      //simulamos que le metodo find devuelba una lista de posts
+      (postRepositoryMock.find as jest.Mock).mockResolvedValue(posts);
+      //llamamos al metodo getAllPosts
+      const result = await service.getAllPosts();
+      //esperamos que el metodo find sea llamado con el parametro correcto 
+      expect(postRepositoryMock.find).toHaveBeenCalledWith({ relations: ['shop'] });
+      //el resultado debe ser una lista de posts
+      expect(result).toEqual(posts);
+    });
 
+    it('should throw a BadRequestException if an error occurs', async () => {
+      //simulamos que el metodo find lanza un error 
+      (postRepositoryMock.find as jest.Mock).mockRejectedValue(new Error('Error'));
+      //se llama al metodo getAllpost del servicio y se espera que lanze una BadRequestException 
+      await expect(service.getAllPosts()).rejects.toThrow(BadRequestException);
+      await expect(service.getAllPosts()).rejects.toThrow('Error trying to get publications');
+    });
+  });
 
 });
 

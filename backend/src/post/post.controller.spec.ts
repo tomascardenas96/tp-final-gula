@@ -23,10 +23,18 @@ describe('PostController', () => {
   let service:PostService;
 
   beforeEach(async () => {
+    const postServiceMock={
+      newPost:jest.fn(),
+      getAllPosts:jest.fn(),
+    };
     const module: TestingModule = await Test.createTestingModule({
       controllers: [PostController],
       providers: [
-        PostService,
+        {
+          provide:PostService,
+          useValue:postServiceMock,
+        },
+        //PostService,
         UserService,
         ShopService,
         ProfileService,
@@ -63,7 +71,35 @@ describe('PostController', () => {
   });
 
   describe('newPost',()=>{
-    
+    it('should call postService.newPost with correct parameters',async ()=>{
+      //mock de datos de usuario activo
+      const user:ActiveUserInterface={
+        userId: 1, 
+        email: 'test@example.com', 
+        name: 'test user'};
+
+      //mock de la creacion de un post
+      const createPostDto: CreatePostDto = {
+        description: 'New Post Description' };
+      
+      //mock del nombre de la tienda
+      const shopName= 'shopName';
+
+      await controller.newPost(user,createPostDto,shopName);
+
+      expect(service.newPost).toHaveBeenCalledWith(user,createPostDto,shopName); 
+    });
   });//final describe
+
+  describe('getAllPosts', () => {
+    it('should call postService.getAllPosts', async () => {
+      // configuramos el mock para que el método getAllPosts del servicio no lance errores
+      (service.getAllPosts as jest.Mock).mockResolvedValue([]);
+
+      await controller.getAllPosts();
+
+      expect(service.getAllPosts).toHaveBeenCalled();
+    });
+  });
 });
- 
+  
