@@ -25,18 +25,20 @@
 }
 
 .shop-info_image img {
-  width: 14rem;
-  height: 14rem;
+  width: 13rem;
+  height: 13rem;
   border-radius: 50%;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.075);
   padding: 0.1rem;
+  object-fit: cover;
+  object-position: center;
 }
 
 .shop-info_header {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 4.1rem 1fr 7.5rem;
+  grid-template-rows: 4.1rem 1fr 5rem 7.5rem;
   margin-top: 0.8rem;
 }
 
@@ -78,7 +80,7 @@
 
 .shop-schedules_paragraph p {
   font-family: var(--secondary-font);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   display: grid;
 }
 
@@ -108,6 +110,7 @@
 
 .shop-contact .shop-contact_list li .shop-schedules h1 {
   height: 100%;
+  font-size: 1rem;
 }
 
 .shop-contact .shop-contact_list .shop-phone {
@@ -120,7 +123,7 @@
   font-family: var(--secondary-font);
   margin-left: 1.55rem;
   color: rgba(0, 0, 0, 0.65);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-top: 0.25rem;
 }
 
@@ -147,19 +150,35 @@
 }
 
 .shop-info_header .shop-title h1 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .shop-info_header .shop-title h2 {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: rgba(0, 0, 0, 0.689);
   font-weight: 600;
 }
 
 .shop-contact ul.shop-contact_list {
   height: 20rem;
-  margin-top: 5.3rem;
+  margin-top: 4.5rem;
   width: 100%;
+}
+
+.shop-info .shop_social-network {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-info .shop_social-network div {
+  display: flex;
+  gap: 1rem;
+}
+
+.shop-info .shop_social-network div .shop_social-network_icon {
+  font-size: 1.6rem;
+  cursor: pointer;
 }
 
 .shop-statistics {
@@ -184,7 +203,7 @@
 }
 
 .shop-statistics_posts h1 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   align-items: end;
 }
 
@@ -192,4 +211,10 @@
   align-items: start;
   font-size: 1.1rem;
   display: flex;
+}
+
+.shop-statistics_posts p > span {
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  font-size: 1.15rem;
 }

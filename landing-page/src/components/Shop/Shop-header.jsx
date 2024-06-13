@@ -1,15 +1,18 @@
 import { GiFullPizza } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import React from "react";
 import "./Shop-header.css";
 
 function ShopHeader() {
+  const navigate = useNavigate();
+
   return (
     <div className="shop-header_container">
       <div className="shop-header_search">
         <div className="shop-header_search-divider"></div>
-        <IoIosArrowBack />
-        <GiFullPizza className="header-search-image" />
+        <IoIosArrowBack className="back-home" onClick={() => navigate("/")} />
+        <p>Inicio</p>
       </div>
       <div className="shop-header_logo">
         <img
