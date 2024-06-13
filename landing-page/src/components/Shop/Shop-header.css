@@ -47,17 +47,19 @@
   width: 100%;
   height: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  /* background-color: red; */
   display: grid;
   place-content: center;
 }
 
 .shop-header_logo img {
   width: 3.3rem;
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%, -50%);
 }
 
 .shop-header_user {
-  /* background-color: red; */
   display: grid;
   place-content: center;
   position: relative;
