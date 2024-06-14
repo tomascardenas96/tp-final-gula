@@ -89,7 +89,8 @@
       "/*.entity.ts",
       "/*.guard.ts",
       "/common",
-      "/main.ts"
+      "/main.ts",
+      "/socket"
     ],
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/$1"

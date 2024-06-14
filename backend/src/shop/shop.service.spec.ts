@@ -15,7 +15,7 @@ import { ProfileService } from 'src/profile/profile.service';
 import { Profile } from 'src/profile/entities/profile.entity';
 import { CartService } from 'src/cart/cart.service';
 import { Cart } from 'src/cart/entities/cart.entity';
-import { BadGatewayException, ForbiddenException, NotFoundException } from '@nestjs/common';
+import { BadGatewayException,  NotFoundException } from '@nestjs/common';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { ILike } from 'typeorm';
 import { CreateShopDto } from './dto/create-shop.dto';

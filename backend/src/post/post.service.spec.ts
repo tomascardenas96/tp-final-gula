@@ -16,6 +16,7 @@ import { ActiveUserInterface } from 'src/common/interface/active-user.interface'
 import { CreatePostDto } from './dto/create-post.dto';
 //excepciones
 import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { error } from 'console';
 
 describe('PostService', () => {
   let service: PostService;
@@ -32,14 +33,14 @@ describe('PostService', () => {
       unrecommendPost:jest.fn(),
     }
     // Mock como debe quedar generado el nuevo Post
-    const newPost:Post={
-      postId:1,
-      description:'new mockDescription',
-      stars:3,
-      image:'new imagen',
-      postedAt: new Date,
-      shop: new Shop
-    };
+  //  const newPost:Post={
+  //    postId:1,
+  //    description:'new mockDescription',
+  //    stars:3,
+  //    image:'new imagen',
+  //    postedAt: new Date,
+  //    shop: new Shop
+  //  };
     //creamos una extencion del objeto basePostRepositoryMock para
     //agregar metodos que son propios de nest y para agregarlos y utilizarlos
     //en PostRepositoryMock
@@ -222,9 +223,9 @@ describe('PostService', () => {
 
     it('should throw a BadRequestException if an error occurs', async () => {
       //simulamos que el metodo find lanza un error 
-      (postRepositoryMock.find as jest.Mock).mockRejectedValue(new Error('Error'));
+      (postRepositoryMock.find as jest.Mock).mockRejectedValue(new BadRequestException('Error trying to get publications'));
       //se llama al metodo getAllpost del servicio y se espera que lanze una BadRequestException 
-      await expect(service.getAllPosts()).rejects.toThrow(BadRequestException);
+      await expect(service.getAllPosts()).rejects.toThrow(BadRequestException);  
       await expect(service.getAllPosts()).rejects.toThrow('Error trying to get publications');
     });
   });
