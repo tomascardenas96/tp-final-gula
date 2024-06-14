@@ -33,7 +33,7 @@ function SiderMenu() {
           </li>
           <li>
             <NavLink
-              to={"#posts"}
+              to="#posts"
               className={({ isActive }) =>
                 isActive ? null : "sider-menu_active"
               }

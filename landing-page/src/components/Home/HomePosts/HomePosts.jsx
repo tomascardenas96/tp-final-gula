@@ -9,7 +9,7 @@ function HomePosts() {
   const { posts, postsLoading, postsError, timeElapsed } = useGetPosts();
 
   return (
-    <section className="home-posts_container">
+    <section className="home-posts_container" id="posts">
       <div className="home-posts_advice">
         <img
           className="home-posts_advice-3"
@@ -35,7 +35,7 @@ function HomePosts() {
       <main className="home-posts">
         <div className="home-posts_section">
           <div className="home-posts_section-line"></div>
-          <h1 id="posts">Publicaciones</h1>
+          <h1 >Publicaciones</h1>
         </div>
         <div className="home-posts_new-post_container">
           <NewPost />
