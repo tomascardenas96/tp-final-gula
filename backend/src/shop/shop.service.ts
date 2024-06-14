@@ -60,7 +60,13 @@ export class ShopService {
   }
 
   getShopByName(name: string): Promise<Shop> {
-    return this.shopRepository.findOneBy({ name });
+    try {
+      return this.shopRepository.findOneBy({ name });
+    } catch (err) {
+      throw new BadGatewayException(
+        'Shop service: error getting shop by name - getShopByName method ',
+      );
+    }
   }
 
   getShopByProfileName(profilename: string): Promise<Shop> {

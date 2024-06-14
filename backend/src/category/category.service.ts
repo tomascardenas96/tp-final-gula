@@ -1,4 +1,8 @@
-import { Injectable, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  ForbiddenException,
+  BadGatewayException,
+} from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,6 +21,16 @@ export class CategoryService {
       return this.categoryRepository.find();
     } catch (err) {
       throw new ForbiddenException(err);
+    }
+  }
+
+  findCategoryByName(description: string) {
+    try {
+      return this.categoryRepository.findOne({ where: { description } });
+    } catch (err) {
+      throw new BadGatewayException(
+        'Category service: error getting category by name - findCategoryByName method',
+      );  
     }
   }
 }
