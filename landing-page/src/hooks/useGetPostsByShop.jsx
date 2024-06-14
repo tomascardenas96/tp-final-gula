@@ -26,7 +26,6 @@ function useGetPostsByShop() {
         if (data.error) {
           throw new Error();
         }
-        console.log(data);
         setPosts(data);
       } catch (err) {
         setPostsError(err);

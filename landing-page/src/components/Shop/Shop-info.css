@@ -39,7 +39,7 @@
   height: 100%;
   display: grid;
   grid-template-rows: 4.1rem 1fr 5rem 7.5rem;
-  margin-top: 0.8rem;
+  margin-top: 0.4rem;
 }
 
 .shop-info_header .shop-title h1,
@@ -48,6 +48,16 @@
   display: flex;
   justify-content: center;
   color: rgba(0, 0, 0, 0.734);
+}
+
+.shop-info_header .shop-title h1 {
+  font-size: 1.3rem;
+}
+
+.shop-info_header .shop-title h2 {
+  font-size: 1.05rem;
+  color: rgba(0, 0, 0, 0.689);
+  font-weight: 600;
 }
 
 .shop-info_header .shop-state {
@@ -127,12 +137,6 @@
   margin-top: 0.25rem;
 }
 
-.shop-contact .shop-contact_list li h1 {
-  font-family: var(--secondary-font);
-  font-size: 1.13rem;
-  height: 2rem;
-}
-
 .shop-info_header .shop-state p {
   font-family: var(--secondary-font);
   height: 100%;
@@ -147,16 +151,6 @@
   align-items: center;
   margin-top: 0.9%;
   filter: drop-shadow(0px 0px 1.5px rgba(29, 181, 29, 0.873));
-}
-
-.shop-info_header .shop-title h1 {
-  font-size: 1.2rem;
-}
-
-.shop-info_header .shop-title h2 {
-  font-size: 1.05rem;
-  color: rgba(0, 0, 0, 0.689);
-  font-weight: 600;
 }
 
 .shop-contact ul.shop-contact_list {
