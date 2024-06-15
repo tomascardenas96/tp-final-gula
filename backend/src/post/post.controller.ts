@@ -34,6 +34,11 @@ export class PostController {
     return this.postService.getAllPosts();
   }
 
+  @Get('shop/:profilename')
+  getPostsByShop(@Param('profilename') profilename: string) {
+    return this.postService.getPostsByShop(profilename);
+  }
+
   // @Patch()
   // recommendPost() {
   //   this.postService.recommendPost();

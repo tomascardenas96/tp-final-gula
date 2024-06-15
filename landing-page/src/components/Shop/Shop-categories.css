@@ -1,0 +1,54 @@
+.shop-categories_container {
+  display: grid;
+  grid-template-columns: 6.2rem minmax(14rem, 1fr);
+  width: 90%;
+  cursor: pointer;
+}
+
+.shop-categories_icon {
+  height: 4.8rem;
+  width: 4.8rem;
+  display: grid;
+  place-content: center;
+  font-size: 2.05rem;
+  border: 1px solid rgba(0, 0, 0, 0.634);
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.634);
+  padding-bottom: 3%;
+}
+
+.shop-categories_text {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2rem;
+  padding-bottom: 3%;
+}
+
+.shop-categories_text > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: .25rem;
+}
+
+.shop-categories_text > div > h1 {
+  font-family: var(--secondary-font);
+  display: flex;
+  height: 1.5rem;
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.634);
+}
+
+.shop-categories_text > div > p {
+  font-family: var(--secondary-font);
+  height: 1.2rem;
+  display: flex;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.787);
+}
+
+.shop-categories_arrow {
+  height: 100%;
+  color: rgba(0, 0, 0, 0.634);
+}

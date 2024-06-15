@@ -23,6 +23,7 @@
   border: 1px solid rgba(0, 0, 0, 0.080);
   border-top: none;
   padding-top: 0.9rem;
+  /* background-color: red; */
 }
 
 .sider-menu ul {
@@ -32,6 +33,8 @@
   justify-content: start;
   gap: 0.5rem;
   position: relative;
+  /* background-color: red; */
+  margin-top: .5rem;
 }
 
 .sider-menu ul > li,

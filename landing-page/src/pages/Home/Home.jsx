@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useHome from "../../hooks/useHome";
 import Header from "../../components/Home/Header/Header.jsx";
 import FoodFilter from "../../components/Home/FoodFilter/FoodFilter.jsx";
@@ -16,6 +16,11 @@ import "./Home.css";
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
 
+  // Cambiamos el titulo de la pagina de inicio.
+  useEffect(() => {
+    document.title = `Bienvenido/a a Gula!`;
+  }, []);
+
   if (homeLoading) {
     return <LoadingScreen />;
   }
@@ -23,16 +28,16 @@ function Home() {
   return (
     <>
       <main className="home-page_container" id="home-page">
-          <Header />
-          <SlideText />
-          <SiderMenu />
-          <FoodFilter />
-          <FoodCategories />
-          <Shops />
-          <HomePosts />
-          <SiderSettings />
-          <Messages />
-          <Footer />
+        <Header />
+        <SlideText />
+        <SiderMenu />
+        <FoodFilter />
+        <FoodCategories />
+        <Shops />
+        <HomePosts />
+        <SiderSettings />
+        <Messages />
+        <Footer />
       </main>
     </>
   );
