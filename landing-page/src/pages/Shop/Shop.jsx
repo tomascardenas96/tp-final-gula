@@ -13,7 +13,7 @@ import { GoDotFill } from "react-icons/go";
 import ShopBar from "../../components/Shop/Shop-bar";
 import "./Shop.css";
 import useSwitchBarProfileShop from "../../hooks/useSwitchBarProfileShop";
-import CategoryList from "../../components/Shop/Category-list";
+import CategoryList from "../../components/Shop/Category/Category-list";
 
 function Shop() {
   const { shopByProfileName } = useGetShopByProfileName();

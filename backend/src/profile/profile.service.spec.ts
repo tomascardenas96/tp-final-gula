@@ -2,17 +2,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ProfileService } from './profile.service';
 //importaciones necesarias
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Profile } from './entities/profile.entity';
 import { BadGatewayException,NotFoundException } from '@nestjs/common';
 import { User } from 'src/user/entities/user.entity';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { CreateProfileDto } from './dto/create-profile.dto';
-import { create } from 'domain';
+
 
 describe('ProfileService', () => {
   let service: ProfileService;
-  //let repository:Repository<Profile>;
   let ProfileRepositoryMock: any;//definimos any para evitar problemas
 
   beforeEach(async () => {
