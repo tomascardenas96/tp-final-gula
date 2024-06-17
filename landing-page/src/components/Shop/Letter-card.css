@@ -1,19 +1,18 @@
 .letter-card_container {
   width: 100%;
-  height: 19rem;
+  height: 16rem;
   display: flex;
-  justify-content: end;
-  padding-right: 3rem;
-  /* background-color: red; */
+  justify-content: center;
+  padding: 0 5rem;
 }
 
 .letter-card {
-  width: 86%;
+  width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 19.5rem 1fr;
+  grid-template-columns: 17.5rem 1fr;
   border: 1px outset rgba(0, 0, 0, 0.338);
-  border-radius: 0.1rem;
+  border-radius: 0.2rem;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
 }
 
@@ -24,12 +23,12 @@
 
 .letter-card_food-picture > img {
   width: 100%;
-  height: 18.6rem;
+  height: 15.6rem;
   object-fit: cover;
   object-position: center;
   border-radius: 0.2rem 0 0 0.2rem;
   border-right: 1px solid rgba(0, 0, 0, 0.406);
-  padding-right: .2rem;
+  padding-right: 0.2rem;
 }
 
 .letter-card_food-description {
@@ -50,13 +49,13 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-size: 1.3rem;
 }
 
 .food-description_review {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   padding-top: 1rem;
 }
 

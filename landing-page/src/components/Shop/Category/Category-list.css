@@ -1,9 +1,12 @@
 .main-content_categories {
-    height: 100%;
+    /* height: 20rem; */
+    width: 100%;
     grid-row: 1 / 3;
     grid-template-rows: 5rem 1fr;
     grid-template-columns: 1fr;
     position: sticky;
+    top: 2rem;
+    /* background-color: red; */
   }
   
   .main-content_categories .main-content_categories-h1 {
