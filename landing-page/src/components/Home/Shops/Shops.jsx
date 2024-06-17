@@ -1,7 +1,7 @@
 import React from "react";
 import "./Shops.css";
 import ShopCard from "./ShopCard";
-import Spinner from "../../Common/Spinner/Spinner.jsx"
+import Spinner from "../../Common/Spinner/Spinner.jsx";
 import useGetShops from "../../../hooks/useGetShops";
 
 function Shops() {
@@ -21,6 +21,7 @@ function Shops() {
               key={shop?.shopId}
               url={shop?.picture}
               title={shop?.name}
+              profilename={shop?.profilename}
             />
           ))
         )}

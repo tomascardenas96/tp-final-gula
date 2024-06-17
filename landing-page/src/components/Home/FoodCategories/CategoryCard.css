@@ -6,28 +6,27 @@
   height: 100%;
   gap: 0.6rem;
   cursor: pointer;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
 .category-card_icon {
   height: 6.7rem;
   width: 6.7rem;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.389);
+  border: 1.5px solid rgba(0, 0, 0, 0.634);
   display: grid;
   place-content: center;
-  font-size: 2.2rem;
-  color: rgb(63, 58, 58);
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.62));
+  font-size: 2.4rem;
+  color: rgba(0, 0, 0, 0.634);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.09);
 }
 
 .category-card_icon div {
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 .category-card_icon:hover {
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   color: rgba(65, 65, 65, 0.739);
 }
 

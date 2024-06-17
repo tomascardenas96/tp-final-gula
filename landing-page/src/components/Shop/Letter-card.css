@@ -1,0 +1,71 @@
+.letter-card_container {
+  width: 100%;
+  height: 19rem;
+  display: flex;
+  justify-content: end;
+  padding-right: 3rem;
+  /* background-color: red; */
+}
+
+.letter-card {
+  width: 86%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 19.5rem 1fr;
+  border: 1px outset rgba(0, 0, 0, 0.338);
+  border-radius: 0.1rem;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.letter-card_food-picture {
+  width: 100%;
+  padding: 0.2rem 0 0.2rem 0.2rem;
+}
+
+.letter-card_food-picture > img {
+  width: 100%;
+  height: 18.6rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.2rem 0 0 0.2rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.406);
+  padding-right: .2rem;
+}
+
+.letter-card_food-description {
+  display: grid;
+  grid-template-rows: 4rem 1fr 7rem;
+  padding: 0.5rem 0.9rem;
+}
+
+.food-description_name > h1,
+.food-description_review > p,
+.food-description_price > p {
+  font-family: var(--secondary-font);
+  color: rgba(0, 0, 0, 0.634);
+}
+
+.food-description_name {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.food-description_review {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.food-description_price {
+  display: grid;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.food-description_price > p {
+  font-weight: 500;
+}
