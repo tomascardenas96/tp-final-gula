@@ -24,7 +24,10 @@ export class Food {
   @Column()
   stock: number;
 
-  @Column({default: 'https://img.freepik.com/vector-gratis/deliciosa-comida-rapida-estilo-pop-art_24908-61615.jpg?size=338&ext=jpg&ga=GA1.1.117944100.1709856000&semt=ais'})
+  @Column({
+    default:
+      'https://img.freepik.com/vector-gratis/deliciosa-comida-rapida-estilo-pop-art_24908-61615.jpg?size=338&ext=jpg&ga=GA1.1.117944100.1709856000&semt=ais',
+  })
   image: string;
 
   @Column()
