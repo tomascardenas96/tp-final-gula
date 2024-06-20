@@ -1,7 +1,7 @@
-import useGetAllCategories from "../../hooks/useGetAllCategories";
+import useGetAllCategories from "../../../hooks/useGetAllCategories";
 import LetterCard from "./Letter-card";
 import React, { useEffect } from "react";
-import useGetFoodByCategoryAndShop from "../../hooks/useGetFoodByCategoryAndShop";
+import useGetFoodByCategoryAndShop from "../../../hooks/useGetFoodByCategoryAndShop";
 import "./Shop-letter.css";
 
 function ShopLetter() {

@@ -1,5 +1,5 @@
 import React from "react";
-import useGetPostsByShop from "../../hooks/useGetPostsByShop";
+import useGetPostsByShop from "../../../hooks/useGetPostsByShop";
 import "./Shop-profile-posts.css";
 import ShopPost from "./Shop-post";
 

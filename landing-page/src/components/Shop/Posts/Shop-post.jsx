@@ -7,7 +7,7 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 import { MdOutlineModeComment } from "react-icons/md";
 import { MdReportGmailerrorred } from "react-icons/md";
 import React from "react";
-import useGetShopByProfileName from "../../hooks/useGetShopByProfileName";
+import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
 
 function ShopPost({ description, image }) {
   const { shopByProfileName } = useGetShopByProfileName();

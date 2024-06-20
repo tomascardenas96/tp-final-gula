@@ -1,5 +1,5 @@
 import React from "react";
-import useGetShopByProfileName from "../../hooks/useGetShopByProfileName";
+import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
 import { FaCamera } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineRestaurantMenu } from "react-icons/md";

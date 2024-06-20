@@ -6,7 +6,10 @@ function LetterCard({ description, review, price, image }) {
     <div className="letter-card_container">
       <div className="letter-card">
         <div className="letter-card_food-picture">
-          <img src={image} alt="" />
+          <img
+            src={`http://localhost:3070/assets/uploads/shop/food/${image}`}
+            alt=""
+          />
         </div>
         <div className="letter-card_food-description">
           <div className="food-description_name">

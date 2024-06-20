@@ -8,7 +8,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
-import useGetShopByProfileName from "../../hooks/useGetShopByProfileName";
+import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
 
 function ShopInfo() {
   const {

@@ -2,10 +2,12 @@ import { GiFullPizza } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import React from "react";
+import useGetProfile from "../../../hooks/useGetProfile";
 import "./Shop-header.css";
 
 function ShopHeader() {
   const navigate = useNavigate();
+  const { userImageURL } = useGetProfile();
 
   return (
     <div className="shop-header_container">
@@ -18,11 +20,12 @@ function ShopHeader() {
         <img
           src="../../../assets/images/Logo-gula-bg.png"
           alt="shop-profile-gula"
+          onClick={() => navigate("/")}
         />
       </div>
       <div className="shop-header_user">
         <div className="shop-header_user-divider"></div>
-        <img src="../../../assets/images/papas-fritas.jpg" alt="" />
+        <img src={userImageURL} alt="profile-picture_shop-profile-page-gula" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import useGetAllCategories from "../../../hooks/useGetAllCategories";
 import React from "react";
-import ShopCategories from "../Shop-categories";
+import ShopCategories from "./Shop-categories";
 import "./Category-list.css";
 
 function CategoryList() {
