@@ -128,4 +128,14 @@ export class FoodService {
       );
     }
   }
+
+  findFoodById(foodId: number) {
+    try {
+      return this.foodRepository.findOne({ where: { foodId } });
+    } catch (err) {
+      throw new BadGatewayException(
+        'Food service: error finding food by id - findFoodById method',
+      );
+    }
+  }
 }
