@@ -6,19 +6,30 @@ import { Category } from './entities/category.entity';
 
 describe('CategoryService', () => {
   let service: CategoryService;
+  //creo instancias mock de los distintos servicios a utilizar
+  let categoryServiceMock:any;
 
   beforeEach(async () => {
-    const categoryRepositoryMock={
-      create:jest.fn(),
-      findAllCategories:jest.fn(),
+    //base de method para el mock de categoryService
+    const basecategoryServiceMock={
+      create:jest.fn(),//aun sin uso
+      find:jest.fn(),
+      findOne:jest.fn(),
     };
+    //mock que contiene los metodos del servicio categoryService
+    categoryServiceMock={
+      ...basecategoryServiceMock,
+      findAllCategories:jest.fn(),
+      findCategoryByName:jest.fn(),
+    }
+
     //hirian conecciones a otra tabla,fijate en entidad? OneToOne
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CategoryService,
         {
           provide:getRepositoryToken(Category),
-          useValue:categoryRepositoryMock,
+          useValue:categoryServiceMock,
         }
         //en caso de que vayan agregamos aca los provider
       ],

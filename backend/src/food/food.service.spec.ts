@@ -147,20 +147,17 @@ describe('FoodService', () => {
     ];
     //configuracion del test
     // al usar el metodo find debe devolver un array de food
-    foodServiceMock.find.mockReturnValue(foods[0],foods[1]);
+    foodServiceMock.find.mockReturnValue([foods[0],foods[1]]);
     //llamamos al metodo del servicio
     const result= await service.findFoodByQuery(query1);
     //console.log('esto es result',result)
-    /*expect(foodServiceMock.find).toHaveBeenCalledWith({
+    expect(foodServiceMock.find).toHaveBeenCalledWith({
       where:{
         description:ILike(`%${query1}%`), stock: MoreThan(0)},
         relations:['shop'],
       });
-      expect(result).toEqual([foods[0], foods[1]]); */ 
-      //#################################
-      //porque result recibe solo 1 objeto si hay dos que contienen la query?
-      //#################################
-    })//final it 
+      expect(result).toEqual([foods[0], foods[1]]);
+    });//final it 
 
     it('should throw a ForbiddenException if an error occurs', async () => {
       const query = 'burger';
@@ -192,12 +189,17 @@ describe('FoodService', () => {
           },
         ];
         //configuracion de la prueba
+        //configuramos para:
+        // Cuando se llame al metodo findCategoryByName de category.service resuelva con una categoria
         categoryServiceMock.findCategoryByName.mockResolvedValue(foundCategory);
+        //cuando se llame a getShopByProfileName shop.service resuelva con una tienda
         shopServiceMock.getShopByProfileName.mockResolvedValue(shop);
-        foodServiceMock.find.mockResolvedValue(foods);
+        //cuando se llame al metodo find incluido en el metodo findFoodByShopAndCategory de foodService resuelva con una array de comidas
+        foodServiceMock.find.mockResolvedValue(foods);//foods es un array de comidas
 
+        //llamado al metodo del servico con parametros correctos
         const result= await service.findFoodByShopAndCategory(profilename,category);
-
+        
         expect(categoryServiceMock.findCategoryByName).toHaveBeenCalledWith(category);
         expect(shopServiceMock.getShopByProfileName).toHaveBeenCalledWith(profilename);
         expect(foodServiceMock.find).toHaveBeenCalledWith({
