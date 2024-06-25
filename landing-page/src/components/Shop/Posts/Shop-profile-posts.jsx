@@ -1,10 +1,13 @@
 import React from "react";
 import useGetPostsByShop from "../../../hooks/useGetPostsByShop";
-import "./Shop-profile-posts.css";
 import ShopPost from "./Shop-post";
+import PostCard from "../../Home/HomePosts/PostCard";
+import "./Shop-profile-posts.css";
+import useGetPosts from "../../../hooks/useGetPosts";
 
 function ShopProfilePosts() {
   const { posts, postsLoading, postsError } = useGetPostsByShop();
+  const { timeElapsed } = useGetPosts();
 
   return (
     <>
@@ -18,6 +21,7 @@ function ShopProfilePosts() {
               key={post.postId}
               description={post.description}
               image={post.image}
+              time={timeElapsed(post.postedAt)}
             />
           ))}
         <h1 className="shop-posts_no-more-posts">No hay mas publicaciones.</h1>

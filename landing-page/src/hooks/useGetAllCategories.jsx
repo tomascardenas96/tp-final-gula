@@ -40,7 +40,7 @@ function useGetAllCategories() {
         });
         const data = await response.json();
         if (data.error) {
-          throw new Error(data);
+          throw new Error(data.message);
         }
         setCategories(data);
       } catch (err) {

@@ -3,39 +3,18 @@ import Spinner from "../../Common/Spinner/Spinner.jsx";
 import PostCard from "./PostCard.jsx";
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
 import NewPost from "./NewPost.jsx";
+import Advertise from "../Advertise/Advertise.jsx";
 import "./HomePosts.css";
+import ShopPost from "../../Shop/Posts/Shop-post.jsx";
 
 function HomePosts() {
   const { posts, postsLoading, postsError, timeElapsed } = useGetPosts();
 
   return (
     <section className="home-posts_container" id="posts">
-      <div className="home-posts_advice">
-        <img
-          className="home-posts_advice-3"
-          src="../../../../assets/videos/advice.gif"
-          alt="Descripción de la imagen"
-        />
-        <img
-          className="home-posts_advice-3"
-          src="../../../../assets/videos/advice-2.gif"
-          alt="Descripción de la imagen"
-        />
-        <img
-          className="home-posts_advice-3"
-          src="../../../../assets/videos/advice-3.gif"
-          alt="Descripción de la imagen"
-        />
-        <img
-          className="home-posts_advice-3"
-          src="../../../../assets/videos/advice-4.gif"
-          alt="Descripción de la imagen"
-        />
-      </div>
       <main className="home-posts">
         <div className="home-posts_section">
-          <div className="home-posts_section-line"></div>
-          <h1 >Publicaciones</h1>
+          <h1>Publicaciones</h1>
         </div>
         <div className="home-posts_new-post_container">
           <NewPost />
@@ -45,15 +24,14 @@ function HomePosts() {
             .slice()
             .reverse()
             .map((post) => (
-              <PostCard
-                className="prueba"
+              <ShopPost
                 key={post.postId}
                 profilePicture={post.shop.picture}
-                profilename={post.shop.profilename}
+                profileName={post.shop.profilename}
                 name={post.shop.name}
                 image={post.image}
                 time={timeElapsed(post.postedAt)}
-                body={post.description}
+                description={post.description}
                 stars={post.stars}
               />
             ))}

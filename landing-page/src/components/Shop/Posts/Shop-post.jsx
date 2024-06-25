@@ -6,25 +6,38 @@ import { MdOutlineStarOutline } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { MdOutlineModeComment } from "react-icons/md";
 import { MdReportGmailerrorred } from "react-icons/md";
-import React from "react";
 import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
+import React from "react";
 
-function ShopPost({ description, image }) {
+function ShopPost({
+  profilePicture,
+  description,
+  image,
+  profileName,
+  name,
+  time,
+}) {
   const { shopByProfileName } = useGetShopByProfileName();
 
   return (
     <article className="shop-post_container">
       <div className="shop-post_left">
+        {/* Este componentes se utiliza para los posts de la pagina home y para el perfil de los shops */}
         <img
-          src={`http://localhost:3070/assets/uploads/shop/profile/${shopByProfileName.picture}`}
+          src={
+            profilePicture
+              ? `http://localhost:3070/assets/uploads/shop/profile/${profilePicture}`
+              : `http://localhost:3070/assets/uploads/shop/profile/${shopByProfileName.picture}`
+          }
           alt=""
         />
       </div>
       <div className="shop-post_right">
         <div className="right_header">
-          <p>{shopByProfileName.name}</p>
+          <p>{name ? name : shopByProfileName.name}</p>
           <span>
-            @{shopByProfileName.profilename} <LuDot /> 1d
+            @{profileName ? profileName : shopByProfileName.name} <LuDot />{" "}
+            {time}
           </span>
         </div>
         <div className="right_options">

@@ -5,6 +5,7 @@ import Spinner from "../../Common/Spinner/Spinner.jsx";
 import "./FoodFilter.css";
 import useGetFoodByFilter from "../../../hooks/useGetFoodByFilter";
 import { IoMdClose } from "react-icons/io";
+import useAddFoodOnCart from "../../../hooks/useAddFoodOnCart.jsx";
 
 function FoodFilter() {
   const {
@@ -17,6 +18,8 @@ function FoodFilter() {
     isEmptyField,
     cleanInput,
   } = useGetFoodByFilter();
+
+  const { addFoodOnCart } = useAddFoodOnCart();
 
   return (
     <section className="food-filter_container">
@@ -65,7 +68,9 @@ function FoodFilter() {
                       {food.shop?.name}
                     </li>
                     <li className="results-list_card-cart list-card_item">
-                      <MdOutlineShoppingCart />
+                      <MdOutlineShoppingCart
+                        onClick={() => addFoodOnCart(food.foodId, 1)}
+                      />
                     </li>
                   </ul>
                 ))

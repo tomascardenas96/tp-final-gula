@@ -55,7 +55,9 @@ function NewFood() {
         >
           <option value="">Seleccione una categoria</option>
           {categories?.map((category) => (
-            <option value={category.description}>{category.description}</option>
+            <option key={category.categoryId} value={category.description}>
+              {category.description}
+            </option>
           ))}
         </select>
         <label htmlFor="image">Foto</label>
