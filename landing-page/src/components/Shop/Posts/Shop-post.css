@@ -96,10 +96,6 @@
   cursor: pointer;
 }
 
-.right_comments {
-  /* background-color: lightpink; */
-}
-
 .right_comments .like-comments_container {
   display: flex;
   gap: 1rem;

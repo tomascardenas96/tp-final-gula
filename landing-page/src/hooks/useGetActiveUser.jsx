@@ -5,6 +5,7 @@ function useGetActiveUser() {
   const [activeUser, setActiveUser] = useState({});
   const [activeuserError, setActiveUserError] = useState(null);
   const [activeuserLoading, setActiveUserLoading] = useState(false);
+  const [isShopOwner, setIsShopOwner] = useState(false);
 
   useEffect(() => {
     async function getActiveUser() {
@@ -32,7 +33,22 @@ function useGetActiveUser() {
     getActiveUser();
   }, [token]);
 
-  return { activeUser, activeuserError, activeuserLoading };
+  //Metodo para verificar si el usuario es propietario del negocio.
+  const isOwnerOfThisShop = (shop) => {
+    if (activeUser.userId === shop.user?.userId) {
+      setIsShopOwner(true);
+    } else {
+      setIsShopOwner(false);
+    }
+  };
+
+  return {
+    activeUser,
+    activeuserError,
+    activeuserLoading,
+    isOwnerOfThisShop,
+    isShopOwner,
+  };
 }
 
 export default useGetActiveUser;

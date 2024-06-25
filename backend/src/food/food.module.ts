@@ -10,5 +10,6 @@ import { ShopModule } from 'src/shop/shop.module';
   imports: [TypeOrmModule.forFeature([Food]), CategoryModule, ShopModule],
   controllers: [FoodController],
   providers: [FoodService],
+  exports: [FoodService]
 })
 export class FoodModule {}

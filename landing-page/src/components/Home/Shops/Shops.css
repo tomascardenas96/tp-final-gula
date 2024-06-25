@@ -1,34 +1,31 @@
 .shops_container {
   grid-area: shop;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
+  display: grid;
   gap: 1.5rem;
-  margin-top: .5rem;
-  /* background-color: red; */
   height: 100%;
+  grid-template-rows: 2rem 12.5rem;
+  padding-top: 0.9rem;
 }
 
 .shops_container h1 {
   font-size: 1.5rem;
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.634);
+  display: grid;
+  place-content: center;
 }
 
 .shops_container .shop_cards {
   height: max-content;
-  width: 92%;
+  width: 70rem;
   display: flex;
   gap: 2rem;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 0.5rem 0 0.5rem 3.5%;
-  padding-left: 3.1%;
-  padding-right: 1%;
   height: 100%;
   overflow-y: hidden;
+  justify-self: center;
 }
 
 .shops_container .shop_cards .shop_cards-spinner {

@@ -1,0 +1,27 @@
+.advertise_container {
+  grid-area: advertise;
+  display: grid;
+  grid-template-rows: 2rem 1fr;
+}
+
+.advertise_container h1 {
+  font-family: var(--secondary-font);
+  display: grid;
+  place-content: center;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.634);
+}
+
+.advertise_container .advertise {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0 0.2rem;
+  gap: 0.3rem;
+}
+
+.advertise_container .advertise > img {
+  width: 100%;
+  height: 80%;
+  margin-top: 2.2rem;
+  border-radius: 0.1rem;
+}

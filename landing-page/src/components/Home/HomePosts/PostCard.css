@@ -23,8 +23,9 @@
   overflow: hidden;
   animation: maximize-card 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-bottom: none;
   padding: 0.5rem 0;
+  border-left: none;
+  border-right: none;
 }
 
 @keyframes maximize-card {

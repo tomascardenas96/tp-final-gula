@@ -57,6 +57,7 @@
   top: 50%;
   left: 55.5%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .shop-header_user {

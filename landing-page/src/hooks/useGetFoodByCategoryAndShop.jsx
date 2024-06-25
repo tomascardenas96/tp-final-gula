@@ -39,7 +39,6 @@ function useGetFoodByCategoryAndShop() {
             category: result.category,
           }))
         );
-        console.log(allFood);
         setFood(allFood);
       } catch (err) {
         setFoodError(err);

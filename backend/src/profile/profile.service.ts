@@ -17,13 +17,14 @@ export class ProfileService {
     private readonly profileRepository: Repository<Profile>,
   ) {}
 
-  //Metodo utilizado en la creacion del usuario (userService) para crear un nuevo perfil automaticamente cuando se crea el usuario, asignandoselo al mismo.
+  //Metodo utilizado en la creacion del usuario (userService) para crear un nuevo perfil automaticamente cuando se crea el usuario, asignandoselo al mismo. (Utilizado en el service de User)
   create(profileDto: CreateProfileDto): Promise<Profile> {
     const profile: Profile = this.profileRepository.create({ ...profileDto });
 
     return this.profileRepository.save(profile);
   }
 
+  //Metodo utilizado en el servicio de User, en el metodo llamado 'findProfileByActiveUser'
   findProfileByUser(user: User): Promise<Profile> {
     try {
       return this.profileRepository.findOne({
@@ -36,6 +37,7 @@ export class ProfileService {
     }
   }
 
+  //Metodo utilizado en el servicio de User, sirve para actualizar los datos de perfil del usuario.
   async updateActiveUserProfile(
     file: Express.Multer.File,
     user: User,

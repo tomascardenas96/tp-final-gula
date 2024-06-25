@@ -30,4 +30,26 @@ describe('CategoryController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+
+  describe('findAll', () => {
+    it('should call categoryService.findAllCategories and return the result', async () => {
+      //mock de las categorias
+      const categories:Category[]= [{
+        categoryId:1,
+        description: 'Pasta',
+        food: [],
+      },{
+        categoryId:2,
+        description:'Panchos',
+        food:[]
+      }];
+      //configuramos el mock para que cuando llame al metodo findAllCategories resuelva con un array de categorias
+      jest.spyOn(service, 'findAllCategories').mockResolvedValue(categories);
+      //esperamos que cuando el controlador ejecute findAll devuelba un array de categorias
+      expect(await controller.findAll()).toBe(categories);
+      //esperamos que el metodo findAllCategories sea llamado
+      expect(service.findAllCategories).toHaveBeenCalled();
+    });
+  });
 });

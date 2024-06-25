@@ -1,6 +1,4 @@
 import "./Shop-info.css";
-import { FiClock } from "react-icons/fi";
-import { IoMdCall } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -8,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
-import useGetShopByProfileName from "../../hooks/useGetShopByProfileName";
+import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
 
 function ShopInfo() {
   const {

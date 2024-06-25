@@ -6,7 +6,7 @@
 
 .shop-letter_category {
   display: grid;
-  grid-template-rows: 7rem 1fr;
+  grid-template-rows: 5rem 1fr;
   /* background-color: red; */
 }
 
@@ -16,7 +16,7 @@
   display: grid;
   place-content: center;
   font-family: var(--secondary-font);
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   color: rgba(0, 0, 0, 0.634);
 }
 

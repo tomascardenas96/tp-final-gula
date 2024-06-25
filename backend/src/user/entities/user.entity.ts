@@ -30,7 +30,10 @@ export class User {
   @OneToMany(() => Shop, (shop) => shop.user, { onDelete: 'CASCADE' })
   shop: Shop[];
 
-  @OneToOne(() => Cart, (cart) => cart.user, { onDelete: 'CASCADE' })
+  @OneToOne(() => Cart, (cart) => cart.user, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   @JoinColumn({ name: 'cart' })
   cart: Cart;
 

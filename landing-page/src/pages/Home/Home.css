@@ -1,7 +1,7 @@
 .home-page_container {
   width: 100%;
   display: grid;
-  grid-template-rows: 3rem 1.6rem 15rem 15rem 18rem 1fr 15rem;
+  grid-template-rows: 3rem 1.6rem 15rem 15rem 17.2rem 35rem 1fr 15rem;
   grid-template-columns: 17rem minmax(750px, 1fr) 3rem;
   grid-template-areas:
     "header header header"
@@ -9,6 +9,7 @@
     "sider-menu filter sider-settings"
     "sider-menu categories sider-settings"
     "sider-menu shop sider-settings"
+    "sider-menu advertise sider-settings"
     "sider-menu posts sider-settings"
     "sider-menu footer sider-settings";
   background-color: #ffffff;

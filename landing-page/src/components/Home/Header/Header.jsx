@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri";
 import { GiFullPizza } from "react-icons/gi";
 import { removeHeaderContext } from "../Siders/SiderContext";
 import { IoMdClose } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import { GoDotFill } from "react-icons/go";
 import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import useGetProfile from "../../../hooks/useGetProfile";
 import "./Header.css";
@@ -20,6 +22,7 @@ function Header() {
   } = useGetUsersAndShopsByQuery();
   const { isRemovedHeader } = useContext(removeHeaderContext);
   const { userImageURL } = useGetProfile();
+  const navigate = useNavigate();
 
   return (
     <header
@@ -36,7 +39,7 @@ function Header() {
               <input
                 type="text"
                 className="header-search-input"
-                placeholder="Buscar en Gula"
+                placeholder="Buscar comercios"
                 onChange={handleChangeHeaderFilter}
                 value={filterInput}
               />
@@ -51,36 +54,33 @@ function Header() {
               {!isEmptyField && (
                 <div className="header-search_results-list">
                   <ul className="header-search_results-container">
-                    {headerFilter.shops?.length > 0 ||
-                    headerFilter.users?.length > 0 ? (
+                    {headerFilter.shops?.length > 0 ? (
                       <>
                         {headerFilter.shops &&
                           headerFilter.shops.map((shop) => (
-                            <div key={shop.profilename}>
-                              <div className="header-search_results-divider"></div>
-                              <li>
-                                <img src={shop.picture} alt="" />
-                              </li>
-                              <div>
-                                <li>{shop?.name}</li>
-                                <li className="type-search">Comercio</li>
-                              </div>
-                            </div>
-                          ))}
-
-                        {headerFilter.users &&
-                          headerFilter.users.map((user) => (
-                            <div key={user.userId}>
+                            <div
+                              key={shop.profilename}
+                              className="results_cards"
+                              onClick={() =>
+                                navigate(`/shop/${shop.profilename}`)
+                              }
+                            >
                               <div className="header-search_results-divider"></div>
                               <li>
                                 <img
-                                  src="https://www.profilebakery.com/wp-content/uploads/2023/04/LINKEDIN-Profile-Picture-AI.jpg"
+                                  src={`http://localhost:3070/assets/uploads/shop/profile/${shop.picture}`}
                                   alt=""
                                 />
                               </li>
                               <div>
-                                <li>{user?.name}</li>
-                                <li className="type-search">Persona</li>
+                                <li>{shop?.name}</li>
+                                <li className="type-search">
+                                  Abierto ahora{" "}
+                                  <GoDotFill className="result_shop-state-icon" />
+                                </li>
+                              </div>
+                              <div className="results_cards-arrow">
+                                <IoIosArrowForward />
                               </div>
                             </div>
                           ))}
@@ -90,14 +90,13 @@ function Header() {
                         No hay resultados
                       </p>
                     )}
-                    {!headerFilter.shops?.length ||
-                      (!headerFilter.users?.length && (
-                        <div className="header-search_results_see-more">
-                          <li>
-                            <a href="">Ver mas</a>
-                          </li>
-                        </div>
-                      ))}
+                    {headerFilter.shops?.length > 0 && (
+                      <div className="header-search_results_see-more">
+                        <li>
+                          <a href="">Ver mas</a>
+                        </li>
+                      </div>
+                    )}
                   </ul>
                 </div>
               )}
