@@ -138,4 +138,29 @@ export class FoodService {
       );
     }
   }
+
+  //Metodo de Gaston Nro 1:
+  //Trae todas las opciones de comida disponible.
+  async findAllFoods(): Promise<Food[]> {
+    try {
+      return await this.foodRepository.find({ relations: ['shop', 'category'] });
+    } catch (err) {
+      throw new ForbiddenException('Food service: error getting all foods');
+    }
+  }
+  
+  //Metodo de Gaston Nro 2:
+  // Método para encontrar alimentos por categoryId.
+  //Esto lo uso para discriminar las comidas por categorias, para  usarla en el slider de iconos de comidas y que te traiga, por ejemplo las opciones de la categoria Pizzas.
+   async findFoodsByCategoryId(categoryId: number): Promise<Food[]> {
+    try {
+      return await this.foodRepository.find({
+        where: { category: { categoryId } }, // Uso correcto de la relación
+        relations: ['shop', 'category'],
+      });
+    } catch (err) {
+      throw new ForbiddenException('Food service: error getting foods by categoryId');
+    }
+  }
+
 }
