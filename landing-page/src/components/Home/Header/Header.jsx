@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
 import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import useGetProfile from "../../../hooks/useGetProfile";
+import Spinner from "../../Common/Spinner/Spinner";
 import "./Header.css";
 
 function Header() {
@@ -53,51 +54,57 @@ function Header() {
               )}
               {!isEmptyField && (
                 <div className="header-search_results-list">
-                  <ul className="header-search_results-container">
-                    {headerFilter.shops?.length > 0 ? (
-                      <>
-                        {headerFilter.shops &&
-                          headerFilter.shops.map((shop) => (
-                            <div
-                              key={shop.profilename}
-                              className="results_cards"
-                              onClick={() =>
-                                navigate(`/shop/${shop.profilename}`)
-                              }
-                            >
-                              <div className="header-search_results-divider"></div>
-                              <li>
-                                <img
-                                  src={`http://localhost:3070/assets/uploads/shop/profile/${shop.picture}`}
-                                  alt=""
-                                />
-                              </li>
-                              <div>
-                                <li>{shop?.name}</li>
-                                <li className="type-search">
-                                  Abierto ahora{" "}
-                                  <GoDotFill className="result_shop-state-icon" />
+                  {headerFilterLoading ? (
+                    <div className="header-filter_loading">
+                      <Spinner />
+                    </div>
+                  ) : (
+                    <ul className="header-search_results-container">
+                      {headerFilter.shops?.length > 0 ? (
+                        <>
+                          {headerFilter.shops &&
+                            headerFilter.shops.map((shop) => (
+                              <div
+                                key={shop.profilename}
+                                className="results_cards"
+                                onClick={() =>
+                                  navigate(`/shop/${shop.profilename}`)
+                                }
+                              >
+                                <div className="header-search_results-divider"></div>
+                                <li>
+                                  <img
+                                    src={`http://localhost:3070/assets/uploads/shop/profile/${shop.picture}`}
+                                    alt=""
+                                  />
                                 </li>
+                                <div>
+                                  <li>{shop?.name}</li>
+                                  <li className="type-search">
+                                    Abierto ahora{" "}
+                                    <GoDotFill className="result_shop-state-icon" />
+                                  </li>
+                                </div>
+                                <div className="results_cards-arrow">
+                                  <IoIosArrowForward />
+                                </div>
                               </div>
-                              <div className="results_cards-arrow">
-                                <IoIosArrowForward />
-                              </div>
-                            </div>
-                          ))}
-                      </>
-                    ) : (
-                      <p className="header-search-bar_no-results">
-                        No hay resultados
-                      </p>
-                    )}
-                    {headerFilter.shops?.length > 0 && (
-                      <div className="header-search_results_see-more">
-                        <li>
-                          <a href="">Ver mas</a>
-                        </li>
-                      </div>
-                    )}
-                  </ul>
+                            ))}
+                        </>
+                      ) : (
+                        <p className="header-search-bar_no-results">
+                          No hay resultados
+                        </p>
+                      )}
+                      {headerFilter.shops?.length > 0 && (
+                        <div className="header-search_results_see-more">
+                          <li>
+                            <a href="">Ver mas</a>
+                          </li>
+                        </div>
+                      )}
+                    </ul>
+                  )}
                 </div>
               )}
               {isEmptyField && <RiSearchLine className="header-search-icon" />}

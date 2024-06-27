@@ -134,6 +134,26 @@
   overflow-y: auto;
 }
 
+.header-filter_loading {
+  width: 100%;
+  height: 2rem;
+}
+
+/* Spinner de carga */
+.header-filter_loading .loadership_CWZLE {
+  width: 100%;
+  height: 100%;
+}
+
+.header-filter_loading .loadership_CWZLE div {
+  top: 16%;
+  left: 45%;
+  width: 25px;
+  height: 25px;
+  border: 4px solid #75747433;
+}
+/* Spinner de carga */
+
 .header-search_results-container {
   display: grid;
   gap: 0.2rem;
