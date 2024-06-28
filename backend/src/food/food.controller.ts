@@ -81,4 +81,10 @@ export class FoodController {
   findFoodsByCategoryId(@Param('categoryId') categoryId: number) {
     return this.foodService.findFoodsByCategoryId(categoryId);
   }
+
+  //Metodo de Gaston Nro 3:
+  @Get('by-shop/:shopId')
+  findFoodsByshopId(@Param('shopId') shopId: number) {
+    return this.foodService.findFoodsByshopyId(shopId);
+  }
 }

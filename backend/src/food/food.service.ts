@@ -143,7 +143,7 @@ export class FoodService {
   //Trae todas las opciones de comida disponible.
   async findAllFoods(): Promise<Food[]> {
     try {
-      return await this.foodRepository.find({ relations: ['shop', 'category'] });
+      return await this.foodRepository.find();
     } catch (err) {
       throw new ForbiddenException('Food service: error getting all foods');
     }
@@ -160,6 +160,20 @@ export class FoodService {
       });
     } catch (err) {
       throw new ForbiddenException('Food service: error getting foods by categoryId');
+    }
+  }
+
+   //Metodo de Gaston Nro 3:
+   // Método para encontrar alimentos por shopId.
+   // Este metodo trae las comidas disponibles de cada lugar, para ser mostradas en el slider de lugares.
+  async findFoodsByshopyId(shopId: number): Promise<Food[]> {
+    try {
+      return await this.foodRepository.find({
+        where: { shop: { shopId } }, 
+        relations: ['shop'],
+      });
+    } catch (err) {
+      throw new ForbiddenException('Food service: error getting foods by shopId');
     }
   }
 
