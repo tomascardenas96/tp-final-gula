@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CreateFoodDto {
   @IsString()
@@ -11,7 +11,7 @@ export class CreateFoodDto {
   stock: string;
 
   @IsOptional()
-  image: Express.Multer.File;
+  image?: Express.Multer.File;
 
   @IsString()
   review: string;

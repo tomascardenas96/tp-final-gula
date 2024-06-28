@@ -44,6 +44,7 @@ describe('ShopService', () => {
     shopRepositoryMock={
       ...baseShopRepositoryMock,
       find:jest.fn(),
+      findOne:jest.fn(),
       findOneBy:jest.fn(),
       save:jest.fn(),
       //fijate si hay mas que agregar a medidada que se vayan creando
@@ -389,6 +390,39 @@ describe('getShopByName',()=>{
 //agregar para exepciones cuando tomy finalice el metodo.
 });//final describe
 
+
+describe('getShopByProfileName', () => {
+  it('should return a shop with profilename', async () => {
+    //mock del parametro a utilizar
+    const profilename = 'testProfile';
+    //mock del objeto esperado como resultado
+    const shop = new Shop();
+    //asignamos al objeto el mock del nombre a buscar
+    shop.profilename = profilename;
+
+    //configuracion: cuando se utilize findOne esperamos que se resuelva con una tienda
+    jest.spyOn(shopRepositoryMock, 'findOne').mockResolvedValue(shop);
+
+    //llamado al metodo del servicio con el parametro correcto
+    const result = await service.getShopByProfileName(profilename);
+
+    //verificamos que se llama al metodo con el parametro correcto
+    expect(shopRepositoryMock.findOne).toHaveBeenCalledWith({ where: { profilename } });
+    //verificamos que el resultado obtenido es igual al esperado
+    expect(result).toEqual(shop);
+  });
+
+  it('should throw BadGatewayException on error', async () => {
+    //mock del parametro a utilizar
+    const profilename = 'testProfile';
+    //configuracion: cuando se utilize el metodo debe arrojar una exception
+    jest.spyOn(shopRepositoryMock, 'findOne').mockRejectedValue(new BadGatewayException);
+    //llamamos al metodo del servicio con el aprametro correcto
+    //verificamos que arroja una exception
+    await expect(service.getShopByProfileName(profilename)).rejects.toThrow(
+      BadGatewayException); 
+  });
+});
 //======================================================================
 //funciona mal pedir ayuda!
 //======================================================================

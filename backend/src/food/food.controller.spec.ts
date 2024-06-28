@@ -15,6 +15,8 @@ import { Shop } from 'src/shop/entities/shop.entity';
 import { Category } from 'src/category/entities/category.entity';
 import { Profile } from 'src/profile/entities/profile.entity';
 import { JwtService } from '@nestjs/jwt';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { CreateFoodDto } from './dto/create-food.dto';
 
 describe('FoodController', () => {
   let controller: FoodController;
@@ -64,6 +66,46 @@ describe('FoodController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('createNewFood', () => {
+    it('should call foodService.createNewFood with correct parameters', async () => {
+      //mock de los parametros a utilizar
+      const file: Express.Multer.File={filename:'test.jpg'} as any;
+
+      const mockNewFood: CreateFoodDto = {
+        description: 'Pizza',
+        price: '10',
+        stock: '5',
+        review: 'Delicious!',
+        category: 'Italian',
+      };
+      const mockActiveUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      const mockShopProfile = 'pizzashop';
+      //mock del resultado esperado al utilizar el metodo
+      const result: Food = {
+        foodId: 1,
+        description: 'Test food',
+        price: 10,
+        stock: 5,
+        review: 'Delicious',
+        category:{description:'category'}as Category,
+        shop: {name:'pizzashop'} as Shop,
+        image: file.filename,
+        cart: [],
+      };
+      //configuracion: al llamar al metodo del servicio debe crear una comida
+      jest.spyOn(service, 'createNewFood').mockImplementation(async()=>result);
+      //esperamos que el controlador use los parametros correctos para llamar al servicio
+      expect(await controller.createNewFood(file, mockNewFood, mockActiveUser, mockShopProfile)).toBe(result);
+      //esperamos que el servicio sea llamado con los parametros correctos
+      expect(service.createNewFood).toHaveBeenCalledWith(file, mockShopProfile, mockNewFood, mockActiveUser);
+    });
+  });
+
   describe('findFoodByQuery',()=>{
     it('should call foodService.findFoodbyQuery with the correct parameters',async ()=>{
       const food=' pizza';
@@ -142,4 +184,29 @@ describe('FoodController', () => {
       expect(response).toEqual(result);
     });//final it
   });//final decribe
-});
+
+  describe('findAllFoods', () => {
+    it('should call foodService.findAllFoods', async () => {
+      //configuracion: espiamos al servicio y esperamos que se resuleva con un array
+      const findAllFoodsSpy = jest.spyOn(service, 'findAllFoods').mockResolvedValue([]);
+      //llamamos al metodo desde el controlador
+      await controller.findAllFoods();  
+      //espeamos que el metodo findAllFoods haya sido llamado 
+      expect(findAllFoodsSpy).toHaveBeenCalled();
+    });//final it
+  }); //final describe
+
+  describe('findFoodsByCategoryId', () => {
+    it('should call foodService.findFoodsByCategoryId with correct parameters', async () => {
+      //mock del parametro a utilizar
+      const categoryId = 1;
+      //configuracion: llamado al metodo del servicio, debe resolver con un array
+      const findFoodsByCategoryIdSpy = jest.spyOn(service, 'findFoodsByCategoryId').mockResolvedValue([]);
+      //pasamos el parametro correcto al metodo del controlador
+      await controller.findFoodsByCategoryId(categoryId);
+      //esperamos que el servicio sea llamado con el parametro correcto
+      expect(findFoodsByCategoryIdSpy).toHaveBeenCalledWith(categoryId);
+    });//final it
+  });//final describe
+
+});//final

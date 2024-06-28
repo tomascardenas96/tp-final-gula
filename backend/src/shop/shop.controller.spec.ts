@@ -64,7 +64,7 @@ describe('ShopController', () => {
     expect(controller).toBeDefined();
   });
 //////no funciona porque no esta echo el metodo aun
-  describe('create',()=>{
+  describe('createNewShop',()=>{
     it('should call shop.service.create with the correct parameters', async ()=>{
       //mock de una tienda
       //mock de una interface de usuario activo
@@ -225,6 +225,16 @@ describe('ShopController', () => {
       expect(service.findShopByQuery).toHaveBeenCalledWith(shop); 
       
     });//final it
-  });//final describe                ////revisar
+  });//final describe 
   
+  it('should call shopService.getShopByProfileName with correct parameters', async () => {
+    //mock del parametro a utilizar
+    const profilename = 'testProfile';
+    //configuracion: se espia al metodo del servicio y debe con null
+    jest.spyOn(service, 'getShopByProfileName').mockResolvedValue(null);
+    //se llama al controllador con el parametro indicado
+    await controller.findShopByProfileName(profilename);
+    //se verifica que el metodo del servicio esta siendo llamado con el paramtro correcto
+    expect(service.getShopByProfileName).toHaveBeenCalledWith(profilename);
+  });
 });//FINAL 
