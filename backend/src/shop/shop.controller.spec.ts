@@ -5,17 +5,17 @@ import { Shop } from './entities/shop.entity';
 //agrego importaciones
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserService } from 'src/user/user.service';
-import { User } from 'src/user/entities/user.entity';
-import { ProfileService } from 'src/profile/profile.service';
-import { PostService } from 'src/post/post.service';
-import { CartService } from 'src/cart/cart.service';
-import { Cart } from 'src/cart/entities/cart.entity';
-import { Profile } from 'src/profile/entities/profile.entity';
-import { Post } from 'src/post/entities/post.entity';
+import { UserService } from '../user/user.service';
+import { User } from '../user/entities/user.entity';
+import { ProfileService } from '../profile/profile.service';
+import { PostService } from '../post/post.service';
+import { CartService } from '../cart/cart.service';
+import { Cart } from '../cart/entities/cart.entity';
+import { Profile } from '../profile/entities/profile.entity';
+import { Post } from '../post/entities/post.entity';
 import { JwtService } from '@nestjs/jwt';
 import { CreateShopDto } from './dto/create-shop.dto';
-import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { ActiveUserInterface } from '../common/interface/active-user.interface';
 
 
 
