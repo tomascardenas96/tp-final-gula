@@ -19,8 +19,6 @@
   font-size: 1.3rem;
 }
 
-
-
 .settings-page_body-form
   > .settings-page_body-form_info-profile
   .info-profile_picture {
@@ -55,7 +53,16 @@
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.593);
   font-size: 0.9rem;
-  /* background-color: red; */
+}
+
+.settings-page_body-form
+  .info-profile_picture
+  label
+  > .info-profile_picture-photo {
+  display: flex;
+  height: 100%;
+  padding: 0;
+  align-items: center;
 }
 
 .settings-page_body-form .info-profile_picture-img {
@@ -69,29 +76,27 @@
   object-position: center;
 }
 
-.settings-page_body-form .info-profile_picture label {
-  display: flex;
-  align-self: end;
+.settings-page_body-form .info-profile_picture > label {
   width: 10rem;
   height: 2.5rem;
   margin-left: 1.2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   place-content: center;
   border: 2px solid rgba(0, 0, 0, 0.482);
-  border-radius: 0.1rem;
+  border-radius: 0.2rem;
   font-family: var(--secondary-font);
-  /* background-color: red; */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: end;
+  gap: .5rem;
 }
 
-.settings-page_body-form
-  .info-profile_picture
-  label
-  > .info-profile_picture-photo {
-  /* background-color: green; */
-  display: flex;
-  justify-content: end;
-  /* background-color: red; */
+.settings-page_body-form .info-profile_picture > label:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.settings-page_body-form .info-profile_picture > label:active {
+  background-color: rgb(255, 255, 255);
 }
 
 .settings-page_body-form
@@ -100,8 +105,7 @@
   > .info-profile_picture-icon {
   font-size: 0.8rem;
   height: 100%;
-  margin-left: 0.8rem;
-  color: rgba(0, 0, 0, 0.482);
+  color: rgba(0, 0, 0, 0.651);
 }
 
 .settings-page_body-form .info-profile_picture label input[type="file"] {

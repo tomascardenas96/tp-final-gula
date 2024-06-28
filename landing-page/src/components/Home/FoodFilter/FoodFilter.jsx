@@ -54,7 +54,7 @@ function FoodFilter() {
                     <div></div>
                     <li className="results-list_card-image list-card_item">
                       <img
-                        src={food.image}
+                        src={`http://localhost:3070/assets/uploads/shop/food/${food.image}`}
                         alt="gula-filter-foods_mini-image"
                       />
                     </li>
