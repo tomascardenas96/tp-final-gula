@@ -22,13 +22,13 @@ export class CartService {
     return this.cartRepository.save(cart);
   }
 
-  //Este metodo se utiliza en el service de User, para obtener el carrito del usuario que esta activo.
+  //Utilizado en el service de User, para obtener el carrito del usuario que esta activo.
+  //Tambien utilizado en el service de Payments.
   async getActiveCart(user: User): Promise<Cart> {
     try {
       const activeCart: Promise<Cart> = this.cartRepository.findOne({
         where: { cartId: user.cart.cartId },
       });
-
 
       if (!activeCart) {
         throw new NotFoundException(
@@ -44,15 +44,6 @@ export class CartService {
       throw new BadGatewayException(
         'Cart service: error getting active user cart - getActiveCart method',
       );
-    }
-  }
-
-  //Para eliminar toda la comida almacenada en el carrito, una vez generada la compra.
-  clearCart() {
-    try {
-      return this.cartRepository.delete({})
-    } catch(err) {
-
     }
   }
 }

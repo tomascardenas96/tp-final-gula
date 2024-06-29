@@ -13,6 +13,7 @@ import { SocketModule } from './socket/socket.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { ProfileModule } from './profile/profile.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       rootPath: join(__dirname, '..', 'assets'),
       serveRoot: '/assets',
     }),
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],

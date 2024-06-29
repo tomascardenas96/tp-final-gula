@@ -5,10 +5,8 @@ import "./SlideText.css";
 function SlideText() {
   const { activeUser, activeuserError, activeuserLoading } = useGetActiveUser();
 
-  console.log(activeUser.name)
-
   return (
-    <section className="slide-text_container">
+    <section className="slide-text_container" id="slider">
       <div className="slide-text">
         <p>
           {`!Hola ${activeUser.name}! te damos la bienvenida, Gula conecta a las personas con sus comidas

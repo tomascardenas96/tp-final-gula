@@ -1,0 +1,26 @@
+.cart_container {
+  width: 23rem;
+  min-height: 10rem;
+  max-height: 25rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.2rem 0;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.194);
+}
+
+.cart_divider {
+  width: 100%;
+  height: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+.cart_divider > div {
+  height: 100%;
+  width: 96%;
+  background-color: rgba(45, 45, 45, 0.15);
+  border-radius: 1rem;
+}

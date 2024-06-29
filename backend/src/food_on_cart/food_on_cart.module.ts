@@ -16,5 +16,6 @@ import { FoodModule } from 'src/food/food.module';
   ],
   controllers: [FoodOnCartController],
   providers: [FoodOnCartService],
+  exports: [FoodOnCartService],
 })
 export class FoodOnCartModule {}

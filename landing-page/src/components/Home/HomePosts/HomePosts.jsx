@@ -11,10 +11,10 @@ function HomePosts() {
   const { posts, postsLoading, postsError, timeElapsed } = useGetPosts();
 
   return (
-    <section className="home-posts_container" id="posts">
+    <section className="home-posts_container">
       <main className="home-posts">
         <div className="home-posts_section">
-          <h1>Publicaciones</h1>
+          <h1 id="posts">Publicaciones</h1>
         </div>
         <div className="home-posts_new-post_container">
           <NewPost />

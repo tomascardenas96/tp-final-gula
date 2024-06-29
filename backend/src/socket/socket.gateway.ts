@@ -24,4 +24,8 @@ export class GulaSocketGateway
   handleNewPost(payload: any) {
     this.server.emit('newPostSocket', payload);
   }
+
+  handleAddOrSubtractFood(payload: any) {
+    this.server.emit('addOrSubtract', payload);
+  }
 }

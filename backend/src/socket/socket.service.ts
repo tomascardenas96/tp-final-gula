@@ -10,4 +10,8 @@ export class SocketService {
   async emitEventNewPost(payload: any) {
     this.gulaSocketGateway.handleNewPost(payload);
   }
+
+  async emitAddOrSubtractFood(payload: any) {
+    this.gulaSocketGateway.handleAddOrSubtractFood(payload);
+  }
 }
