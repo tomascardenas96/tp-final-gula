@@ -18,7 +18,7 @@ import { ActiveUserInterface } from 'src/common/interface/active-user.interface'
 @UseGuards(AuthGuard)
 @Controller('food-on-cart')
 export class FoodOnCartController {
-  constructor(private readonly foodOnCartService: FoodOnCartService) {}
+  constructor(private readonly foodOnCartService: FoodOnCartService) { }
 
   @Post()
   addFoodOnCart(
@@ -26,5 +26,12 @@ export class FoodOnCartController {
     @Body() foodOnCartDto: CreateFoodOnCartDto,
   ) {
     return this.foodOnCartService.addFoodOnCart(activeUser, foodOnCartDto)
+  }
+
+   //Metodo de Gaston Nro. 4.
+  // Este endpoint trae lo que haya añadido en el carrito de compras.
+  @Get()
+  getAllFoodOnCart() {
+    return this.foodOnCartService.getAllFoodOnCart();
   }
 }

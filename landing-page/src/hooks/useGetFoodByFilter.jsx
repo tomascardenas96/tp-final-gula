@@ -20,6 +20,7 @@ function useGetFoodByFilter() {
           },
         }
       );
+      
       const data = await response.json();
       if (data.error) {
         throw new Error(data.error);

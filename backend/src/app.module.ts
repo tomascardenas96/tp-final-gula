@@ -22,7 +22,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       port: 3306,
       database: 'tp-gula',
       username: 'root',
-      password: 'root',
+      password: '',
       entities: [join(__dirname, '/**/*.entity{.ts,.js}')],
       synchronize: true,
     }),
