@@ -13,12 +13,14 @@ import { ShopService } from '../shop/shop.service';
 import { ActiveUserInterface } from '../common/interface/active-user.interface';
 import { UserService } from '../user/user.service';
 import { Shop } from 'src/shop/entities/shop.entity';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 @Injectable()
 export class PostService {
   constructor(
     @InjectRepository(Post) private readonly postRepository: Repository<Post>,
     private readonly shopService: ShopService,
+    private readonly socketsGateway: GulaSocketGateway,
   ) {}
 
   //Esta funcion toma 3 parametros, user es para verificar que el usuario es propietario del comercio desde
@@ -60,6 +62,10 @@ export class PostService {
         description,
         shop,
       });
+
+      //Enviar una notificacion de cambios en el array de post al frontend para que vuelva a renderizar el componente que los muestra.
+      this.socketsGateway.sendNewPost(post);
+
       return this.postRepository.save(post);
     } catch (err) {
       if (
@@ -74,7 +80,8 @@ export class PostService {
 
   getAllPosts(): Promise<Post[]> {
     try {
-      return this.postRepository.find({ relations: ['shop'] });
+      const posts = this.postRepository.find({ relations: ['shop'] });
+      return posts;
     } catch (err) {
       throw new BadRequestException('Error trying to get publications');
     }
@@ -100,8 +107,4 @@ export class PostService {
       );
     }
   }
-
-  // recommendPost() {}
-
-  // unrecommendPost() {}
 }

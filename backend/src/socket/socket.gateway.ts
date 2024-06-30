@@ -3,8 +3,13 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
   WebSocketServer,
+  SubscribeMessage,
+  MessageBody,
+  ConnectedSocket,
 } from '@nestjs/websockets';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { Food } from 'src/food/entities/food.entity';
 
 @WebSocketGatewayDecorator(8001, { cors: '*' })
 export class GulaSocketGateway
@@ -13,19 +18,19 @@ export class GulaSocketGateway
   @WebSocketServer()
   server: Server;
 
-  handleConnection(client: any) {
+  handleConnection(client: Socket) {
     console.log(`Cliente conectado: ${client.id}`);
   }
 
-  handleDisconnect(client: any) {
+  handleDisconnect(client: Socket) {
     console.log(`Cliente desconectado: ${client.id}`);
   }
 
-  handleNewPost(payload: any) {
-    this.server.emit('newPostSocket', payload);
+  sendNewPost(post: any) {
+    this.server.emit('newPost', post);
   }
 
-  handleAddOrSubtractFood(payload: any) {
-    this.server.emit('addOrSubtract', payload);
+  handleAddOrSubtractFood(newAmount: any) {
+    this.server.emit('modifiedAmount', newAmount);
   }
 }

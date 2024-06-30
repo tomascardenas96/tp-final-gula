@@ -46,7 +46,7 @@ export class PaymentsService {
         body: {
           items,
           back_urls: {
-            success: 'https://your-site.com/success',
+            success: 'https://localhost:5173/home',
             failure: 'https://your-site.com/failure',
             pending: 'https://your-site.com/pending',
           },
@@ -58,7 +58,7 @@ export class PaymentsService {
 
       const response = await preference.create(preferenceData);
 
-      return response.init_point;
+      return response;
     } catch (err) {
       if (err instanceof BadRequestException) {
         throw err;

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
-import PostCard from "./PostCard.jsx";
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
 import NewPost from "./NewPost.jsx";
-import Advertise from "../Advertise/Advertise.jsx";
-import "./HomePosts.css";
 import ShopPost from "../../Shop/Posts/Shop-post.jsx";
+import "./HomePosts.css";
 
 function HomePosts() {
   const { posts, postsLoading, postsError, timeElapsed } = useGetPosts();
@@ -20,21 +18,18 @@ function HomePosts() {
           <NewPost />
         </div>
         <div className="home-posts_post-cards">
-          {posts
-            .slice()
-            .reverse()
-            .map((post) => (
-              <ShopPost
-                key={post.postId}
-                profilePicture={post.shop.picture}
-                profileName={post.shop.profilename}
-                name={post.shop.name}
-                image={post.image}
-                time={timeElapsed(post.postedAt)}
-                description={post.description}
-                stars={post.stars}
-              />
-            ))}
+          {posts.map((post) => (
+            <ShopPost
+              key={post.postId + 10000}
+              profilePicture={post.shop.picture}
+              profileName={post.shop.profilename}
+              name={post.shop.name}
+              image={post.image}
+              time={timeElapsed(post.postedAt)}
+              description={post.description}
+              stars={post.stars}
+            />
+          ))}
         </div>
       </main>
     </section>

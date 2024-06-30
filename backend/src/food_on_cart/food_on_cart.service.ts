@@ -14,6 +14,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Cart } from 'src/cart/entities/cart.entity';
 import { FoodService } from 'src/food/food.service';
 import { Food } from 'src/food/entities/food.entity';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 @Injectable()
 export class FoodOnCartService {
@@ -23,6 +24,7 @@ export class FoodOnCartService {
     private readonly cartService: CartService,
     private readonly userService: UserService,
     private readonly foodService: FoodService,
+    private readonly socketGateway: GulaSocketGateway,
   ) {}
 
   //Metodo para agregar un producto al carrito
@@ -137,6 +139,8 @@ export class FoodOnCartService {
     try {
       const user = await this.userService.getActiveUser(activeUser);
       const cart = await this.cartService.getActiveCart(user);
+
+      //Trae la comida que esta dentro del carrito activo para modificar sus cantidades.
       const foodOnCart = await this.foodOnCartRepository.findOne({
         where: { food, cart },
       });
@@ -151,7 +155,15 @@ export class FoodOnCartService {
         foodOnCart.amount = foodOnCart.amount + 1;
       }
 
-      return this.foodOnCartRepository.save(foodOnCart);
-    } catch (err) {}
+      const newAmount = await this.foodOnCartRepository.save(foodOnCart);
+
+      this.socketGateway.handleAddOrSubtractFood(newAmount);
+
+      return newAmount;
+    } catch (err) {
+      throw new BadGatewayException(
+        'Food on cart service: error modifing food on cart quantity - addOrSubtractProduct method',
+      );
+    }
   }
 }
