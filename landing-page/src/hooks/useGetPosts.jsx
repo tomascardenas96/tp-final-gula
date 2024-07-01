@@ -13,7 +13,6 @@ function useGetPosts() {
     const socket = io("http://localhost:8001");
 
     socket.on("newPost", (newPost) => {
-      console.log(newPost);
       setPosts((prev) => [newPost, ...prev]);
     });
 

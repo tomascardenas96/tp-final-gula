@@ -3,6 +3,7 @@
   /* background-color: lightblue; */
   padding-left: 0.2rem;
   padding-right: 0.2rem;
+  user-select: none;
 }
 
 .food-filter {

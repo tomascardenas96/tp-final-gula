@@ -13,11 +13,18 @@ function useGetFoodOnCartByActiveUser() {
   useEffect(() => {
     const socket = io("http://localhost:8001");
 
+    //Socket encargado de escuchar cuando se agrega un nuevo producto al carrito.
+    socket.on("addFoodInCart", (addedFood) => {
+      setFoodOnCart((prev) => [...prev, addedFood]);
+    });
+
+    // Socket encargado de escuchar cuando agregamos o quitamos una unidad al producto anteriormente agregado al carrito.
     socket.on("modifiedAmount", (newAmount) => {
       setFoodOnCart((prev) => {
         const index = prev.findIndex(
-          (item) => item.foodOnCartId === newAmount.foodOnCartId
+          (item) => item.food?.foodId === newAmount.food?.foodId
         );
+
         if (index > -1) {
           prev[index].amount = newAmount.amount;
         } else {
@@ -26,12 +33,34 @@ function useGetFoodOnCartByActiveUser() {
         return [...prev];
       });
     });
+
+    // Socket encargado de escuchar cuando el producto a agregar ya esta en el carrito.
+    socket.on("modifyQuantityWhenExists", (existentFood) => {
+      setFoodOnCart((prev) => {
+        const index = prev.findIndex(
+          (item) => item.food?.foodId === existentFood.food?.foodId
+        );
+
+        const updatedFoodOnCart = [...prev];
+
+        if (index > -1) {
+          updatedFoodOnCart[index].amount = existentFood.amount;
+          return updatedFoodOnCart;
+        }
+
+        return prev;
+      });
+    });
+
     return () => {
+      socket.off("addFoodInCart");
       socket.off("modifiedAmount");
+      socket.off("modifyQuantityWhenExists");
       socket.disconnect();
     };
   }, []);
 
+  // Metodo para obtener todas las comidas que tiene agregado en el carrito el usuario activo.
   const getFoodOnCartByActiveUser = useCallback(async () => {
     try {
       setFoodOnCartLoading(true);
@@ -54,19 +83,23 @@ function useGetFoodOnCartByActiveUser() {
     }
   }, [token]);
 
+  // Este use effect ejecuta la funcion para obtener las comidas anteriormente agregadas al carrito del usuario activo. (Se ejecuta en el primer renderizado del componente y al cambiar el estado de sus dependencias)
   useEffect(() => {
     getFoodOnCartByActiveUser();
-  }, [token, getFoodOnCartByActiveUser]);
+  }, [token, getFoodOnCartByActiveUser, setFoodOnCart]);
 
+  // Abrir o cerrar modal del carrito.
   function handleCartModal() {
     setIsModalOpen(!isModalOpen);
   }
 
+  // Obtener el total de cada producto multiplicado por su cantidad.
   function getTotal(unitPrice, quantity) {
     const result = unitPrice * quantity;
     setTotal(result);
   }
 
+  // Obtener el total del carrito, sumando todos los productos con sus respectivas cantidades.
   useEffect(() => {
     const total = foodOnCart.reduce(
       (acc, curr) => acc + curr.food?.price * curr.amount,

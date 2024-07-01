@@ -3,35 +3,38 @@ Readme app Gula
 Modo de instalación:
 Clonar el repositorio
 - git clone https://github.com/tomascardenas96/tp-final-gula.git
-- instalar dependencias:Ruta raíz Frontend: npm install
-                                        :Ruta raíz Backend: npm instal
+- instalar dependencias: Ruta raíz Frontend: npm install
+                                        :Ruta raíz Backend: npm install
                                         :Ruta raíz Mobile: npm install.
-Creación de Base de Datos relacional local.
-    -Nombre de Base de datos : tp-gula
-- modificar credenciales de conexión de Base de datos en módulo principal de Backend:
-- puerto 3306
-- Database: tp-gula  
--user name
--password: root
 
-Correr servidor: - en la carpeta raíz de backend (servidor)
-npm run start: dev
+Creación de Base de Datos relacional local (tenemos 2 opciones).
+- AUTOMATICO: En la carpeta raiz del backend, correr el siguiente script (npm run init-db).
+- MANUAL: Ingresar al gestor de la base de datos y ejecutar las siguientes queries: 
+	- Creacion de base de datos: CREATE DATABASE IF NOT EXISTS `tp-gula`.
 
--Correr frontend: - en la carpeta raíz de frontend (landing-page)
--npm run dev
+- Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
+	- Puerto: 3306
+	- Database: `tp-gula`  
+	- User: root
+	- Password: root
 
--Correr mobile: -en la carpeta raíz de Mobile(gula-app-mobile):
+- Correr servidor en la carpeta raíz de backend (servidor)
+	- npm run start: dev
+
+-Correr frontend en la carpeta raíz de frontend (landing-page)
+	-npm run dev
+
+Posteriormente abrir el link que te envia la consola del frontend desde el navegador para acceder al contenido .
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+- Correr mobile en la carpeta raíz de Mobile(gula-app-mobile):
 	- Descargar repositorio: https://github.com/Gastonfauret/gula-app-mobile.git
 	- Instalación de librerías y dependencias detalladas en el README.md.
 	- En el telefono celular descargar la aplicacion: “Expo Go” (Logo Blanco y Negro).
 	- En el repositorio clonado, en la carpeta raíz (gula-app-mobile), iniciar la aplicación con la siguiente sentencia: npx expo start
 	- Al iniciar el proyecto nos mostrará un código QR que debemos escanear con la aplicación Expo Go, y veremos cómo se inicia el proyecto en ambos dispositivos.
 	- Para finalizar la reproducción, presionamos: Ctrl + c.
-
-
-
-
-
 
 Modo de uso:
 

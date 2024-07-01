@@ -63,18 +63,20 @@ export class FoodOnCartService {
       }
 
       //Verificamos si la comida ya existe en el carrito, en caso positivo, no creara un nuevo objeto sino que le sumara 1 unidad a la comida ya agregada.
-      const existentFood = await this.foodService.findFoodById(
-        foodOnCartDto.food,
-      );
-
       const existentFoodOnCart = await this.foodOnCartRepository.findOne({
-        where: { food: existentFood, cart: cart },
+        where: { food: food, cart: cart },
       });
 
       if (existentFoodOnCart) {
         existentFoodOnCart.amount = existentFoodOnCart.amount + 1;
 
-        return this.foodOnCartRepository.save(existentFoodOnCart);
+        //Socket que envia al frontend el evento de aumento en la cantidad de determinada comida.
+        this.socketGateway.handleAddFoodExistentInCart(existentFoodOnCart);
+
+        const newFoodAmount =
+          await this.foodOnCartRepository.save(existentFoodOnCart);
+
+        return newFoodAmount;
       }
 
       // Y en caso de negativo creara automaticamente el objeto con los datos anteriormente recolectados.
@@ -83,6 +85,9 @@ export class FoodOnCartService {
         cart,
         food,
       });
+
+      //Socket que envia al frontend el evento de agregar un nuevo producto al carrito.
+      this.socketGateway.handleAddFoodInCart(newFoodOnCart);
 
       return this.foodOnCartRepository.save(newFoodOnCart);
     } catch (err) {

@@ -33,4 +33,12 @@ export class GulaSocketGateway
   handleAddOrSubtractFood(newAmount: any) {
     this.server.emit('modifiedAmount', newAmount);
   }
+
+  handleAddFoodInCart(addedFood: any) {
+    this.server.emit('addFoodInCart', addedFood);
+  }
+
+  handleAddFoodExistentInCart(existentFood: any) {
+    this.server.emit('modifyQuantityWhenExists', existentFood);
+  }
 }

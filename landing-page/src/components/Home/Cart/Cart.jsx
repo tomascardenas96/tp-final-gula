@@ -9,8 +9,12 @@ import Spinner from "../../Common/Spinner/Spinner";
 initMercadoPago("APP_USR-1d4c3f14-7f98-4c32-a2c3-b9a81fed4360");
 
 function Cart() {
-  const { foodOnCart, foodOnCartLoading, foodOnCartError, totalOfAllProducts } =
-    useGetFoodOnCartByActiveUser();
+  const {
+    foodOnCart,
+    foodOnCartLoading,
+    foodOnCartError,
+    totalOfAllProducts,
+  } = useGetFoodOnCartByActiveUser();
 
   const { preferenceId } = useGetPreferencesMercadoPago();
 
@@ -22,16 +26,16 @@ function Cart() {
         </div>
       ) : (
         <>
-          {preferenceId ? (
+          {!foodOnCartLoading ? (
             <>
-              {foodOnCart.map((product) => (
-                <div key={product.food.foodId}>
+              {foodOnCart?.map((product) => (
+                <div key={product.food?.foodId + 100000}>
                   <ProductCard
-                    image={product.food.image}
-                    title={product.food.description}
-                    price={product.food.price}
-                    amount={product.amount}
-                    food={product.food}
+                    image={product.food?.image}
+                    title={product.food?.description}
+                    price={product.food?.price}
+                    amount={product?.amount}
+                    food={product?.food}
                   />
                   <div className="cart_divider">
                     <div></div>

@@ -89,5 +89,19 @@
 
 .cart_loading {
   width: 100%;
-  
+  height: 4rem;
+  display: grid;
+  place-content: center;
+  padding-top: 1%;
+}
+
+.cart_loading .loadership_CWZLE {
+  width: 35px;
+  height: 35px;
+}
+
+.cart_loading .loadership_CWZLE div {
+  width: 35px;
+  height: 35px;
+  border: 5px solid #75747433;
 }
