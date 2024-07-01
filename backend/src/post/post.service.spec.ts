@@ -24,6 +24,7 @@ describe('PostService', () => {
   let postRepositoryMock:any;//definimos any para evistar problemas
   let shopServiceMock:Partial<jest.Mocked<ShopService>>;
   let userServiceMock:Partial<jest.Mocked<UserService>>;
+  let socketsGatewaymock:Partial<jest.Mocked<GulaSocketGateway>>;  
 
   beforeEach(async () => {
     //creamos mocks para PostRepository, shopService
@@ -71,6 +72,9 @@ describe('PostService', () => {
       findByUserName: jest.fn(),
       findUserByQuery: jest.fn(),
       // Defino todos los métodos que necesito en el mock de user.service
+    };
+    socketsGatewaymock={
+      sendNewPost:jest.fn(),
     }
 
     //configuro el modulo de prueba
@@ -88,6 +92,10 @@ describe('PostService', () => {
         {
           provide:UserService,
           useValue:userServiceMock
+        },
+        {
+          provide:GulaSocketGateway,
+          useValue:socketsGatewaymock
         }
       ],
     }).compile();
@@ -107,10 +115,13 @@ describe('PostService', () => {
       name:'test User',
     };
     const shopName='shopName';
+
     const description= 'new post description';
+    
     const createPost:CreatePostDto= {
       description:description
     };
+
     const user:User={
       userId: 1,
         name:activeUser.name,
@@ -155,7 +166,7 @@ describe('PostService', () => {
       expect(postRepositoryMock.create).toHaveBeenCalledWith({description,shop});
       expect(postRepositoryMock.save).toHaveBeenCalledWith(post); 
       expect(result).toBe(post);
-    })//final it
+    })//final it 
     
     it('should throw NotFoundException if shop does not exist', async () => {
       //configuramos el mock para simular que la tienda no existe
