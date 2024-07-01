@@ -209,4 +209,17 @@ describe('FoodController', () => {
     });//final it
   });//final describe
 
+  describe('findFoodsByShopId',()=>{
+    it('should call foodService.findFoodsByShopId with the correct parameters',async()=>{
+      //mock del parametro a utilizar
+      const shopId=1;
+      //configuracion: llamado al servicio debe devolver un array
+      jest.spyOn(service,'findFoodsByshopyId').mockResolvedValue([]);
+
+      //pasamos el parametro correcto al metodo del controllador
+      await controller.findFoodsByshopId(shopId);
+      //esperamos que el servicio sea llmaado con el parametro correcto
+      expect(service.findFoodsByshopyId).toHaveBeenCalledWith(shopId);
+    });
+  });//final describe
 });//final

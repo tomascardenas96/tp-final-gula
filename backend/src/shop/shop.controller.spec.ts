@@ -237,5 +237,5 @@ describe('ShopController', () => {
     //se verifica que el metodo del servicio esta siendo llamado con el paramtro correcto
     expect(service.getShopByProfileName).toHaveBeenCalledWith(profilename);
   });
-  
+
 });//FINAL 

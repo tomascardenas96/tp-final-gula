@@ -16,7 +16,6 @@ import { ILike, MoreThan } from 'typeorm';
 import { BadGatewayException, BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { CreateFoodDto } from './dto/create-food.dto';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-import exp from 'constants';
 
 describe('FoodService', () => {
   let service: FoodService;
@@ -535,7 +534,7 @@ describe('FoodService', () => {
 
     //Gaston's method
     describe('findAllFoods',()=>{
-      it('should return all food with shop and category relations',async()=>{
+      it('should return all food ',async()=>{
         //mock de un array de comidas estas pertenecen a distintas tiendas y cateogrias 
         const foods: Food[] = [
           {
@@ -568,10 +567,8 @@ describe('FoodService', () => {
         const result= await service.findAllFoods();
 
         expect(result).toEqual(foods); 
-        expect(foodServiceMock.find).toHaveBeenCalledWith({ relations:['shop','category']}); 
-        /*Cuando hablamos de "solicitar las relaciones shop y category" en el contexto de TypeORM y NestJS, 
-        nos referimos a cargar los objetos relacionados (shop y category) junto con el objeto principal (Food) 
-        cuando se realiza una consulta a la base de datos. */
+        expect(foodServiceMock.find).toHaveBeenCalledWith(); 
+        
       });//final it
 
       it('should throw ForbiddenException on error', async () => {
@@ -633,6 +630,9 @@ describe('FoodService', () => {
         expect(foodServiceMock.find).toHaveBeenCalledWith({where:
           {category:{categoryId}},
         relations:['shop','category'],
+        /*Cuando hablamos de "solicitar las relaciones shop y category" en el contexto de TypeORM y NestJS, 
+        nos referimos a cargar los objetos relacionados (shop y category) junto con el objeto principal (Food) 
+        cuando se realiza una consulta a la base de datos. */
       });
       });//final it
 
@@ -654,6 +654,81 @@ describe('FoodService', () => {
         }
       });//final it
     });//final describe
+    
+    describe('findFoodByShopId',()=>{
+      it('should return an array food by shopId',async ()=>{
+        //mock del parametro a utilizar
+        const shopId=1;
+        //mock sobre lo que se buscara
+        const foods: Food[] = [
+          {
+            foodId: 1,
+            description: 'Food 1',
+            price: 10,
+            stock: 5,
+            review: 'Good',
+            image: 'food1.jpg',
+            shop: { shopId: 1, name: 'Shop 1' } as any, //mock de una tienda
+            category: { categoryId: 1, name: 'Category 1' } as any, //mock de una categoria
+            cart: [],
+          },
+          {
+            foodId: 2,
+            description: 'Food 2',
+            price: 15,
+            stock: 3,
+            review: 'Very good',
+            image: 'food2.jpg',
+            shop: { shopId: 2, name: 'Shop 2' } as any, // mockd e una tienda
+            category: { categoryId: 2, name: 'Category 2' } as any, // mock de una cateogiria
+            cart: [],
+          },
+          {
+            foodId: 3,
+            description: 'Food 3',
+            price: 15,
+            stock: 3,
+            review: 'Very good',
+            image: 'food2.jpg',
+            shop: { shopId: 1, name: 'Shop 1' } as any, // mockd e una tienda
+            category: { categoryId: 2, name: 'Category 2' } as any, // mock de una cateogiria
+            cart: [],
+          },
+        ];//al buscar por shopID deberia devolver food1 y food3
+        
+        //configuracion al usar el emtodo find y buscar por shopId debe traer los dos elementos
+        //que hay con ese ID, elemento 0 y 2. 
+        jest.spyOn(foodServiceMock,'find').mockResolvedValue([foods[0],foods[2]]);
 
+        //llamado al servicio. 
+        const result= await service.findFoodsByshopyId(shopId);
+
+        //verifico 
+        expect(result).toEqual([foods[0],foods[2]]);
+        expect(foodServiceMock.find).toHaveBeenCalledWith({where:
+          {shop:{shopId}},
+          relations:['shop'],
+      }); 
+      });//final it
+
+      it('should throw ForiddenException if error ocurre', async()=>{
+        ///mock de los parametros a utilizar
+        const shopId=1;
+        //configuracion: debbe arrojar error
+        jest.spyOn(foodServiceMock,'find').mockRejectedValue(new Error());
+
+        //llamada al servicio
+        //intentara que cuando se llame al metodo del servicio con el parametro correcto
+        //arrojara un error segun cofiguracion del test
+        try{
+          await service.findFoodsByshopyId(shopId);
+        }catch(error){//captura el error
+          //verifica que el error es una instancia de forbiddenException
+          expect(error).toBeInstanceOf(ForbiddenException);
+          //verifica que el mensaje enviado sea
+          expect(error.message).toBe('Food service: error getting foods by shopId');
+        }
+      });//final it
+    });//final describe
   });//final
   
