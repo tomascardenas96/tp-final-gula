@@ -19,6 +19,8 @@ import { Shop } from 'src/shop/entities/shop.entity';
 import { JwtService } from '@nestjs/jwt';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { CreateFoodOnCartDto } from './dto/create-food_on_cart.dto';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
+import { AddOrSubtractProductDto } from './dto/add-subtract.dto';
 
 describe('FoodOnCartController', () => {
   let controller: FoodOnCartController;
@@ -36,6 +38,7 @@ describe('FoodOnCartController', () => {
         CategoryService,
         ShopService,
         JwtService, 
+        GulaSocketGateway,
         {
           provide:getRepositoryToken(FoodOnCart),//obtenemos el token del repositorio de foodOnCart
           useClass:Repository//simula un repositorio, se pdoria usar un mock
@@ -118,6 +121,95 @@ describe('FoodOnCartController', () => {
       expect(service.addFoodOnCart).toHaveBeenCalledWith(activeUser,foodOnCartDto);
     });
   });//final decribe
+
+  describe('getFoodsByActiveCart',()=>{
+    it('should call getFoodsByActiveCart.Service with correct parameters', async () => {
+      //mock del parametro a usar
+      const mockActiveUser: ActiveUserInterface = { userId: 1, email: 'test@example.com', name: 'Test User' };
+      //mock del resultado esperado
+      const result:FoodOnCart[]=[{
+        foodOnCartId: 1,//Id de la comida en el carrito 
+          amount: 2,//cantidad de comidas en el carrito
+          cart: { //carrito perteneciente a un usuario activo
+            cartId: 1,
+            user: new User,
+            food: [],//comidas en el carrito
+            invoice: [],//facturas asociadas al carrito
+          },
+          food: { //comida dentro del carrito
+            foodId: 1,
+            description: 'Test food',
+            price: 10,
+            stock: 5,
+            review: 'Delicious',
+            category: null,
+            shop: null,
+            image: null,
+            cart: [],
+          } ,}]; // Mockear según la estructura de tu entidad Food
+      //configuracion del test:
+      //el servicio debe resolver con un array de foodOnCart
+      jest.spyOn(service, 'getFoodsByActiveCart').mockResolvedValue(result);
+      //llamado al controllador con los parametros correctos
+      await controller.getFoodsByActiveCart(mockActiveUser);
+      //verificamos que el controllador llama al servicio con los parametros correctos
+      expect(service.getFoodsByActiveCart).toHaveBeenCalledWith(mockActiveUser);
+    });
+  })
+
+  describe('addOrSbtractedProductDto',()=>{
+    it('should call addOrSubtractProduct in FoodOnCartService with correct parameters', async () => {
+      // Definición del DTO mockeado que se pasa al método del controlador
+      const mockAddOrSubtractProductDto: AddOrSubtractProductDto = {
+        option: 'add',
+        food: {
+          foodId: 1,
+          description: 'Test food',
+          price: 10,
+          stock: 5,
+          review: 'Delicious',
+          category: {categoryId:1} as Category,
+          shop: {shopId:1}as Shop,
+          image: null,
+          cart: [], },
+        };
+      //mock del usuario activo
+      const ActiveUser: ActiveUserInterface = {
+         userId: 1,
+         email: 'test@example.com', 
+         name: 'Test User' };
+        //mock de una comida
+      const mockFood: Food = { 
+        foodId: 1,
+        description: 'Test food',
+        price: 10,
+        stock: 5,
+        review: 'Delicious',
+        category: {categoryId:1} as Category,
+        shop: {shopId:1}as Shop,
+        image: null,
+        cart: [], }; 
+        
+        //mock del valor esperado del retorno del servicio
+        const foodOnCart:FoodOnCart={
+          foodOnCartId:1,
+          amount:2,
+          cart:new Cart,
+          food:mockFood
+        }
+      //configuracion del test
+      //se espera que el metodo del servicio devuelba foodOnCart (comida en el carrito)
+      jest.spyOn(service, 'addOrSubtractProduct').mockResolvedValue(foodOnCart);
+      //se llama al controllador con los parametros correctos
+      await controller.addOrSubtractProduct(mockAddOrSubtractProductDto, ActiveUser);
+      //se espera que el metodo del servicio sewa llamado con los parametros correctos
+      expect(service.addOrSubtractProduct).toHaveBeenCalledWith(
+        mockAddOrSubtractProductDto.option,
+        mockAddOrSubtractProductDto.food,
+        ActiveUser, 
+      );
+    });
+  });//final describe
 
   describe('getAllFoodOnCart', () => {
     it('should return all food on cart', async () => {

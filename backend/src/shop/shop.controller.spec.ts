@@ -16,6 +16,7 @@ import { Post } from '../post/entities/post.entity';
 import { JwtService } from '@nestjs/jwt';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { ActiveUserInterface } from '../common/interface/active-user.interface';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 
 
@@ -32,7 +33,8 @@ describe('ShopController', () => {
         ProfileService,
         PostService,
         CartService,
-        JwtService, 
+        JwtService,
+        GulaSocketGateway, 
         {
           provide:getRepositoryToken(Shop),//obtenemos el token del repositorio del user
           useClass:Repository //simula un repositorio, se podria usar un mock

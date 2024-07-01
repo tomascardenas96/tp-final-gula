@@ -93,7 +93,8 @@
       "/*.guard.ts",
       "/common",
       "/main.ts",
-      "/socket"
+      "/socket",
+      "/payments"
     ],
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/$1"

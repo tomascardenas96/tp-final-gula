@@ -17,6 +17,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 //excepciones
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { error } from 'console';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 describe('PostService', () => {
   let service: PostService;
@@ -75,6 +76,7 @@ describe('PostService', () => {
     //configuro el modulo de prueba
     const module: TestingModule = await Test.createTestingModule({
       providers: [PostService,
+        GulaSocketGateway,
         {
           provide:getRepositoryToken(Post),//utilizamos GetRepositoryToken para obtener el token del repositorio de User
           useValue:postRepositoryMock,//proporcionamos nuestro mock para PostRepository

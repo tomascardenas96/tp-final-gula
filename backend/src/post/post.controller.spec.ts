@@ -16,6 +16,7 @@ import { Profile } from 'src/profile/entities/profile.entity';
 import { CartService } from 'src/cart/cart.service';
 import { Cart } from 'src/cart/entities/cart.entity';
 import { JwtService } from '@nestjs/jwt';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 
 describe('PostController', () => {
@@ -40,6 +41,7 @@ describe('PostController', () => {
         ProfileService,
         CartService,
         JwtService, 
+        GulaSocketGateway,
         {
           provide:getRepositoryToken(Post),//obtenemos el token del repositorio de Post
           useClass:Repository,

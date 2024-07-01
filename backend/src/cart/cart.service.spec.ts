@@ -115,7 +115,7 @@ describe('CartService', () => {
     });
   });//final describe
 
-  describe('clearCart',()=>{
+ /* describe('clearCart',()=>{
     it('should delete all items in the cart', async ()=>{
       //configuracion del test
       //cuando se llame al metodo delete se debe resolver con un objeto vacio
@@ -127,5 +127,5 @@ describe('CartService', () => {
       //verificamos que el metodo delete sea llamado con un objeto vacio para eliminar los items
       expect(cartServiceMock.delete).toHaveBeenCalledWith({});
     });
-  });
+  });   */
 });

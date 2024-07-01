@@ -19,9 +19,7 @@ import { BadGatewayException,  NotFoundException } from '@nestjs/common';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { ILike } from 'typeorm';
 import { CreateShopDto } from './dto/create-shop.dto';
-
-
-
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 describe('ShopService', () => {
   let service: ShopService;
@@ -90,6 +88,7 @@ describe('ShopService', () => {
         UserService, 
         ProfileService,
         CartService,
+        GulaSocketGateway, 
       {
         provide:getRepositoryToken(Shop),
         useValue:shopRepositoryMock,
