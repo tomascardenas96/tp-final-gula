@@ -16,6 +16,7 @@ function NewShop() {
     newShopError,
     handleFileChange,
     selectedImage,
+    selectedFile,
   } = useNewShop();
 
   function openCloseHiddenWindow() {
@@ -28,9 +29,9 @@ function NewShop() {
         <FaPlus className="new-shop_icon" />{" "}
         <p className="new-shop_paragraph">AGREGAR NUEVO COMERCIO</p>
         {isWindowOpen ? (
-          <MdKeyboardDoubleArrowUp className="new-shop_arrow"/>
+          <MdKeyboardDoubleArrowUp className="new-shop_arrow" />
         ) : (
-          <MdKeyboardDoubleArrowDown className="new-shop_arrow"/>
+          <MdKeyboardDoubleArrowDown className="new-shop_arrow" />
         )}
       </div>
       {isWindowOpen && (
@@ -89,11 +90,12 @@ function NewShop() {
             >
               <div>
                 {selectedImage ? (
-                  <img src={selectedImage} alt="" />
+                  <img src={selectedImage} alt="gula-shop_selected-picture" />
                 ) : (
                   <img
                     src="http://localhost:3070/assets/uploads/shop/profile/no-picture.jpg"
                     className="no-selected-image"
+                    alt="gula-shop_no-selected-picture"
                   />
                 )}
                 <div className="form_select-picture-shop">
@@ -105,6 +107,9 @@ function NewShop() {
                     id="select-picture-shop"
                   />
                 </div>
+                <p className="new-shop_selected-file">
+                  {selectedFile ? selectedFile.name : "Seleccione una foto"}
+                </p>
               </div>
             </label>
             <div className="form_submit">

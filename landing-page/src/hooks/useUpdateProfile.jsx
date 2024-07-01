@@ -12,6 +12,7 @@ function useUpdateProfile() {
     location: "",
     birthDate: "",
   });
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     setUpdateProfileInput({
@@ -22,7 +23,15 @@ function useUpdateProfile() {
   }, [activeProfile, token]);
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    setSelectedFile(file);
   };
 
   async function handleSubmitUpload(e) {
@@ -64,6 +73,7 @@ function useUpdateProfile() {
     handleChangeUpload,
     handleSubmitUpload,
     selectedFile,
+    selectedImage
   };
 }
 

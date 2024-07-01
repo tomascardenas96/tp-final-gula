@@ -12,6 +12,7 @@ function UploadProfileForm() {
     handleChangeUpload,
     handleSubmitUpload,
     selectedFile,
+    selectedImage,
   } = useUpdateProfile();
 
   const { activeUserLoading, userImageURL, userImageName } = useGetProfile();
@@ -26,7 +27,7 @@ function UploadProfileForm() {
           <label htmlFor="profilePicture">Foto de perfil</label>
           <div className="info-profile_picture">
             <img
-              src={userImageURL}
+              src={selectedImage ? selectedImage : userImageURL}
               name="profilePicture"
               alt="profile-picture_settings"
               className="info-profile_picture-img"

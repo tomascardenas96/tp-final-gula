@@ -39,8 +39,8 @@ function useGetShopsByActiveUser() {
 
   function getFormatedDate(date) {
     const newDateFormat = new Date(date);
-    const day = newDateFormat.getDay();
-    const month = newDateFormat.getMonth() - 1;
+    const day = newDateFormat.getDate();
+    const month = newDateFormat.getMonth() + 1;
     const year = newDateFormat.getFullYear();
 
     const formatedDay = day.toString().padStart(2, "0");

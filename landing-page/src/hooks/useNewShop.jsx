@@ -34,7 +34,6 @@ function useNewShop() {
       formData.append(key, userInput[key]);
     }
 
-    console.log(formData);
     try {
       setNewShopLoading(true);
       const response = await fetch("http://localhost:3070/shop", {
@@ -45,13 +44,12 @@ function useNewShop() {
         body: formData,
       });
       const data = await response.json();
-      console.log(data);
       if (data.error) {
         throw new Error(data.message);
       }
       location.reload();
     } catch (err) {
-      console.log(err);
+      setNewShopError(err);
     } finally {
       setNewShopLoading(false);
     }
@@ -70,7 +68,7 @@ function useNewShop() {
     newShopError,
     handleFileChange,
     selectedFile,
-    selectedImage
+    selectedImage,
   };
 }
 

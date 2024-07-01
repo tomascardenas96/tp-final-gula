@@ -86,7 +86,7 @@ function useGetUsersAndShopsByQuery() {
     handleChangeHeaderFilter,
     headerFilter,
     filterInput,
-    clearInput
+    clearInput,
   };
 }
 

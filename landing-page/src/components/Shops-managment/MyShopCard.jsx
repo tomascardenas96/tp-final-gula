@@ -1,6 +1,6 @@
 import React from "react";
-import "./MyShopCard.css";
 import useGetShopsByActiveUser from "../../hooks/useGetShopsByActiveUser";
+import "./MyShopCard.css";
 
 function MyShopCard({
   name,
