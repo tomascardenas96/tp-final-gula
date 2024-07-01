@@ -9,6 +9,7 @@
   top: 3rem;
   background-color: #ffffff;
   z-index: 1100;
+  user-select: none;
 }
 
 .sider-menu {
@@ -20,7 +21,7 @@
   padding-bottom: 8rem;
   align-items: center;
   padding: 0.5rem 0 6rem 0;
-  border: 1px solid rgba(0, 0, 0, 0.080);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-top: none;
   padding-top: 0.9rem;
   /* background-color: red; */
@@ -34,7 +35,7 @@
   gap: 0.5rem;
   position: relative;
   /* background-color: red; */
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .sider-menu ul > li,
@@ -69,7 +70,17 @@
 }
 
 .sider-menu_active {
-  color: red;
+  color: red; 
+}
+
+.sider-menu_cart {
+  position: relative;
+}
+
+.cart-modal {
+  position: absolute;
+  top: 14.8rem;
+  left: 12rem;
 }
 
 .sider-menu_user-data {
@@ -122,7 +133,7 @@
   position: absolute;
   top: 12%;
   left: 12%;
-  box-shadow: 1px 1px 5px .2px rgba(0, 0, 0, 0.289);
+  box-shadow: 1px 1px 5px 0.2px rgba(0, 0, 0, 0.289);
 }
 
 .sider-menu_user-data-name {

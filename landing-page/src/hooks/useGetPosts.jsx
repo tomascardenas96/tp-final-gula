@@ -8,6 +8,20 @@ function useGetPosts() {
   const [postsLoading, setPostsLoading] = useState(false);
   const [postsError, setPostsError] = useState(null);
 
+  //Web socket que escucha cuando se genera un nuevo evento, y almacena ese nuevo objeto dentro del array de posts.
+  useEffect(() => {
+    const socket = io("http://localhost:8001");
+
+    socket.on("newPost", (newPost) => {
+      setPosts((prev) => [newPost, ...prev]);
+    });
+
+    return () => {
+      socket.off("newPost");
+      socket.disconnect();
+    };
+  }, []);
+
   const getShops = useCallback(async () => {
     try {
       setPostsLoading(true);
@@ -22,7 +36,9 @@ function useGetPosts() {
       if (data.error) {
         throw new Error(data.error);
       }
-      setPosts(data);
+      //Invertimos el flujo en que se guardan los posts en el array, para que los mas nuevos nos aparezcan al principio y no al final.
+      const inverseData = data.slice().reverse();
+      setPosts(inverseData);
     } catch (err) {
       setPostsError(err);
     } finally {
@@ -32,19 +48,7 @@ function useGetPosts() {
 
   useEffect(() => {
     getShops();
-  }, [posts]);
-
-  useEffect(() => {
-    const socket = io("http://localhost:8001");
-
-    socket.on("newPostSocket", (newPost) => {
-      setPosts((prev) => [...prev, newPost]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [token, setPosts]);
+  }, [getShops]);
 
   //Funcion que compara dos fechas y retorna la diferencia de horario aproximada.
   function timeElapsed(date) {

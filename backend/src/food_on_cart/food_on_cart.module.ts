@@ -6,6 +6,7 @@ import { FoodOnCart } from './entities/food_on_cart.entity';
 import { CartModule } from 'src/cart/cart.module';
 import { UserModule } from 'src/user/user.module';
 import { FoodModule } from 'src/food/food.module';
+import { SocketModule } from 'src/socket/socket.module';
 
 @Module({
   imports: [
@@ -13,8 +14,10 @@ import { FoodModule } from 'src/food/food.module';
     CartModule,
     UserModule,
     FoodModule,
+    SocketModule,
   ],
   controllers: [FoodOnCartController],
   providers: [FoodOnCartService],
+  exports: [FoodOnCartService],
 })
 export class FoodOnCartModule {}

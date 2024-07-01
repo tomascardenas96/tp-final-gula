@@ -5,7 +5,6 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Food } from 'src/food/entities/food.entity';
 
 export class CreateFoodOnCartDto {
   @IsNumber()

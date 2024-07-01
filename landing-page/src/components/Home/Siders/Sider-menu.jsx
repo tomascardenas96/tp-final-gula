@@ -4,76 +4,52 @@ import { FaBook } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
-import { useJwt } from "react-jwt";
 import Spinner from "../../Common/Spinner/Spinner";
 import useGetProfile from "../../../hooks/useGetProfile";
-import "./Sider-menu.css";
 import useGetActiveUser from "../../../hooks/useGetActiveUser";
+import "./Sider-menu.css";
+import Cart from "../Cart/Cart";
+import useGetFoodOnCartByActiveUser from "../../../hooks/useGetFoodOnCartByActiveUser";
 
 function SiderMenu() {
   const token = localStorage.getItem("accessToken");
   const { activeProfile, userImageURL } = useGetProfile();
   const { activeUser, activeuserError, activeuserLoading } = useGetActiveUser();
+  const { handleCartModal, isModalOpen } = useGetFoodOnCartByActiveUser();
 
   return (
     <div className="sider-menu_container">
       <div className="sider-menu">
         <ul>
           <li>
-            <NavLink
-              to={""}
-              className={({ isActive }) =>
-                isActive ? null : "sider-menu_active"
-              }
-            >
+            <a href="#slider">
               <FaHome className="sider-menu_icon" />
               INICIO
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink
-              to="#posts"
-              className={({ isActive }) =>
-                isActive ? null : "sider-menu_active"
-              }
-            >
+            <a href="#posts">
               <FaBook className="sider-menu_icon" />
               PUBLICACIONES
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink
-              to={"/"}
-              className={({ isActive }) =>
-                isActive ? null : "sider-menu_active"
-              }
-            >
+            <a>
               <FaEnvelope className="sider-menu_icon" />
               MENSAJES
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink
-              to={""}
-              className={({ isActive }) =>
-                isActive ? null : "sider-menu_active"
-              }
-            >
+            <a>
               <FaBell className="sider-menu_icon" />
               NOTIFICACIONES
-            </NavLink>
+            </a>
           </li>
-          <li>
-            <NavLink
-              to={""}
-              className={({ isActive }) =>
-                isActive ? null : "sider-menu_active"
-              }
-            >
+          <li onClick={handleCartModal} className="sider-menu_cart">
+            <a>
               <FaShoppingCart className="sider-menu_icon" />
               CARRITO
-            </NavLink>
+            </a>
           </li>
         </ul>
         <div className="sider-menu_user-data">
@@ -96,6 +72,11 @@ function SiderMenu() {
           )}
         </div>
       </div>
+      {isModalOpen && (
+        <div className="cart-modal">
+          <Cart />
+        </div>
+      )}
     </div>
   );
 }
