@@ -171,4 +171,13 @@ export class FoodOnCartService {
       );
     }
   }
+
+  //Metodo de gaston Nro. 4:
+  //Este metodo trae todo lo que haya en la tabla food_on_cart, a fin de poder mostrado en la columna de pedidos.
+  async getAllFoodOnCart(): Promise<FoodOnCart[]> {
+    return this.foodOnCartRepository.find({
+      relations: ['cart', 'food'],
+    });
+  }
+
 }

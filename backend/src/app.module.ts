@@ -23,7 +23,7 @@ import { PaymentsModule } from './payments/payments.module';
       port: 3306,
       database: 'tp-gula',
       username: 'root',
-      password: 'root',
+      password: '',
       entities: [join(__dirname, '/**/*.entity{.ts,.js}')],
       synchronize: true,
     }),
