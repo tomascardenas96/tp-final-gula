@@ -41,7 +41,7 @@ export class FoodOnCartService {
 
       const food: Food = await this.foodService.findFoodById(
         foodOnCartDto.food,
-      );
+      );//retorna una comida buscada por id
 
       if (!food) {
         throw new NotFoundException(

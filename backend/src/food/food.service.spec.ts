@@ -198,7 +198,7 @@ describe('FoodService', () => {
       };
       const activeUser: ActiveUserInterface = { userId: 1, email: 'owner@test.com', name: 'Test User' };
       //configuracion del test:
-      //cuando se llame a la tienda esta debe ser null 
+      //cuando se llame a la tienda esta debe ser null para simular un error
       jest.spyOn(shopServiceMock, 'getShopByProfileName').mockResolvedValue(null);
       //esperamos que al no exitir la tienda arroje una exception
       await expect(service.createNewFood(file, shopProfile, newFood, activeUser))
