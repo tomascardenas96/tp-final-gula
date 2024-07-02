@@ -177,4 +177,21 @@ export class FoodOnCartService {
       relations: ['cart', 'food'],
     });
   }
+     //Metodo de gaston Nro. 5:
+   // Nuevo metodo para eliminar todos los registros de food_on_cart
+   async deleteAllFoodOnCart(): Promise<void> {
+    await this.foodOnCartRepository.clear();
+  }
+
+    //Metodo de gaston Nro. 6:
+  // Nuevo metodo para eliminar un registro por su foodOnCartId
+  async deleteFoodOnCartById(foodOnCartId: number): Promise<void> {
+    const result = await this.foodOnCartRepository.delete(foodOnCartId);
+    if (result.affected === 0) {
+      throw new NotFoundException(
+        `Food_on_cart service: food_on_cart with ID ${foodOnCartId} not found - deleteFoodOnCartById method`,
+      );
+    }
+  }
+
 }
