@@ -41,4 +41,8 @@ export class GulaSocketGateway
   handleAddFoodExistentInCart(existentFood: any) {
     this.server.emit('modifyQuantityWhenExists', existentFood);
   }
+
+  handleUploadPreferencesOfMercadoPago(foodOnCart: any) {
+    this.server.emit('uploadPreferences', foodOnCart);
+  }
 }

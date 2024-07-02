@@ -29,7 +29,7 @@ function ShopPost({
               ? `http://localhost:3070/assets/uploads/shop/profile/${profilePicture}`
               : `http://localhost:3070/assets/uploads/shop/profile/${shopByProfileName.picture}`
           }
-          alt=""
+          alt="shop-profile"
         />
       </div>
       <div className="shop-post_right">
@@ -48,7 +48,10 @@ function ShopPost({
           <p>{description}</p>
           {image && (
             <div className="right_body-picture">
-              <img src={image} alt="" />
+              <img
+                src={`http://localhost:3070/assets/uploads/shop/posts/${image}`}
+                alt="post-image"
+              />
             </div>
           )}
         </div>

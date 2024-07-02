@@ -14,6 +14,7 @@ import { InvoiceModule } from './invoice/invoice.module';
 import { ProfileModule } from './profile/profile.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { PaymentsModule } from './payments/payments.module';
+import { WebhookModule } from './webhook/webhook.module';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { PaymentsModule } from './payments/payments.module';
       port: 3306,
       database: 'tp-gula',
       username: 'root',
-      password: '',
+      password: 'root',
       entities: [join(__dirname, '/**/*.entity{.ts,.js}')],
       synchronize: true,
     }),
@@ -44,6 +45,7 @@ import { PaymentsModule } from './payments/payments.module';
       serveRoot: '/assets',
     }),
     PaymentsModule,
+    WebhookModule,
   ],
   controllers: [],
   providers: [],

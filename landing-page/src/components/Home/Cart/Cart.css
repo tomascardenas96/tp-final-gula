@@ -1,6 +1,5 @@
 .cart_container {
   width: 23rem;
-  max-height: 25rem;
   background-color: white;
   border-radius: 0.5rem;
   display: flex;
@@ -22,6 +21,21 @@
   color: rgba(0, 0, 0, 0.773);
 }
 
+.cart {
+}
+
+.cart-products {
+  display: grid;
+  grid-template-rows: 1fr 9rem;
+}
+
+.cart-products .product-list {
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  max-height: 13.3rem;
+}
+
 .cart_divider {
   width: 100%;
   height: 2px;
@@ -37,13 +51,19 @@
   border-radius: 1rem;
 }
 
+.cart-purchase_info {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+}
+
 .cart-total {
   width: 100%;
-  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
   gap: 0.5rem;
 }
 
@@ -59,7 +79,7 @@
 }
 
 .cart-button {
-  width: 100%;
+  padding: 0 2rem;
   height: 5rem;
   display: grid;
   place-content: center;

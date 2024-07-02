@@ -1,43 +1,47 @@
-Readme app Gula 
+MODO DE INSTALACION:
 
-Modo de instalación:
-Clonar el repositorio
+1) Clonar el repositorio
 - git clone https://github.com/tomascardenas96/tp-final-gula.git
-- instalar dependencias: Ruta raíz Frontend: npm install
-                                        :Ruta raíz Backend: npm install
-                                        :Ruta raíz Mobile: npm install.
+- instalar dependencias: Ruta raíz Frontend:
+	- Ruta raíz Backend: npm install
+	- Ruta raíz Mobile: npm install.
 
-Creación de Base de Datos relacional local (tenemos 2 opciones).
-- AUTOMATICO: En la carpeta raiz del backend, correr el siguiente script (npm run init-db).
+2) Creación de Base de Datos relacional local (tenemos 2 opciones).
+- AUTOMATICO: En la carpeta raiz del backend, correr el siguiente script (npm run init-db), este script creara la base de datos y tambien los datos que vamos a necesitar en la base de datos.
+
+	o
+
 - MANUAL: Ingresar al gestor de la base de datos y ejecutar las siguientes queries: 
 	- Creacion de base de datos: CREATE DATABASE IF NOT EXISTS `tp-gula`.
+	- Creacion de categorias: INSERT INTO `tp-gula.category`(description) VALUES ("Carnes"), ("Hamburguesas"), ("Panchos"), ("Bebidas"), ("Postres"), ("Cervezas"), ("Papas fritas"), ("Pastas"), ("Pizzas").
 
-- Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
+3) Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
 	- Puerto: 3306
 	- Database: `tp-gula`  
 	- User: root
 	- Password: root
 
+4) Poner el proyecto en marcha:
 - Correr servidor en la carpeta raíz de backend (servidor)
 	- npm run start: dev
 
--Correr frontend en la carpeta raíz de frontend (landing-page)
-	-npm run dev
+- En el backend, Correr ngrok desde la consola cmd (para crear un tunel https, de lo contrario mercado pago no podra enviarte notificaciones sobre las compras):
+	- ngrok http 3070
+	- Luego de ejecutar el script, copiar la URL de la columna 'Forwarding', luego ingresar al archivo .env que esta en la raiz del backend y modificar la variable de entorno llamada WEBHOOK_MERCADO_PAGO con la nueva URL anteriormente copiada desde la consola de ngrok.
+	- Reiniciar el servidor para efectuar los cambios.
 
-Posteriormente abrir el link que te envia la consola del frontend desde el navegador para acceder al contenido .
+- Correr frontend desde la carpeta raíz (landing-page)
+	- npm run dev
+
+5) Iniciar sesion en https://www.mercadopago.com.ar con nuestra cuenta de prueba para poder procesar pagos.
+	- Nombre de usuario: TESTUSER798872303
+	- Contraseña: L4Aj5WbKEd
+
+6) Por ultimo abrir el link que te envia la consola del frontend desde el navegador para acceder al contenido .
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-- Correr mobile en la carpeta raíz de Mobile(gula-app-mobile):
-	- Descargar repositorio: https://github.com/Gastonfauret/gula-app-mobile.git
-	- Instalación de librerías y dependencias detalladas en el README.md.
-	- En el telefono celular descargar la aplicacion: “Expo Go” (Logo Blanco y Negro).
-	- En el repositorio clonado, en la carpeta raíz (gula-app-mobile), iniciar la aplicación con la siguiente sentencia: npx expo start
-	- Al iniciar el proyecto nos mostrará un código QR que debemos escanear con la aplicación Expo Go, y veremos cómo se inicia el proyecto en ambos dispositivos.
-	- Para finalizar la reproducción, presionamos: Ctrl + c.
-
-Modo de uso:
-
+MODO DE USO:
 
 Página de registro (‘/register’): register page
 Rellenar los campos correspondientes con los siguientes datos:

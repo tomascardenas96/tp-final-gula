@@ -46,4 +46,10 @@ export class CartService {
       );
     }
   }
+
+  async findCartById(cartId: number) {
+    try {
+      return this.cartRepository.findOne({ where: { cartId } });
+    } catch (err) {}
+  }
 }

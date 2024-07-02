@@ -13,6 +13,8 @@ function useNewFood() {
     category: "",
   });
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [handleModal, setHandleModal] = useState(false);
   const { profilename } = useParams();
 
   async function submitNewFood(e) {
@@ -57,8 +59,21 @@ function useNewFood() {
   }
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    setSelectedFile(file);
   };
+
+  function openCloseModal() {
+    setHandleModal(!handleModal);
+  }
 
   return {
     submitNewFood,
@@ -67,6 +82,10 @@ function useNewFood() {
     newFoodLoading,
     newFoodError,
     handleFileChange,
+    openCloseModal,
+    handleModal,
+    selectedFile,
+    selectedImage,
   };
 }
 

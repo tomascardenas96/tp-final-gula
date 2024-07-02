@@ -16,7 +16,10 @@ export class FoodOnCart {
   @Column({ default: 1 })
   amount: number;
 
-  @ManyToOne(() => Cart, (cart) => cart.food, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Cart, (cart) => cart.food, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   @JoinColumn({ name: 'cart' })
   cart: Cart;
 

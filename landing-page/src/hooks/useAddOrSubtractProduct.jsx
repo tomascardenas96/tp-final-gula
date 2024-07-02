@@ -34,7 +34,7 @@ function useAddOrSubtractProduct() {
     addOrSubtractProduct("subtract", food);
   }
 
-  return { addProduct, subtractProduct };
+  return { addProduct, subtractProduct, addOrSubtractProduct };
 }
 
 export default useAddOrSubtractProduct;
