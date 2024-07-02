@@ -1,43 +1,69 @@
-MODO DE INSTALACION:
+MODO DE INSTALACION E INICIALIZACION:
 
-1) Clonar el repositorio
+Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los puntos que inicien con (*):
+	- host: 'localhost'
+	- user: 'root'
+	- password: 'root'
+	- port: 3306
+
+1) Descargar e instalar MySQL
+	- https://www.mysql.com/downloads/
+
+2) Instalar Visual studio code
+	- https://code.visualstudio.com/download
+
+3) Instalar Node js
+	- https://nodejs.org/en/download/package-manager
+
+4) Clonar el repositorio remoto
 - git clone https://github.com/tomascardenas96/tp-final-gula.git
-- instalar dependencias: Ruta raíz Frontend:
+- instalar dependencias: 
+	- Ruta raíz Frontend:
 	- Ruta raíz Backend: npm install
-	- Ruta raíz Mobile: npm install.
 
-2) Creación de Base de Datos relacional local (tenemos 2 opciones).
-- AUTOMATICO: En la carpeta raiz del backend, correr el siguiente script (npm run init-db), este script creara la base de datos y tambien los datos que vamos a necesitar en la base de datos.
+*) Modificar credenciales de los scripts encargados de inicializar la base de datos (create-register.ts y init-database.ts) para que coincidan con tu base de datos local:
+	- host
+	- user
+	- password
+
+*) Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
+	- port: 3306
+	- database: `tp-gula`  
+	- user: root
+	- password: root
+
+5) Creación de Base de Datos relacional local (hay 2 opciones).
+- AUTOMATICO: Desde la carpeta raiz del backend, correr el siguiente script:
+	- npm run init-db (Para crear y usar la base de datos).
 
 	o
 
 - MANUAL: Ingresar al gestor de la base de datos y ejecutar las siguientes queries: 
 	- Creacion de base de datos: CREATE DATABASE IF NOT EXISTS `tp-gula`.
-	- Creacion de categorias: INSERT INTO `tp-gula.category`(description) VALUES ("Carnes"), ("Hamburguesas"), ("Panchos"), ("Bebidas"), ("Postres"), ("Cervezas"), ("Papas fritas"), ("Pastas"), ("Pizzas").
 
-3) Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
-	- Puerto: 3306
-	- Database: `tp-gula`  
-	- User: root
-	- Password: root
-
-4) Poner el proyecto en marcha:
-- Correr servidor en la carpeta raíz de backend (servidor)
+6) Correr el backend desde la carpeta raiz (backend)
 	- npm run start: dev
+	- MANTENER LA CONSOLA ABIERTA.
 
-- En el backend, Correr ngrok desde la consola cmd (para crear un tunel https, de lo contrario mercado pago no podra enviarte notificaciones sobre las compras):
+7) En el backend, Correr ngrok desde la consola cmd (para crear un tunel https, de lo contrario mercado pago no podra enviarte notificaciones sobre las compras):
 	- ngrok http 3070
-	- Luego de ejecutar el script, copiar la URL de la columna 'Forwarding', luego ingresar al archivo .env que esta en la raiz del backend y modificar la variable de entorno llamada WEBHOOK_MERCADO_PAGO con la nueva URL anteriormente copiada desde la consola de ngrok.
+	- Luego de ejecutar el script, copiar la URL de la columna 'Forwarding' que devuelve la consola, y sin cerrar la ejecucion de la misma, ingresar al archivo .env que esta en la raiz del backend y modificar la variable de entorno llamada WEBHOOK_MERCADO_PAGO con la nueva URL proveida por ngrok.
 	- Reiniciar el servidor para efectuar los cambios.
+	- MANTENER LA CONSOLA ABIERTA.
 
-- Correr frontend desde la carpeta raíz (landing-page)
+9) Correr el frontend desde la carpeta raíz (landing-page)
 	- npm run dev
+	- ingresar desde el navegador a la URL que devuelve la consola.
+	- MANTENER LA CONSOLA ABIERTA.
+
+10) Desde la pagina web de Gula, ingresa a la seccion de registro (http://localhost:3070/register) y crea al menos 3 usuarios.
+
+8) Volver a la carpeta raiz del backend y ejecutar el siguiente script por consola:
+	- npm run create-reg (Crea los registros necesarios en la base de datos para la demostracion)
 
 5) Iniciar sesion en https://www.mercadopago.com.ar con nuestra cuenta de prueba para poder procesar pagos.
 	- Nombre de usuario: TESTUSER798872303
 	- Contraseña: L4Aj5WbKEd
-
-6) Por ultimo abrir el link que te envia la consola del frontend desde el navegador para acceder al contenido .
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
