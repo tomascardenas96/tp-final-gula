@@ -18,7 +18,7 @@ Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los pun
 4) Clonar el repositorio remoto
 - git clone https://github.com/tomascardenas96/tp-final-gula.git
 - instalar dependencias: 
-	- Ruta raíz Frontend:
+	- Ruta raíz Frontend: npm install
 	- Ruta raíz Backend: npm install
 
 *) Modificar credenciales de los scripts encargados de inicializar la base de datos (create-register.ts y init-database.ts) para que coincidan con tu base de datos local:
@@ -48,7 +48,6 @@ Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los pun
 7) En el backend, Correr ngrok desde la consola cmd (para crear un tunel https, de lo contrario mercado pago no podra enviarte notificaciones sobre las compras):
 	- ngrok http 3070
 	- Luego de ejecutar el script, copiar la URL de la columna 'Forwarding' que devuelve la consola, y sin cerrar la ejecucion de la misma, ingresar al archivo .env que esta en la raiz del backend y modificar la variable de entorno llamada WEBHOOK_MERCADO_PAGO con la nueva URL proveida por ngrok.
-	- Reiniciar el servidor para efectuar los cambios.
 	- MANTENER LA CONSOLA ABIERTA.
 
 9) Correr el frontend desde la carpeta raíz (landing-page)
@@ -61,7 +60,16 @@ Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los pun
 8) Volver a la carpeta raiz del backend y ejecutar el siguiente script por consola:
 	- npm run create-reg (Crea los registros necesarios en la base de datos para la demostracion)
 
-5) Iniciar sesion en https://www.mercadopago.com.ar con nuestra cuenta de prueba para poder procesar pagos.
+5) Modificar variable de entorno 'WEBHOOK_MERCADO_PAGO' (archivo .env en la raiz del backend).
+	- Iniciar sesion en https://www.mercadopago.com.ar con nuestra cuenta de prueba(VENDEDOR) con los siguientes datos.
+		- Usuario: TESTUSER805094915
+		- Contraseña: rOVe82hkLY 
+	- Ir a tus integraciones y selecciona la aplicacion Test commerce
+	- Dirigirse a la seccion Webhooks.
+	- Copiar la URL almacenada en la variable de entorno WEBHOOK_MERCADO_PAGO y pegala tanto en modo prueba como produccion, pero debera tener el endpoint /webhook, Ejemplo: 'https://2002-181-224-122-214.ngrok-free.app/webhook'.
+	- Asegurate de hacer la simulacion y que el backend reciba los datos correctos.
+
+5) Inicia sesion en el mismo navegador que abriste la app Gula en https://www.mercadopago.com.ar con nuestra cuenta de prueba(COMPRADOR) para poder realizar pagos.
 	- Nombre de usuario: TESTUSER798872303
 	- Contraseña: L4Aj5WbKEd
 

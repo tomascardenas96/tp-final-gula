@@ -11,6 +11,7 @@ export class WebhookService {
   ) {}
 
   async handleWebhook(webHookData: any) {
+    console.log(webHookData);
     try {
       if (webHookData.data) {
         const paymentId = webHookData.data.id;
@@ -21,13 +22,11 @@ export class WebhookService {
 
         await this.foodOnCartService.clearCart(cart);
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   }
   private async getPaymentDetails(paymentId: string) {
     try {
-      const accessToken =
-        'APP_USR-810930147163107-062820-93846a0b66fe38044f4dc1e08ea563a1-1876641655';
+      const accessToken = process.env.ACCESS_TOKEN_MP;
 
       const response = await fetch(
         `https://api.mercadopago.com/v1/payments/${paymentId}`,
@@ -43,8 +42,6 @@ export class WebhookService {
       }
 
       return await response.json();
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }
 }

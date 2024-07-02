@@ -57,7 +57,7 @@ VALUES
         "lapaperiabj",
         2,
         "paperia.jpg"
-    ),
+    );
 
 -- Platos
 INSERT INTO

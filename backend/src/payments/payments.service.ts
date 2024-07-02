@@ -4,7 +4,6 @@ import {
   BadGatewayException,
 } from '@nestjs/common';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
-import { ActiveUserInterface } from '../common/interface/active-user.interface';
 import { FoodOnCart } from '../food_on_cart/entities/food_on_cart.entity';
 
 @Injectable()
@@ -13,14 +12,11 @@ export class PaymentsService {
 
   constructor() {
     this.client = new MercadoPagoConfig({
-      accessToken:
-        'APP_USR-810930147163107-062820-93846a0b66fe38044f4dc1e08ea563a1-1876641655',
+      accessToken: process.env.ACCESS_TOKEN_MP,
     });
   }
 
-  async createPreference(
-    foodOnCart: FoodOnCart[],
-  ): Promise<any> {
+  async createPreference(foodOnCart: FoodOnCart[]): Promise<any> {
     try {
       const preference = new Preference(this.client);
 
@@ -38,9 +34,9 @@ export class PaymentsService {
         body: {
           items,
           back_urls: {
-            success: 'http://localhost:3070/home',
-            failure: 'https://your-site.com/failure',
-            pending: 'https://your-site.com/pending',
+            success: 'http://localhost:3070/home/success',
+            failure: 'http://localhost:3070/home/failure',
+            pending: 'http://localhost:3070/home/pending',
           },
           notification_url: `${process.env.WEBHOOK_MERCADO_PAGO}/webhook`,
           external_reference: foodOnCart[0].cart.cartId.toString(),
