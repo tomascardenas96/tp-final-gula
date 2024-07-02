@@ -60,7 +60,7 @@ Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los pun
 8) Volver a la carpeta raiz del backend y ejecutar el siguiente script por consola:
 	- npm run create-reg (Crea los registros necesarios en la base de datos para la demostracion)
 
-5) Modificar variable de entorno 'WEBHOOK_MERCADO_PAGO' (archivo .env en la raiz del backend).
+5) Vincular los Webhooks (notificaciones de Mercado pago).
 	- Iniciar sesion en https://www.mercadopago.com.ar con nuestra cuenta de prueba(VENDEDOR) con los siguientes datos.
 		- Usuario: TESTUSER805094915
 		- Contraseña: rOVe82hkLY 
@@ -72,6 +72,10 @@ Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los pun
 5) Inicia sesion en el mismo navegador que abriste la app Gula en https://www.mercadopago.com.ar con nuestra cuenta de prueba(COMPRADOR) para poder realizar pagos.
 	- Nombre de usuario: TESTUSER798872303
 	- Contraseña: L4Aj5WbKEd
+
+7) Reiniciar el servidor para que los cambios surjan efecto (Control + c en la consola)
+	- Control + C en la consola para cortar el proceso.
+	- npm run start:dev para volver a correr el proyecto.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
