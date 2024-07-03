@@ -46,36 +46,45 @@ Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los pun
 	- MANTENER LA CONSOLA ABIERTA.
 
 7) En el backend, Correr ngrok desde la consola cmd (para crear un tunel https, de lo contrario mercado pago no podra enviarte notificaciones sobre las compras):
-	- ngrok http 3070
+	- Iniciar sesion en ngrok https://ngrok.com con tu cuenta. 
+	- Si es la primera vez que vas a ejecutar un comando de ngrok en el proyecto, deberas ingresar a la seccion 'Your Authtoken' y copiar el comando de configuracion seguido del Authtoken que se genera automaticamente.
+	- Pegar ese comando en la consola para finalizar la vinculacion con la cuenta.
+	- correr el comando ngrok http 3070
 	- Luego de ejecutar el script, copiar la URL de la columna 'Forwarding' que devuelve la consola, y sin cerrar la ejecucion de la misma, ingresar al archivo .env que esta en la raiz del backend y modificar la variable de entorno llamada WEBHOOK_MERCADO_PAGO con la nueva URL proveida por ngrok.
 	- MANTENER LA CONSOLA ABIERTA.
 
-9) Correr el frontend desde la carpeta raíz (landing-page)
+8) Correr el frontend desde la carpeta raíz (landing-page)
 	- npm run dev
 	- ingresar desde el navegador a la URL que devuelve la consola.
 	- MANTENER LA CONSOLA ABIERTA.
 
-10) Desde la pagina web de Gula, ingresa a la seccion de registro (http://localhost:3070/register) y crea al menos 3 usuarios.
+9) Desde la pagina web de Gula, ingresa a la seccion de registro (http://localhost:3070/register) y crea al menos 3 usuarios.
 
-8) Volver a la carpeta raiz del backend y ejecutar el siguiente script por consola:
+10) Volver a la carpeta raiz del backend y ejecutar el siguiente script por consola:
 	- npm run create-reg (Crea los registros necesarios en la base de datos para la demostracion)
 
-5) Vincular los Webhooks (notificaciones de Mercado pago).
-	- Iniciar sesion en https://www.mercadopago.com.ar con nuestra cuenta de prueba(VENDEDOR) con los siguientes datos.
+11) Vincular los Webhooks (notificaciones de Mercado pago).
+	- Iniciar sesion en https://www.mercadopago.com.ar/developers/es con nuestra cuenta de prueba(VENDEDOR) con los siguientes datos.
 		- Usuario: TESTUSER805094915
 		- Contraseña: rOVe82hkLY 
 	- Ir a tus integraciones y selecciona la aplicacion Test commerce
 	- Dirigirse a la seccion Webhooks.
-	- Copiar la URL almacenada en la variable de entorno WEBHOOK_MERCADO_PAGO y pegala tanto en modo prueba como produccion, pero debera tener el endpoint /webhook, Ejemplo: 'https://2002-181-224-122-214.ngrok-free.app/webhook'.
+	- Copiar la URL almacenada en la variable de entorno WEBHOOK_MERCADO_PAGO y pegala tanto en modo prueba como produccion, pero debera tener el endpoint /webhook, Ejemplo: 'https://ejemplo.app/webhook'.
 	- Asegurate de hacer la simulacion y que el backend reciba los datos correctos.
 
-5) Inicia sesion en el mismo navegador que abriste la app Gula en https://www.mercadopago.com.ar con nuestra cuenta de prueba(COMPRADOR) para poder realizar pagos.
+12) Inicia sesion en el mismo navegador que abriste la app Gula en https://www.mercadopago.com.ar con nuestra cuenta de prueba(COMPRADOR) para poder realizar pagos.
 	- Nombre de usuario: TESTUSER798872303
 	- Contraseña: L4Aj5WbKEd
 
-7) Reiniciar el servidor para que los cambios surjan efecto (Control + c en la consola)
+13) Reiniciar el servidor para que los cambios surjan efecto.
 	- Control + C en la consola para cortar el proceso.
 	- npm run start:dev para volver a correr el proyecto.
+
+14) Cada vez que corras el proyecto nuevamente deberas:
+	- Ademas de correr el backend y el frontend con sus respectivos scripts, Tambien deberas tener corriendo la consola de ngrok(en backend) simultaneamente.
+	- Tambien necesitaras modificar la variable de entorno que almacena la URL de ngrok y actualizarla con la que te devolvio la consola que esta actualmente corriendo.
+	- Una vez hayas modificado la variable de entorno, deberas ingresar nuevamente al usuario de prueba vendedor, y desde la seccion web hooks, Tambien actualizar la URL con la actual de ngrok (En modo prueba y produccion).
+	- Luego tendras que reiniciar el servidor para que se apliquen los cambios.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
