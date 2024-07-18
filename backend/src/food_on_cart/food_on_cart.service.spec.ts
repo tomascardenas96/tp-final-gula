@@ -449,7 +449,7 @@ describe('FoodOnCartService', () => {
       };
       //Mock de usuario y carrito activo
       const mockUser = { userId: 1 };
-      const mockCart = { cartId: 1, user: mockUser };
+      const mockCart = { cartId: 1, user: mockUser }; 
       
       //configuracion del test
       //cuando se llame al metodo delete se debe resolver con un objeto vacio
@@ -457,8 +457,11 @@ describe('FoodOnCartService', () => {
       cartServiceMock.getActiveCart.mockResolvedValue(mockCart);
       foodOnCartServiceMock.delete.mockResolvedValue({affected:2})//mock respuesta de eliminacion
       
+      //obtengo el carrito activo
+      const activeCart= await cartServiceMock.getActiveCart(mockUser);
+
       //llamado al servicio con parametro correcto
-      const result= await service.clearCart(activeUser);
+      const result= await service.clearCart(activeCart);
 
       // Verificación de llamadas a métodos y resultados
       expect(userServiceMock.getActiveUser).toHaveBeenCalledWith(activeUser);
@@ -475,20 +478,26 @@ describe('FoodOnCartService', () => {
         name: 'Test User',
       }; 
       //mock de un error
-      const mockError= new Error ('Test error');
+      const mockError= new BadGatewayException('test error');
+      //mock de user y carrito activo
+      const mockUser={userId:1};
+      const mockCart={cartId:1,user:activeUser} as Cart
+      
       //configuracion de la prueba
       //getActiveUser debe devolver un usuario activo
-      userServiceMock.getActiveUser.mockResolvedValue(activeUser);
+      userServiceMock.getActiveUser.mockResolvedValue(mockUser);
+      
       //se configura getActiveCart y delete para que lanzen un error cuando sean llamados
       cartServiceMock.getActiveCart.mockRejectedValue(mockError);
       foodOnCartServiceMock.delete.mockRejectedValue(mockError);
 
       // Llamada al método DEL SERVICIO y verificación que lance una excepción
-      await expect(service.clearCart(activeUser)).rejects.toThrow(BadGatewayException);
+      await expect(service.clearCart(mockCart)).rejects.toThrow(BadGatewayException);
+      
       //verifica que getActiveUser no sea haya llamado cuando se lanza una exception 
       expect(userServiceMock.getActiveUser).toHaveBeenCalledWith(activeUser);
-      expect(cartServiceMock.getActiveCart).toHaveBeenCalled();
-      expect(foodOnCartServiceMock.delete).toHaveBeenCalled(); 
+      expect(cartServiceMock.getActiveCart).toHaveBeenCalledWith(activeUser); 
+      expect(foodOnCartServiceMock.delete).toHaveBeenCalledWith({cart:mockCart}); 
     }); 
   });
 /*  describe('addOrSubtractProduct',()=>{

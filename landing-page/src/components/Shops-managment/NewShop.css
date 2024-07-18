@@ -63,7 +63,7 @@
   background-color: #f9f9f9;
   height: 100%;
   width: 100%;
-  border-radius: 0.7rem;
+  border-radius: 0 0 0.7rem 0.7rem;
   display: grid;
   grid-template-columns: 0.8fr 1fr;
   grid-template-rows: repeat(4, 4rem) 10rem 3rem;
@@ -78,10 +78,6 @@
 
 .new-shop_form form .form-label_container .form-label {
   display: flex;
-  justify-self: end;
-  font-family: var(--secondary-font);
-  font-size: 0.88rem;
-  font-weight: bold;
   justify-self: center;
   font-size: 0.9rem;
   font-weight: bold;
@@ -99,7 +95,6 @@
   padding-left: 0.5rem;
   padding-bottom: 0.4%;
   font-family: var(--secondary-font);
-  background-color: transparent;
 }
 
 .form_select-picture-shop_label {

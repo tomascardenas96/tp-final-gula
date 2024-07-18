@@ -98,6 +98,8 @@
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 6rem 1fr;
   gap: 0.4rem;
+  height: 100%;
+  padding-left: 2rem;
 }
 
 .main-content_posts {
@@ -105,6 +107,7 @@
   display: grid;
   grid-template-rows: 5rem 1fr;
   grid-template-columns: minmax(30rem, 1fr);
+  padding-top: 1rem;
 }
 
 .main-content .main-content_categories-h1 {

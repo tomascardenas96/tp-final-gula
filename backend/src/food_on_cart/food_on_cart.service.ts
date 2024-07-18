@@ -122,11 +122,8 @@ export class FoodOnCartService {
   }
 
   //Metodo para limpiar el carrito una vez exitosa la compra.
-  async clearCart(activeUser: ActiveUserInterface): Promise<DeleteResult> {
+  async clearCart(cart: Cart): Promise<DeleteResult> {
     try {
-      const user = await this.userService.getActiveUser(activeUser);
-      const cart = await this.cartService.getActiveCart(user);
-
       return this.foodOnCartRepository.delete({ cart });
     } catch (err) {
       throw new BadGatewayException(
@@ -162,6 +159,7 @@ export class FoodOnCartService {
 
       const newAmount = await this.foodOnCartRepository.save(foodOnCart);
 
+      // Socket que enviara los nuevos cambios al frontend cuando se sume o reste una unidad de un producto.
       this.socketGateway.handleAddOrSubtractFood(newAmount);
 
       return newAmount;
@@ -178,6 +176,22 @@ export class FoodOnCartService {
     return this.foodOnCartRepository.find({
       relations: ['cart', 'food'],
     });
+  }
+     //Metodo de gaston Nro. 5:
+   // Nuevo metodo para eliminar todos los registros de food_on_cart
+   async deleteAllFoodOnCart(): Promise<void> {
+    await this.foodOnCartRepository.clear();
+  }
+
+    //Metodo de gaston Nro. 6:
+  // Nuevo metodo para eliminar un registro por su foodOnCartId
+  async deleteFoodOnCartById(foodOnCartId: number): Promise<void> {
+    const result = await this.foodOnCartRepository.delete(foodOnCartId);
+    if (result.affected === 0) {
+      throw new NotFoundException(
+        `Food_on_cart service: food_on_cart with ID ${foodOnCartId} not found - deleteFoodOnCartById method`,
+      );
+    }
   }
 
 }

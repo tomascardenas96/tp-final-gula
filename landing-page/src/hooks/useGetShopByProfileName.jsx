@@ -1,3 +1,5 @@
+// Este custom hook obtiene un negocio por nombre de perfil.
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -24,6 +26,7 @@ function useGetShopByProfileName() {
           }
         );
         const data = await response.json();
+        console.log(data);
         if (data.error) {
           throw new Error();
         }

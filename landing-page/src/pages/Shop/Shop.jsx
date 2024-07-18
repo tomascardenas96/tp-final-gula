@@ -41,8 +41,8 @@ function Shop() {
       <div className="shop-profile_body">
         <div className="body_cover-picture">
           <img
-            src="http://localhost:3070/assets/uploads/shop/profile/comida.jpeg"
-            alt=""
+            src="http://localhost:3070/assets/uploads/shop/cover-photo/cover-photo.jpg"
+            alt="cover-photo"
           />
         </div>
 

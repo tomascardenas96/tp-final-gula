@@ -157,8 +157,8 @@ describe('FoodOnCartController', () => {
     });
   })
 
-  describe('addOrSbtractedProductDto',()=>{
-    it('should call addOrSubtractProduct in FoodOnCartService with correct parameters', async () => {
+  describe('addOrSubtractProduct',()=>{
+    it('should call addOrSubtractProduct with correct parameters', async () => {
       // Definición del DTO mockeado que se pasa al método del controlador
       const mockAddOrSubtractProductDto: AddOrSubtractProductDto = {
         option: 'add',

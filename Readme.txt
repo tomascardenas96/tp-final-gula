@@ -1,43 +1,94 @@
-Readme app Gula 
+MODO DE INSTALACION E INICIALIZACION:
 
-Modo de instalación:
-Clonar el repositorio
+Nota: Si tu base de datos local tiene la siguiente configuracion, ignora los puntos que inicien con (*):
+	- host: 'localhost'
+	- user: 'root'
+	- password: 'root'
+	- port: 3306
+
+1) Descargar e instalar MySQL
+	- https://www.mysql.com/downloads/
+
+2) Instalar Visual studio code
+	- https://code.visualstudio.com/download
+
+3) Instalar Node js
+	- https://nodejs.org/en/download/package-manager
+
+4) Clonar el repositorio remoto
 - git clone https://github.com/tomascardenas96/tp-final-gula.git
-- instalar dependencias: Ruta raíz Frontend: npm install
-                                        :Ruta raíz Backend: npm install
-                                        :Ruta raíz Mobile: npm install.
+- instalar dependencias: 
+	- Ruta raíz Frontend: npm install
+	- Ruta raíz Backend: npm install
 
-Creación de Base de Datos relacional local (tenemos 2 opciones).
-- AUTOMATICO: En la carpeta raiz del backend, correr el siguiente script (npm run init-db).
+*) Modificar credenciales de los scripts encargados de inicializar la base de datos (create-register.ts y init-database.ts) para que coincidan con tu base de datos local:
+	- host
+	- user
+	- password
+
+*) Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
+	- port: 3306
+	- database: `tp-gula`  
+	- user: root
+	- password: root
+
+5) Creación de Base de Datos relacional local (hay 2 opciones).
+- AUTOMATICO: Desde la carpeta raiz del backend, correr el siguiente script:
+	- npm run init-db (Para crear y usar la base de datos).
+
+	o
+
 - MANUAL: Ingresar al gestor de la base de datos y ejecutar las siguientes queries: 
 	- Creacion de base de datos: CREATE DATABASE IF NOT EXISTS `tp-gula`.
 
-- Modificar credenciales de conexión de Base de datos en módulo principal de Backend para que coincidan con los datos de la base de datos local:
-	- Puerto: 3306
-	- Database: `tp-gula`  
-	- User: root
-	- Password: root
-
-- Correr servidor en la carpeta raíz de backend (servidor)
+6) Correr el backend desde la carpeta raiz (backend)
 	- npm run start: dev
+	- MANTENER LA CONSOLA ABIERTA.
 
--Correr frontend en la carpeta raíz de frontend (landing-page)
-	-npm run dev
+7) En el backend, Correr ngrok desde la consola cmd (para crear un tunel https, de lo contrario mercado pago no podra enviarte notificaciones sobre las compras):
+	- Iniciar sesion en ngrok https://ngrok.com con tu cuenta. 
+	- Si es la primera vez que vas a ejecutar un comando de ngrok en el proyecto, deberas ingresar a la seccion 'Your Authtoken' y copiar el comando de configuracion seguido del Authtoken que se genera automaticamente.
+	- Pegar ese comando en la consola para finalizar la vinculacion con la cuenta.
+	- correr el comando ngrok http 3070
+	- Luego de ejecutar el script, copiar la URL de la columna 'Forwarding' que devuelve la consola, y sin cerrar la ejecucion de la misma, ingresar al archivo .env que esta en la raiz del backend y modificar la variable de entorno llamada WEBHOOK_MERCADO_PAGO con la nueva URL proveida por ngrok.
+	- MANTENER LA CONSOLA ABIERTA.
 
-Posteriormente abrir el link que te envia la consola del frontend desde el navegador para acceder al contenido .
+8) Correr el frontend desde la carpeta raíz (landing-page)
+	- npm run dev
+	- ingresar desde el navegador a la URL que devuelve la consola.
+	- MANTENER LA CONSOLA ABIERTA.
+
+9) Desde la pagina web de Gula, ingresa a la seccion de registro (http://localhost:3070/register) y crea al menos 3 usuarios.
+
+10) Volver a la carpeta raiz del backend y ejecutar el siguiente script por consola:
+	- npm run create-reg (Crea los registros necesarios en la base de datos para la demostracion)
+
+11) Vincular los Webhooks (notificaciones de Mercado pago).
+	- Iniciar sesion en https://www.mercadopago.com.ar/developers/es con nuestra cuenta de prueba(VENDEDOR) con los siguientes datos.
+		- Usuario: TESTUSER805094915
+		- Contraseña: rOVe82hkLY 
+	- Ir a tus integraciones y selecciona la aplicacion Test commerce
+	- Dirigirse a la seccion Webhooks.
+	- Copiar la URL almacenada en la variable de entorno WEBHOOK_MERCADO_PAGO y pegala tanto en modo prueba como produccion, pero debera tener el endpoint /webhook, Ejemplo: 'https://ejemplo.app/webhook'.
+	- Asegurate de hacer la simulacion y que el backend reciba los datos correctos.
+
+12) Inicia sesion en el mismo navegador que abriste la app Gula en https://www.mercadopago.com.ar con nuestra cuenta de prueba(COMPRADOR) para poder realizar pagos.
+	- Nombre de usuario: TESTUSER798872303
+	- Contraseña: L4Aj5WbKEd
+
+13) Reiniciar el servidor para que los cambios surjan efecto.
+	- Control + C en la consola para cortar el proceso.
+	- npm run start:dev para volver a correr el proyecto.
+
+14) Cada vez que corras el proyecto nuevamente deberas:
+	- Ademas de correr el backend y el frontend con sus respectivos scripts, Tambien deberas tener corriendo la consola de ngrok(en backend) simultaneamente.
+	- Tambien necesitaras modificar la variable de entorno que almacena la URL de ngrok y actualizarla con la que te devolvio la consola que esta actualmente corriendo.
+	- Una vez hayas modificado la variable de entorno, deberas ingresar nuevamente al usuario de prueba vendedor, y desde la seccion web hooks, Tambien actualizar la URL con la actual de ngrok (En modo prueba y produccion).
+	- Luego tendras que reiniciar el servidor para que se apliquen los cambios.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-- Correr mobile en la carpeta raíz de Mobile(gula-app-mobile):
-	- Descargar repositorio: https://github.com/Gastonfauret/gula-app-mobile.git
-	- Instalación de librerías y dependencias detalladas en el README.md.
-	- En el telefono celular descargar la aplicacion: “Expo Go” (Logo Blanco y Negro).
-	- En el repositorio clonado, en la carpeta raíz (gula-app-mobile), iniciar la aplicación con la siguiente sentencia: npx expo start
-	- Al iniciar el proyecto nos mostrará un código QR que debemos escanear con la aplicación Expo Go, y veremos cómo se inicia el proyecto en ambos dispositivos.
-	- Para finalizar la reproducción, presionamos: Ctrl + c.
-
-Modo de uso:
-
+MODO DE USO:
 
 Página de registro (‘/register’): register page
 Rellenar los campos correspondientes con los siguientes datos:

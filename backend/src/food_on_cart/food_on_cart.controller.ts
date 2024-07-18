@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   UseGuards,
+  Delete
 } from '@nestjs/common';
 import { FoodOnCartService } from './food_on_cart.service';
 import { CreateFoodOnCartDto } from './dto/create-food_on_cart.dto';
@@ -46,5 +47,17 @@ export class FoodOnCartController {
   @Get()
   getAllFoodOnCart() {
     return this.foodOnCartService.getAllFoodOnCart();
+  }
+
+  // Nuevo endpoint para eliminar todos los registros de food_on_cart
+  @Delete()
+  deleteAllFoodOnCart() {
+    return this.foodOnCartService.deleteAllFoodOnCart();
+  }
+
+  // Nuevo endpoint para eliminar un registro por su foodOnCartId
+  @Delete(':id')
+  deleteFoodOnCartById(@Param('id') id: number) {
+    return this.foodOnCartService.deleteFoodOnCartById(id);
   }
 }
