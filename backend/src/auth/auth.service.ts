@@ -19,14 +19,7 @@ export class AuthService {
 
   async register({ email, name, password, location, birthDate }: RegisterDto) {
     const findUserByEmail = await this.userService.findByEmail(email);
-    //check if the Email is null o undefined
-    if(!email){
-      throw new BadRequestException('Email cannot be empty');
-    }
-    //check if other required field are null or undefined
-    if(!name || !password){
-      throw new BadRequestException('Name and password are required')
-    }
+
     //check if Email is already in use
     if (findUserByEmail) {
       throw new BadRequestException('User already exists');
@@ -44,22 +37,15 @@ export class AuthService {
       password: await bcryptjs.hash(password, salt),
     });
 
-    //return a object with the user's infoormation registred  
+    //return a object with the user's infoormation registred
     return {
       email: email,
       username: name,
       message: 'Register successful',
     };
-  } 
+  }
 
   async login({ email, password }: LoginDto) {
-    //****** */
-    //console.log(password);
-    //const roundSalt = 10;
-    //const salt = await bcryptjs.genSalt(roundSalt);
-    //const passwordhash= await bcryptjs.hash(password, salt);
-    //console.log(passwordhash);
-    //*////
     const user = await this.userService.findByEmailWithPassword(email);
     if (!user) {
       throw new NotFoundException('User non-existent');

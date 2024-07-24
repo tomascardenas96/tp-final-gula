@@ -1,5 +1,15 @@
+import { IsNotEmpty, IsString } from 'class-validator';
+
 export class CreateProfileDto {
-    profileName: string;
-    location: string;
-    birthDate: string;
+  @IsString()
+  @IsNotEmpty()
+  profileName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  location: string;
+
+  @IsString()
+  @IsNotEmpty()
+  birthDate: string;
 }
