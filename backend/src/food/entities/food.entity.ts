@@ -33,7 +33,7 @@ export class Food {
   @Column()
   review: string;
 
-  @ManyToOne(() => Shop, (shop) => shop.food, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Shop, (shop) => shop.food, { onDelete: 'CASCADE', eager: true })
   @JoinColumn({ name: 'shop' })
   shop: Shop;
 
