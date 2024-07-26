@@ -21,9 +21,11 @@ export class WebhookService {
 
         const cart = await this.cartService.findCartById(activeCartId);
 
-        //Generamos la factura y eliminamos todos los productos del carrito.
-        await this.invoiceService.generateInvoice(cart);
-        await this.foodOnCartService.clearCart(cart);
+        //Generamos la factura y eliminamos todos los productos del carrito (En caso de aprobada la compra).
+        if (paymentDetails.status === 'approved') {
+          await this.invoiceService.generateInvoice(cart);
+          await this.foodOnCartService.clearCart(cart);
+        }
       }
     } catch (error) {
       throw new BadGatewayException(

@@ -36,8 +36,6 @@ export class InvoiceService {
         );
       }
 
-      console.log(foodOnCart)
-
       //Agregar logica para numero de factura.
       for (const foods of foodOnCart) {
         const newInvoice = this.invoiceRepository.create({
