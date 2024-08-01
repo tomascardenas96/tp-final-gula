@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useGetFoodOnCartByActiveUser from "./useGetFoodOnCartByActiveUser";
-import { debounce } from "lodash";
+import { debounce } from 'lodash';
 
 function useGetPreferencesMercadoPago() {
   const token = localStorage.getItem("accessToken");

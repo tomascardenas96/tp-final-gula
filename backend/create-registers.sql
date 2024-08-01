@@ -1,4 +1,4 @@
-USE `tp-gula2`;
+USE `tp-gula`;
 
 -- Agregamos algunos datos para mostrar en la demostracion. 
 -- Categorias
