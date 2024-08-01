@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { io } from "socket.io-client";
+import { useState } from "react";
 
 function useAddFoodOnCart() {
   const token = localStorage.getItem("accessToken");

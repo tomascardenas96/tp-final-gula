@@ -15,6 +15,7 @@ import { UpdateProfileDto } from '../user/dto/update-profile';
 import { Profile } from 'src/profile/entities/profile.entity';
 import * as bcryptjs from 'bcryptjs';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { Cart } from 'src/cart/entities/cart.entity';
 
 @Injectable()
 export class UserService {
@@ -75,14 +76,15 @@ export class UserService {
     try {
       //intenta buscar usuarios cuyos nombres coincidan parcialmente con el nombre pasado porparametro
       return await this.userRepository.find({
-        where: { name: ILike(`%${name}%`) },// Utiliza ILike para realizar una búsqueda case-insensitive y parcial
-      // Esto significa que no es sensible a mayúsculas y minúsculas y encuentra coincidencias parciales.
+        where: { name: ILike(`%${name}%`) }, // Utiliza ILike para realizar una búsqueda case-insensitive y parcial
+        // Esto significa que no es sensible a mayúsculas y minúsculas y encuentra coincidencias parciales.
       });
     } catch (err) {
       // Si ocurre un error durante la búsqueda, se lanza una excepción BadRequestException con un mensaje de error
-      throw new BadRequestException({ message: err });// Lanza una excepción con el error capturado
+      throw new BadRequestException({ message: err }); // Lanza una excepción con el error capturado
     }
   }
+
   async getActiveUser(activeUser: ActiveUserInterface): Promise<User> {
     try {
       const user: User = await this.userRepository.findOne({
@@ -105,6 +107,16 @@ export class UserService {
         message: 'User service: error trying to get active user by token',
         method: 'getActiveUser',
       });
+    }
+  }
+
+  async getActiveUserByCart(cart: Cart): Promise<User> {
+    try {
+      return await this.userRepository.findOne({ where: { cart } });
+    } catch (err) {
+      throw new BadGatewayException(
+        'User service: error trying to get active user by cart - getActiveUserByCart method',
+      );
     }
   }
 
