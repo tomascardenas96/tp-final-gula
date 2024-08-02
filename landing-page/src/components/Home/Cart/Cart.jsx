@@ -1,5 +1,5 @@
 import "./Cart.css";
-import React from "react";
+import React, { useContext } from "react";
 import useGetFoodOnCartByActiveUser from "../../../hooks/useGetFoodOnCartByActiveUser";
 import ProductCard from "./ProductCard";
 import useGetPreferencesMercadoPago from "../../../hooks/useGetPreferencesMercadoPago";
@@ -7,16 +7,19 @@ import Spinner from "../../Common/Spinner/Spinner";
 
 // Inicializamos la API de mercado pago.
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { FoodOnCartContext } from "../../Common/Context/Context";
 initMercadoPago("APP_USR-1d4c3f14-7f98-4c32-a2c3-b9a81fed4360");
 
 function Cart() {
   const { foodOnCart, foodOnCartLoading, foodOnCartError, totalOfAllProducts } =
-    useGetFoodOnCartByActiveUser();
+    useContext(FoodOnCartContext);
+
+    // console.log()
 
   const { preferenceId } = useGetPreferencesMercadoPago();
 
   return (
-    <div className="cart_container">
+    <div className="cart_container" onClick={(e) => e.stopPropagation()}>
       {!foodOnCart.length ? (
         <div className="cart_empty">
           <p>Todavía no has agregado nada al carrito.</p>

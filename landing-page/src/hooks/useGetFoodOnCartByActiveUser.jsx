@@ -7,7 +7,7 @@ function useGetFoodOnCartByActiveUser() {
   const [foodOnCartLoading, setFoodOnCartLoading] = useState(false);
   const [foodOnCartError, setFoodOnCartError] = useState(null);
   const [total, setTotal] = useState();
-  const [totalOfAllProducts, setTotalOfAllProducts] = useState(null);
+  const [totalOfAllProducts, setTotalOfAllProducts] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -75,6 +75,7 @@ function useGetFoodOnCartByActiveUser() {
       if (data.error) {
         throw new Error(data.message);
       }
+
       setFoodOnCart(data);
     } catch (err) {
       setFoodOnCartError(err);
@@ -119,6 +120,7 @@ function useGetFoodOnCartByActiveUser() {
     total,
     setFoodOnCart,
     totalOfAllProducts,
+    setTotalOfAllProducts,
   };
 }
 

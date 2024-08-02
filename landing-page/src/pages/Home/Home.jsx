@@ -11,8 +11,9 @@ import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import LoadingScreen from "../../components/Common/Spinner/LoadingScreen";
 import Messages from "../../components/Home/Messages/Messages";
-import "./Home.css";
 import Advertise from "../../components/Home/Advertise/Advertise";
+import "./Home.css";
+import Context from "../../components/Common/Context/Context";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
@@ -27,21 +28,21 @@ function Home() {
   }
 
   return (
-    <>
-      <main className="home-page_container" id="home-page">
-        <Header />
-        <SlideText />
+    <main className="home-page_container" id="home-page">
+      <Header />
+      <SlideText />
+      <Context>
         <SiderMenu />
         <FoodFilter />
-        <FoodCategories />
-        <Shops />
-        <Advertise />
-        <HomePosts />
-        <SiderSettings />
-        <Messages />
-        <Footer />
-      </main>
-    </>
+      </Context>
+      <FoodCategories />
+      <Shops />
+      <Advertise />
+      <HomePosts />
+      <SiderSettings />
+      <Messages />
+      <Footer />
+    </main>
   );
 }
 

@@ -70,17 +70,43 @@
 }
 
 .sider-menu_active {
-  color: red; 
+  color: red;
 }
 
 .sider-menu_cart {
   position: relative;
 }
 
+.total-amount {
+  position: absolute;
+  width: 1rem;
+  border-radius: 50%;
+  height: 1rem;
+  background-color: rgba(208, 52, 52, 0.844);
+  right: 1.3rem;
+  top: 50%;
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-content: center;
+  color: white;
+  font-size: 0.6rem;
+
+  & p {
+    font-family: var(--secondary-font);
+  }
+}
+
+.invoice-modal {
+  position: absolute;
+  width: 100svw;
+  height: 100svh;
+}
+
 .cart-modal {
   position: absolute;
-  top: 14.8rem;
-  left: 12rem;
+  width: 100svw;
+  height: 100svh;
 }
 
 .sider-menu_user-data {

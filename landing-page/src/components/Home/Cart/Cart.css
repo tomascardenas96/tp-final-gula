@@ -1,5 +1,8 @@
 .cart_container {
   width: 23rem;
+  position: absolute;
+  top: 14.8rem;
+  left: 12rem;
   background-color: white;
   border-radius: 0.5rem;
   display: flex;
@@ -19,9 +22,6 @@
 .cart_empty > p {
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.773);
-}
-
-.cart {
 }
 
 .cart-products {

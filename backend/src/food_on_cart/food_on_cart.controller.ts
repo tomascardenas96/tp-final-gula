@@ -36,10 +36,10 @@ export class FoodOnCartController {
 
   @Patch('add-subtract')
   addOrSubtractProduct(
-    @Body() { option, food }: AddOrSubtractProductDto,
+    @Body() addOrSubtractDto: AddOrSubtractProductDto,
     @ActiveUser() activeUser: ActiveUserInterface,
   ) {
-    return this.foodOnCartService.addOrSubtractProduct(option, food, activeUser);
+    return this.foodOnCartService.addOrSubtractProduct(addOrSubtractDto, activeUser);
   }
 
    //Metodo de Gaston Nro. 4.

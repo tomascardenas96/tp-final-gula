@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import useGetAlerts from "./useGetAlerts";
 
 function useNewPost() {
   const token = localStorage.getItem("accessToken");
@@ -12,9 +13,11 @@ function useNewPost() {
   const [newPostLoading, setNewPostLoading] = useState(false);
   const [selectedShop, setSelectedShop] = useState("");
   const [inputCharacters, setInputCharacters] = useState(0);
+  const { errorNotify, successNotify } = useGetAlerts();
 
   async function handleSubmitNewPost(e) {
     e.preventDefault();
+    console.log(newPostInput);
     setNewPostError(null);
     try {
       // Verificamos que haya sido seleccionado al menos un comercio, y nos aseguramos que su valor no sea el que viene por defecto.
@@ -37,7 +40,8 @@ function useNewPost() {
       if (data.error) {
         throw new Error(data.message);
       }
-      successNotify();
+
+      successNotify("Publicacion enviada con exito");
       setInputCharacters(0);
       setNewPostInput({ description: "" });
     } catch (err) {
@@ -74,33 +78,6 @@ function useNewPost() {
   const handleShopSelect = (e) => {
     const { value } = e.target;
     setSelectedShop(value);
-  };
-
-  //Notificaciones personalizadas de toastify.
-  const errorNotify = (message) => {
-    toast.error(message, {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const successNotify = () => {
-    toast.success("Publicacion enviada", {
-      position: "bottom-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
   };
 
   return {
