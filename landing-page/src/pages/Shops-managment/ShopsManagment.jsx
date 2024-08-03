@@ -7,13 +7,17 @@ import SettingsHeader from "../../components/Shops-managment/SettingsHeader";
 import "./ShopsManagment.css";
 import MyShops from "../../components/Shops-managment/MyShops";
 import NewShop from "../../components/Shops-managment/NewShop";
+import Context from "../../components/Common/Context/Context";
+import { ToastContainer } from "react-toastify";
 
 function ShopsManagment() {
   return (
     <>
       <section className="shops-managment_container">
         <Header />
-        <SiderMenu />
+        <Context>
+          <SiderMenu />
+        </Context>
         <div className="shops-managment_body">
           <SettingsHeader title="Comercios" />
           <NewShop />
@@ -22,6 +26,7 @@ function ShopsManagment() {
         </div>
         <SiderSettings />
         <Messages />
+        <ToastContainer />
       </section>
     </>
   );

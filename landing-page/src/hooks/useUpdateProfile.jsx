@@ -73,7 +73,7 @@ function useUpdateProfile() {
     handleChangeUpload,
     handleSubmitUpload,
     selectedFile,
-    selectedImage
+    selectedImage,
   };
 }
 

@@ -3,6 +3,7 @@ import { CartService } from 'src/cart/cart.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { FoodOnCartService } from 'src/food_on_cart/food_on_cart.service';
 import { InvoiceService } from 'src/invoice/invoice.service';
+import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
 @Injectable()
 export class WebhookService {
@@ -10,10 +11,12 @@ export class WebhookService {
     private readonly foodOnCartService: FoodOnCartService,
     private readonly cartService: CartService,
     private readonly invoiceService: InvoiceService,
+    private readonly socketsGateway: GulaSocketGateway,
   ) {}
 
   async handleWebhook(webHookData: any) {
     try {
+      console.log(webHookData);
       if (webHookData.data) {
         const paymentId = webHookData.data.id;
         const paymentDetails = await this.getPaymentDetails(paymentId);
@@ -25,6 +28,9 @@ export class WebhookService {
         if (paymentDetails.status === 'approved') {
           await this.invoiceService.generateInvoice(cart);
           await this.foodOnCartService.clearCart(cart);
+          this.socketsGateway.handleFinishPurchase(cart);
+        } else {
+          this.socketsGateway.handleFailedPurchase(cart);
         }
       }
     } catch (error) {

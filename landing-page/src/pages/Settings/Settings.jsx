@@ -7,12 +7,15 @@ import SettingsHeader from "../../components/Shops-managment/SettingsHeader";
 import UploadProfileForm from "../../components/Settings/Upload-profile-form";
 import UploadAccountForm from "../../components/Settings/Upload-account-form";
 import "./Settings.css";
+import Context from "../../components/Common/Context/Context";
 
 function Settings() {
   return (
     <div className="settings-page_container">
       <Header />
-      <SiderMenu />
+      <Context>
+        <SiderMenu />
+      </Context>
       <section className="settings-page_body">
         <SettingsHeader title="Configuracion de cuenta" />
         <div className="settings-page_body-form">

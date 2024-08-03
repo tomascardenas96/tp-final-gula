@@ -23,8 +23,6 @@
   padding: 0.5rem 0 6rem 0;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-top: none;
-  padding-top: 0.9rem;
-  /* background-color: red; */
 }
 
 .sider-menu ul {
@@ -32,10 +30,8 @@
   display: grid;
   align-content: space-around;
   justify-content: start;
-  gap: 0.5rem;
+  gap: 0.4rem;
   position: relative;
-  /* background-color: red; */
-  margin-top: 0.5rem;
 }
 
 .sider-menu ul > li,
@@ -50,14 +46,22 @@
   text-decoration: none;
   font-size: 0.92rem;
   width: 17rem;
-  padding: 0.35rem;
+  padding: 0.38rem;
   padding-left: 0.5rem;
   transition: all 0.2s ease;
   font-family: var(--secondary-font);
 }
 
+.sider-menu_colorB {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.sider-menu_colorA {
+  background-color: rgba(0, 0, 0, 0.056);
+}
+
 .sider-menu ul > li:hover {
-  background-color: rgba(0, 0, 0, 0.098);
+  background-color: rgba(0, 0, 0, 0.246);
 }
 
 .sider-menu ul > li:active {
@@ -83,7 +87,7 @@
   border-radius: 50%;
   height: 1rem;
   background-color: rgba(208, 52, 52, 0.844);
-  right: 1.3rem;
+  right: 0.7rem;
   top: 50%;
   bottom: 50%;
   transform: translate(-50%, -50%);
@@ -91,6 +95,7 @@
   place-content: center;
   color: white;
   font-size: 0.6rem;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.17);
 
   & p {
     font-family: var(--secondary-font);
@@ -136,6 +141,13 @@
   place-content: center;
   margin-top: 6%;
   position: relative;
+}
+
+.error-message {
+  display: grid;
+  place-content: center;
+  padding-left: 0.5rem;
+  grid-row: 1 / 3;
 }
 
 .sider-menu_user-data_spinner .loadership_CWZLE div {

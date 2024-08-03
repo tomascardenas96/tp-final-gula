@@ -75,6 +75,7 @@
 
 .food-filter_results-list {
   width: 100%;
+  min-height: 4rem;
   max-height: 20rem;
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.256);
@@ -85,6 +86,7 @@
   display: grid;
   gap: 0.5rem;
   overflow-y: auto;
+  justify-content: center;
 }
 
 .food-filter_results-list_spinner {

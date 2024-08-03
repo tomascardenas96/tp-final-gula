@@ -28,6 +28,13 @@
   justify-self: center;
 }
 
+.home-page-shops_error {
+  width: 100%;
+  display: grid;
+ justify-content: center;
+  padding-top: 2.7rem;
+}
+
 .shops_container .shop_cards .shop_cards-spinner {
   display: grid;
   place-content: center;

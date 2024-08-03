@@ -13,6 +13,7 @@ import useGetInvoices from "../../../hooks/useGetInvoices";
 import Invoice from "../Invoice/Invoice";
 import { FoodOnCartContext } from "../../Common/Context/Context";
 import "./Sider-menu.css";
+import Error from "../../Common/Error/Error";
 
 function SiderMenu() {
   const { activeProfile, userImageURL } = useGetProfile();
@@ -41,36 +42,39 @@ function SiderMenu() {
     <div className="sider-menu_container">
       <div className="sider-menu">
         <ul>
-          <li>
+          <li className="sider-menu_colorA">
             <a href="http://localhost:5173/home#home-page">
               <FaHome className="sider-menu_icon" />
               INICIO
             </a>
           </li>
-          <li>
+          <li className="sider-menu_colorB">
             <a href="http://localhost:5173/home#posts">
               <FaBook className="sider-menu_icon" />
               PUBLICACIONES
             </a>
           </li>
-          <li>
+          <li className="sider-menu_colorA">
             <a>
               <FaBell className="sider-menu_icon" />
               NOTIFICACIONES
             </a>
           </li>
-          <li onClick={handleInvoiceModal}>
+          <li onClick={handleInvoiceModal} className="sider-menu_colorB">
             <a>
               <FaFileInvoice className="sider-menu_icon" />
               FACTURAS
             </a>
           </li>
-          <li onClick={handleCartModal} className="sider-menu_cart">
+          <li
+            onClick={handleCartModal}
+            className="sider-menu_cart sider-menu_colorA"
+          >
             <a>
               <FaShoppingCart className="sider-menu_icon" />
               CARRITO
             </a>
-            {foodOnCart.length > 0 && (
+            {foodOnCart?.length > 0 && (
               <div className="total-amount">
                 <p>{totalOfProducts}</p>
               </div>
@@ -81,7 +85,11 @@ function SiderMenu() {
           <div className="sider-menu_user-data_picture">
             <img src={userImageURL} alt="profile-picture-gula-side-menu" />
           </div>
-          {!activeUser ? (
+          {activeuserError ? (
+            <div className="error-message">
+              <Error />
+            </div>
+          ) : activeuserLoading ? (
             <div className="sider-menu_user-data_spinner">
               <Spinner />
             </div>
@@ -106,7 +114,7 @@ function SiderMenu() {
 
       {isModalOpen && (
         <div className="cart-modal" onClick={handleCartModal}>
-          <Cart />
+          <Cart foodOnCart={foodOnCart} />
         </div>
       )}
     </div>

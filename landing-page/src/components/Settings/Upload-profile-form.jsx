@@ -13,6 +13,7 @@ function UploadProfileForm() {
     handleSubmitUpload,
     selectedFile,
     selectedImage,
+    handleDeletePicture,
   } = useUpdateProfile();
 
   const { activeUserLoading, userImageURL, userImageName } = useGetProfile();

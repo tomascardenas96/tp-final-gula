@@ -15,8 +15,15 @@
 .cart_empty {
   width: 100%;
   height: 3rem;
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+
+  & .cart-icon {
+    height: 100%;
+  }
 }
 
 .cart_empty > p {
@@ -83,6 +90,14 @@
   height: 5rem;
   display: grid;
   place-content: center;
+  width: 100%;
+}
+
+.cart-spinner {
+  /* background-color: red; */
+  width: 100%;
+  height: 100%;
+  margin-left: 1.8rem;
 }
 
 .cart-button > input {
@@ -113,14 +128,17 @@
   display: grid;
   place-content: center;
   padding-top: 1%;
+  /* margin-left: 2rem; */
 }
 
-.cart_loading .loadership_CWZLE {
+.cart_loading .loadership_CWZLE,
+.cart-button .loadership_CWZLE {
   width: 35px;
   height: 35px;
 }
 
-.cart_loading .loadership_CWZLE div {
+.cart_loading .loadership_CWZLE div,
+.cart-button .loadership_CWZLE div {
   width: 35px;
   height: 35px;
   border: 5px solid #75747433;

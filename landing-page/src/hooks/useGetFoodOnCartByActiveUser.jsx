@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import io from "socket.io-client";
+import useGetAlerts from "./useGetAlerts";
 
 function useGetFoodOnCartByActiveUser() {
   const token = localStorage.getItem("accessToken");
@@ -9,6 +10,7 @@ function useGetFoodOnCartByActiveUser() {
   const [total, setTotal] = useState();
   const [totalOfAllProducts, setTotalOfAllProducts] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { errorNotify, successNotify } = useGetAlerts();
 
   useEffect(() => {
     const socket = io("http://localhost:8001");
@@ -52,10 +54,23 @@ function useGetFoodOnCartByActiveUser() {
       });
     });
 
+    //Finalizar la compra en caso de exitosa.
+    socket.on("finishPurchase", (cleanCart) => {
+      successNotify("Compra exitosa!");
+      setFoodOnCart([]);
+    });
+
+    //Arrojar error en caso de fallo en la compra.
+    socket.on("failedPurchase", () => {
+      errorNotify("Compra rechazada");
+    });
+
     return () => {
       socket.off("addFoodInCart");
       socket.off("modifiedAmount");
       socket.off("modifyQuantityWhenExists");
+      socket.off("finishPurchase");
+      socket.off("failedPurchase");
       socket.disconnect();
     };
   }, []);

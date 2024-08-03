@@ -5,7 +5,7 @@ import Spinner from "../../Common/Spinner/Spinner.jsx";
 import "./FoodFilter.css";
 import useGetFoodByFilter from "../../../hooks/useGetFoodByFilter";
 import { IoMdClose } from "react-icons/io";
-// import useAddFoodOnCart from "../../../hooks/useAddFoodOnCart.jsx";
+import Error from "../../Common/Error/Error.jsx";
 import { FoodOnCartContext } from "../../Common/Context/Context.jsx";
 
 function FoodFilter() {
@@ -43,7 +43,9 @@ function FoodFilter() {
           )}
           {!isEmptyField && (
             <div className="food-filter_results-list">
-              {foodByQueryLoading ? (
+              {foodByQueryError ? (
+                <Error />
+              ) : foodByQueryLoading ? (
                 <div className="food-filter_results-list_spinner">
                   <Spinner />
                 </div>

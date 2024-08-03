@@ -45,4 +45,12 @@ export class GulaSocketGateway
   handleUploadPreferencesOfMercadoPago(foodOnCart: any) {
     this.server.emit('uploadPreferences', foodOnCart);
   }
+
+  handleFinishPurchase(cleanCart: any) {
+    this.server.emit('finishPurchase', cleanCart);
+  }
+
+  handleFailedPurchase(error: any) {
+    this.server.emit('failedPurchase', error);
+  }
 }

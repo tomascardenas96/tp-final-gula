@@ -34,7 +34,12 @@ function useGetProfile() {
     setUserImageURL(imageUrl);
   }, [userImageName]);
 
-  return { activeProfile, userImageURL, userImageName, activeUserLoading };
+  return {
+    activeProfile,
+    userImageURL,
+    userImageName,
+    activeUserLoading,
+  };
 }
 
 export default useGetProfile;
