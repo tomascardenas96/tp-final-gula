@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useAddFoodOnCart() {
+function useAddFoodOnCart(setTotalOfProducts, totalOfProducts) {
   const token = localStorage.getItem("accessToken");
   const [addFoodOnCartLoading, setAddFoodOnCartLoading] = useState(false);
   const [addFoodOnCartError, setAddFoodOnCartError] = useState(null);
@@ -21,6 +21,8 @@ function useAddFoodOnCart() {
       if (data.error) {
         throw new Error(data.message);
       }
+
+      setTotalOfProducts(totalOfProducts + 1);
     } catch (err) {
       setAddFoodOnCartError(err);
     } finally {

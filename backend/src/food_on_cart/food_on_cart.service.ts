@@ -15,6 +15,7 @@ import { Cart } from 'src/cart/entities/cart.entity';
 import { FoodService } from 'src/food/food.service';
 import { Food } from 'src/food/entities/food.entity';
 import { GulaSocketGateway } from 'src/socket/socket.gateway';
+import { AddOrSubtractProductDto } from './dto/add-subtract.dto';
 
 @Injectable()
 export class FoodOnCartService {
@@ -134,17 +135,17 @@ export class FoodOnCartService {
 
   //Metodo para agregar o quitar una unidad a la cantidad total de cada producto.
   async addOrSubtractProduct(
-    option: string,
-    food: Food,
+    { option, food }: AddOrSubtractProductDto,
     activeUser: ActiveUserInterface,
   ) {
     try {
       const user = await this.userService.getActiveUser(activeUser);
       const cart = await this.cartService.getActiveCart(user);
+      const foodToChange = await this.foodService.findFoodById(food.foodId);
 
       //Trae la comida que esta dentro del carrito activo para modificar sus cantidades.
       const foodOnCart = await this.foodOnCartRepository.findOne({
-        where: { food, cart },
+        where: { cart, food: foodToChange },
       });
 
       if (option === 'subtract') {
@@ -177,13 +178,13 @@ export class FoodOnCartService {
       relations: ['cart', 'food'],
     });
   }
-     //Metodo de gaston Nro. 5:
-   // Nuevo metodo para eliminar todos los registros de food_on_cart
-   async deleteAllFoodOnCart(): Promise<void> {
+  //Metodo de gaston Nro. 5:
+  // Nuevo metodo para eliminar todos los registros de food_on_cart
+  async deleteAllFoodOnCart(): Promise<void> {
     await this.foodOnCartRepository.clear();
   }
 
-    //Metodo de gaston Nro. 6:
+  //Metodo de gaston Nro. 6:
   // Nuevo metodo para eliminar un registro por su foodOnCartId
   async deleteFoodOnCartById(foodOnCartId: number): Promise<void> {
     const result = await this.foodOnCartRepository.delete(foodOnCartId);
@@ -193,5 +194,4 @@ export class FoodOnCartService {
       );
     }
   }
-
 }

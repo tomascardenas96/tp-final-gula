@@ -5,7 +5,7 @@ import "./NewPost.css";
 import useGetShopsByActiveUser from "../../../hooks/useGetShopsByActiveUser";
 import { IoIosArrowDown } from "react-icons/io";
 import useNewPost from "../../../hooks/useNewPost";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { FaArrowLeft } from "react-icons/fa6";
 import "react-toastify/dist/ReactToastify.css";
 import useGetProfile from "../../../hooks/useGetProfile";

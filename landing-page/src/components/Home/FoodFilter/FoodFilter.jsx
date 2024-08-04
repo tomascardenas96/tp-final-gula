@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import "./FoodFilter.css";
 import useGetFoodByFilter from "../../../hooks/useGetFoodByFilter";
 import { IoMdClose } from "react-icons/io";
-import useAddFoodOnCart from "../../../hooks/useAddFoodOnCart.jsx";
+import Error from "../../Common/Error/Error.jsx";
+import { FoodOnCartContext } from "../../Common/Context/Context.jsx";
 
 function FoodFilter() {
   const {
@@ -19,7 +20,8 @@ function FoodFilter() {
     cleanInput,
   } = useGetFoodByFilter();
 
-  const { addFoodOnCart } = useAddFoodOnCart();
+  const { setFoodOnCart, setTotalOfAllProducts, addFoodOnCart } =
+    useContext(FoodOnCartContext);
 
   return (
     <section className="food-filter_container">
@@ -41,7 +43,9 @@ function FoodFilter() {
           )}
           {!isEmptyField && (
             <div className="food-filter_results-list">
-              {foodByQueryLoading ? (
+              {foodByQueryError ? (
+                <Error />
+              ) : foodByQueryLoading ? (
                 <div className="food-filter_results-list_spinner">
                   <Spinner />
                 </div>
@@ -67,10 +71,11 @@ function FoodFilter() {
                     <li className="results-list_card-shop-name list-card_item">
                       {food.shop?.name}
                     </li>
-                    <li className="results-list_card-cart list-card_item">
-                      <MdOutlineShoppingCart
-                        onClick={() => addFoodOnCart(food.foodId, 1)}
-                      />
+                    <li
+                      className="results-list_card-cart list-card_item"
+                      onClick={() => addFoodOnCart(food.foodId, 1)}
+                    >
+                      <MdOutlineShoppingCart />
                     </li>
                   </ul>
                 ))

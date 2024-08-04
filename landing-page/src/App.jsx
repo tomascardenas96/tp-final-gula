@@ -9,6 +9,7 @@ import Settings from "./pages/Settings/Settings";
 import SiderContext from "./components/Home/Siders/SiderContext";
 import ShopsManagment from "./pages/Shops-managment/ShopsManagment";
 import "./App.css";
+import Context from "./components/Common/Context/Context";
 
 function App() {
   return (

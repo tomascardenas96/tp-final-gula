@@ -1,4 +1,8 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadGatewayException,
+} from '@nestjs/common';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { UserService } from 'src/user/user.service';
@@ -7,6 +11,9 @@ import { Cart } from 'src/cart/entities/cart.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Invoice } from './entities/invoice.entity';
 import { Repository } from 'typeorm';
+import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { CartService } from 'src/cart/cart.service';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class InvoiceService {
@@ -15,6 +22,7 @@ export class InvoiceService {
     private readonly invoiceRepository: Repository<Invoice>,
     private readonly userService: UserService,
     private readonly foodOnCartService: FoodOnCartService,
+    private readonly cartService: CartService,
   ) {}
 
   getAll():Promise<Invoice[]> {
@@ -37,8 +45,6 @@ export class InvoiceService {
           'No se encontraron productos en el carrito',
         );
       }
-
-      console.log(foodOnCart)
 
       //Agregar logica para numero de factura.
       for (const foods of foodOnCart) {
@@ -89,5 +95,18 @@ export class InvoiceService {
     return formattedInvoiceNumber;
   }
 
-  getInvoicesByUser() {}
+  async getInvoicesByActiveUser(
+    activeUser: ActiveUserInterface,
+  ): Promise<Invoice[]> {
+    try {
+      const user: User = await this.userService.getActiveUser(activeUser);
+      const cart: Cart = await this.cartService.getActiveCart(user);
+
+      return this.invoiceRepository.find({ where: { cart } });
+    } catch (error) {
+      throw new BadGatewayException(
+        'Invoice service: error getting invoices - getInvoicesByActiveUser method',
+      );
+    }
+  }
 }

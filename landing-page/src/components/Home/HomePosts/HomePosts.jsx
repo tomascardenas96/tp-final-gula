@@ -3,6 +3,7 @@ import Spinner from "../../Common/Spinner/Spinner.jsx";
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
 import NewPost from "./NewPost.jsx";
 import ShopPost from "../../Shop/Posts/Shop-post.jsx";
+import Error from "../../Common/Error/Error.jsx";
 import "./HomePosts.css";
 
 function HomePosts() {
@@ -18,18 +19,31 @@ function HomePosts() {
           <NewPost />
         </div>
         <div className="home-posts_post-cards">
-          {posts.map((post) => (
-            <ShopPost
-              key={post.postId + 10000}
-              profilePicture={post.shop.picture}
-              profileName={post.shop.profilename}
-              name={post.shop.name}
-              image={post.image}
-              time={timeElapsed(post.postedAt)}
-              description={post.description}
-              stars={post.stars}
-            />
-          ))}
+          {postsError ? (
+            <div className="home-posts_error">
+              <Error />
+            </div>
+          ) : postsLoading ? (
+            <div className="home-posts_loading">
+              <p>
+                <Spinner />
+                Cargando publicaciones...
+              </p>
+            </div>
+          ) : (
+            posts.map((post) => (
+              <ShopPost
+                key={post.postId + 10000}
+                profilePicture={post.shop.picture}
+                profileName={post.shop.profilename}
+                name={post.shop.name}
+                image={post.image}
+                time={timeElapsed(post.postedAt)}
+                description={post.description}
+                stars={post.stars}
+              />
+            ))
+          )}
         </div>
       </main>
     </section>

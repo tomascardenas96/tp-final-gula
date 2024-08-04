@@ -5,13 +5,15 @@ import { debounce } from 'lodash';
 function useGetPreferencesMercadoPago() {
   const token = localStorage.getItem("accessToken");
   const [preferenceId, setPreferenceId] = useState(null);
-  const [preferenceError, setPreferenceError] = useState(null);
+  const [preferenceError, setPreferenceError] = useState(false);
+  const [preferenceLoading, setPreferenceLoading] = useState(false);
   const { foodOnCart, setFoodOnCart, totalOfAllProducts } =
     useGetFoodOnCartByActiveUser();
 
   const getPreference = useCallback(
     // Debounce sirve para que la preferencia no se cree multiples veces debido a cambios rapidos en el carrito. (Lo use porque no me actualizaba el ultimo cambio, el monto que generaba era siempre el anterior).
     debounce(async (cartItems) => {
+      setPreferenceLoading(true);
       try {
         const response = await fetch(
           "http://localhost:3070/payments/create-preference",
@@ -31,6 +33,8 @@ function useGetPreferencesMercadoPago() {
         setPreferenceId(data.id);
       } catch (err) {
         setPreferenceError(err);
+      } finally {
+        setPreferenceLoading(false);
       }
     }, 500),
     [token]
@@ -42,7 +46,7 @@ function useGetPreferencesMercadoPago() {
     }
   }, [foodOnCart, getPreference]);
 
-  return { preferenceId };
+  return { preferenceId, preferenceError, preferenceLoading };
 }
 
 export default useGetPreferencesMercadoPago;

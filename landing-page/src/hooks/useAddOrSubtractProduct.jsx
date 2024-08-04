@@ -18,6 +18,7 @@ function useAddOrSubtractProduct() {
         }
       );
       const data = await response.json();
+
       if (data.error) {
         throw new Error(data.message);
       }

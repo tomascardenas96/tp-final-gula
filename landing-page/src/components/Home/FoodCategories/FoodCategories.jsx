@@ -2,6 +2,7 @@ import React from "react";
 import CategoryCard from "./CategoryCard";
 import useGetAllCategories from "../../../hooks/useGetAllCategories";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
+import Error from "../../Common/Error/Error";
 import "./FoodCategories.css";
 
 function FoodCategories() {
@@ -12,7 +13,11 @@ function FoodCategories() {
     <section className="food-categories_container">
       <h1>Categorias</h1>
       <div className="food-categories">
-        {categoriesLoading ? (
+        {categoriesError ? (
+          <div className="categories_error">
+            <Error />
+          </div>
+        ) : categoriesLoading ? (
           <div className="food-categories_spinner-container">
             <Spinner className="food-categories_spinner" />
           </div>
