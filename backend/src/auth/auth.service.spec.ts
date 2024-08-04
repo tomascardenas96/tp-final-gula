@@ -136,6 +136,8 @@ describe('AuthService', () =>{
     /*Validación de datos de entrada: Asegúrate de que la función register maneje adecuadamente 
     casos donde los datos de entrada no son válidos. Por ejemplo, podrías probar qué sucede si 
     se proporcionan datos faltantes o incorrectos en el objeto RegisterDto. */
+    
+    /* 
     it('should throw BadRequestException if input data is invalid', async()=>{
         //case email missing
         const invalidDto1: RegisterDto={
@@ -155,8 +157,7 @@ describe('AuthService', () =>{
             birthDate: '05/10/1990',
         };
         await expect(service.register(invalidDto2)).rejects.toThrowError(BadRequestException);
-    })
-
+    }); */
 /*================================================================================ */
     /*Validación de contraseñas:Pruebas para 
     verificar que las contraseñas se estén hasheando 

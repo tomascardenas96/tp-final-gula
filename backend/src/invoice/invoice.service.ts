@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { UserService } from 'src/user/user.service';
@@ -17,10 +17,12 @@ export class InvoiceService {
     private readonly foodOnCartService: FoodOnCartService,
   ) {}
 
-  getAll() {
+  getAll():Promise<Invoice[]> {
     try {
       return this.invoiceRepository.find();
-    } catch (error) {}
+    } catch (error) {
+      throw new HttpException('No se puede acceder a la data', HttpStatus.BAD_GATEWAY);
+    }
   }
 
   async generateInvoice(cart: Cart) {
