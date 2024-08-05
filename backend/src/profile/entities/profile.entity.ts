@@ -13,7 +13,7 @@ export class Profile {
   profileId: number;
 
   @Column({
-    default: 'default-profile_gula.jpg',
+    default: 'https://iili.io/d5DJhYJ.webp',
   })
   profilePicture: string;
 
