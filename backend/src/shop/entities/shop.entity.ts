@@ -29,7 +29,7 @@ export class Shop {
   profilename: string;
 
   @Column({
-    default: 'https://pubimg.band.uol.com.br/files/cb1fe227a30b77daa9cb.webp',
+    default: 'https://drive.google.com/file/d/1aLdLtCGSUpnXMPlS9VWiyx84_q5GwY_f/view?usp=sharing',
   })
   picture: string;
 
