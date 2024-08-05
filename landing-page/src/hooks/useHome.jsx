@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function useHome() {
   const token = localStorage.getItem("accessToken");
   const [isAuthorized, setIsAuthorized] = useState(true);
-  const [homeLoading, setHomeLoading] = useState(false);
+  const [homeLoading, setHomeLoading] = useState(true);
 
   useEffect(() => {
     async function getAuthorizationToHome() {

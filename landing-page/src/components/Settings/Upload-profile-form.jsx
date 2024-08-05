@@ -3,6 +3,8 @@ import useUpdateProfile from "../../hooks/useUpdateProfile";
 import React from "react";
 import { FaCamera } from "react-icons/fa6";
 import "./Upload-profile-form.css";
+import { ToastContainer } from "react-toastify";
+import Spinner from "../Common/Spinner/Spinner";
 
 function UploadProfileForm() {
   // Custom hook para actualizar los datos de perfil
@@ -13,7 +15,8 @@ function UploadProfileForm() {
     handleSubmitUpload,
     selectedFile,
     selectedImage,
-    handleDeletePicture,
+    updateProfileLoading,
+    updateProfileError,
   } = useUpdateProfile();
 
   const { activeUserLoading, userImageURL, userImageName } = useGetProfile();
@@ -66,8 +69,10 @@ function UploadProfileForm() {
             value={updateProfileInput.birthDate}
           />
           <input type="submit" value="Guardar" />
+          <ToastContainer />
         </>
       )}
+      {updateProfileLoading && <Spinner />}
     </form>
   );
 }

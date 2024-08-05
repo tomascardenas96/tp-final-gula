@@ -14,34 +14,45 @@ import Messages from "../../components/Home/Messages/Messages";
 import Advertise from "../../components/Home/Advertise/Advertise";
 import "./Home.css";
 import Context from "../../components/Common/Context/Context";
+import useGetAllCategories from "../../hooks/useGetAllCategories";
+import useGetShops from "../../hooks/useGetShops";
+import useGetPosts from "../../hooks/useGetPosts";
 
 function Home() {
   const { isAuthorized, homeLoading } = useHome();
+  const { categoriesLoading } = useGetAllCategories();
+  const { shopsByQueryLoading } = useGetShops();
+  const { postsLoading } = useGetPosts();
 
   // Cambiamos el titulo de la pagina de inicio.
   useEffect(() => {
     document.title = `Bienvenido/a a Gula!`;
   }, []);
 
-  if (homeLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <main className="home-page_container" id="home-page">
-      <Header />
-      <SlideText />
-      <Context>
-        <SiderMenu />
-        <FoodFilter />
-      </Context>
-      <FoodCategories />
-      <Shops />
-      <Advertise />
-      <HomePosts />
-      <SiderSettings />
-      <Messages />
-      <Footer />
+      {homeLoading ||
+      categoriesLoading ||
+      shopsByQueryLoading ||
+      postsLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <Header />
+          <SlideText />
+          <Context>
+            <SiderMenu />
+            <FoodFilter />
+          </Context>
+          <FoodCategories />
+          <Shops />
+          <Advertise />
+          <HomePosts />
+          <SiderSettings />
+          <Messages />
+          <Footer />
+        </>
+      )}
     </main>
   );
 }

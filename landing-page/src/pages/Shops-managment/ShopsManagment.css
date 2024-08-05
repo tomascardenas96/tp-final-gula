@@ -1,5 +1,4 @@
 .shops-managment_container {
-  /* background-color: red; */
   display: grid;
   grid-template-columns: 17rem minmax(750px, 1fr) 2.9rem;
   grid-template-rows: 3rem 1fr;

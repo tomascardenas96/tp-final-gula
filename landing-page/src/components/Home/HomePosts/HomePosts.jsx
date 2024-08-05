@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
 import NewPost from "./NewPost.jsx";
@@ -25,8 +25,8 @@ function HomePosts() {
             </div>
           ) : postsLoading ? (
             <div className="home-posts_loading">
-              <p>
                 <Spinner />
+              <p>
                 Cargando publicaciones...
               </p>
             </div>

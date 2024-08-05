@@ -18,6 +18,7 @@
 .settings-page_body-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding: 0 2.5rem;
 }
 
 .settings-page_body-form .settings-page_body-form_info-profile {

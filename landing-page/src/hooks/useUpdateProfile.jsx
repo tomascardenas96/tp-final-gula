@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import useGetProfile from "./useGetProfile";
+import useGetAlerts from "./useGetAlerts";
 
 function useUpdateProfile() {
   const token = localStorage.getItem("accessToken");
@@ -13,6 +14,9 @@ function useUpdateProfile() {
     birthDate: "",
   });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [updateProfileLoading, setUpdateProfileLoading] = useState(false);
+  const [updateProfileError, setUpdateProfileError] = useState(false);
+  const { errorNotify, successNotify } = useGetAlerts();
 
   useEffect(() => {
     setUpdateProfileInput({
@@ -36,6 +40,7 @@ function useUpdateProfile() {
 
   async function handleSubmitUpload(e) {
     e.preventDefault();
+    setUpdateProfileLoading(true);
     const formData = new FormData();
     formData.append("file", selectedFile);
 
@@ -54,11 +59,22 @@ function useUpdateProfile() {
           body: formData,
         }
       );
+      if (!response.ok) {
+        errorNotify("Cambios realizados con exito!");
+
+        throw new Error("Error trying to update profile information");
+      }
+      successNotify("Cambios realizados con exito!");
       const data = await response.json();
-      location.reload();
+
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     } catch (err) {
-      console.error("Error uploading profile photo:", err);
+      console.error(err);
+      setUpdateProfileError(true);
     } finally {
+      setUpdateProfileLoading(false);
     }
   }
 
@@ -74,6 +90,8 @@ function useUpdateProfile() {
     handleSubmitUpload,
     selectedFile,
     selectedImage,
+    updateProfileLoading,
+    updateProfileError,
   };
 }
 
