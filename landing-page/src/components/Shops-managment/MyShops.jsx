@@ -1,6 +1,8 @@
 import React from "react";
 import MyShopCard from "./MyShopCard";
 import useGetShopsByActiveUser from "../../hooks/useGetShopsByActiveUser";
+import Spinner from "../Common/Spinner/Spinner";
+import Error from "../Common/Error/Error";
 import "./MyShops.css";
 
 function MyShops() {
@@ -9,7 +11,17 @@ function MyShops() {
 
   return (
     <div className="my-shops_container">
-      {shops.length ? (
+      {shopsLoading ? (
+        <div className="my-shops_loading">
+          <Spinner />
+        </div>
+      ) : shopsError ? (
+        <div className="my-shops_error">
+          <Error />
+        </div>
+      ) : isShopsEmpty ? (
+        <h1 className="no-shops">Aun no tenés comercios creados.</h1>
+      ) : (
         shops.map((shop) => (
           <MyShopCard
             key={shop.shopId}
@@ -21,8 +33,6 @@ function MyShops() {
             picture={`http://localhost:3070/assets/uploads/shop/profile/${shop.picture}`}
           />
         ))
-      ) : (
-        <h1 className="no-shops">Aun no tenés comercios creados.</h1>
       )}
     </div>
   );

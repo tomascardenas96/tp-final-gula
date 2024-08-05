@@ -4,6 +4,7 @@ import { FaCamera } from "react-icons/fa6";
 import useNewShop from "../../hooks/useNewShop";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+import Spinner from "../Common/Spinner/Spinner";
 import "./NewShop.css";
 
 function NewShop() {
@@ -13,7 +14,6 @@ function NewShop() {
     handleSubmitNewShop,
     handleChangeNewShop,
     newShopLoading,
-    newShopError,
     handleFileChange,
     selectedImage,
     selectedFile,
@@ -110,7 +110,6 @@ function NewShop() {
                     onChange={handleFileChange}
                     id="select-picture-shop"
                     name="picture"
-                    required
                   />
                 </div>
                 <p className="new-shop_selected-file">
@@ -120,6 +119,11 @@ function NewShop() {
             </label>
             <div className="form_submit">
               <input type="submit" value="Crear" />
+              {newShopLoading && (
+                <div className="new-shop_loading">
+                  <Spinner />
+                </div>
+              )}
             </div>
           </form>
         </div>

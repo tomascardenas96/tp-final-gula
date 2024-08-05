@@ -37,6 +37,7 @@ function useRegister() {
         body: JSON.stringify(userData),
       });
       const data = await response.json();
+      console.log(data);
       if (data.message === "email must be an email") {
         setEmailError("Debe ser de tipo E-mail");
         throw new Error();

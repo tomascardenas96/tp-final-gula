@@ -144,7 +144,6 @@ div .login-page_slogan {
   filter: drop-shadow(1px 1px 1px black);
   position: relative;
   gap: 5%;
-
 }
 
 .login-page_login form > label > input {
@@ -155,8 +154,8 @@ div .login-page_slogan {
   border: none;
   color: rgba(50, 50, 50, 0.931);
   font-family: var(--secondary-font);
-  font-size: .9rem;
-  padding-left: .65rem;
+  font-size: 0.9rem;
+  padding-left: 0.65rem;
   /* background-color: red; */
 }
 
@@ -231,12 +230,5 @@ form .login-spinner .loadership_CWZLE div {
   html,
   body {
     font-size: 90% !important;
-  }
-}
-
-@media screen and (max-height: 650px) {
-  html,
-  body {
-    font-size: 75% !important;
   }
 }

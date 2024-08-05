@@ -1,9 +1,11 @@
 import { useState } from "react";
+import useGetAlerts from "./useGetAlerts";
 
 function useAddFoodOnCart(setTotalOfProducts, totalOfProducts) {
   const token = localStorage.getItem("accessToken");
   const [addFoodOnCartLoading, setAddFoodOnCartLoading] = useState(false);
   const [addFoodOnCartError, setAddFoodOnCartError] = useState(null);
+  const { errorNotify, successNotify } = useGetAlerts();
 
   async function addFoodOnCart(food, amount) {
     try {
@@ -22,6 +24,7 @@ function useAddFoodOnCart(setTotalOfProducts, totalOfProducts) {
         throw new Error(data.message);
       }
 
+      successNotify("Producto agregado al carrito");
       setTotalOfProducts(totalOfProducts + 1);
     } catch (err) {
       setAddFoodOnCartError(err);

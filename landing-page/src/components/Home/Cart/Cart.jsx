@@ -27,7 +27,15 @@ function Cart({ foodOnCart }) {
         </div>
       ) : (
         <div className="cart">
-          {!foodOnCartLoading ? (
+          {foodOnCartLoading ? (
+            <div className="cart_loading">
+              <Spinner />
+            </div>
+          ) : foodOnCartError ? (
+            <div className="cart_error">
+              <Error />
+            </div>
+          ) : (
             <div className="cart-products">
               <div className="product-list">
                 {foodOnCart?.map((product) => (
@@ -73,10 +81,6 @@ function Cart({ foodOnCart }) {
                   )}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="cart_loading">
-              <Spinner />
             </div>
           )}
         </div>

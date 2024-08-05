@@ -5,6 +5,7 @@ function useGetProfile() {
   const [userImageURL, setUserImageURL] = useState("");
   const [userImageName, setUserImageName] = useState("");
   const [activeUserLoading, setActiveUserLoading] = useState(true);
+  const [activeUserError, setActiveUserError] = useState(false);
   const [activeProfile, setActiveProfile] = useState({});
 
   useEffect(() => {
@@ -17,10 +18,18 @@ function useGetProfile() {
             authorization: `Bearer ${token}`,
           },
         });
+
+        if (!response.ok) {
+          throw new Error("Error trying to get active profile information");
+        }
+
         const data = await response.json();
+
         setActiveProfile(data);
         setUserImageName(data.profilePicture);
       } catch (err) {
+        console.error(err);
+        setActiveUserError(true);
       } finally {
         setActiveUserLoading(false);
       }
@@ -39,6 +48,7 @@ function useGetProfile() {
     userImageURL,
     userImageName,
     activeUserLoading,
+    activeUserError,
   };
 }
 

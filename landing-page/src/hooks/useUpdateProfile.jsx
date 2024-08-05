@@ -15,7 +15,6 @@ function useUpdateProfile() {
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [updateProfileLoading, setUpdateProfileLoading] = useState(false);
-  const [updateProfileError, setUpdateProfileError] = useState(false);
   const { errorNotify, successNotify } = useGetAlerts();
 
   useEffect(() => {
@@ -60,7 +59,7 @@ function useUpdateProfile() {
         }
       );
       if (!response.ok) {
-        errorNotify("Cambios realizados con exito!");
+        errorNotify("No se pudieron realizar los cambios");
 
         throw new Error("Error trying to update profile information");
       }
@@ -72,7 +71,6 @@ function useUpdateProfile() {
       }, 3000);
     } catch (err) {
       console.error(err);
-      setUpdateProfileError(true);
     } finally {
       setUpdateProfileLoading(false);
     }
@@ -91,7 +89,6 @@ function useUpdateProfile() {
     selectedFile,
     selectedImage,
     updateProfileLoading,
-    updateProfileError,
   };
 }
 
