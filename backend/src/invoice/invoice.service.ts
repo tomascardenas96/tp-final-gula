@@ -2,6 +2,8 @@ import {
   Injectable,
   NotFoundException,
   BadGatewayException,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
@@ -14,6 +16,7 @@ import { Repository } from 'typeorm';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { CartService } from 'src/cart/cart.service';
 import { User } from 'src/user/entities/user.entity';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class InvoiceService {
@@ -25,11 +28,11 @@ export class InvoiceService {
     private readonly cartService: CartService,
   ) {}
 
-  getAll():Promise<Invoice[]> {
+ async getAll():Promise<Invoice[]> {
     try {
-      return this.invoiceRepository.find();
+      return await this.invoiceRepository.find();
     } catch (error) {
-      throw new HttpException('No se puede acceder a la data', HttpStatus.BAD_GATEWAY);
+      throw new HttpException('No se pudo acceder a la información de las facturas en la base de datos',HttpStatus.BAD_GATEWAY);
     }
   }
 
@@ -63,11 +66,18 @@ export class InvoiceService {
       return {
         message: 'Invoice generated succesfully',
       };
-    } catch (error) {}
-  }
+    } catch (error) {
+      if (error instanceof NotFoundException){
+        throw error;//relanza excepciones conocidas
+      }
+      //lanza una excepcion generaica si ocurre cualquier otro error
+      throw new HttpException('Error al generar la factura', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  };
 
   //Este metodo genera un numero de factura correlativo.
   async generateInvoiceNumber(): Promise<string> {
+   try{ 
     const allInvoices = await this.getAll();
     let highestInvoiceNumber: number;
 
@@ -93,7 +103,10 @@ export class InvoiceService {
       .padStart(8, '0')}`;
 
     return formattedInvoiceNumber;
-  }
+  }catch (error){
+    //lanza excepcionn si ocurre un error al generar el num de factura
+    throw new HttpException('Error al generar el numero de factura', HttpStatus.INTERNAL_SERVER_ERROR);
+  }};
 
   async getInvoicesByActiveUser(
     activeUser: ActiveUserInterface,

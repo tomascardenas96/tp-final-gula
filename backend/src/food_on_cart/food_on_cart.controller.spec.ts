@@ -158,56 +158,40 @@ describe('FoodOnCartController', () => {
   })
 
   describe('addOrSubtractProduct',()=>{
-    it('should call addOrSubtractProduct with correct parameters', async () => {
-      // Definición del DTO mockeado que se pasa al método del controlador
-      const mockAddOrSubtractProductDto: AddOrSubtractProductDto = {
+     it('should call the addOrSubtractProduct method of the service and return the result', async () => {
+      const addOrSubtractDto: AddOrSubtractProductDto = {
         option: 'add',
-        food: {
-          foodId: 1,
-          description: 'Test food',
-          price: 10,
-          stock: 5,
-          review: 'Delicious',
-          category: {categoryId:1} as Category,
-          shop: {shopId:1}as Shop,
-          image: null,
-          cart: [], },
-        };
-      //mock del usuario activo
-      const ActiveUser: ActiveUserInterface = {
-         userId: 1,
-         email: 'test@example.com', 
-         name: 'Test User' };
-        //mock de una comida
-      const mockFood: Food = { 
-        foodId: 1,
-        description: 'Test food',
-        price: 10,
-        stock: 5,
-        review: 'Delicious',
-        category: {categoryId:1} as Category,
-        shop: {shopId:1}as Shop,
-        image: null,
-        cart: [], }; 
-        
-        //mock del valor esperado del retorno del servicio
-        const foodOnCart:FoodOnCart={
-          foodOnCartId:1,
-          amount:2,
-          cart:new Cart,
-          food:mockFood
-        }
-      //configuracion del test
-      //se espera que el metodo del servicio devuelba foodOnCart (comida en el carrito)
-      jest.spyOn(service, 'addOrSubtractProduct').mockResolvedValue(foodOnCart);
-      //se llama al controllador con los parametros correctos
-      await controller.addOrSubtractProduct(mockAddOrSubtractProductDto, ActiveUser);
-      //se espera que el metodo del servicio sewa llamado con los parametros correctos
-      expect(service.addOrSubtractProduct).toHaveBeenCalledWith(
-        mockAddOrSubtractProductDto.option,
-        mockAddOrSubtractProductDto.food,
-        ActiveUser, 
-      );
+        food: { foodId: 1, description: 'Pizza', price: 10 } as Food,
+      };
+
+      const activeUser: ActiveUserInterface = { userId: 1, email: 'test@example.com', name:'testUser' };
+
+      const result = { amount: 2 } as FoodOnCart;
+
+      jest.spyOn(service, 'addOrSubtractProduct').mockResolvedValue(result);
+
+      const response = await controller.addOrSubtractProduct(addOrSubtractDto, activeUser);
+
+      expect(response).toBe(result);
+      expect(service.addOrSubtractProduct).toHaveBeenCalledWith(addOrSubtractDto, activeUser);
+    });
+
+    it('should handle errors thrown by the service', async () => {
+      const addOrSubtractDto: AddOrSubtractProductDto = {
+        option: 'add',
+        food: { foodId: 1, description: 'Pizza', price: 10 } as Food,
+      };
+
+      const activeUser: ActiveUserInterface = { userId: 1, email: 'test@example.com', name:'testUser' };
+
+      jest.spyOn(service, 'addOrSubtractProduct').mockRejectedValue(new Error('Service error'));
+
+      try {
+        await controller.addOrSubtractProduct(addOrSubtractDto, activeUser);
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error.message).toBe('Service error');
+      }
     });
   });//final describe
 
