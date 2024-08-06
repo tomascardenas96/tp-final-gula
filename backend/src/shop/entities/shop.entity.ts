@@ -29,7 +29,7 @@ export class Shop {
   profilename: string;
 
   @Column({
-    default: 'https://drive.google.com/file/d/1aLdLtCGSUpnXMPlS9VWiyx84_q5GwY_f/view?usp=sharing',
+    default: 'https://iili.io/d7pH8Xt.webp',
   })
   picture: string;
 
