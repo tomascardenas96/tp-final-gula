@@ -26,12 +26,13 @@
   height: 100%;
   overflow-y: hidden;
   justify-self: center;
+  position: relative;
 }
 
 .home-page-shops_error {
   width: 100%;
   display: grid;
- justify-content: center;
+  justify-content: center;
   padding-top: 2.7rem;
 }
 
@@ -42,6 +43,38 @@
   height: 100%;
   margin-left: -1.5%;
   margin-top: -4%;
+}
+
+.shops_arrow-left,
+.shops_arrow-right {
+  font-size: 1.3rem;
+  cursor: pointer;
+  position: absolute;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.shops_arrow-left {
+  left: 0;
+  height: 9.2rem;
+  width: 2rem;
+  z-index: 1500;
+  padding: 0.3rem;
+  border-radius: 1rem 0 0 0;
+}
+
+.shops_arrow-right {
+  right: 0;
+  height: 9.2rem;
+  width: 2rem;
+  z-index: 1500;
+  padding: 0.3rem;
+  border-radius: 0 0 1rem 0;
+}
+
+.shops_arrow-left:hover,
+.shops_arrow-right:hover {
+  background-color: rgba(255, 255, 255, 0.412);
 }
 
 /* Estilos del scrollbar */

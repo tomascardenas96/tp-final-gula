@@ -3,6 +3,8 @@ import CategoryCard from "./CategoryCard";
 import useGetAllCategories from "../../../hooks/useGetAllCategories";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import Error from "../../Common/Error/Error";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { MdArrowForwardIos } from "react-icons/md";
 import "./FoodCategories.css";
 
 function FoodCategories() {
@@ -23,6 +25,8 @@ function FoodCategories() {
           </div>
         ) : (
           <div className="food-categories_cards">
+            {/* <MdArrowBackIosNew className="categories_arrow-left" />
+            <MdArrowForwardIos className="categories_arrow-right" /> */}
             {categories.map((category, index) => (
               <CategoryCard
                 key={category.categoryId}

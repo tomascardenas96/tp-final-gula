@@ -3,6 +3,8 @@ import "./Shops.css";
 import ShopCard from "./ShopCard";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import useGetShops from "../../../hooks/useGetShops";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { MdArrowForwardIos } from "react-icons/md";
 import Error from "../../Common/Error/Error";
 
 function Shops() {
@@ -21,14 +23,18 @@ function Shops() {
             <Spinner />
           </div>
         ) : (
-          shops.map((shop) => (
-            <ShopCard
-              key={shop?.shopId}
-              url={shop?.picture}
-              title={shop?.name}
-              profilename={shop?.profilename}
-            />
-          ))
+          <>
+            <MdArrowBackIosNew className="shops_arrow-left" />
+            <MdArrowForwardIos className="shops_arrow-right" />
+            {shops.map((shop) => (
+              <ShopCard
+                key={shop?.shopId}
+                url={shop?.picture}
+                title={shop?.name}
+                profilename={shop?.profilename}
+              />
+            ))}
+          </>
         )}
       </div>
     </section>
