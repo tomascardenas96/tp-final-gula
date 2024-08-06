@@ -7,6 +7,8 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
 import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
+import Spinner from "../../Common/Spinner/Spinner";
+import Error from "../../Common/Error/Error";
 
 function ShopInfo() {
   const {
@@ -19,20 +21,42 @@ function ShopInfo() {
     <div className="shop-info_container">
       <div className="shop-info">
         <div className="shop-info_image">
-          <img
-            src={`http://localhost:3070/assets/uploads/shop/profile/${shopByProfileName.picture}`}
-            alt="shop-profile-img_gula"
-          />
+          {shopByProfileNameLoading ? (
+            <div className="shop-info_image-loading">
+              <Spinner />
+            </div>
+          ) : shopByProfileNameError ? (
+            <div className="shop-info_image-error">
+              <Error />
+            </div>
+          ) : (
+            <img
+              src={`http://localhost:3070/assets/uploads/shop/profile/${shopByProfileName.picture}`}
+              alt="shop-profile-img_gula"
+            />
+          )}
         </div>
 
         <div className="shop-info_header">
           <div className="shop-title">
-            <h1>{shopByProfileName?.name}</h1>
-            <h2>Avellaneda 85, {shopByProfileName?.location}</h2>
-            <div className="shop-state">
-              <p>Abierto ahora</p>
-              <GoDotFill className="shop-state_icon" />
-            </div>
+            {shopByProfileNameLoading ? (
+              <>
+                {" "}
+                <h1 className="shop-title_loading"></h1>
+                <h2 className="shop-title_loading"></h2>
+                <div className="shop-title_loading"></div>
+              </>
+            ) : (
+              <>
+                {" "}
+                <h1>{shopByProfileName?.name}</h1>
+                <h2>Avellaneda 85, {shopByProfileName?.location}</h2>
+                <div className="shop-state">
+                  <p>Abierto ahora</p>
+                  <GoDotFill className="shop-state_icon" />
+                </div>
+              </>
+            )}
           </div>
 
           <div></div>

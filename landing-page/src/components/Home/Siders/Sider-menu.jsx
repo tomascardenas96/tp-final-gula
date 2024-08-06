@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FaHome } from "react-icons/fa";
-import { FaBook } from "react-icons/fa";
-import { FaBell } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaHome, FaBook, FaBell, FaShoppingCart } from "react-icons/fa";
+import { FaFileInvoice } from "react-icons/fa6";
+import { FoodOnCartContext } from "../../Common/Context/Context";
 import Spinner from "../../Common/Spinner/Spinner";
 import useGetProfile from "../../../hooks/useGetProfile";
 import useGetActiveUser from "../../../hooks/useGetActiveUser";
 import Cart from "../Cart/Cart";
-import { FaFileInvoice } from "react-icons/fa6";
 import useGetFoodOnCartByActiveUser from "../../../hooks/useGetFoodOnCartByActiveUser";
 import useGetInvoices from "../../../hooks/useGetInvoices";
 import Invoice from "../Invoice/Invoice";
-import { FoodOnCartContext } from "../../Common/Context/Context";
-import "./Sider-menu.css";
 import Error from "../../Common/Error/Error";
+import "./Sider-menu.css";
 
 function SiderMenu() {
-  const { activeProfile, userImageURL } = useGetProfile();
+  const { userImageURL, activeUserLoading, activeUserError } = useGetProfile();
   const { activeUser, activeuserError, activeuserLoading } = useGetActiveUser();
   const { handleCartModal, isModalOpen } = useGetFoodOnCartByActiveUser();
   const {
@@ -31,9 +28,6 @@ function SiderMenu() {
     foodOnCart,
     foodOnCartError,
     foodOnCartLoading,
-    getTotal,
-    setFoodOnCart,
-    total,
     totalOfAllProducts,
     totalOfProducts,
   } = useContext(FoodOnCartContext);
@@ -82,25 +76,42 @@ function SiderMenu() {
           </li>
         </ul>
         <div className="sider-menu_user-data">
-          <div className="sider-menu_user-data_picture">
-            <img src={userImageURL} alt="profile-picture-gula-side-menu" />
-          </div>
-          {activeuserError ? (
-            <div className="error-message">
+          {activeUserError ? (
+            <div className="sider-menu-profile_error">
               <Error />
-            </div>
-          ) : activeuserLoading ? (
-            <div className="sider-menu_user-data_spinner">
-              <Spinner />
             </div>
           ) : (
             <>
-              <div className="sider-menu_user-data-name">
-                {activeUser?.name}
+              <div className="sider-menu_user-data_picture">
+                {activeUserLoading ? (
+                  <div className="sider-menu-image_loading">
+                    <Spinner />
+                  </div>
+                ) : (
+                  <img
+                    src={userImageURL}
+                    alt="profile-picture-gula-side-menu"
+                  />
+                )}
               </div>
-              <div className="sider-menu_user-data-profile-name">
-                {activeUser?.email}
-              </div>
+              {activeuserError ? (
+                <div className="error-message">
+                  <Error />
+                </div>
+              ) : activeuserLoading ? (
+                <div className="sider-menu_user-data_spinner">
+                  <Spinner />
+                </div>
+              ) : (
+                <>
+                  <div className="sider-menu_user-data-name">
+                    {activeUser?.name}
+                  </div>
+                  <div className="sider-menu_user-data-profile-name">
+                    {activeUser?.email}
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>
@@ -108,13 +119,22 @@ function SiderMenu() {
 
       {isInvoiceModalOpen && (
         <div className="invoice-modal" onClick={handleInvoiceModal}>
-          <Invoice />
+          <Invoice
+            invoices={invoices}
+            invoicesLoading={invoicesLoading}
+            invoicesError={invoicesError}
+          />
         </div>
       )}
 
       {isModalOpen && (
         <div className="cart-modal" onClick={handleCartModal}>
-          <Cart foodOnCart={foodOnCart} />
+          <Cart
+            foodOnCart={foodOnCart}
+            foodOnCartLoading={foodOnCartLoading}
+            foodOnCartError={foodOnCartError}
+            totalOfAllProducts={totalOfAllProducts}
+          />
         </div>
       )}
     </div>

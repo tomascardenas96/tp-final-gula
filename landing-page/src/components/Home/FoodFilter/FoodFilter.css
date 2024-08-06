@@ -88,9 +88,12 @@
   overflow-y: auto;
   justify-content: center;
 }
+.food-filter_error {
+  display: flex;
+  align-items: center;
+}
 
 .food-filter_results-list_spinner {
-  /* background-color: red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,4 +201,6 @@
   padding: 0.7rem 0;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.831);
+  font-family: var(--secondary-font);
+  align-items: center;
 }

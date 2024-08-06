@@ -1,9 +1,9 @@
-import useGetInvoices from "../../../hooks/useGetInvoices";
 import useGetShopsByActiveUser from "../../../hooks/useGetShopsByActiveUser";
+import Error from "../../Common/Error/Error";
+import Spinner from "../../Common/Spinner/Spinner";
 import "./Invoice.css";
 
-function Invoice() {
-  const { invoices, invoicesLoading, invoicesError } = useGetInvoices();
+function Invoice({ invoices, invoicesLoading, invoicesError }) {
   const { getFormatedDate } = useGetShopsByActiveUser();
 
   const groupedInvoices = invoices.reduce((acc, invoice) => {
@@ -16,7 +16,16 @@ function Invoice() {
 
   return (
     <section className="invoice" onClick={(e) => e.stopPropagation()}>
-      {Object.keys(groupedInvoices).length === 0 ? (
+      {invoicesLoading ? (
+        <div className="invoices_loading">
+          <Spinner />
+          <h1>Cargando compras...</h1>
+        </div>
+      ) : invoicesError ? (
+        <div className="invoices_error">
+          <Error />
+        </div>
+      ) : Object.keys(groupedInvoices).length === 0 ? (
         <div className="invoice-empty">
           <p>No hay compras aún</p>
         </div>

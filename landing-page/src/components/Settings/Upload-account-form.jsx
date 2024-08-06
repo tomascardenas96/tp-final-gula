@@ -15,8 +15,6 @@ function UploadAccountForm() {
 
   const { activeUserLoading, activeUserError } = useGetProfile();
 
-  console.log(activeUserError);
-
   return (
     <form onSubmit={handleSubmitUploadAccount}>
       <h1>Datos de cuenta</h1>

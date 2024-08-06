@@ -68,7 +68,7 @@ function useUpdateProfile() {
 
       setTimeout(() => {
         location.reload();
-      }, 3000);
+      }, 2000);
     } catch (err) {
       console.error(err);
     } finally {

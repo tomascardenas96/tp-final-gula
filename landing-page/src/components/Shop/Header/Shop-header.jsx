@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import React from "react";
 import useGetProfile from "../../../hooks/useGetProfile";
+import Spinner from "../../Common/Spinner/Spinner";
 import "./Shop-header.css";
 
 function ShopHeader() {
   const navigate = useNavigate();
-  const { userImageURL } = useGetProfile();
+  const { userImageURL, activeUserLoading } = useGetProfile();
 
   return (
     <div className="shop-header_container">
@@ -25,7 +26,16 @@ function ShopHeader() {
       </div>
       <div className="shop-header_user">
         <div className="shop-header_user-divider"></div>
-        <img src={userImageURL} alt="profile-picture_shop-profile-page-gula" />
+        {activeUserLoading ? (
+          <div className="shop-header-picture_loading">
+            <Spinner />
+          </div>
+        ) : (
+          <img
+            src={userImageURL}
+            alt="profile-picture_shop-profile-page-gula"
+          />
+        )}
       </div>
     </div>
   );
