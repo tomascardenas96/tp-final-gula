@@ -28,4 +28,22 @@ describe('ProfileController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('create',()=>{
+    it('should call to Service.create metodod with the correct parameters',()=>{
+
+    });//final it
+  });//fina describe
+
+  describe('findProfileByUser',()=>{
+    it('should call to Service.findProfileByUser metodod with the correct parameters',()=>{
+
+    });
+  })//final describe
+
+  describe('updateActiveUserProfile',()=>{
+    it('should call to Service.updateActiveUserProfile metodod with the correct parameters',()=>{
+
+    });
+  })//final describe
 });

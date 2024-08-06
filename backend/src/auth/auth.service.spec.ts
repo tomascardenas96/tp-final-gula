@@ -67,21 +67,19 @@ describe('AuthService', () =>{
     
     Verifica que el método register 
     funcione correctamente y que no 
-    se lance ninguna excepción.
+    se lance ninguna excepción.*/
+    describe('register',()=>{
 
-    Puedes simular el comportamiento 
-    de UserService utilizando el mock 
-    UserServiceMock que ya has definido.*/
-    it('should registrer a new user with valid data', async()=>{
-        const registrerDto={
-            email:'test@example.com',
-            name:'Test User',
-            password:'password123',
-            location:'Test Location',
-            birthDate:'05/10/1990',
-        };
-
-        const expectedResponse={
+        it('should registrer a new user with valid data', async()=>{
+            const registrerDto={
+                email:'test@example.com',
+                name:'Test User',
+                password:'password123',
+                location:'Test Location',
+                birthDate:'05/10/1990',
+            };
+            
+            const expectedResponse={
             email:registrerDto.email,
             username:registrerDto.name,
             message:'Register successful'
@@ -90,9 +88,9 @@ describe('AuthService', () =>{
         const result= await service.register(registrerDto);
         expect(result).toEqual(expectedResponse)
     });
-
+    
     /*================================================================================ */
-
+    
     /*Test for exist user:
     Crea otro caso de prueba donde intentas registrar 
     un usuario con un correo electrónico que ya está 
@@ -101,7 +99,7 @@ describe('AuthService', () =>{
     como se espera.
     Puedes simular el comportamiento de UserService 
     utilizando el mock UserServiceMock que ya has definido.*/
-
+    
     it('should throw BadRequestException if user already exists',async()=>{
         
         const existingMail= 'existing@example.com'
@@ -132,7 +130,7 @@ describe('AuthService', () =>{
         //note: toThrowError aparece tachada porqeu la firma de la funcion esta obsoleta en jest
         //de igual forma cumple con su trabajo en las verciones nuevas
     });
-
+    
     /*================================================================================ */
 
     /*Validación de datos de entrada: Asegúrate de que la función register maneje adecuadamente 
@@ -173,7 +171,7 @@ describe('AuthService', () =>{
             location: 'Test Location',
             birthDate: '05/10/1990',
         };
-       
+        
         //pueba de salt y hash
         const roundSalt = 10;
         //console.log('antes de generar el salt')
@@ -196,7 +194,7 @@ describe('AuthService', () =>{
         const comparePassword= await bcryptjs.compare(userRegister.password,userRegistered.password)
         expect(comparePassword).toBeTruthy;
     })
-        
+    
         //verifica que los metodos genSalt y hash sean llamados correctamente
         it('shoud check if methods genSalt and hash are called correctly',async()=>{
 
@@ -248,7 +246,7 @@ describe('AuthService', () =>{
                 cart:null,
                 profile:null,
             };
-          
+            
             //configuration a spy on the User.Service.create's method 
             jest.spyOn(UserServiceMock,'create').mockResolvedValueOnce(userRegistered);
             //ejecutamos el metodo que estamos esperando
@@ -264,6 +262,7 @@ describe('AuthService', () =>{
             
             expect(userRegisteredSuccessfully).toEqual(expectedResult)
         });
+    });
 
         /*========================================================================================== */
             //TESTING LOGIN
@@ -358,7 +357,7 @@ describe('AuthService', () =>{
                 await expect(service.login({email, password})).rejects.toThrowError(UnauthorizedException)
             }); 
 
-        })
+        });
 
 
 });

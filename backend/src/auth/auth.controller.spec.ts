@@ -64,8 +64,10 @@ describe('AuthController',()=>{
     //==========================================================
     //deberia registrar un nuevo usuario,
     //Verificar que se devuelva un objeto con el mensaje de éxito y los datos del usuario registrado.
-    it('should register a new user',async()=>{
-        const userRegisterDto: RegisterDto = {
+    describe('register',()=>{
+
+        it('should register a new user',async()=>{
+            const userRegisterDto: RegisterDto = {
             email: 'test@example.com',
             name: 'Test User',
             password: 'password123',
@@ -83,19 +85,21 @@ describe('AuthController',()=>{
         //en lugar de ejecutar la implementacion real del metodo jest devolvera 
         //la promesa resulta con expecterResponse
         const result= await controller.register(userRegisterDto);
-
+        
         expect(result).toEqual(expectedResponse);
         expect(service.register).toHaveBeenCalledWith(userRegisterDto);
     })
     
+})
     //==========================================================
     //LOGIN
     //==========================================================
     //Verificar que un usuario pueda iniciar sesión correctamente.
     //Verificar que se devuelva un token JWT válido al iniciar sesión correctamente.
+    describe('login',()=>{
 
-    it('should return JWT token for valid credentials',async()=>{
-        const loginDTO:LoginDto={
+        it('should return JWT token for valid credentials',async()=>{
+            const loginDTO:LoginDto={
             email:'test@example.com',
             password:'password123',
         };
@@ -109,7 +113,7 @@ describe('AuthController',()=>{
 
         //llamamos al metodo del controlador que estamos probando
         const result= await controller.login(loginDTO);
-
+        
         //verificamos que la respuesta contenga el token JWT devuelto por el servicio de autenticacion
         expect(result.token).toEqual(responseLogin.token) 
     });
@@ -128,6 +132,7 @@ describe('AuthController',()=>{
         await expect(controller.login(userLoginDto)).rejects.toThrow(UnauthorizedException);
     })
     
+});    
     //==========================================================
     //HOME
     //==========================================================

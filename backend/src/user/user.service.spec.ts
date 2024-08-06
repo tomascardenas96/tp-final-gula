@@ -14,6 +14,17 @@ import { BadGatewayException, BadRequestException, NotFoundException } from '@ne
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { Readable } from 'stream';
 import { UpdateProfileDto } from './dto/update-profile';
+import { UpdateAccountDto } from './dto/update-account.dto';
+import * as bcryptjs from 'bcryptjs';
+
+//mock bcryptjs
+//necesario para testeo de los metodos que usan bcryptjs
+jest.mock('bcryptjs',()=>({
+  genSalt:jest.fn(),
+  hash:jest.fn(),
+  compare:jest.fn(),
+}));
+
 
 describe('UserService', () => {
   let service: UserService;
@@ -307,6 +318,9 @@ describe('UserService', () => {
     });
   });
 
+   /*====================================================================================================================== */
+//findByUserName method
+/*====================================================================================================================== */
   describe('findByUserName',()=>{
     it('should return a user when a matching name is found',async ()=>{
       //mock del nombre del usuario
@@ -409,7 +423,9 @@ describe('UserService', () => {
       await expect(service.findProfileByActiveUser(activeUser)).rejects.toThrow(NotFoundException);
     });
   });
-
+ /*====================================================================================================================== */
+//updateActiveUserProfile method
+/*====================================================================================================================== */
   describe('updateActiveUserProfile',()=>{
     it('should update profile successfully',async()=>{
       //mock de un file
@@ -504,10 +520,11 @@ describe('UserService', () => {
         birthDate:'2024-05-29',
       }; // Simula el perfil actualizado
 
+      //indicamos que no se debe encontrar un usuario
       userRepositoryMock.findOne.mockResolvedValueOnce(null); 
-
+      //esperamos que al llamar al metodo del servicio con los parametros esperados arroje un exception
       await expect(service.updateActiveUserProfile(file, activeUser, updatedProfile)).rejects.toThrow(NotFoundException);
-
+      //esperamos que el metodo de busqueda sea llamado con el parametro esperado
       expect(userRepositoryMock.findOne).toHaveBeenCalledWith({ where: { email: activeUser.email } });
     });
 
@@ -559,6 +576,171 @@ describe('UserService', () => {
       expect(profileServiceMock.updateActiveUserProfile).toHaveBeenCalledWith(file, user, updateProfile);
     });
 
+  });//final describe
+ /*====================================================================================================================== */
+//updateAccountInfo method
+/*====================================================================================================================== */
+  describe('updateAccountInfo',()=>{
+    it('should update account info successfully',async()=>{
+      //mock del tipo updateAccount
+      const updateAccount: UpdateAccountDto={
+        name: 'update name',
+        password: 'newpassword123',
+      }
+      //mock de interface de usuario activo
+      const activeUser:ActiveUserInterface={
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //mock de un usuario
+      const user: User = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'oldPassword',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+      //mock de 'bcryptjs' asi devuelven valores usando jest.mock
+      const hashedPassword='hashedNewPassword123';
+      (bcryptjs.genSalt as jest.Mock).mockResolvedValue('salt');
+      (bcryptjs.hash as jest.Mock).mockResolvedValue(hashedPassword);
+
+      //configuramos los valores esperados
+      userRepositoryMock.findOne.mockResolvedValueOnce(user);
+      userRepositoryMock.create.mockReturnValue({...user,name:updateAccount.name,password:hashedPassword});
+      userRepositoryMock.save.mockResolvedValueOnce({...user,name:updateAccount.name,password:hashedPassword});
+
+      //llamamos al metodo de userService
+      const result= await service.updateAccountInfo(updateAccount,activeUser);
+
+      //esperamos que los datos name y password(hasheada)sean actualizados y agregados
+      expect(result).toEqual({...user,name:updateAccount.name,password:hashedPassword})
+      //esperamos que el metodo sea llamado con el email del usuario activo
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({where:{email:activeUser.email}});
+      //esperamos que create sea llamado con el nombre actualizado y la clave hasheada
+      expect(userRepositoryMock.create).toHaveBeenCalledWith({...user,name:updateAccount.name,password:hashedPassword});
+      //esperamos que save sea llamado con el nombre actualizado y la clave hasheada
+      expect(userRepositoryMock.save).toHaveBeenCalledWith({...user,name:updateAccount.name,password:hashedPassword}); 
+    });//final it
+
+    it('should throw NotFoundException if user not found', async () => {
+      const updateAccount: UpdateAccountDto = {
+        name: 'Updated Name',
+        password: 'newPassword123',
+      };
+
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //configuro el mock para que no encentre un usuario
+      userRepositoryMock.findOne.mockResolvedValueOnce(null);
+      //espero que al no encontrar un usuario arroje un NotFoundException
+      await expect(service.updateAccountInfo(updateAccount, activeUser)).rejects.toThrow(NotFoundException);
+      //espero que el metodo findOne sea llamado con los param,etros correctos
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({ where: { email: activeUser.email } });
+    });
+
+    it('should handle unexpected errors', async () => {
+      //mock de los datos a actualizar
+      const updateAccount: UpdateAccountDto = {
+        name: 'Updated Name',
+        password: 'newPassword123',
+      };
+      //mock del usuario activo
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //mock del ussuario
+      const user: User = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'oldPassword',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+      //configuro que findOne me devuelba un usuario luego de la busqueda
+      userRepositoryMock.findOne.mockResolvedValueOnce(user);
+      //configuro que al intentar guardar la actualizacion lanze un error
+      userRepositoryMock.save.mockRejectedValueOnce(new Error('Unexpected error')); 
+
+      await expect(service.updateAccountInfo(updateAccount, activeUser)).rejects.toThrow(BadGatewayException); 
+    });
+  
+  });//final describe
+   /*====================================================================================================================== */
+  //getActiveUser method
+  /*====================================================================================================================== */
+  describe('getActiveUser',()=>{
+    it('should return the active user if found', async()=>{
+      //mock de una interface activa
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //mock de un user
+      const user: User = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+        password: 'Password123',
+        createdAt: new Date(),
+        shop: [],
+        cart: null,
+        profile: null,
+      };
+
+      //configuramos en mock para que resuelva con un user
+      userRepositoryMock.findOne.mockResolvedValueOnce(user);
+
+      //llmamos al metodo del servicio con los parametros esperados
+      const result= await service.getActiveUser(activeUser);
+      //esperamos que lo devuelto sea un usuario
+      expect(result).toBe(user);
+      expect(userRepositoryMock.findOne).toHaveBeenCalledWith({where:{email:activeUser.email},});
+    });//final it
+
+      it('should throw NotFoundException if user not found',async()=>{
+         //mock de una interface activa
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'Test User',
+      };
+      //configuramos el mock para que devuelba null (no encontrando user)
+      userRepositoryMock.findOne.mockResolvedValueOnce(null);
+
+      //esperamos que al llamar al servicio con los parametros necesarios
+      //arroje una exception
+      await expect(service.getActiveUser(activeUser)).rejects.toThrow(NotFoundException); 
+      });
+
+    //  it('should handle unexpected errors', async ()=>{
+    //        //mock de una interface activa
+    //  const activeUser: ActiveUserInterface = {
+    //    userId: 1,
+    //    email: 'test@example.com',
+    //    name: 'Test User',
+    //  };
+    //  //configuramos el mock para qeu lance un Unexpected error
+    //  userRepositoryMock.findOne.mockRejectedValueOnce(new Error('Unexpected error'));
+    //
+    //  //llamamos al servicio con los parametros correctos
+    //  expect(service.getActiveUser(activeUser)).toThrow(BadGatewayException);  
+    //
+    //  });//final it
+            //el de arriba falla no lanza BadgatewayException
   });//final describe
 }); //final test
  

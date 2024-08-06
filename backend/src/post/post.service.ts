@@ -48,9 +48,9 @@ export class PostService {
 
       // Validar la descripción del mensaje
       if (
-        !description ||
-        typeof description !== 'string' ||
-        description.trim() === ''
+        !description ||//verifica que Description no sea null,undefined, false ouna cadena vacia
+        typeof description !== 'string' ||//verifica que la cadena sea string
+        description.trim() === ''//quita los espacios vacios al pricipio y al final de la cadena
       ) {
         throw new BadRequestException(
           'Description is required and must be a non-empty string',
