@@ -2,9 +2,9 @@ import {
   Injectable,
   NotFoundException,
   BadGatewayException,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
-import { CreateInvoiceDto } from './dto/create-invoice.dto';
-import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { UserService } from 'src/user/user.service';
 import { FoodOnCartService } from 'src/food_on_cart/food_on_cart.service';
 import { Cart } from 'src/cart/entities/cart.entity';
@@ -25,10 +25,15 @@ export class InvoiceService {
     private readonly cartService: CartService,
   ) {}
 
-  getAll() {
+  async getAll(): Promise<Invoice[]> {
     try {
-      return this.invoiceRepository.find();
-    } catch (error) {}
+      return await this.invoiceRepository.find();
+    } catch (error) {
+      throw new HttpException(
+        'No se pudo acceder a la información de las facturas en la base de datos',
+        HttpStatus.BAD_GATEWAY,
+      );
+    }
   }
 
   async generateInvoice(cart: Cart) {
@@ -61,36 +66,53 @@ export class InvoiceService {
       return {
         message: 'Invoice generated succesfully',
       };
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error; //relanza excepciones conocidas
+      }
+      //lanza una excepcion generaica si ocurre cualquier otro error
+      throw new HttpException(
+        'Error al generar la factura',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   //Este metodo genera un numero de factura correlativo.
   async generateInvoiceNumber(): Promise<string> {
-    const allInvoices = await this.getAll();
-    let highestInvoiceNumber: number;
+    try {
+      const allInvoices = await this.getAll();
+      let highestInvoiceNumber: number;
 
-    // Si no hay facturas en la base de datos, comenzamos desde 1
-    if (!allInvoices || allInvoices.length === 0) {
-      highestInvoiceNumber = 0;
-    } else {
-      // Encontrar el número de factura más alto
-      highestInvoiceNumber = Math.max(
-        ...allInvoices.map((invoice) => {
-          const invoiceNumber = parseInt(invoice.invoiceNumber.split(' ')[1]);
-          return invoiceNumber;
-        }),
+      // Si no hay facturas en la base de datos, comenzamos desde 1
+      if (!allInvoices || allInvoices.length === 0) {
+        highestInvoiceNumber = 0;
+      } else {
+        // Encontrar el número de factura más alto
+        highestInvoiceNumber = Math.max(
+          ...allInvoices.map((invoice) => {
+            const invoiceNumber = parseInt(invoice.invoiceNumber.split(' ')[1]);
+            return invoiceNumber;
+          }),
+        );
+      }
+
+      // Incrementar el número de factura más alto en 1
+      const nextInvoiceNumber = highestInvoiceNumber + 1;
+
+      // Formatear el número de factura con ceros a la izquierda
+      const formattedInvoiceNumber = `C001 ${nextInvoiceNumber
+        .toString()
+        .padStart(8, '0')}`;
+
+      return formattedInvoiceNumber;
+    } catch (error) {
+      //lanza excepcionn si ocurre un error al generar el num de factura
+      throw new HttpException(
+        'Error al generar el numero de factura',
+        HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-
-    // Incrementar el número de factura más alto en 1
-    const nextInvoiceNumber = highestInvoiceNumber + 1;
-
-    // Formatear el número de factura con ceros a la izquierda
-    const formattedInvoiceNumber = `C001 ${nextInvoiceNumber
-      .toString()
-      .padStart(8, '0')}`;
-
-    return formattedInvoiceNumber;
   }
 
   async getInvoicesByActiveUser(
