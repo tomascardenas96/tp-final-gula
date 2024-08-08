@@ -45,38 +45,6 @@
   margin-top: -4%;
 }
 
-.shops_arrow-left,
-.shops_arrow-right {
-  font-size: 1.3rem;
-  cursor: pointer;
-  position: absolute;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.shops_arrow-left {
-  left: 0;
-  height: 9.2rem;
-  width: 2rem;
-  z-index: 1500;
-  padding: 0.3rem;
-  border-radius: 1rem 0 0 0;
-}
-
-.shops_arrow-right {
-  right: 0;
-  height: 9.2rem;
-  width: 2rem;
-  z-index: 1500;
-  padding: 0.3rem;
-  border-radius: 0 0 1rem 0;
-}
-
-.shops_arrow-left:hover,
-.shops_arrow-right:hover {
-  background-color: rgba(255, 255, 255, 0.412);
-}
-
 /* Estilos del scrollbar */
 .shops_container .shop_cards::-webkit-scrollbar {
   width: 0;
@@ -88,4 +56,24 @@
 
 .shops_container .shop_cards::-webkit-scrollbar-track {
   background-color: transparent;
+}
+
+@media screen and (max-width: 1500px) {
+  .shops_container .shop_cards {
+    width: 62.15rem;
+    padding-top: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .shops_container .shop_cards {
+    width: 54rem;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .shops_container .shop_cards {
+    width: 50rem;
+    gap: 3.5rem;
+  }
 }

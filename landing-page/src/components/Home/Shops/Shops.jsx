@@ -24,8 +24,6 @@ function Shops() {
           </div>
         ) : (
           <>
-            <MdArrowBackIosNew className="shops_arrow-left" />
-            <MdArrowForwardIos className="shops_arrow-right" />
             {shops.map((shop) => (
               <ShopCard
                 key={shop?.shopId}
