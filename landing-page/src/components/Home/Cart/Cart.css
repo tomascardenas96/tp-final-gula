@@ -149,3 +149,10 @@
   height: 3rem;
   place-content: center;
 }
+
+@media screen and (max-width: 1520px) {
+  .cart_container {
+    width: 24rem;
+    padding: 0.7rem 0.5rem 1rem 0.2rem;
+  }
+}

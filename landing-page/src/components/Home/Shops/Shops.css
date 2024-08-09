@@ -58,7 +58,16 @@
   background-color: transparent;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1520px) {
+  .shops_container {
+    gap: 0.5rem;
+    grid-template-rows: 3rem 12.5rem;
+  }
+
+  .shops_container h1 {
+    font-size: 1.3rem;
+  }
+
   .shops_container .shop_cards {
     width: 62.15rem;
     padding-top: 1.5rem;

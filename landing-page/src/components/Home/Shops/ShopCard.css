@@ -40,10 +40,14 @@
   font-family: var(--secondary-font);
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1520px) {
   .shop-card_icon {
     height: 7.3rem;
     width: 14rem;
+  }
+  
+  .shop-card_container p {
+    font-size: 0.9rem;
   }
 }
 

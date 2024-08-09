@@ -220,3 +220,29 @@
   font-family: var(--tertiary-font);
   overflow: hidden;
 }
+
+@media screen and (max-width: 1520px) {
+  .sider-menu ul {
+    gap: 0.5rem;
+  }
+
+  .sider-menu ul > li,
+  .sider-menu ul > li > a {
+    font-size: 0.8rem;
+    padding: 0.33rem;
+  }
+
+  .sider-menu_user-data {
+    width: 85%;
+    height: 4rem;
+    padding-left: 0rem;
+  }
+
+  .sider-menu_user-data-name {
+    font-size: 0.8rem;
+  }
+
+  .sider-menu_user-data-profile-name {
+    font-size: 0.75rem;
+  }
+}

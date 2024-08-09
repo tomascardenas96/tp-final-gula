@@ -3,7 +3,7 @@
   display: grid;
   place-items: center;
   position: relative;
-  /* background-color: red; */
+  background-color: red;
 }
 
 .post-card_divider {

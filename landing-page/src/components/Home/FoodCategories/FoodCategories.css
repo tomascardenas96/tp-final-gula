@@ -85,10 +85,14 @@
   margin-top: 0.8%;
 }
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1520px) {
+  .food-categories_container h1 {
+    font-size: 1.3rem;
+  }
+
   .food-categories_container .food-categories_cards {
-    max-width: 60rem;
-    gap: 1.5rem;
+    max-width: 53rem;
+    gap: 1.6rem;
   }
 }
 
@@ -96,7 +100,7 @@
   .food-categories_container .food-categories_cards {
     max-width: 50rem;
     gap: 1.3rem;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 }
 

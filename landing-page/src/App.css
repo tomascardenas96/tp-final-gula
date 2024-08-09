@@ -13,7 +13,8 @@
   scroll-behavior: smooth;
 }
 
-html {
+html,
+body {
   font-size: 100%;
 }
 

@@ -25,3 +25,9 @@
   margin-top: 2.2rem;
   border-radius: 0.7rem;
 }
+
+@media screen and (max-width: 1520px) {
+  .advertise_container h1 {
+    font-size: 1.3rem;
+  }
+}

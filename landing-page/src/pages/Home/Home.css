@@ -15,6 +15,12 @@
   background-color: #ffffff;
 }
 
+@media screen and (max-width: 1520px) {
+  .home-page_container {
+    grid-template-rows: 3rem 1.4rem 13.3rem 13.3rem 17.2rem 35rem 1fr 15rem;
+  }
+}
+
 @media screen and (max-width: 950px) {
   .home-page_container {
     width: 100%;
