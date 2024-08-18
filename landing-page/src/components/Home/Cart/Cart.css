@@ -1,8 +1,8 @@
 .cart_container {
   width: 23rem;
   position: absolute;
-  top: 14.8rem;
-  left: 12rem;
+  top: 13.7rem;
+  left: 17rem;
   background-color: white;
   border-radius: 0.5rem;
   display: flex;
@@ -148,4 +148,11 @@
   display: grid;
   height: 3rem;
   place-content: center;
+}
+
+@media screen and (max-width: 1520px) {
+  .cart_container {
+    width: 24rem;
+    padding: 0.7rem 0.5rem 1rem 0.2rem;
+  }
 }

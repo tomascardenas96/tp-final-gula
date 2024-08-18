@@ -28,7 +28,7 @@
 
 .shop-card_icon img:hover {
   transform: scale(110%);
-  opacity: .85;
+  opacity: 0.85;
 }
 
 .shop-card_container p {
@@ -38,4 +38,33 @@
   color: rgba(0, 0, 0, 0.736);
   font-weight: 600;
   font-family: var(--secondary-font);
+}
+
+@media screen and (max-width: 1520px) {
+  .shop-card_icon {
+    height: 7.3rem;
+    width: 14rem;
+  }
+  
+  .shop-card_container p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .shop-card_icon {
+    height: 6.6rem;
+    width: 12rem;
+  }
+
+  .shop-card_container p {
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .shop-card_icon {
+    height: 7.3rem;
+    width: 14rem;
+  }
 }

@@ -15,6 +15,35 @@
   align-items: center;
 }
 
+.shop-posts_loading {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  & p {
+    font-family: var(--secondary-font);
+    color: rgba(0, 0, 0, 0.67);
+  }
+}
+
+.shop-posts_loading .loadership_CWZLE {
+  width: 25px;
+  height: 25px;
+}
+
+.shop-posts_loading .loadership_CWZLE div {
+  width: 25px;
+  height: 25px;
+  border: 4px solid #75747433;
+}
+
+.shop-posts_error {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+}
+
 .main-content_posts .shop-posts_no-more-posts {
   margin-top: 1rem;
   padding-top: 2rem;

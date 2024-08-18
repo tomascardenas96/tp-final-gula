@@ -6,6 +6,7 @@ import { removeHeaderContext } from "../Siders/SiderContext";
 import { IoMdClose } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
+import { MdOutlineErrorOutline } from "react-icons/md";
 import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import useGetProfile from "../../../hooks/useGetProfile";
 import Spinner from "../../Common/Spinner/Spinner";
@@ -22,7 +23,7 @@ function Header() {
     clearInput,
   } = useGetUsersAndShopsByQuery();
   const { isRemovedHeader } = useContext(removeHeaderContext);
-  const { userImageURL } = useGetProfile();
+  const { userImageURL, activeUserLoading, activeUserError } = useGetProfile();
   const navigate = useNavigate();
 
   return (
@@ -120,7 +121,17 @@ function Header() {
           </Link>
         </div>
         <div className="header-menu">
-          <img src={userImageURL} alt="profile-picture_home-page-gula" />
+          {activeUserLoading ? (
+            <div className="header-user-picture_loading">
+              <Spinner />
+            </div>
+          ) : activeUserError ? (
+            <div className="header-user-picture_error">
+              <MdOutlineErrorOutline />
+            </div>
+          ) : (
+            <img src={userImageURL} alt="profile-picture_home-page-gula" />
+          )}
         </div>
       </div>
     </header>

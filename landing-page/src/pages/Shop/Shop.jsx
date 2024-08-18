@@ -21,13 +21,7 @@ function Shop() {
   const { profileBarState, switchToProfilePage, switchToLetterPage } =
     useSwitchBarProfileShop();
   const { categoriesLoading, categoriesError } = useGetAllCategories();
-  const {
-    activeUser,
-    activeuserError,
-    activeuserLoading,
-    isOwnerOfThisShop,
-    isShopOwner,
-  } = useGetActiveUser();
+  const { activeUser, isOwnerOfThisShop, isShopOwner } = useGetActiveUser();
 
   useEffect(() => {
     document.title = `${shopByProfileName?.name} - Perfil`;

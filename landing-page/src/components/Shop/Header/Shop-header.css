@@ -73,6 +73,22 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+.shop-header-picture_loading {
+  display: grid;
+  place-content: center;
+}
+
+.shop-header-picture_loading .loadership_CWZLE {
+  width: 25px;
+  height: 25px;
+}
+
+.shop-header-picture_loading .loadership_CWZLE div {
+  width: 25px;
+  height: 25px;
+  border: 4px solid #75747433;
+}
+
 .shop-header_user img {
   width: 2rem;
   height: 2rem;

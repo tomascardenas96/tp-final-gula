@@ -15,7 +15,7 @@ import { ProfileService } from 'src/profile/profile.service';
 import { Profile } from 'src/profile/entities/profile.entity';
 import { CartService } from 'src/cart/cart.service';
 import { Cart } from 'src/cart/entities/cart.entity';
-import { BadGatewayException, ForbiddenException } from '@nestjs/common';
+import { BadGatewayException,  NotFoundException } from '@nestjs/common';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { ILike } from 'typeorm';
 import { CreateShopDto } from './dto/create-shop.dto';
@@ -48,21 +48,7 @@ describe('ShopService', () => {
       save:jest.fn(),
       //fijate si hay mas que agregar a medidada que se vayan creando
     };
-    //mock de como queda un obejto shop creado
-   /* const newShop:Shop={
-      shopId:1,
-      name:'Shop name',
-      location:'location test',
-      phone:'phone number',
-      profilename:'unique name',
-      picture:'photo link',
-      createdAt:new Date,
-      user: new User,
-      post:Post[],    //revisar
-      food:Food[],    //revisar
-      invoice:Invoice[]    //revisar
-    };*/ 
-
+  
     //base de metodos para mock de UserService
     const baseUserServiceMock={
       create: jest.fn(),//mock para el metodo Create 
@@ -137,7 +123,7 @@ describe('ShopService', () => {
   });
   //======================================================================
   //======================================================================
-  describe('create',()=>{
+  describe('createNewShop',()=>{
     it('should add or create a new shop',async ()=>{
       //mock de la interface
       //datos de usuario activo
@@ -164,10 +150,24 @@ describe('ShopService', () => {
         location:'test location',
         phone:'123456',
         profilename:'test profileName',
-        picture:' test.jpg',
-        user: {} as User//
+        //picture:' test.jpg',
+        //user: {} as User//
       }
       
+       // Mock del archivo que se va a subir
+       const file: Express.Multer.File = {
+        fieldname: 'picture',
+        originalname: 'test.jpg',
+        encoding: '7bit',
+        mimetype: 'image/jpeg',
+        size: 12345,
+        buffer: Buffer.from(''),
+        stream: null,
+        destination: '',
+        filename: 'test.jpg',
+        path: '',
+      };
+
       //mock del objeto tienda que se espera crear
       const newShop:Shop={
         shopId:1,
@@ -175,7 +175,7 @@ describe('ShopService', () => {
         location:createShopDto.location,
         phone:createShopDto.phone,
         profilename:createShopDto.profilename,
-        picture:createShopDto.picture,
+        picture:file.filename,
         createdAt:new Date(),
         user: user,
         post:[], 
@@ -183,21 +183,21 @@ describe('ShopService', () => {
         invoice: []
       };
       //espiamos los servicios y sus metodos y configuramos como tiene que resolver
-      jest.spyOn(userServiceMock, 'findByEmail').mockResolvedValue(user);
+      jest.spyOn(userServiceMock,'getActiveUser').mockResolvedValue(user);
       jest.spyOn(shopRepositoryMock,'create').mockReturnValue(newShop); //se configurara para que RETORNE una tienda, no resuelva
       jest.spyOn(shopRepositoryMock,'save').mockResolvedValue(newShop);
 
       //llamamos al metodo del servicio
-      const result= await service.create(createShopDto,activeUser);
+      const result= await service.createNewShop(file,createShopDto,activeUser);
       //console.log('este es el result de create: ',result); 
       //esperamos que..
-      expect(userServiceMock.findByEmail).toHaveBeenCalledWith(activeUser.email);
+      expect(userServiceMock.getActiveUser).toHaveBeenCalledWith(activeUser);
       expect(shopRepositoryMock.create).toHaveBeenCalledWith({
         name:createShopDto.name, 
         location:createShopDto.location,
         phone:createShopDto.phone,
         profilename:createShopDto.profilename,
-        picture:createShopDto.picture,
+        picture:file.filename,
         user:user,
       }
     ); 
@@ -205,6 +205,63 @@ describe('ShopService', () => {
       expect(result).toEqual(newShop); 
 
      });   //final it
+     
+     it('should throw NotFoundException if user is not found', async () => {
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'test user'
+      };
+
+      const createShopDto: CreateShopDto = {
+        name: 'test shop',
+        location: 'test location',
+        phone: '123456',
+        profilename: 'test profileName',
+      };
+
+      jest.spyOn(userServiceMock, 'getActiveUser').mockResolvedValue(null);
+
+      await expect(service.createNewShop(null, createShopDto, activeUser)).rejects.toThrow(
+        new NotFoundException('Shop service: user not found - createNewShop method'),
+      );
+    });
+
+    it('should throw BadGatewayException on other errors', async () => {
+      const activeUser: ActiveUserInterface = {
+        userId: 1,
+        email: 'test@example.com',
+        name: 'test user'
+      };
+
+      const createShopDto: CreateShopDto = {
+        name: 'test shop',
+        location: 'test location',
+        phone: '123456',
+        profilename: 'test profileName',
+      };
+
+      const user: User = {
+        userId: 1,
+        name: activeUser.name,
+        email: activeUser.email,
+        password: 'password',
+        createdAt: new Date(),
+        profile: new Profile(),
+        cart: new Cart(),
+        shop: [],
+      };
+      //comenatr
+      jest.spyOn(userServiceMock, 'getActiveUser').mockResolvedValue(user);
+      jest.spyOn(shopRepositoryMock, 'create').mockImplementation(() => {
+        throw new Error('Unexpected error');
+      });
+
+      await expect(service.createNewShop(null, createShopDto, activeUser)).rejects.toThrow(
+        new BadGatewayException('Shop service: error trying to create new shop - createNewShop method'),
+      );
+    });
+  
   });//final describe CREATE
   
 //======================================================================
@@ -224,6 +281,7 @@ describe('getAllShops',()=>{
     expect(result).toEqual(shops);
     expect(shopRepositoryMock.find).toHaveBeenCalled()
   });
+  
   it('should throw a badGatewayException if an error occurs',async ()=>{
     const errorMessage= 'database error';
     //configuro el mock para que se arroje el error como respuesta
@@ -332,6 +390,7 @@ describe('getShopByName',()=>{
 });//final describe
 
 //======================================================================
+//funciona mal pedir ayuda!
 //======================================================================
 
 //describe('getShopsByActiveUser',()=>{
