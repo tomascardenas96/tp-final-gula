@@ -9,12 +9,13 @@ import { CreateFoodDto } from './dto/create-food.dto';
 import { UpdateFoodDto } from './dto/update-food.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Food } from './entities/food.entity';
-import { ILike, MoreThan, Repository } from 'typeorm';
+import { ILike, LessThanOrEqual, MoreThan, Repository } from 'typeorm';
 import { CategoryService } from 'src/category/category.service';
 import { Category } from 'src/category/entities/category.entity';
 import { Shop } from 'src/shop/entities/shop.entity';
 import { ShopService } from 'src/shop/shop.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { Cart } from 'src/cart/entities/cart.entity';
 
 @Injectable()
 export class FoodService {
@@ -148,33 +149,71 @@ export class FoodService {
       throw new ForbiddenException('Food service: error getting all foods');
     }
   }
-  
+
   //Metodo de Gaston Nro 2:
   // Método para encontrar alimentos por categoryId.
   //Esto lo uso para discriminar las comidas por categorias, para  usarla en el slider de iconos de comidas y que te traiga, por ejemplo las opciones de la categoria Pizzas.
-   async findFoodsByCategoryId(categoryId: number): Promise<Food[]> {
+  async findFoodsByCategoryId(categoryId: number): Promise<Food[]> {
     try {
       return await this.foodRepository.find({
         where: { category: { categoryId } }, // Uso correcto de la relación
         relations: ['shop', 'category'],
       });
     } catch (err) {
-      throw new ForbiddenException('Food service: error getting foods by categoryId');
+      throw new ForbiddenException(
+        'Food service: error getting foods by categoryId',
+      );
     }
   }
 
-   //Metodo de Gaston Nro 3:
-   // Método para encontrar alimentos por shopId.
-   // Este metodo trae las comidas disponibles de cada lugar, para ser mostradas en el slider de lugares.
+  //Metodo de Gaston Nro 3:
+  // Método para encontrar alimentos por shopId.
+  // Este metodo trae las comidas disponibles de cada lugar, para ser mostradas en el slider de lugares.
   async findFoodsByshopyId(shopId: number): Promise<Food[]> {
     try {
       return await this.foodRepository.find({
-        where: { shop: { shopId } }, 
+        where: { shop: { shopId } },
         relations: ['shop'],
       });
     } catch (err) {
-      throw new ForbiddenException('Food service: error getting foods by shopId');
+      throw new ForbiddenException(
+        'Food service: error getting foods by shopId',
+      );
     }
   }
 
+  async filterFood(name?: string, category?: string, maxPrice?: number) {
+    try {
+      const whereConditions: any = {};
+
+      if (name) {
+        whereConditions.description = ILike(`%${name}%`);
+      }
+
+      if (category) {
+        const categoryFiltered =
+          await this.categoryService.findCategoryByName(category);
+        whereConditions.category = categoryFiltered;
+      }
+
+      console.log();
+      if (maxPrice) {
+        const parsedPrice = Number(maxPrice);
+        whereConditions.price = LessThanOrEqual(parsedPrice);
+      }
+
+      return this.foodRepository.find({ where: whereConditions });
+    } catch (error) {
+      throw new BadGatewayException(
+        'Error trying to filter food',
+        error.message,
+      );
+    }
+  }
+
+  async subtractFromStockAfterPurchase(cart: Cart) {
+    try {
+      console.log(cart);
+    } catch (error) {}
+  }
 }

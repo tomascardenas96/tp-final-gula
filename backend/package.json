@@ -10,6 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
+    "http": "ngrok http --domain=genuinely-fond-lionfish.ngrok-free.app 3070",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "init-db": "ts-node ./scripts/init-database.ts",

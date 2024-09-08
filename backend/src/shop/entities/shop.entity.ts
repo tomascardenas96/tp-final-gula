@@ -33,6 +33,9 @@ export class Shop {
   })
   picture: string;
 
+  @Column({ default: 0 })
+  shippingCost: number;
+
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 

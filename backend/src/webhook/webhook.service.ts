@@ -16,7 +16,6 @@ export class WebhookService {
 
   async handleWebhook(webHookData: any) {
     try {
-      console.log(webHookData);
       if (webHookData.data) {
         const paymentId = webHookData.data.id;
         const paymentDetails = await this.getPaymentDetails(paymentId);

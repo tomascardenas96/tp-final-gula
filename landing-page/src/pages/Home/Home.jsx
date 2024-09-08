@@ -39,15 +39,17 @@ function Home() {
       ) : (
         <>
           <Header />
-          <SlideText />
           <Context>
             <SiderMenu />
-            <FoodFilter />
+            <div className="body">
+              <SlideText />
+              <FoodFilter />
+              <FoodCategories />
+              <Shops />
+              <Advertise />
+              <HomePosts />
+            </div>
           </Context>
-          <FoodCategories />
-          <Shops />
-          <Advertise />
-          <HomePosts />
           <SiderSettings />
           <Messages />
           <Footer />

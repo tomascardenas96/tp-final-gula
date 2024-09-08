@@ -1,8 +1,6 @@
 .shops_container {
-  grid-area: shop;
   display: grid;
   gap: 1.5rem;
-  height: 100%;
   grid-template-rows: 2rem 12.5rem;
   padding-top: 0.9rem;
 }
