@@ -1,0 +1,9 @@
+.price-filter_label {
+    display: flex;
+    gap: 0.6rem;
+    font-family: var(--secondary-font);
+
+    & input {
+        width: 1rem;
+    }
+}

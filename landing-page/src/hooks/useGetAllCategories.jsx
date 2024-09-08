@@ -12,7 +12,7 @@ import { GiHotDog } from "react-icons/gi";
 function useGetAllCategories() {
   const token = localStorage.getItem("accessToken");
   const [categories, setCategories] = useState([]);
-  const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
   const [categoriesError, setCategoriesError] = useState(null);
 
   const categoryIcons = [

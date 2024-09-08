@@ -1,0 +1,35 @@
+.filter-food_container {
+  display: grid;
+  grid-template-columns: 23rem minmax(750px, 1fr) 2.9rem;
+  grid-template-rows: 3rem 1fr;
+  grid-template-areas:
+    "header header header"
+    "filter body sider-settings";
+
+
+  & .header {
+    grid-template-columns: 23rem 1fr 2.9rem;
+    box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.015);
+
+  }
+
+  & .sider-settings_container {
+    box-shadow: -1px -1px 5px 5px rgba(0, 0, 0, 0.015);
+  }
+
+  & .header-search {
+    width: 85%;
+    height: 100%;
+  }
+}
+
+.filter-food_body {
+  grid-area: body;
+  width: 100%;
+  min-height: calc(100svh - 3rem);
+  background-color: #ededed;
+  padding: 2% 2% 5% 5%;
+  display: flex;
+  justify-content: center;
+}
+

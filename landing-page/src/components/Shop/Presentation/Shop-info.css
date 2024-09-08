@@ -24,6 +24,18 @@
   align-items: end;
 }
 
+.shop-info_image-loading,
+.shop-info_image-error {
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+
+.shop-info_image-error {
+}
+
 .shop-info_image img {
   width: 13rem;
   height: 13rem;
@@ -67,6 +79,24 @@
   justify-content: center;
   gap: 0.3rem;
   font-size: 0.9rem;
+}
+
+.shop-title_loading {
+  margin-bottom: 0.1rem;
+  width: 100%;
+  height: 2rem;
+  justify-self: center;
+  border-radius: 0.2rem;
+  animation: identifier 1s infinite;
+}
+
+@keyframes identifier {
+  from {
+    background-color: rgba(0, 0, 0, 0.032);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.106);
+  }
 }
 
 .shop-contact .shop-contact_list {

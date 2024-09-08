@@ -5,7 +5,7 @@ import moment from "moment";
 function useGetPosts() {
   const token = localStorage.getItem("accessToken");
   const [posts, setPosts] = useState([]);
-  const [postsLoading, setPostsLoading] = useState(false);
+  const [postsLoading, setPostsLoading] = useState(true);
   const [postsError, setPostsError] = useState(null);
 
   //Web socket que escucha cuando se genera un nuevo evento, y almacena ese nuevo objeto dentro del array de posts.

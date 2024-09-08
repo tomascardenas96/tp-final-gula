@@ -4,6 +4,7 @@ import { FaCamera } from "react-icons/fa6";
 import useNewShop from "../../hooks/useNewShop";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 import { MdKeyboardDoubleArrowUp } from "react-icons/md";
+import Spinner from "../Common/Spinner/Spinner";
 import "./NewShop.css";
 
 function NewShop() {
@@ -13,7 +14,6 @@ function NewShop() {
     handleSubmitNewShop,
     handleChangeNewShop,
     newShopLoading,
-    newShopError,
     handleFileChange,
     selectedImage,
     selectedFile,
@@ -47,6 +47,7 @@ function NewShop() {
               name="name"
               onChange={handleChangeNewShop}
               value={userInput.name}
+              required
             />
             <div className="form-label_container">
               <label htmlFor="location" className="form-label">
@@ -58,6 +59,7 @@ function NewShop() {
               name="location"
               onChange={handleChangeNewShop}
               value={userInput.location}
+              required
             />
             <div className="form-label_container">
               <label htmlFor="phone" className="form-label">
@@ -69,6 +71,7 @@ function NewShop() {
               name="phone"
               onChange={handleChangeNewShop}
               value={userInput.phone}
+              required
             />
             <div className="form-label_container">
               <label htmlFor="profilename" className="form-label">
@@ -80,6 +83,7 @@ function NewShop() {
               name="profilename"
               onChange={handleChangeNewShop}
               value={userInput.profilename}
+              required
             />
             <div className="form-label_container">
               <label className="form-label">Foto de perfil</label>
@@ -105,6 +109,7 @@ function NewShop() {
                     type="file"
                     onChange={handleFileChange}
                     id="select-picture-shop"
+                    name="picture"
                   />
                 </div>
                 <p className="new-shop_selected-file">
@@ -114,6 +119,11 @@ function NewShop() {
             </label>
             <div className="form_submit">
               <input type="submit" value="Crear" />
+              {newShopLoading && (
+                <div className="new-shop_loading">
+                  <Spinner />
+                </div>
+              )}
             </div>
           </form>
         </div>

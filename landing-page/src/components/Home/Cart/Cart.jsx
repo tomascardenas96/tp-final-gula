@@ -1,20 +1,21 @@
 import "./Cart.css";
-import React, { useContext } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 import useGetPreferencesMercadoPago from "../../../hooks/useGetPreferencesMercadoPago";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Spinner from "../../Common/Spinner/Spinner";
+import Error from "../../Common/Error/Error";
 
 // Inicializamos la API de mercado pago.
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { FoodOnCartContext } from "../../Common/Context/Context";
-import Error from "../../Common/Error/Error";
 initMercadoPago("APP_USR-1d4c3f14-7f98-4c32-a2c3-b9a81fed4360");
 
-function Cart({ foodOnCart }) {
-  const { foodOnCartLoading, foodOnCartError, totalOfAllProducts } =
-    useContext(FoodOnCartContext);
-
+function Cart({
+  foodOnCart,
+  foodOnCartLoading,
+  foodOnCartError,
+  totalOfAllProducts,
+}) {
   const { preferenceId, preferenceError, preferenceLoading } =
     useGetPreferencesMercadoPago();
 
@@ -27,7 +28,15 @@ function Cart({ foodOnCart }) {
         </div>
       ) : (
         <div className="cart">
-          {!foodOnCartLoading ? (
+          {foodOnCartLoading ? (
+            <div className="cart_loading">
+              <Spinner />
+            </div>
+          ) : foodOnCartError ? (
+            <div className="cart_error">
+              <Error />
+            </div>
+          ) : (
             <div className="cart-products">
               <div className="product-list">
                 {foodOnCart?.map((product) => (
@@ -73,10 +82,6 @@ function Cart({ foodOnCart }) {
                   )}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="cart_loading">
-              <Spinner />
             </div>
           )}
         </div>

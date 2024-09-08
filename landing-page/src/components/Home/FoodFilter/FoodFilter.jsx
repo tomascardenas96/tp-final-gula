@@ -44,7 +44,9 @@ function FoodFilter() {
           {!isEmptyField && (
             <div className="food-filter_results-list">
               {foodByQueryError ? (
-                <Error />
+                <div className="food-filter_error">
+                  <Error />
+                </div>
               ) : foodByQueryLoading ? (
                 <div className="food-filter_results-list_spinner">
                   <Spinner />

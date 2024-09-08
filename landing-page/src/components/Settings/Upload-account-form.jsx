@@ -2,23 +2,30 @@ import useGetProfile from "../../hooks/useGetProfile";
 import useUpdateAccount from "../../hooks/useUpdateAccount";
 import React from "react";
 import "./Upload-account-form.css";
+import Spinner from "../Common/Spinner/Spinner";
+import Error from "../Common/Error/Error";
 
 function UploadAccountForm() {
   const {
-    uploadAccountError,
     uploadAccountLoading,
     userInput,
     handleSubmitUploadAccount,
     handleChangeUploadAccount,
   } = useUpdateAccount();
 
-  const { activeUserLoading, userImageURL, userImageName } = useGetProfile();
+  const { activeUserLoading, activeUserError } = useGetProfile();
 
   return (
     <form onSubmit={handleSubmitUploadAccount}>
       <h1>Datos de cuenta</h1>
       {activeUserLoading ? (
-        <h1>Loading</h1>
+        <div className="update-account_loading">
+          <Spinner />
+        </div>
+      ) : activeUserError ? (
+        <div className="update-account_error">
+          <Error />
+        </div>
       ) : (
         <>
           <label htmlFor="name">Nombre completo</label>
@@ -36,6 +43,11 @@ function UploadAccountForm() {
             value={userInput.password}
           />
           <input type="submit" value="Guardar" />
+          {uploadAccountLoading && (
+            <div className="updating-account_loading">
+              <Spinner />
+            </div>
+          )}
         </>
       )}
     </form>

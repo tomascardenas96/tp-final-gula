@@ -1,9 +1,8 @@
 .food-filter_container {
-  grid-area: filter;
-  /* background-color: lightblue; */
   padding-left: 0.2rem;
   padding-right: 0.2rem;
   user-select: none;
+  height: 13.3rem;
 }
 
 .food-filter {
@@ -88,9 +87,12 @@
   overflow-y: auto;
   justify-content: center;
 }
+.food-filter_error {
+  display: flex;
+  align-items: center;
+}
 
 .food-filter_results-list_spinner {
-  /* background-color: red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,12 +121,11 @@
 .food-filter_results-list .food-filter_results-list_card {
   list-style: none;
   display: grid;
-  grid-template-columns: 2.7rem 1fr 4rem 10rem 1.5rem;
-  font-size: 0.85rem;
+  grid-template-columns: 3rem 1fr 4rem 8rem 1.5rem;
+  font-size: 0.8rem;
   padding: 0.4rem 0.8rem 0.6rem 0.5rem;
   gap: 0.1rem;
   position: relative;
-  /* background-color: lightpink; */
   color: rgba(0, 0, 0, 0.914);
 }
 
@@ -132,7 +133,6 @@
   width: 96%;
   height: 100%;
   position: absolute;
-  /* background-color: red; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -145,17 +145,17 @@
   align-items: center;
   justify-items: start;
   font-family: var(--secondary-font);
-  padding: 0 5%;
+  padding: 0 0%;
   justify-content: center;
 }
 
 .food-filter_results-list_card .results-list_card-image {
-  justify-content: center;
+  justify-content: start;
 }
 
 .food-filter_results-list_card .results-list_card-image img {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
   object-fit: cover;
   border-radius: 0.2rem;
 }
@@ -164,12 +164,6 @@
   /* background-color: green; */
   justify-content: start;
 }
-
-/* .food-filter_results-list_card .results-list_card-price {
-}
-
-.food-filter_results-list_card .results-list_card-shop-name {
-} */
 
 .food-filter_results-list_card .results-list_card-cart {
   cursor: pointer;
@@ -198,4 +192,24 @@
   padding: 0.7rem 0;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.831);
+  font-family: var(--secondary-font);
+  align-items: center;
+}
+
+@media screen and (max-width: 1520px) {
+  .food-filter h1 {
+    font-size: 1.35rem;
+  }
+
+  .food-filter input {
+    width: 30rem;
+    height: 2rem;
+    border-radius: 0.2rem;
+    outline: none;
+    border: none;
+    font-size: 0.9rem;
+    font-family: var(--secondary-font);
+    padding-left: 1rem;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.736));
+  }
 }

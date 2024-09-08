@@ -5,7 +5,7 @@ import { useState } from "react";
 function useGetShops() {
   const token = localStorage.getItem("accessToken");
   const [shops, setShops] = useState([]);
-  const [shopsByQueryLoading, setShopsByQueryLoading] = useState(false);
+  const [shopsByQueryLoading, setShopsByQueryLoading] = useState(true);
   const [shopsByQueryError, setShopsByQueryError] = useState(false);
 
   useEffect(() => {

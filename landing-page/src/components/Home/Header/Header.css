@@ -20,7 +20,7 @@
   height: 100%;
   border-radius: 0.1rem;
   display: grid;
-  border-bottom: 1px solid rgba(255, 19, 19, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   grid-template-columns: 17rem 1fr 2.9rem;
   align-items: center;
 }
@@ -277,6 +277,29 @@
 
 .header-menu:active {
   background-color: rgba(0, 0, 0, 0.198);
+}
+
+.header-user-picture_loading {
+  display: grid;
+  place-content: center;
+}
+
+.header-user-picture_loading .loadership_CWZLE {
+  width: 25px;
+  height: 25px;
+}
+
+.header-user-picture_loading .loadership_CWZLE div {
+  width: 25px;
+  height: 25px;
+  border: 4px solid #75747433;
+}
+
+.header-user-picture_error {
+  display: grid;
+  place-content: center;
+  font-size: 1.3rem;
+  color: rgba(235, 38, 38, 0.837);
 }
 
 .header-menu img {

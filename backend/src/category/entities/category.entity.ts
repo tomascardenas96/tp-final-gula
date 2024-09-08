@@ -1,3 +1,4 @@
+import { IsString } from 'class-validator';
 import { Food } from '../../food/entities/food.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -9,6 +10,11 @@ export class Category {
   @Column()
   description: string;
 
+  @Column({ default: 'https://iili.io/d5tLpMx.png'})
+  @IsString()
+  icon: string;
+
   @OneToMany(() => Food, (food) => food.category, { onDelete: 'CASCADE' })
   food: Food[];
 }
+

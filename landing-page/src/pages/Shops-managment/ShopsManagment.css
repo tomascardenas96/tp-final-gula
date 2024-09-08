@@ -1,5 +1,4 @@
 .shops-managment_container {
-  /* background-color: red; */
   display: grid;
   grid-template-columns: 17rem minmax(750px, 1fr) 2.9rem;
   grid-template-rows: 3rem 1fr;
@@ -19,7 +18,6 @@
   font-family: var(--secondary-font);
   justify-self: center;
   color: rgba(0, 0, 0, 0.727);
-  /* text-decoration: underline; */
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }

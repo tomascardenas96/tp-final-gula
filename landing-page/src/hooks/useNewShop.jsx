@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useGetAlerts from "./useGetAlerts";
 
 function useNewShop() {
   const token = localStorage.getItem("accessToken");
@@ -9,9 +10,9 @@ function useNewShop() {
     profilename: "",
   });
   const [newShopLoading, setNewShopLoading] = useState(false);
-  const [newShopError, setNewShopError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const { errorNotify, successNotify } = useGetAlerts();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -47,9 +48,12 @@ function useNewShop() {
       if (data.error) {
         throw new Error(data.message);
       }
-      location.reload();
+      successNotify("Comercio creado exitosamente");
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     } catch (err) {
-      setNewShopError(err);
+      errorNotify("Error al crear un nuevo comercio")
     } finally {
       setNewShopLoading(false);
     }
@@ -65,7 +69,6 @@ function useNewShop() {
     handleSubmitNewShop,
     handleChangeNewShop,
     newShopLoading,
-    newShopError,
     handleFileChange,
     selectedFile,
     selectedImage,

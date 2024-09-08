@@ -29,9 +29,12 @@ export class Shop {
   profilename: string;
 
   @Column({
-    default: 'https://pubimg.band.uol.com.br/files/cb1fe227a30b77daa9cb.webp',
+    default: 'https://iili.io/d7pH8Xt.webp',
   })
   picture: string;
+
+  @Column({ default: 0 })
+  shippingCost: number;
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

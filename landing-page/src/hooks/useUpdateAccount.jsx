@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from "react";
 import useGetActiveUser from "./useGetActiveUser";
+import useGetAlerts from "./useGetAlerts";
 
 function useUpdateAccount() {
   const token = localStorage.getItem("accessToken");
-  const { activeUser, activeuserError, activeuserLoading } = useGetActiveUser();
+  const { activeUser } = useGetActiveUser();
   const [uploadAccountError, setUploadAccountError] = useState(null);
   const [uploadAccountLoading, setUploadAccountLoading] = useState(false);
   const [userInput, setUserInput] = useState({
     name: "",
     password: "",
   });
+  const { errorNotify, successNotify } = useGetAlerts();
 
   useEffect(() => {
     setUserInput({
@@ -24,7 +26,6 @@ function useUpdateAccount() {
     e.preventDefault();
     try {
       setUploadAccountLoading(true);
-      console.log(userInput);
       const response = await fetch("http://localhost:3070/user/update", {
         method: "PATCH",
         headers: {
@@ -37,8 +38,12 @@ function useUpdateAccount() {
       if (data.error) {
         throw new Error(data.message);
       }
-      location.reload();
+      successNotify("Cambios readlizados con exito!");
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     } catch (err) {
+      errorNotify("Error intentando cambiar los datos de la cuenta");
       setUploadAccountError(err);
     } finally {
       setUploadAccountLoading(false);

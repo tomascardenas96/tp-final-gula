@@ -8,7 +8,56 @@
   grid-template-columns: 8rem 1fr;
   grid-template-rows: 2rem 8rem repeat(4, 2rem);
   background-color: #f9f9f9;
+  position: relative;
 }
+
+/* Maneja de errores y cargas */
+.update-profile_loading {
+  width: 100%;
+  grid-column: 1 / 3;
+  grid-row: 2 / 12;
+  display: grid;
+  place-content: center;
+}
+
+.update-profile_loading .loadership_CWZLE {
+  width: 50px;
+  height: 50px;
+}
+
+.update-profile_loading .loadership_CWZLE div {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #eb222285;
+}
+
+.update-profile_error {
+  width: 100%;
+  grid-column: 1 / 3;
+  grid-row: 2 / 12;
+  display: grid;
+  place-content: center;
+}
+
+.updating-profile_spinner {
+  position: absolute;
+  bottom: 6.41rem;
+  right: 3rem;
+}
+
+.updating-profile_spinner .loadership_CWZLE {
+  width: 20px;
+  height: 20px;
+}
+
+.updating-profile_spinner .loadership_CWZLE div {
+  top: 0px;
+  left: 0px;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff8a;
+}
+/* Maneja de errores y cargas */
 
 .settings-page_body-form_info-profile > form > h1 {
   grid-column: 1 / 3;
@@ -88,7 +137,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: end;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .settings-page_body-form .info-profile_picture > label:hover {
