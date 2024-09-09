@@ -10,6 +10,7 @@ import {
   UseGuards,
   UseInterceptors,
   UploadedFile,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { CreateFoodDto } from './dto/create-food.dto';
@@ -75,7 +76,7 @@ export class FoodController {
   findAllFoods() {
     return this.foodService.findAllFoods();
   }
-  
+
   //Metodo de Gaston Nro 2:
   @Get('by-category/:categoryId')
   findFoodsByCategoryId(@Param('categoryId') categoryId: number) {
@@ -86,5 +87,14 @@ export class FoodController {
   @Get('by-shop/:shopId')
   findFoodsByshopId(@Param('shopId') shopId: number) {
     return this.foodService.findFoodsByshopyId(shopId);
+  }
+
+  @Get('filter-page')
+  filterFood(
+    @Query('name') name: string,
+    @Query('category') category: string,
+    @Query('maxPrice') maxPrice: number,
+  ) {
+    return this.foodService.filterFood(name, category, maxPrice);
   }
 }

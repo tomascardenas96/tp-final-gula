@@ -1,5 +1,4 @@
 .food-categories_container {
-  grid-area: categories;
   display: flex;
   gap: 1.3rem;
   padding-top: 1.2rem;
@@ -11,7 +10,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 100%;
   position: relative;
 }
 
@@ -43,6 +41,10 @@
   overflow-y: hidden;
   justify-self: center;
   padding-left: 1%;
+
+  & a {
+    text-decoration: none;
+  }
 }
 
 .categories_arrow-left,
@@ -86,13 +88,17 @@
 }
 
 @media screen and (max-width: 1520px) {
+  .food-categories_container {
+    grid-template-rows: 2rem 9.5rem;
+  }
+
   .food-categories_container h1 {
     font-size: 1.3rem;
   }
 
   .food-categories_container .food-categories_cards {
-    max-width: 53rem;
-    gap: 1.6rem;
+    max-width: 54rem;
+    gap: 1.8rem;
   }
 }
 

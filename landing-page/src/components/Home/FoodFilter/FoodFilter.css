@@ -1,8 +1,8 @@
 .food-filter_container {
-  grid-area: filter;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
   user-select: none;
+  height: 13.3rem;
 }
 
 .food-filter {

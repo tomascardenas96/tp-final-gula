@@ -1,0 +1,60 @@
+.filter-food_list {
+  grid-area: filter;
+  position: fixed;
+  top: 3rem;
+  left: 0;
+  width: 23rem;
+  min-height: calc(100% - 3rem);
+  display: flex;
+  justify-content: center;
+  background-color: #ededed;
+}
+
+.filter-list_container {
+  width: 75%;
+  height: max-content;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-item {
+  padding-bottom: 0.8rem;
+  border-bottom: 1.6px solid rgba(0, 0, 0, 0.083);
+  font-size: 0.95rem;
+  position: relative;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.768);
+
+  & p {
+    font-weight: 600;
+    font-family: var(--secondary-font);
+  }
+
+  & .deploy-options {
+    position: absolute;
+    right: 0;
+    top: 0.25rem;
+  }
+
+  & .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 1rem 0;
+  }
+}
+
+.clear-filters {
+  border: none;
+  font-family: var(--secondary-font);
+  height: 2.5rem;
+  background: linear-gradient( #ef3f36b5, #ef3f36);
+  color: white;
+  cursor: pointer;
+  letter-spacing: 0.03rem;
+  font-weight: 400;
+  border-radius: 0.2rem;
+  margin-top: 0.5rem;
+}

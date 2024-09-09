@@ -1,0 +1,42 @@
+.filter-result {
+  display: grid;
+  grid-template-rows: 2rem 1fr;
+  gap: 0.4rem;
+  width: 46rem;
+  align-items: start;
+}
+
+.filter-result_sort {
+  display: flex;
+  justify-content: end;
+  gap: 0.6rem;
+
+  & p {
+    font-family: var(--secondary-font);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  & span {
+    font-family: var(--secondary-font);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    & .sort-by_arrow-icon {
+      font-size: 0.83rem;
+      height: 100%;
+      color: #3185fc;
+    }
+  }
+}
+
+.filter-result_container {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}

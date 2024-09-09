@@ -1,0 +1,19 @@
+.filter-by-name {
+  margin: 1rem 0 0.5rem;
+  position: relative;
+
+  & input {
+    height: 1.8rem;
+    width: 100%;
+    font-family: var(--secondary-font);
+    padding-left: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.392);
+    border-radius: 0.2rem;
+  }
+
+  & .filter-search-icon {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.38rem;
+  }
+}
