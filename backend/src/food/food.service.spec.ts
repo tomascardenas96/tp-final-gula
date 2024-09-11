@@ -12,7 +12,7 @@ import { Cart } from 'src/cart/entities/cart.entity';
 import { CartService } from 'src/cart/cart.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { Profile } from 'src/profile/entities/profile.entity';
-import { ILike, MoreThan } from 'typeorm';
+import { ILike, LessThanOrEqual, MoreThan } from 'typeorm';
 import { BadGatewayException, BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { CreateFoodDto } from './dto/create-food.dto';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
@@ -31,6 +31,7 @@ describe('FoodService', () => {
       save:jest.fn(),
       find:jest.fn(),
       findOne:jest.fn(),
+      LessThanOrEqual:jest.fn(),
     };
     //FoodServiceMock
     foodServiceMock={
@@ -138,6 +139,7 @@ describe('FoodService', () => {
         phone: '1234567890',
         profilename: 'testShop',
         picture: 'shop.jpg',
+        shippingCost:20,
         food: [],
         createdAt: new Date(),
         user: { email: 'owner@test.com' } as any,
@@ -148,6 +150,7 @@ describe('FoodService', () => {
       const category: Category = {
         categoryId: 1,
         description: 'testCategory',
+        icon:'link',
         food: [],
       };
 
@@ -227,6 +230,7 @@ describe('FoodService', () => {
         phone: '1234567890',
         profilename: 'testShop',
         picture: 'shop.jpg',
+        shippingCost:20,
         food: [],
         createdAt: new Date(),
         user: { email: 'owner@test.com' } as any,
@@ -265,6 +269,7 @@ describe('FoodService', () => {
         phone: '1234567890',
         profilename: 'testShop',
         picture: 'shop.jpg',
+        shippingCost:20,
         food: [],
         createdAt: new Date(),
         user: { email: 'owner@test.com' } as any,//propietario de la tienda distinto al activo
@@ -275,6 +280,7 @@ describe('FoodService', () => {
       const category: Category = {
         categoryId: 1,
         description: 'testCategory',
+        icon:'link',
         food: [],
       };
       //configuracion de la prueba tienda y cateogria existentes
@@ -307,6 +313,7 @@ describe('FoodService', () => {
         phone: '1234567890',
         profilename: 'testShop',
         picture: 'shop.jpg',
+        shippingCost:20,
         food: [],
         createdAt: new Date(),
         user: { email: 'owner@test.com' } as any,
@@ -317,6 +324,7 @@ describe('FoodService', () => {
       const category: Category = {
         categoryId: 1,
         description: 'testCategory',
+        icon:'link',
         food: [],
       };
       //configuracion del test
@@ -494,7 +502,7 @@ describe('FoodService', () => {
           price: 10,
           stock: 5,
           review: 'Delicious',
-          category: { categoryId: 1, description: 'testCategory', food: [] },
+          category: { categoryId: 1, description: 'testCategory',icon:'link', food: [] },
           shop: {
             shopId: 1,
             name: 'Test Shop',
@@ -502,6 +510,7 @@ describe('FoodService', () => {
             phone: '1234567890',
             profilename: 'testShop',
             picture: 'shop.jpg',
+            shippingCost:20,
             food: [],
             createdAt: new Date(),
             user: { email: 'owner@test.com' } as any,
@@ -605,6 +614,7 @@ describe('FoodService', () => {
               phone: '123456789',
               profilename: 'pizzashop',
               picture: 'shop.jpg',
+              shippingCost:20,
               createdAt: new Date(),
               user: { email: 'owner@test.com' } as any,
               post: [],
@@ -614,6 +624,7 @@ describe('FoodService', () => {
             category: {
               categoryId: 1,
               description: 'Italian',
+              icon:'link',
               food: [],
             },
             cart: [],
@@ -730,5 +741,170 @@ describe('FoodService', () => {
         }
       });//final it
     });//final describe
-  });//final
-  
+
+    describe('filterFood',()=>{
+      it('should filter food by name', async()=>{
+        const mockFood=[{description:'Pizza',price:10}] as Food[];
+
+        //simulamos que food.repository.find retorna un alimento
+        jest.spyOn(foodServiceMock, 'find').mockResolvedValue(mockFood);
+
+        //llamado al servicio con el parametro de prueba
+        const result= await service.filterFood('pizza');
+
+        expect(result).toEqual(mockFood);
+        expect(foodServiceMock.find).toHaveBeenCalledWith({
+          where: {description: ILike('%pizza%')},
+        });
+      });//final it
+
+      it('should filter food by caetgory', async()=>{
+        //mock de food
+        const mockFood=[
+          { description: 'pizza', 
+            category: { description: 'comida rapida' } as Category
+           }] as Food[];
+
+        //mock de categoria
+        const mockCategory= {description:'comida rapida'};
+
+        //configuracion de la prueba
+        //simulamos que el servicio de categoria retorna una categoria
+        jest.spyOn(categoryServiceMock, 'findCategoryByName').mockReturnValue(mockCategory);
+        //al llamar al servicio y utilizar find debe retornar alimentos que coincidan con la categoria filtrada
+        jest.spyOn(foodServiceMock,'find').mockReturnValue(mockFood);
+
+        //llamado al servicio
+        //con los parametros esperados, el parametro "undefined" hace referencia a description al nombre del alimento qeu en este caso al ser opcional no lo brindamos
+        const result= await service.filterFood(undefined,'comida rapida');
+
+        //verificamos
+        expect(result).toEqual(mockFood);
+        expect(categoryServiceMock.findCategoryByName).toHaveBeenCalledWith('comida rapida');
+        expect(foodServiceMock.find).toHaveBeenCalledWith({
+          where:{ category: mockCategory}
+        });
+      });//final it
+
+      it('should filter food by price',async()=>{
+        //mock necesarios
+        const mockPrice=1500;
+
+        const mockFood=[{description:'pizza',price:1500}] as Food[];
+
+        //simulamos que el repositorio(donde estan todos los metodos de typeOmr)retorna un alimento filtrado por price
+        jest.spyOn(foodServiceMock,'find').mockResolvedValue(mockFood);
+
+        const result= await service.filterFood(undefined,undefined,mockPrice);
+
+        //verificamos
+        expect(result).toEqual(mockFood);
+        expect(foodServiceMock.find).toHaveBeenCalledWith({
+          where:{
+            price:LessThanOrEqual(mockPrice)
+          },
+        });        
+      });//final it
+
+
+      it('should filter and get all food by price', async ()=>{
+        //mock necesarios
+        const mockPrice= 2000;
+
+        //mock con todas las comdias
+        const mockAllFoods=[
+          {description:'food1',price:1500},//menor
+          {description:'food2',price:2500},//mayor
+          {description:'food3',price:2000},//igual
+          {description:'food4',price:1000},//menor
+          {description:'food5',price:5500},//mayor
+        ] as Food[];
+
+        //comidas filtradas esperadas
+        const foodsFiltered=mockAllFoods.filter(food=> food.price <= mockPrice);
+        /* valores que deberia devolver 
+        {description:'food1',price:1500},
+        {description:'food3',price:2000},
+        {description:'food4',price:1000},
+        */
+        
+        //simulamos que el repositorio(donde estan todos los metodos de typeOmr)retorne un arreglo de foods filtrados por price
+        jest.spyOn(foodServiceMock,'find').mockResolvedValue(foodsFiltered);
+
+        //llamamos al metodo del servicio con los parametros correctos
+        const result= await service.filterFood(undefined,undefined,mockPrice);
+        //console.log('esto es resul',result) 
+        
+        //verificamos
+        expect(result).toEqual(foodsFiltered);
+        expect(foodServiceMock.find).toHaveBeenCalledWith({
+          where:{
+            price:LessThanOrEqual(mockPrice)
+          },
+        }); 
+      });//final it
+
+      it('should filter and get all foods by name,category and price', async()=>{
+        //mocks necesarios
+        
+        const mockPrice= 7000;
+
+        const mockName='fo';//para que me traiga todos los nombres que contengan 'fo' y pueda seguir filtrando con los otros filtros
+   
+        const mockCategory= {description:'hamburguesa'}//filtrara solo por categoria 'hamburguesa'
+        
+        //mock con todas las comdias
+           const mockAllFoods=[
+             {description:'food1',category: { description: 'pasta' } as Category,price:7500},//mayor
+             {description:'food2',category: { description: 'carne' } as Category,price:2500},//menor
+             {description:'food3',category: { description: 'hamburguesa' } as Category,price:2000},//menor
+             {description:'food4',category: { description: 'veggie' } as Category,price:2500},//menor
+             {description:'food5',category: { description: 'bebida' } as Category,price:3500},//menor
+             {description:'food5',category: { description: 'hamburguesa' } as Category,price:7000},//igual
+             {description:'food5',category: { description: 'pasta' } as Category,price:3500},//menor
+             {description:'food5',category: { description: 'bebida' } as Category,price:5500},//menor
+             {description:'food5',category: { description: 'hamburguesa' } as Category,price:10500},//mayor
+           ] as Food[];
+        //me deberia devolver food3 y food5
+
+        //comidas filtradas esperadas(solo las que cumples con los filtros)
+        const filteredFoods= mockAllFoods.filter(food=>
+          food.description.includes(mockName)&&
+          food.category.description===mockCategory.description &&
+          food.price <= mockPrice
+        );
+
+        //configuracion de la prueba
+        jest.spyOn(categoryServiceMock,'findCategoryByName').mockResolvedValue(mockCategory);
+        jest.spyOn(foodServiceMock, 'find').mockResolvedValue(filteredFoods);
+
+        //llamada al metodo del servicio con los parametros correctos
+        const result= await service.filterFood(mockName,mockCategory.description,mockPrice);
+
+        //verificacion
+        expect(result).toEqual(filteredFoods);
+        expect(categoryServiceMock.findCategoryByName).toHaveBeenCalledWith(mockCategory.description);
+        expect(foodServiceMock.find).toHaveBeenCalledWith({
+          where:{
+            description:ILike(`%${mockName}%`),
+            category:mockCategory,
+            price:LessThanOrEqual(mockPrice),
+          },
+        });
+      });//final it
+
+      it('should throw badGateWayException when an error ocurred',async()=>{
+        
+        const errorMensaje='Error trying to filter food';
+
+        //configuracion de la prueba
+        jest.spyOn(foodServiceMock,'find').mockRejectedValue(new BadGatewayException(errorMensaje));
+        //llamado al metodod del servicio
+        await expect(service.filterFood('pizza')).rejects.toThrow(BadGatewayException);
+        await expect(service.filterFood('pizza')).rejects.toThrow(errorMensaje);
+
+        //NOTA: toThrow permite verifica el tipo de exception y ademas el contenido del mensaje
+      });//final it
+    });//final describe
+  });//final 
+   

@@ -140,6 +140,7 @@ describe('PostService', () => {
           phone: '123456789',
           profilename: 'ProfileName1',
           picture: 'PictureLink1',
+          shippingCost:20,
           createdAt: new Date(),
           user: user,
           post: [],

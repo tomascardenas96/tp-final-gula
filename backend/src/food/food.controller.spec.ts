@@ -123,6 +123,7 @@ describe('FoodController', () => {
           phone: 'phoneNumber',
           profilename: 'pizzashop',
           picture: 'shop.jpg',
+          shippingCost:20,
           food: [],
           createdAt: new Date(),
           user: new User(),
@@ -132,6 +133,7 @@ describe('FoodController', () => {
         category: {
           categoryId: 1,
           description:'testDescription',
+          icon:'link',
           food: []
         },
         cart: [] 
@@ -165,13 +167,14 @@ describe('FoodController', () => {
           phone: 'phoneNumber',
           profilename: 'pizzashop',
           picture: 'shop.jpg',
+          shippingCost:20,
           food: [],
           createdAt: new Date(),
           user: new User(),
           post: [],
           invoice: [],
         }, 
-        category: { categoryId: 1, description: 'Italian', food: [] },
+        category: { categoryId: 1, description: 'Italian',icon:'link', food: [] },
         cart: [],
       }];
       //espiamos el metodo del servicio y le indicamos que tiene que resolver con un food

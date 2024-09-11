@@ -38,10 +38,12 @@ describe('CategoryController', () => {
       const categories:Category[]= [{
         categoryId:1,
         description: 'Pasta',
+        icon:'link',
         food: [],
       },{
         categoryId:2,
         description:'Panchos',
+        icon:'link',
         food:[]
       }];
       //configuramos el mock para que cuando llame al metodo findAllCategories resuelva con un array de categorias

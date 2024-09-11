@@ -50,10 +50,12 @@ describe('CategoryService', () => {
       const categories:Category[]= [{
         categoryId:1,
         description: 'Pasta',
+        icon:'link',
         food: [],
       },{
         categoryId:2,
         description:'Panchos',
+        icon:'link',
         food:[]
       }];
       //configuro al mock para que cuando se llame al metodo find devuelba un array de categorias
@@ -80,10 +82,12 @@ describe('CategoryService', () => {
       const categories:Category[]= [{
         categoryId:1,
         description: 'Pasta',
+        icon:'link',
         food: [],
       },{
         categoryId:2,
         description:'Panchos',
+        icon:'link',
         food:[]
       }];
 

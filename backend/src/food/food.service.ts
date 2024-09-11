@@ -199,7 +199,7 @@ export class FoodService {
       console.log();
       if (maxPrice) {
         const parsedPrice = Number(maxPrice);
-        whereConditions.price = LessThanOrEqual(parsedPrice);
+        whereConditions.price = LessThanOrEqual(parsedPrice);//funcion de typeOMR que genera una condicion para seleccionar valores menores o iguales al valor proporcionado
       }
 
       return this.foodRepository.find({ where: whereConditions });
