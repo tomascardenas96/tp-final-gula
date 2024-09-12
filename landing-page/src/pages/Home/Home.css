@@ -13,3 +13,29 @@
   grid-area: body;
   width: 100%;
 }
+
+@media screen and (max-width: 1200px) {
+  .home-page_container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 3rem 1fr;
+    grid-template-columns: minmax(750px, 1fr) 3rem;
+    grid-template-areas:
+      "header header"
+      "body sider-settings";
+    background-color: #ffffff;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .home-page_container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 3rem 1fr;
+    grid-template-columns: minmax(750px, 1fr) 3rem;
+    grid-template-areas:
+      "header header"
+      "body body";
+    background-color: #ffffff;
+  }
+}

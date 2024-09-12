@@ -40,3 +40,9 @@
   flex-direction: column;
   gap: 0.05rem;
 }
+
+@media screen and (max-width: 1200px) {
+  .filter-result {
+    width: 100%;
+  }
+}

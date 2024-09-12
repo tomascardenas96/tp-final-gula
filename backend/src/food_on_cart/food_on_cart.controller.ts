@@ -30,8 +30,8 @@ export class FoodOnCartController {
   }
 
   @Get()
-  getFoodsByActiveCart(@ActiveUser() activeUser: ActiveUserInterface) {
-    return this.foodOnCartService.getFoodsByActiveCart(activeUser);
+  getFoodsByActiveUser(@ActiveUser() activeUser: ActiveUserInterface) {
+    return this.foodOnCartService.getFoodsByActiveUser(activeUser);
   }
 
   @Patch('add-subtract')

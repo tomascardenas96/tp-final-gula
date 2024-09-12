@@ -10,6 +10,7 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import useGetUsersAndShopsByQuery from "../../../hooks/useGetUsersAndShopsByQuery";
 import useGetProfile from "../../../hooks/useGetProfile";
 import Spinner from "../../Common/Spinner/Spinner";
+import { IoIosMenu } from "react-icons/io";
 import "./Header.css";
 
 function Header() {
@@ -33,6 +34,7 @@ function Header() {
       }
     >
       <div className="header">
+        <IoIosMenu className="hamburguer-menu" />
         <div className="header-search">
           <div>
             <GiFullPizza className="header-search-image" />

@@ -2,7 +2,7 @@ import React from "react";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import useGetPosts from "../../../hooks/useGetPosts.jsx";
 import NewPost from "./NewPost.jsx";
-import ShopPost from "../../Shop/Posts/Shop-post.jsx";
+import ShopPost from "../../Common/Posts/Shop-post.jsx";
 import Error from "../../Common/Error/Error.jsx";
 import "./HomePosts.css";
 

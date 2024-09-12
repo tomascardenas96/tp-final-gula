@@ -15,7 +15,8 @@ import { Category } from 'src/category/entities/category.entity';
 import { Shop } from 'src/shop/entities/shop.entity';
 import { ShopService } from 'src/shop/shop.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-import { Cart } from 'src/cart/entities/cart.entity';
+import { FoodOnCartService } from 'src/food_on_cart/food_on_cart.service';
+import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 
 @Injectable()
 export class FoodService {
@@ -211,9 +212,33 @@ export class FoodService {
     }
   }
 
-  async subtractFromStockAfterPurchase(cart: Cart) {
+  private async subtractFromStock(food: Food, quantity: number): Promise<Food> {
     try {
-      console.log(cart);
-    } catch (error) {}
+      food.stock = food.stock - quantity;
+      return this.foodRepository.save(food);
+    } catch (error) {
+      throw new Error('Error subtracting from stock');
+    }
+  }
+
+  async subtractFromStockAfterPurchase(foodOnCart: FoodOnCart[]) {
+    try {
+      for (const item of foodOnCart) {
+        const food: Food = await this.foodRepository.findOne({
+          where: { foodId: item.food.foodId },
+        });
+        console.log(item);
+
+        await this.subtractFromStock(food, item.amount);
+      }
+
+      return {
+        message: 'Stock subtracted',
+      };
+    } catch (error) {
+      throw new BadGatewayException(
+        'Error trying to subtract stock after purchase',
+      );
+    }
   }
 }

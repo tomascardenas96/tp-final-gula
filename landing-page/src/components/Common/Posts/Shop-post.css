@@ -30,14 +30,13 @@
 .shop-post_container .shop-post_right {
   height: 100%;
   width: 100%;
-  /* background-color: rgb(98, 255, 0); */
   display: grid;
   grid-template-columns: 1fr 3rem;
   grid-template-rows: 1.5rem 1fr 2rem;
   row-gap: 0.1rem;
 }
+
 .shop-post_right .right_header {
-  /* background-color: lightcoral; */
   display: flex;
   gap: 0.3rem;
 }
@@ -61,7 +60,6 @@
 }
 
 .shop-post_right .right_options {
-  /* background-color: lightgray; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,7 +72,6 @@
 }
 
 .shop-post_right .right_body {
-  /* background-color: lightblue; */
   grid-column: 1 / 3;
 }
 
@@ -92,7 +89,7 @@
 
 .right_body-picture > img {
   width: 100%;
-  border-radius: .7rem;
+  border-radius: 0.7rem;
   cursor: pointer;
 }
 
@@ -100,7 +97,6 @@
   display: flex;
   gap: 1rem;
   height: 100%;
-  /* background-color: red; */
 }
 
 .right_comments .like-comments_container > div {
@@ -133,4 +129,87 @@
   justify-content: center;
   font-size: 1.3rem;
   color: rgba(217, 18, 18, 0.7);
+}
+
+@media screen and (max-width: 1366px) {
+  .shop-post_container .shop-post_left > img {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .shop-post_right .right_header > p,
+  .shop-post_right .right_header > span {
+    font-size: 0.9rem;
+  }
+
+  .shop-post_right .right_options {
+    gap: 0.2rem;
+    font-size: 0.9rem;
+  }
+
+  .shop-post_right .right_body > p {
+    line-height: 1.3rem;
+    font-size: 0.9rem;
+  }
+
+  .shop_like-icon,
+  .shop_comment-icon {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .shop_comment-icon {
+    font-size: 1rem;
+  }
+
+  .right_comments .like-comments_container > div > p {
+    font-size: 0.94rem;
+  }
+
+  .right_report {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .shop-post_right {
+    row-gap: 0;
+  }
+
+  .shop-post_right .right_header > p,
+  .shop-post_right .right_header > span {
+    font-size: 0.84rem;
+  }
+
+  .shop-post_right .right_options {
+    gap: 0.2rem;
+    font-size: 0.8rem;
+  }
+
+  .shop-post_right .right_body > p {
+    line-height: 1.15rem;
+    font-size: 0.86rem;
+  }
+
+  .shop_like-icon,
+  .shop_comment-icon {
+    font-size: 1rem;
+  }
+
+  .shop_comment-icon {
+    font-size: 0.9rem;
+  }
+
+  .right_comments .like-comments_container > div {
+    align-items: center;
+  }
+
+  .right_comments .like-comments_container > div > p {
+    font-size: 0.85rem;
+  }
+
+  .right_report {
+    font-size: 1rem;
+    align-items: center;
+  }
 }

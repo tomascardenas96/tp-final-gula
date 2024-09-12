@@ -34,7 +34,7 @@
   }
 
   100% {
-    transform: translateX(-80%);
+    transform: translateX(-100%);
   }
 
   0% {
@@ -42,12 +42,30 @@
   }
 
   100% {
-    transform: translateX(-80%);
+    transform: translateX(-100%);
   }
 }
 
 @media screen and (max-width: 1520px) {
   .slide-text p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .slide-text p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .slide-text p {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .slide-text_container {
+    display: none;
   }
 }
