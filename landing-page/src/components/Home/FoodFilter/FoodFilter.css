@@ -198,7 +198,7 @@
 
 @media screen and (max-width: 1520px) {
   .food-filter h1 {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
 
   .food-filter input {
@@ -211,5 +211,74 @@
     font-family: var(--secondary-font);
     padding-left: 1rem;
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.736));
+  }
+
+  .food-filter_search-icon {
+    top: 0.53rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .food-filter_container {
+    height: 11.5rem;
+  }
+
+  .food-filter h1 {
+    letter-spacing: 0.11rem;
+    font-size: 1.14rem;
+  }
+
+  .food-filter input {
+    width: 28rem;
+    height: 1.8rem;
+    font-size: 0.75rem;
+  }
+
+  .food-filter_search-icon {
+    top: 0.48rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .food-filter_container {
+    height: 12rem;
+  }
+
+  .food-filter h1 {
+    letter-spacing: 0.1rem;
+    font-size: 1.1rem;
+  }
+
+  .food-filter input {
+    width: 26rem;
+    height: 1.6rem;
+    font-size: 0.73rem;
+  }
+
+  .food-filter_search-icon {
+    top: 0.42rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .food-filter_container {
+    height: 12rem;
+  }
+
+  .food-filter h1 {
+    font-size: 1.25rem;
+  }
+
+  .food-filter input {
+    width: 26rem;
+    height: 1.8rem;
+  }
+
+  .food-filter_search-icon {
+    top: 0.42rem;
+    font-size: 0.95rem;
   }
 }

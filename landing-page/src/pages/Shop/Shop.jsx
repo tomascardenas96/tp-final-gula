@@ -8,7 +8,7 @@ import ShopHeader from "../../components/Shop/Header/Shop-header";
 import useGetShopByProfileName from "../../hooks/useGetShopByProfileName";
 import useGetAllCategories from "../../hooks/useGetAllCategories";
 import ShopLetter from "../../components/Shop/Letter/Shop-letter";
-import ShopProfilePosts from "../../components/Shop/Posts/Shop-profile-posts";
+import ShopProfilePosts from "../../components/Common/Posts/Shop-profile-posts";
 import ShopBar from "../../components/Shop/Navbar/Shop-bar";
 import useSwitchBarProfileShop from "../../hooks/useSwitchBarProfileShop";
 import CategoryList from "../../components/Shop/Category/Category-list";

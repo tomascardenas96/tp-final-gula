@@ -1,30 +1,30 @@
 .filter-food-card_container {
   background-color: white;
-  height: 14rem;
-  border-radius: 0.1rem;
+  height: 14em;
+  border-radius: 0.1em;
   box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.038);
   transition: all 0.3s ease;
   display: grid;
-  padding: 0.1rem;
-  grid-template-columns: 13.5rem 1fr;
+  padding: 0.1em;
+  grid-template-columns: 13.5em 1fr;
 }
 
 .filter-food-card_image {
   & img {
     width: 100%;
-    height: 13.8rem;
+    height: 13.8em;
     object-fit: cover;
     object-position: center;
-    border-radius: 0.1rem 0 0 0.1rem;
+    border-radius: 0.1em 0 0 0.1em;
   }
 }
 
 .filter-food-card_description {
-  border-radius: 0.1rem;
+  border-radius: 0.1em;
   font-family: var(--secondary-font);
-  padding: 1rem;
+  padding: 1em;
   display: grid;
-  grid-template-rows: max-content max-content 3rem max-content 1.7rem max-content;
+  grid-template-rows: max-content max-content 3em max-content 1.7em max-content;
 
   & .filtered-shop,
   .filtered-description,
@@ -35,45 +35,45 @@
   }
 
   & .filtered-shop {
-    font-size: 0.63rem;
+    font-size: 0.63em;
     font-weight: 600;
   }
 
   & .filtered-description {
     font-weight: lighter;
-    font-size: 1.1rem;
-    margin-top: -0.3rem;
+    font-size: 1.1em;
+    margin-top: -0.3em;
   }
 
   & .filtered-price {
     font-weight: 500;
-    font-size: 1.35rem;
+    font-size: 1.35em;
     display: flex;
     align-items: end;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5em;
   }
 
   & .filtered-stock {
     font-weight: 600;
-    font-size: 0.7rem;
+    font-size: 0.7em;
     width: max-content;
-    padding: 0 0.5rem;
+    padding: 0 0.5em;
 
-    border-radius: 0.1rem;
+    border-radius: 0.1em;
   }
 
   & .filtered-delivery {
     display: flex;
     align-items: center;
-    gap: 0.2rem;
-    font-size: 0.8rem;
+    gap: 0.2em;
+    font-size: 0.8em;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.662);
     & span {
       font-family: var(--secondary-font);
       font-weight: bold;
       color: #3185fc;
-      font-size: 0.7rem;
+      font-size: 0.7em;
       height: 100%;
       display: flex;
       align-items: center;
@@ -82,18 +82,18 @@
   }
 
   & .filtered-add-to-cart {
-    margin-top: 0.7rem;
+    margin-top: 0.7em;
     & div {
       font-family: var(--secondary-font);
-      border-radius: 0.4rem;
+      border-radius: 0.4em;
       width: max-content;
-      padding: 0.3rem 1rem;
+      padding: 0.3em 1em;
       background: linear-gradient(#ef3f36b5, #ef3f36);
       color: white;
-      font-size: 0.9rem;
+      font-size: 0.9em;
       cursor: pointer;
 
-      font-size: .85rem;
+      font-size: 0.85em;
     }
   }
 }
@@ -111,4 +111,10 @@
 .filtered-stock-blue {
   background-color: #2375ab1f;
   color: #2374ab;
+}
+
+@media screen and (max-width: 1200px) {
+  .filter-food-card_container {
+    font-size: 90%;
+  }
 }

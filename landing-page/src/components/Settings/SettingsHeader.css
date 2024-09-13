@@ -30,3 +30,36 @@
   letter-spacing: 0.01rem;
   padding-bottom: 0.68%;
 }
+
+@media screen and (max-width: 1520px) {
+  .settings-header_arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .settings-header_container h1 {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .settings-header_arrow {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .settings-header_container h1 {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .settings-header_arrow {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .settings-header_container h1 {
+    font-size: 0.7rem;
+  }
+}

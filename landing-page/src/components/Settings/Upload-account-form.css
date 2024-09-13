@@ -1,12 +1,12 @@
 .settings-page_body-form .settings-page_body-form_info-account form {
   display: grid;
-  padding: 1.5rem 2rem 4rem 2rem;
-  border-radius: 1rem;
+  padding: 1.5em 2em 4em 2em;
+  border-radius: 1em;
   width: 100%;
-  gap: 2.3rem;
+  gap: 2.3em;
   display: grid;
-  grid-template-columns: 8rem 1fr;
-  grid-template-rows: 2rem repeat(3, 2rem);
+  grid-template-columns: 8em 1fr;
+  grid-template-rows: 2em repeat(3, 2em);
   background-color: #f9f9f9;
   position: relative;
 }
@@ -41,9 +41,8 @@
 
 .updating-account_loading {
   position: absolute;
-  bottom: 4.12rem;
-  right: 3rem;
-  /* background-color: green; */
+  bottom: 4.12em;
+  right: 3em;
 }
 
 .updating-account_loading .loadership_CWZLE {
@@ -66,12 +65,12 @@
   place-content: center;
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.791);
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 
 .settings-page_body-form .settings-page_body-form_info-account > form > label {
   display: flex;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   font-weight: bold;
   font-family: var(--secondary-font);
   justify-self: center;
@@ -79,10 +78,10 @@
 }
 
 .settings-page_body-form .settings-page_body-form_info-account > form > input {
-  border-radius: 0.2rem;
+  border-radius: 0.2em;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.578);
-  padding-left: 0.5rem;
+  padding-left: 0.5em;
   padding-bottom: 0.4%;
   font-family: var(--secondary-font);
   background-color: transparent;
@@ -93,16 +92,34 @@
   > form
   input[type="submit"] {
   grid-column: 1 / 3;
-  border-radius: 0.1rem;
+  border-radius: 0.1em;
   outline: none;
   border: none;
   color: rgb(28, 27, 27);
   border: 2px solid rgba(0, 0, 0, 0.593);
   color: rgba(0, 0, 0, 0.593);
   background: linear-gradient(#d00000ec, #d00000b2);
-  height: 2.5rem;
+  height: 2.5em;
   border: none;
   color: white;
-  font-size: 0.9rem;
-  letter-spacing: 0.05rem;
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+
+@media screen and (max-width: 1520px) {
+  .settings-page_body-form .settings-page_body-form_info-account form {
+    font-size: 90%;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .settings-page_body-form .settings-page_body-form_info-account form {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .settings-page_body-form .settings-page_body-form_info-account form {
+    font-size: 70%;
+  }
 }

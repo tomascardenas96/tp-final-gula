@@ -3,7 +3,7 @@ import Header from "../../components/Home/Header/Header";
 import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import Messages from "../../components/Home/Messages/Messages";
-import SettingsHeader from "../../components/Shops-managment/SettingsHeader";
+import SettingsHeader from "../../components/Settings/SettingsHeader";
 import UploadProfileForm from "../../components/Settings/Upload-profile-form";
 import UploadAccountForm from "../../components/Settings/Upload-account-form";
 import "./Settings.css";

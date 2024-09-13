@@ -29,8 +29,6 @@
 
 @media screen and (max-width: 1520px) {
   .advertise_container {
-    display: grid;
-    grid-template-rows: 2rem 1fr;
     height: 28rem;
   }
 
@@ -41,5 +39,91 @@
   .advertise_container .advertise > img {
     width: 15rem;
     height: 21rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .advertise_container {
+    height: 25.5rem;
+  }
+
+  .advertise_container h1 {
+    font-size: 1.1rem;
+  }
+
+  .advertise_container .advertise > img {
+    width: 13.5rem;
+    height: 19.5rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .advertise_container {
+    height: 26rem;
+  }
+
+  .advertise_container h1 {
+    font-size: 1.05rem;
+  }
+
+  .advertise_container .advertise {
+    gap: 1.5rem;
+  }
+
+  .advertise_container .advertise > img {
+    width: 15rem;
+    height: 20.5rem;
+  }
+
+  .advertise-item4 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .advertise_container {
+    height: 25rem;
+  }
+
+  .advertise_container h1 {
+    font-size: 1.15rem;
+  }
+
+  .advertise_container .advertise {
+    gap: 1.3rem;
+  }
+
+  .advertise_container .advertise > img {
+    width: 13.5rem;
+    height: 19.5rem;
+    margin-top: 1.8rem;
+  }
+
+  .advertise-item4 {
+    display: inline;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .advertise_container {
+    height: 25.5rem;
+  }
+
+  .advertise_container h1 {
+    font-size: 1.1rem;
+  }
+
+  .advertise_container .advertise {
+    gap: 1.5rem;
+  }
+
+  .advertise_container .advertise > img {
+    width: 14.9rem;
+    height: 20.5rem;
+    margin-top: 1.8rem;
+  }
+
+  .advertise-item4 {
+    display: none;
   }
 }

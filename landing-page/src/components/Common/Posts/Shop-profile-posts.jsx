@@ -2,8 +2,8 @@ import "./Shop-profile-posts.css";
 import useGetPostsByShop from "../../../hooks/useGetPostsByShop";
 import ShopPost from "./Shop-post";
 import useGetPosts from "../../../hooks/useGetPosts";
-import Spinner from "../../Common/Spinner/Spinner";
-import Error from "../../Common/Error/Error";
+import Spinner from "../Spinner/Spinner";
+import Error from "../Error/Error";
 
 function ShopProfilePosts() {
   const { posts, postsLoading, postsError } = useGetPostsByShop();
