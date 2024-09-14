@@ -183,7 +183,7 @@ export class FoodService {
     }
   }
 
-  async filterFood(name?: string, category?: string, maxPrice?: number) {
+  async filterFood(name?: string, category?: string, maxprice?: number) {
     try {
       const whereConditions: any = {};
 
@@ -197,10 +197,9 @@ export class FoodService {
         whereConditions.category = categoryFiltered;
       }
 
-      console.log();
-      if (maxPrice) {
-        const parsedPrice = Number(maxPrice);
-        whereConditions.price = LessThanOrEqual(parsedPrice);//funcion de typeOMR que genera una condicion para seleccionar valores menores o iguales al valor proporcionado
+      if (maxprice) {
+        const parsedPrice = Number(maxprice);
+        whereConditions.price = LessThanOrEqual(parsedPrice);
       }
 
       return this.foodRepository.find({ where: whereConditions });
@@ -212,29 +211,43 @@ export class FoodService {
     }
   }
 
-  private async subtractFromStock(food: Food, quantity: number): Promise<Food> {
+  async findFoodsById(foodsId: number[]) {
     try {
-      food.stock = food.stock - quantity;
-      return this.foodRepository.save(food);
+      const foods = [];
+      for (const food of foodsId) {
+        const addFood = await this.foodRepository.find({
+          where: { foodId: food },
+        });
+        foods.push(addFood);
+      }
+
+      return foods;
     } catch (error) {
-      throw new Error('Error subtracting from stock');
+      throw new Error('Error while find foods by id');
     }
   }
 
   async subtractFromStockAfterPurchase(foodOnCart: FoodOnCart[]) {
     try {
-      for (const item of foodOnCart) {
-        const food: Food = await this.foodRepository.findOne({
-          where: { foodId: item.food.foodId },
-        });
-        console.log(item);
+      const foodIds = foodOnCart.map((item) => item.food.foodId);
 
-        await this.subtractFromStock(food, item.amount);
+      //Aplanamos el objeto que nos llega, para poder iterarlo correctamente.
+      const foods = (await this.findFoodsById(foodIds)).flat();
+
+      for (const food of foods) {
+        const item = foodOnCart.find((i) => i.food.foodId === food.foodId);
+        if (food.stock < item.amount) {
+          throw new BadRequestException(
+            `Not enough stock for ${food.description}`,
+          );
+        }
+
+        food.stock -= item.amount;
       }
 
-      return {
-        message: 'Stock subtracted',
-      };
+      await this.foodRepository.save(foods);
+
+      return { message: 'stock subtracted' };
     } catch (error) {
       throw new BadGatewayException(
         'Error trying to subtract stock after purchase',
