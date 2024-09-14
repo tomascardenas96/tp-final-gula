@@ -7,9 +7,9 @@ function PriceFilter({ userInput, handleChangeFilterFood }) {
         <input
           type="radio"
           id="first-max-price"
-          name="maxPrice"
+          name="maxprice"
           value="3500"
-          checked={userInput.maxPrice === "3500"}
+          checked={userInput.maxprice === "3500"}
           onChange={handleChangeFilterFood}
         />
         Hasta $3.500
@@ -19,9 +19,9 @@ function PriceFilter({ userInput, handleChangeFilterFood }) {
         <input
           type="radio"
           id="second-max-price"
-          name="maxPrice"
+          name="maxprice"
           value="7000"
-          checked={userInput.maxPrice === "7000"}
+          checked={userInput.maxprice === "7000"}
           onChange={handleChangeFilterFood}
         />
         Hasta $7.000
@@ -31,9 +31,9 @@ function PriceFilter({ userInput, handleChangeFilterFood }) {
         <input
           type="radio"
           id="third-max-price"
-          name="maxPrice"
+          name="maxprice"
           value="20000"
-          checked={userInput.maxPrice === "20000"}
+          checked={userInput.maxprice === "20000"}
           onChange={handleChangeFilterFood}
         />
         Hasta $20.000

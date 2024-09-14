@@ -183,7 +183,7 @@ export class FoodService {
     }
   }
 
-  async filterFood(name?: string, category?: string, maxPrice?: number) {
+  async filterFood(name?: string, category?: string, maxprice?: number) {
     try {
       const whereConditions: any = {};
 
@@ -197,9 +197,8 @@ export class FoodService {
         whereConditions.category = categoryFiltered;
       }
 
-      console.log();
-      if (maxPrice) {
-        const parsedPrice = Number(maxPrice);
+      if (maxprice) {
+        const parsedPrice = Number(maxprice);
         whereConditions.price = LessThanOrEqual(parsedPrice);
       }
 
