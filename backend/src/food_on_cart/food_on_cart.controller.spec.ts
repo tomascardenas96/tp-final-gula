@@ -149,11 +149,11 @@ describe('FoodOnCartController', () => {
           } ,}]; // Mockear según la estructura de tu entidad Food
       //configuracion del test:
       //el servicio debe resolver con un array de foodOnCart
-      jest.spyOn(service, 'getFoodsByActiveCart').mockResolvedValue(result);
+      jest.spyOn(service, 'getFoodsByActiveUser').mockResolvedValue(result);
       //llamado al controllador con los parametros correctos
-      await controller.getFoodsByActiveCart(mockActiveUser);
+      await controller.getFoodsByActiveUser(mockActiveUser);
       //verificamos que el controllador llama al servicio con los parametros correctos
-      expect(service.getFoodsByActiveCart).toHaveBeenCalledWith(mockActiveUser);
+      expect(service.getFoodsByActiveUser).toHaveBeenCalledWith(mockActiveUser);
     });
   })
 

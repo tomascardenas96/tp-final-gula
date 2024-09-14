@@ -43,7 +43,7 @@ describe('FoodOnCartService', () => {
   foodOnCartServiceMock={
     ...baseFoodOnCartService,
     addFoodOnCart:jest.fn(),
-    getFoodsByActiveCart:jest.fn(),
+    getFoodsByActiveUser:jest.fn(),
     clearCart:jest.fn(),
     addOrSubtractProduct:jest.fn(),
     getAllFoodOnCart:jest.fn(),
@@ -405,7 +405,7 @@ describe('FoodOnCartService', () => {
       jest.spyOn(foodOnCartServiceMock, 'find').mockResolvedValue(mockFoodsOnCart);
 
       // Ejecución del método bajo prueba
-      const result = await service.getFoodsByActiveCart(activeUser);
+      const result = await service.getFoodsByActiveUser(activeUser);
 
       // Verificaciones
       expect(userServiceMock.getActiveUser).toHaveBeenCalledWith(activeUser);
@@ -429,7 +429,7 @@ describe('FoodOnCartService', () => {
       jest.spyOn(cartServiceMock, 'getActiveCart').mockRejectedValue(new Error('Database connection failed'));
 
       //llamado al metodo del servicio, verificación de excepción
-      await expect(service.getFoodsByActiveCart(activeUser)).rejects.toThrow(BadGatewayException);
+      await expect(service.getFoodsByActiveUser(activeUser)).rejects.toThrow(BadGatewayException);
       expect(userServiceMock.getActiveUser).toHaveBeenCalledWith(activeUser);
       expect(cartServiceMock.getActiveCart).toHaveBeenCalledWith(expect.any(User));
 

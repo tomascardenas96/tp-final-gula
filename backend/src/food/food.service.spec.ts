@@ -36,8 +36,16 @@ describe('FoodService', () => {
     //FoodServiceMock
     foodServiceMock={
       ...basefoodRepositoryMock,
+      createNewFood:jest.fn(),
       findFoodByQuery:jest.fn(),
       findFoodByShopAndCategory:jest.fn(),
+      findFoodById:jest.fn(),
+      findAllFoods:jest.fn(),
+      findFoodsByCategoryId:jest.fn(),
+      findFoodsByshopyId:jest.fn(),
+      filterFood:jest.fn(),
+      subtractFromStock:jest.fn(),
+      subtractFromStockAfterPurchase:jest.fn(),
     };
     const baseShopServiceMock={
       create:jest.fn(),
@@ -906,5 +914,8 @@ describe('FoodService', () => {
         //NOTA: toThrow permite verifica el tipo de exception y ademas el contenido del mensaje
       });//final it
     });//final describe
+
+
+
   });//final 
    

@@ -43,7 +43,7 @@ describe('InvoiceService', () => {
 
     //mock de los metodos utilizados por FoodOncartService
     FoodOnCartServiceMock={
-      getFoodsByActiveCart:jest.fn(),
+      getFoodsByActiveUser:jest.fn(),
     };
   //mock de los metodos utilizados por userService
     userServiceMock={
@@ -146,7 +146,7 @@ describe('InvoiceService', () => {
        
         //configuracion del test
         jest.spyOn(userServiceMock,'getActiveUserByCart').mockResolvedValue(user);
-        jest.spyOn(FoodOnCartServiceMock,'getFoodsByActiveCart').mockResolvedValue(FoodOnCart);
+        jest.spyOn(FoodOnCartServiceMock,'getFoodsByActiveUser').mockResolvedValue(FoodOnCart);
         jest.spyOn(service,'generateInvoiceNumber').mockResolvedValue('C001 00000001');
         jest.spyOn(repository,'create').mockReturnValue({}as Invoice);
         jest.spyOn(repository,'save').mockResolvedValue({}as Invoice);
@@ -162,7 +162,7 @@ describe('InvoiceService', () => {
         const user = {} as User; // Mock User
   
         jest.spyOn(userServiceMock, 'getActiveUserByCart').mockResolvedValue(user);
-        jest.spyOn(FoodOnCartServiceMock, 'getFoodsByActiveCart').mockResolvedValue([]);
+        jest.spyOn(FoodOnCartServiceMock, 'getFoodsByActiveUser').mockResolvedValue([]);
         jest.spyOn(service, 'generateInvoiceNumber').mockResolvedValue('C001 00000001');
   
         await expect(service.generateInvoice(cart)).rejects.toThrowError(
@@ -176,7 +176,7 @@ describe('InvoiceService', () => {
 
         //configuracion del test
         jest.spyOn(userServiceMock,'getActiveUserByCart').mockResolvedValue(user);
-        jest.spyOn(FoodOnCartServiceMock,'getFoodsByActiveCart').mockRejectedValue(new Error('Unexpected error'));
+        jest.spyOn(FoodOnCartServiceMock,'getFoodsByActiveUser').mockRejectedValue(new Error('Unexpected error'));
 
         //llamado al metodo del servicio
         await expect(service.generateInvoice(cart)).rejects.toThrowError(

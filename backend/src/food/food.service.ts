@@ -240,5 +240,7 @@ export class FoodService {
         'Error trying to subtract stock after purchase',
       );
     }
-  }
+  }//!!OJO EN ESTE METODO SE AHCEN MUCHAS CONSULTAS INDIVIDUALES A LA BD,
+  //POSIBLE MEJORA: HACER UNA SOLA CONSULTA,TRAERTE TODOS LOS ALIMENTOS Y HACER
+  //LAS OPERAIONEs NECESESARIAS!
 }
