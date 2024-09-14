@@ -128,6 +128,7 @@ export class FoodOnCartService {
         where: { cart },
       });
 
+
       return await this.foodService.subtractFromStockAfterPurchase(foodOnCart);
     } catch (error) {
       throw new Error(error.message);
