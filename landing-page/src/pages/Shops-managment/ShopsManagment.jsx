@@ -3,7 +3,7 @@ import SiderMenu from "../../components/Home/Siders/Sider-menu";
 import SiderSettings from "../../components/Home/Siders/Sider-settings";
 import Messages from "../../components/Home/Messages/Messages";
 import React from "react";
-import SettingsHeader from "../../components/Shops-managment/SettingsHeader";
+import SettingsHeader from "../../components/Settings/SettingsHeader";
 import "./ShopsManagment.css";
 import MyShops from "../../components/Shops-managment/MyShops";
 import NewShop from "../../components/Shops-managment/NewShop";

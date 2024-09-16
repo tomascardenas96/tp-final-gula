@@ -102,7 +102,7 @@ export class FoodOnCartService {
   }
 
   //Metodo utilizado en el servicio de Payments.
-  async getFoodsByActiveCart(
+  async getFoodsByActiveUser(
     activeUser: ActiveUserInterface,
   ): Promise<FoodOnCart[]> {
     try {
@@ -117,8 +117,21 @@ export class FoodOnCartService {
       return foodsByCart;
     } catch (err) {
       throw new BadGatewayException(
-        'FoodOnCartService: error getting foods by active cart - getFoodsByActiveCart method',
+        'FoodOnCartService: error getting foods by active cart - getFoodsByActiveUser method',
       );
+    }
+  }
+
+  async subtractStockOfFoodsByActiveCart(cart: Cart) {
+    try {
+      const foodOnCart: FoodOnCart[] = await this.foodOnCartRepository.find({
+        where: { cart },
+      });
+
+
+      return await this.foodService.subtractFromStockAfterPurchase(foodOnCart);
+    } catch (error) {
+      throw new Error(error.message);
     }
   }
 

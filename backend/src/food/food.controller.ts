@@ -93,8 +93,8 @@ export class FoodController {
   filterFood(
     @Query('name') name: string,
     @Query('category') category: string,
-    @Query('maxPrice') maxPrice: number,
+    @Query('maxprice') maxprice: number,
   ) {
-    return this.foodService.filterFood(name, category, maxPrice);
+    return this.foodService.filterFood(name, category, maxprice);
   }
 }

@@ -17,7 +17,6 @@
 
 .home-posts_section {
   width: 100%;
-
   display: flex;
   justify-content: center;
   position: relative;
@@ -87,5 +86,29 @@
 @media screen and (max-width: 1520px) {
   .home-posts_section h1 {
     font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .home-posts_section h1 {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .home-posts_section h1 {
+    font-size: 1.05rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .home-posts_section h1 {
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .home-posts_section h1 {
+    font-size: 1.1rem;
   }
 }

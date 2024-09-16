@@ -23,12 +23,13 @@ export class WebhookService {
 
         const cart = await this.cartService.findCartById(activeCartId);
 
-        //Generamos la factura y eliminamos todos los productos del carrito (En caso de aprobada la compra).
-        if (paymentDetails.status === 'approved') {
+        //Generamos la factura, restamos stock y eliminamos todos los productos del carrito (En caso de aprobada la compra).
+        if (cart && paymentDetails.status_detail === 'accredited') {
+          await this.foodOnCartService.subtractStockOfFoodsByActiveCart(cart);
           await this.invoiceService.generateInvoice(cart);
           await this.foodOnCartService.clearCart(cart);
           this.socketsGateway.handleFinishPurchase(cart);
-        } else {
+        } else if (cart && paymentDetails.status_detail !== 'accredited') {
           this.socketsGateway.handleFailedPurchase(cart);
         }
       }

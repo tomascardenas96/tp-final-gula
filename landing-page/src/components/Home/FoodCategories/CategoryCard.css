@@ -52,14 +52,33 @@
   }
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1366px) {
   .category-card_icon {
-    height: 5.8rem;
-    width: 5.8rem;
+    height: 5.5rem;
+    width: 5.5rem;
     font-size: 1.8rem;
   }
 
   .category-card_container p {
     font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .category-card_icon {
+    height: 5.2rem;
+    width: 5.2rem;
+    font-size: 1.55rem;
+  }
+
+  .category-card_container p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .category-card_icon {
+    height: 5.4rem;
+    width: 5.4rem;
   }
 }

@@ -14,7 +14,6 @@
 }
 
 .messages_envelope {
-  /* background-color: lightblue; */
   height: 100%;
   font-size: 1.2rem;
   justify-self: center;
@@ -23,24 +22,66 @@
 }
 
 .messages_text {
-  /* background-color: lightcoral; */
   display: grid;
   align-items: center;
-  /* padding-left: 10%; */
-  font-size: .95rem;
+  font-size: 0.95rem;
   font-family: var(--tertiary-font);
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.794);
   letter-spacing: 0.05rem;
   color: rgba(0, 0, 0, 0.685);
 }
 
 .messages_arrow {
-  /* background-color: lightgoldenrodyellow; */
   height: 100%;
   font-size: 1.2rem;
   justify-self: center;
   color: rgba(0, 0, 0, 0.794);
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.259));
   color: rgba(0, 0, 0, 0.685);
+}
+
+@media screen and (max-width: 1520px) {
+  .messages_container {
+    width: 18rem;
+    height: 2.6rem;
+  }
+
+  .messages_envelope {
+    height: 100%;
+    font-size: 1.1rem;
+  }
+
+  .messages_text {
+    font-size: 0.85rem;
+  }
+
+  .messages_arrow {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .messages_container {
+    width: 16.2rem;
+    height: 2.2rem;
+  }
+
+  .messages_envelope {
+    font-size: 0.9rem;
+  }
+
+  .messages_text {
+    font-size: 0.8rem;
+  }
+
+  .messages_arrow {
+    font-size: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 950px) {
+  .messages_container {
+    display: none;
+  }
 }

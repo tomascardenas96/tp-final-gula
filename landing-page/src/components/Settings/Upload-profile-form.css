@@ -1,12 +1,12 @@
 .settings-page_body-form .settings-page_body-form_info-profile > form {
-  padding: 1.5rem 2rem 4rem 2rem;
-  border-radius: 1rem;
+  padding: 1.5em 2em 4em 2em;
+  border-radius: 1em;
   width: 100%;
   height: 100%;
-  gap: 2.3rem;
+  gap: 2.3em;
   display: grid;
-  grid-template-columns: 8rem 1fr;
-  grid-template-rows: 2rem 8rem repeat(4, 2rem);
+  grid-template-columns: 8em 1fr;
+  grid-template-rows: 2em 8em repeat(4, 2em);
   background-color: #f9f9f9;
   position: relative;
 }
@@ -41,8 +41,8 @@
 
 .updating-profile_spinner {
   position: absolute;
-  bottom: 6.41rem;
-  right: 3rem;
+  bottom: 6.41em;
+  right: 3em;
 }
 
 .updating-profile_spinner .loadership_CWZLE {
@@ -65,7 +65,7 @@
   place-content: center;
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.791);
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 
 .settings-page_body-form
@@ -79,7 +79,7 @@
 
 .settings-page_body-form .settings-page_body-form_info-profile > form > label {
   display: flex;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   font-weight: bold;
   font-family: var(--secondary-font);
   justify-self: center;
@@ -87,10 +87,10 @@
 }
 
 .settings-page_body-form .settings-page_body-form_info-profile > form > input {
-  border-radius: 0.2rem;
+  border-radius: 0.2em;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.578);
-  padding-left: 0.5rem;
+  padding-left: 0.5em;
   padding-bottom: 0.4%;
   font-family: var(--secondary-font);
   background-color: transparent;
@@ -98,10 +98,10 @@
 
 .info-profile_picture p {
   align-self: start;
-  padding-left: 1.4rem;
+  padding-left: 1.4em;
   font-family: var(--secondary-font);
   color: rgba(0, 0, 0, 0.593);
-  font-size: 0.9rem;
+  font-size: 0.9em;
 }
 
 .settings-page_body-form
@@ -115,29 +115,29 @@
 }
 
 .settings-page_body-form .info-profile_picture-img {
-  width: 6.4rem;
-  height: 6.4rem;
+  width: 6.4em;
+  height: 6.4em;
   border-radius: 50%;
   border: 2px solid rgba(0, 0, 0, 0.593);
-  padding: 0.1rem;
+  padding: 0.1em;
   grid-row: 1 / 3;
   object-fit: cover;
   object-position: center;
 }
 
 .settings-page_body-form .info-profile_picture > label {
-  width: 10rem;
-  height: 2.5rem;
-  margin-left: 1.2rem;
+  width: 10em;
+  height: 2.5em;
+  margin-left: 1.2em;
   display: flex;
   place-content: center;
   border: 2px solid rgba(0, 0, 0, 0.482);
-  border-radius: 0.2rem;
+  border-radius: 0.2em;
   font-family: var(--secondary-font);
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: end;
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 
 .settings-page_body-form .info-profile_picture > label:hover {
@@ -152,18 +152,18 @@
   .info-profile_picture
   label
   > .info-profile_picture-icon {
-  font-size: 0.8rem;
+  font-size: 0.8em;
   height: 100%;
   color: rgba(0, 0, 0, 0.651);
 }
 
 .settings-page_body-form .info-profile_picture label input[type="file"] {
-  padding-left: 1.1rem;
+  padding-left: 1.1em;
   display: flex;
   flex-direction: column;
   align-self: end;
   color: transparent;
-  width: 10rem;
+  width: 10em;
   display: none;
 }
 
@@ -172,16 +172,34 @@
   > form
   input[type="submit"] {
   grid-column: 1 / 3;
-  border-radius: 0.1rem;
+  border-radius: 0.1em;
   outline: none;
   border: none;
   color: rgb(28, 27, 27);
   border: 2px solid rgba(0, 0, 0, 0.593);
   color: rgba(0, 0, 0, 0.593);
   background: linear-gradient(#d00000ec, #d00000b2);
-  height: 2.5rem;
+  height: 2.5em;
   border: none;
   color: white;
-  font-size: 0.9rem;
-  letter-spacing: 0.05rem;
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+
+@media screen and (max-width: 1520px) {
+  .settings-page_body-form .settings-page_body-form_info-profile > form {
+    font-size: 90%;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .settings-page_body-form .settings-page_body-form_info-profile > form {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .settings-page_body-form .settings-page_body-form_info-profile > form {
+    font-size: 70%;
+  }
 }

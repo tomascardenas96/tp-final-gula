@@ -40,7 +40,7 @@ export class InvoiceService {
     try {
       const user = await this.userService.getActiveUserByCart(cart);
       const foodOnCart =
-        await this.foodOnCartService.getFoodsByActiveCart(user);
+        await this.foodOnCartService.getFoodsByActiveUser(user);
       const invoiceNumber = await this.generateInvoiceNumber();
 
       if (!foodOnCart || foodOnCart.length === 0) {

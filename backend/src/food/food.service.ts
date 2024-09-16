@@ -15,7 +15,8 @@ import { Category } from 'src/category/entities/category.entity';
 import { Shop } from 'src/shop/entities/shop.entity';
 import { ShopService } from 'src/shop/shop.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
-import { Cart } from 'src/cart/entities/cart.entity';
+import { FoodOnCartService } from 'src/food_on_cart/food_on_cart.service';
+import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 
 @Injectable()
 export class FoodService {
@@ -182,7 +183,7 @@ export class FoodService {
     }
   }
 
-  async filterFood(name?: string, category?: string, maxPrice?: number) {
+  async filterFood(name?: string, category?: string, maxprice?: number) {
     try {
       const whereConditions: any = {};
 
@@ -196,9 +197,8 @@ export class FoodService {
         whereConditions.category = categoryFiltered;
       }
 
-      console.log();
-      if (maxPrice) {
-        const parsedPrice = Number(maxPrice);
+      if (maxprice) {
+        const parsedPrice = Number(maxprice);
         whereConditions.price = LessThanOrEqual(parsedPrice);
       }
 
@@ -211,9 +211,47 @@ export class FoodService {
     }
   }
 
-  async subtractFromStockAfterPurchase(cart: Cart) {
+  async findFoodsById(foodsId: number[]) {
     try {
-      console.log(cart);
-    } catch (error) {}
+      const foods = [];
+      for (const food of foodsId) {
+        const addFood = await this.foodRepository.find({
+          where: { foodId: food },
+        });
+        foods.push(addFood);
+      }
+
+      return foods;
+    } catch (error) {
+      throw new Error('Error while find foods by id');
+    }
+  }
+
+  async subtractFromStockAfterPurchase(foodOnCart: FoodOnCart[]) {
+    try {
+      const foodIds = foodOnCart.map((item) => item.food.foodId);
+
+      //Aplanamos el objeto que nos llega, para poder iterarlo correctamente.
+      const foods = (await this.findFoodsById(foodIds)).flat();
+
+      for (const food of foods) {
+        const item = foodOnCart.find((i) => i.food.foodId === food.foodId);
+        if (food.stock < item.amount) {
+          throw new BadRequestException(
+            `Not enough stock for ${food.description}`,
+          );
+        }
+
+        food.stock -= item.amount;
+      }
+
+      await this.foodRepository.save(foods);
+
+      return { message: 'stock subtracted' };
+    } catch (error) {
+      throw new BadGatewayException(
+        'Error trying to subtract stock after purchase',
+      );
+    }
   }
 }

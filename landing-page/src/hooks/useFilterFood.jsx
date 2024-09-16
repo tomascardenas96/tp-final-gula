@@ -68,7 +68,7 @@ function useFilterFood() {
 
   function handleClearFilters(e) {
     e.preventDefault();
-    setUserInput({ name: "", category: "", maxPrice: "" });
+    setUserInput({ name: "", category: "", maxprice: "" });
     updateURL("");
   }
 

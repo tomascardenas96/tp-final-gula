@@ -24,7 +24,7 @@
   padding-right: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.080);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-bottom: none;
 }
 
@@ -35,14 +35,13 @@
   padding-right: 0.1rem;
   padding-top: 2.5rem;
   /* background-color: green; */
-  
 }
 
 .new-post-profile-picture img {
   width: 2.8rem;
   height: 2.8rem;
   border-radius: 50%;
-  box-shadow: 1px 1px 5px .2px rgba(0, 0, 0, 0.157);
+  box-shadow: 1px 1px 5px 0.2px rgba(0, 0, 0, 0.157);
   object-fit: cover;
   object-position: center;
 }
@@ -161,8 +160,8 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding-top: .4rem;
-  padding-right: .4rem;
+  padding-top: 0.4rem;
+  padding-right: 0.4rem;
 }
 
 .new-post-send .new-post-send-options {
@@ -341,19 +340,37 @@
   }
 }
 
-@media screen and (max-width: 1460px) {
-  .shop-choose_container > div {
-    /* margin-left: 1rem; */
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    /* gap: 0.4rem; */
-    color: rgba(0, 0, 0, 0.615);
-    /* background-color: red; */
+@media screen and (max-width: 1366px) {
+  .new-post-profile-picture img {
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   .shop-choose_container > div > h2 {
+    font-size: 0.7rem;
+  }
+
+  .shop-choose_container select {
+    font-size: 0.7rem;
+  }
+
+  .new-post-body .new-post-body_text-area,
+  .new-post-body_text-area_unable {
     font-size: 0.8rem;
-    margin-bottom: 1%;
+  }
+
+  .new-post-send .new-post-send-options {
+    font-size: 1.04rem;
+  }
+
+  .new-post-send-characters {
+    font-size: 0.75rem;
+  }
+
+  .new-post-send_button_btn,
+  .new-post-send_button_btn_unable {
+    width: 6rem;
+    font-size: 0.6rem;
+    height: 2rem;
   }
 }

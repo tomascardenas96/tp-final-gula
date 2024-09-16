@@ -45,13 +45,13 @@
     height: 7.3rem;
     width: 14rem;
   }
-  
+
   .shop-card_container p {
     font-size: 0.9rem;
   }
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1366px) {
   .shop-card_icon {
     height: 6.6rem;
     width: 12rem;
@@ -62,9 +62,22 @@
   }
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1280px) {
   .shop-card_icon {
-    height: 7.3rem;
-    width: 14rem;
+    height: 7rem;
+    width: 14.5rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .shop-card_icon {
+    height: 7rem;
+    width: 12rem;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .shop-card_icon {
+    width: 14.5rem;
   }
 }
