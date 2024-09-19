@@ -249,11 +249,14 @@ export class FoodService {
 
       return { message: 'stock subtracted' };
     } catch (error) {
+      // Si el error es un BadRequestException, lo volvemos a lanzar tal como está
+      if(error instanceof BadRequestException){
+        throw error;
+      } 
+      //cualquier otro error sera manejado con un badGatewayException
       throw new BadGatewayException(
         'Error trying to subtract stock after purchase',
       );
     }
-  }//!!OJO EN ESTE METODO SE AHCEN MUCHAS CONSULTAS INDIVIDUALES A LA BD,
-  //POSIBLE MEJORA: HACER UNA SOLA CONSULTA,TRAERTE TODOS LOS ALIMENTOS Y HACER
-  //LAS OPERAIONEs NECESESARIAS!
+  }/*este metodo hacia muchas consultas individuales a la bd, tomy ya lo corrigio! */
 }

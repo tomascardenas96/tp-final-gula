@@ -16,6 +16,7 @@ import { ILike, LessThanOrEqual, MoreThan } from 'typeorm';
 import { BadGatewayException, BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { CreateFoodDto } from './dto/create-food.dto';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
+import { FoodOnCart } from 'src/food_on_cart/entities/food_on_cart.entity';
 
 describe('FoodService', () => {
   let service: FoodService;
@@ -915,6 +916,57 @@ describe('FoodService', () => {
       });//final it
     });//final describe
 
+describe('subtractFromStockAfterPurchase',()=>{
+  it('should subtract stock correctly for each item in cart', async()=>{
+    
+    //mock de comidas en un carrito con sus cantidades
+    const foodOnCart=[
+      {food:{foodId:1}as Food,amount:3},
+      {food:{foodId:2}as Food,amount:5},
+    ] as FoodOnCart[]
 
+    //mock de comidas que sera devuelto al utilizar findFoodsById
+    const mockFoods=[
+      {foodId:1,stock:10,description:'food1'},
+      {foodId:2,stock:10,description:'food2'},
+    ]as Food[];
+
+    //configuracion de la prueba
+    //cuando se llame al metodo findFoodsById debe resolver devolviendo un array de comidas
+    jest.spyOn(service,'findFoodsById').mockResolvedValue(mockFoods);
+
+    //llamado al metodo del serivicio con el parametro correcto
+    const result= await service.subtractFromStockAfterPurchase(foodOnCart);
+
+    //verificamos que el metodo 'save' haya sido llamado con las comidas actualizada
+    expect(foodServiceMock.save).toHaveBeenCalledWith([
+      {foodId:1,stock:7,description:'food1'},//restamos 3 al stock
+      {foodId:2,stock:5,description:'food2'},//restamos 5 al stock
+    ]);//verificamos que el stock de comidas redusca correctamente
+
+    expect(result).toEqual({message:'stock subtracted'});
+  });//final it
+
+  it('should throw badRequestException if stock is insufficient',async()=>{
+    //mock del carrito con mas cantidad de alimento de la que hay en stock
+    const foodOnCart = [
+      { food: { foodId: 1 }as Food, amount: 12 }, // Pide más de lo que hay en stock
+    ] as FoodOnCart[];
+    //mock de food en el stock
+    const mockFoods=[
+      {foodId:1,stock:10,description:'food1'},
+    ]as Food[];
+
+    //configuracion de la prueba
+    jest.spyOn(service,'findFoodsById').mockResolvedValue(mockFoods);
+
+    //ejecutamos el metodo y verificamos que lance una excepcion
+    await expect(service.subtractFromStockAfterPurchase(foodOnCart)).rejects.toThrow(
+      new BadRequestException('Not enough stock for food1'),
+    ); 
+
+  });//final it
+
+});//final describe
 
   });//final
