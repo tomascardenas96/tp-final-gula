@@ -24,7 +24,7 @@ import { WebhookModule } from './webhook/webhook.module';
       port: 3306,
       database: 'tp-gula-2',
       username: 'root',
-      password: '',
+      password: 'root',
       entities: [join(__dirname, '/**/*.entity{.ts,.js}')],
       synchronize: true,
     }),
