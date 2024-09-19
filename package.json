@@ -1,0 +1,16 @@
+{
+  "name": "tp-final-gula",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "expo": "^51.0.32",
+    "metro": "^0.80.12"
+  }
+}
