@@ -1,5 +1,6 @@
 import {
   Controller,
+  Req,
   Get,
   Post,
   Body,
@@ -14,6 +15,7 @@ import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from './guard/auth.guard';
 import { ActiveUser } from '../common/decorator/active-user.decorator';
 import { ActiveUserInterface } from '../common/interface/active-user.interface';
+import { AuthGuard as PassportAuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -58,4 +60,15 @@ export class AuthController {
   shopProfile(@ActiveUser() user: ActiveUserInterface) {
     return user;
   }
+
+  //Metodos Get para implementar la Autenticacion con cuenta de Google:
+  @Get('google')
+  @UseGuards(PassportAuthGuard('google'))
+  async googleAuth(@Req() req) {}
+
+  @Get('google/callback')
+  @UseGuards(PassportAuthGuard('google'))
+  googleAuthRedirect(@Req() req) {
+    return { user: req.user };
+}
 }
