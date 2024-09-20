@@ -1,0 +1,35 @@
+.picture-in-zoom_container {
+  width: 100%;
+  height: 100svh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.709);
+  z-index: 2000;
+  display: grid;
+  place-content: center;
+}
+
+.picture-in-zoom {
+  position: relative;
+  width: 120%;
+  max-width: 80rem;
+
+
+  & img {
+    border-radius: .2rem;
+    width: 100%;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.182);
+  }
+
+  & .zoom-out {
+    position: absolute;
+    right: 1.3rem;
+    top: 1.3rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.536);
+    border-radius: 50%;
+  }
+}

@@ -7,7 +7,8 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 import { MdOutlineModeComment } from "react-icons/md";
 import { MdReportGmailerrorred } from "react-icons/md";
 import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
-import React from "react";
+import React, { useState } from "react";
+import PictureInZoom from "./PictureInZoom";
 
 function ShopPost({
   profilePicture,
@@ -18,6 +19,11 @@ function ShopPost({
   time,
 }) {
   const { shopByProfileName } = useGetShopByProfileName();
+  const [isPictureInZoom, setIsPictureInZoom] = useState(false);
+
+  const handlePictureZoom = () => {
+    setIsPictureInZoom(!isPictureInZoom);
+  };
 
   return (
     <article className="shop-post_container">
@@ -47,7 +53,7 @@ function ShopPost({
         <div className="right_body">
           <p>{description}</p>
           {image && (
-            <div className="right_body-picture">
+            <div className="right_body-picture" onClick={handlePictureZoom}>
               <img
                 src={`http://localhost:3070/assets/uploads/shop/posts/${image}`}
                 alt="post-image"
@@ -71,6 +77,9 @@ function ShopPost({
           <MdReportGmailerrorred />
         </div>
       </div>
+      {isPictureInZoom && (
+        <PictureInZoom image={image} handlePictureZoom={handlePictureZoom} />
+      )}
     </article>
   );
 }
