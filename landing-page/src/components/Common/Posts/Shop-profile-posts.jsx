@@ -6,8 +6,10 @@ import Spinner from "../Spinner/Spinner";
 import Error from "../Error/Error";
 
 function ShopProfilePosts() {
-  const { posts, postsLoading, postsError } = useGetPostsByShop();
+  const { posts, postsLoading, postsError, setPosts } = useGetPostsByShop();
   const { timeElapsed } = useGetPosts();
+
+  console.log("posts");
 
   return (
     <>
@@ -30,6 +32,7 @@ function ShopProfilePosts() {
               .map((post) => (
                 <ShopPost
                   key={post.postId}
+                  postId={post.postId}
                   description={post.description}
                   image={post.image}
                   time={timeElapsed(post.postedAt)}

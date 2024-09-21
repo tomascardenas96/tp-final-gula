@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useGetAlerts from "./useGetAlerts";
 
-function useNewPost() {
+function useNewPost(setPosts) {
   const token = localStorage.getItem("accessToken");
   const [newPostInput, setNewPostInput] = useState({
     description: "",
@@ -42,6 +42,7 @@ function useNewPost() {
       successNotify("Publicacion enviada con exito");
       setInputCharacters(0);
       setNewPostInput({ description: "" });
+      setPosts((prev) => [data, ...prev]);
     } catch (err) {
       const errorMessage = err.message;
       if (

@@ -25,6 +25,8 @@
   object-position: center;
   border-radius: 50%;
   box-shadow: 1px 1px 5px 0.2px rgba(0, 0, 0, 0.157);
+  cursor: pointer;
+
 }
 
 .shop-post_container .shop-post_right {
@@ -52,6 +54,7 @@
 .shop-post_right .right_header > p {
   font-weight: 600;
   color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
 }
 
 .shop-post_right .right_header > span {

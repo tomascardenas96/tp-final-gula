@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createContext } from "react";
+import { Toaster } from "sonner";
 
 export const removeHeaderContext = createContext();
 
@@ -14,6 +15,7 @@ function SiderContext({ children }) {
     <>
       <removeHeaderContext.Provider value={{ removeHeader, isRemovedHeader }}>
         {children}
+        <Toaster />
       </removeHeaderContext.Provider>
     </>
   );

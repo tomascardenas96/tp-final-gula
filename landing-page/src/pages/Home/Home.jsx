@@ -22,7 +22,8 @@ function Home() {
   const { isAuthorized, homeLoading } = useHome();
   const { categoriesLoading } = useGetAllCategories();
   const { shopsByQueryLoading } = useGetShops();
-  const { postsLoading } = useGetPosts();
+  const { posts, postsLoading, postsError, timeElapsed, setPosts } =
+    useGetPosts();
 
   // Cambiamos el titulo de la pagina de inicio.
   useEffect(() => {
@@ -47,7 +48,13 @@ function Home() {
               <FoodCategories />
               <Shops />
               <Advertise />
-              <HomePosts />
+              <HomePosts
+                posts={posts}
+                postsLoading={postsLoading}
+                postsError={postsError}
+                timeElapsed={timeElapsed}
+                setPosts={setPosts}
+              />
             </div>
           </Context>
           <SiderSettings />

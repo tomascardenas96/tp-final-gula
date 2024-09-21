@@ -3,10 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -39,13 +39,11 @@ export class PostController {
     return this.postService.getPostsByShop(profilename);
   }
 
-  // @Patch()
-  // recommendPost() {
-  //   this.postService.recommendPost();
-  // }
-
-  // @Patch()
-  // unrecommendPost() {
-  //   this.postService.unrecommendPost();
-  // }
+  @Delete('delete/:postId')
+  deletePost(
+    @Param('postId', ParseIntPipe) postId: number,
+    @ActiveUser() user: ActiveUserInterface,
+  ) {
+    return this.postService.deletePost(postId, user);
+  }
 }

@@ -9,7 +9,7 @@ function PictureInZoom({ image, handlePictureZoom }) {
       <div className="picture-in-zoom" onClick={(e) => e.stopPropagation()}>
         <img
           src={`${CONFIG.host}/assets/uploads/shop/posts/${image}`}
-          alt="wefwef"
+          alt="post-picture_zoom"
         />
         <IoMdClose className="zoom-out" onClick={handlePictureZoom} />
       </div>
