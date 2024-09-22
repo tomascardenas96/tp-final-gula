@@ -8,20 +8,6 @@ function useGetPosts() {
   const [postsLoading, setPostsLoading] = useState(true);
   const [postsError, setPostsError] = useState(null);
 
-  //Web socket que escucha cuando se genera un nuevo evento, y almacena ese nuevo objeto dentro del array de posts.
-  useEffect(() => {
-    const socket = io("http://localhost:8001");
-
-    socket.on("newPost", (newPost) => {
-      setPosts((prev) => [newPost, ...prev]);
-    });
-
-    return () => {
-      socket.off("newPost");
-      socket.disconnect();
-    };
-  }, []);
-
   const getShops = useCallback(async () => {
     try {
       setPostsLoading(true);
@@ -74,7 +60,7 @@ function useGetPosts() {
     }
   }
 
-  return { posts, postsLoading, postsError, timeElapsed };
+  return { posts, postsLoading, postsError, timeElapsed, setPosts };
 }
 
 export default useGetPosts;

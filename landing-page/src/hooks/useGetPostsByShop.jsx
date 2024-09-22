@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 function useGetPostsByShop() {
   const token = localStorage.getItem("accessToken");
-  const {profilename} = useParams("profilename");
+  const { profilename } = useParams("profilename");
   const [posts, setPosts] = useState();
   const [postsLoading, setPostsLoading] = useState(false);
   const [postsError, setPostsError] = useState(null);
@@ -37,7 +37,7 @@ function useGetPostsByShop() {
     getPostsByShop();
   }, [token, profilename]);
 
-  return { posts, postsLoading, postsError };
+  return { posts, postsLoading, postsError, setPosts };
 }
 
 export default useGetPostsByShop;

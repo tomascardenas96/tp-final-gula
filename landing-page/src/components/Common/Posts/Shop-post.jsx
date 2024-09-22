@@ -3,21 +3,30 @@ import { LuDot } from "react-icons/lu";
 import { IoMdClose } from "react-icons/io";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { MdOutlineStarOutline } from "react-icons/md";
-import { MdOutlineStarPurple500 } from "react-icons/md";
 import { MdOutlineModeComment } from "react-icons/md";
 import { MdReportGmailerrorred } from "react-icons/md";
 import useGetShopByProfileName from "../../../hooks/useGetShopByProfileName";
-import React from "react";
+import React, { useState } from "react";
+import PictureInZoom from "./PictureInZoom";
+import useDeletePost from "../../../hooks/useDeletePost";
 
 function ShopPost({
+  postId,
   profilePicture,
   description,
   image,
   profileName,
   name,
   time,
+  setPosts,
 }) {
   const { shopByProfileName } = useGetShopByProfileName();
+  const [isPictureInZoom, setIsPictureInZoom] = useState(false);
+  const { deletePost } = useDeletePost(setPosts);
+
+  const handlePictureZoom = () => {
+    setIsPictureInZoom(!isPictureInZoom);
+  };
 
   return (
     <article className="shop-post_container">
@@ -30,11 +39,14 @@ function ShopPost({
               : `http://localhost:3070/assets/uploads/shop/profile/${shopByProfileName.picture}`
           }
           alt="shop-profile"
+          onClick={() => (window.location.href = `/shop/${profileName}`)}
         />
       </div>
       <div className="shop-post_right">
         <div className="right_header">
-          <p>{name ? name : shopByProfileName.name}</p>
+          <p onClick={() => (window.location.href = `/shop/${profileName}`)}>
+            {name ? name : shopByProfileName.name}
+          </p>
           <span>
             @{profileName ? profileName : shopByProfileName.name} <LuDot />{" "}
             {time}
@@ -42,12 +54,12 @@ function ShopPost({
         </div>
         <div className="right_options">
           <HiOutlineDotsHorizontal />
-          <IoMdClose />
+          <IoMdClose onClick={(e) => deletePost(postId)} />
         </div>
         <div className="right_body">
           <p>{description}</p>
           {image && (
-            <div className="right_body-picture">
+            <div className="right_body-picture" onClick={handlePictureZoom}>
               <img
                 src={`http://localhost:3070/assets/uploads/shop/posts/${image}`}
                 alt="post-image"
@@ -71,6 +83,9 @@ function ShopPost({
           <MdReportGmailerrorred />
         </div>
       </div>
+      {isPictureInZoom && (
+        <PictureInZoom image={image} handlePictureZoom={handlePictureZoom} />
+      )}
     </article>
   );
 }

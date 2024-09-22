@@ -6,9 +6,7 @@ import ShopPost from "../../Common/Posts/Shop-post.jsx";
 import Error from "../../Common/Error/Error.jsx";
 import "./HomePosts.css";
 
-function HomePosts() {
-  const { posts, postsLoading, postsError, timeElapsed } = useGetPosts();
-
+function HomePosts({ posts, postsLoading, postsError, timeElapsed, setPosts }) {
   return (
     <section className="home-posts_container">
       <main className="home-posts">
@@ -16,7 +14,7 @@ function HomePosts() {
           <h1 id="posts">Publicaciones</h1>
         </div>
         <div className="home-posts_new-post_container">
-          <NewPost />
+          <NewPost setPosts={setPosts} />
         </div>
         <div className="home-posts_post-cards">
           {postsError ? (
@@ -25,15 +23,14 @@ function HomePosts() {
             </div>
           ) : postsLoading ? (
             <div className="home-posts_loading">
-                <Spinner />
-              <p>
-                Cargando publicaciones...
-              </p>
+              <Spinner />
+              <p>Cargando publicaciones...</p>
             </div>
           ) : (
             posts.map((post) => (
               <ShopPost
-                key={post.postId + 10000}
+                key={post.postId}
+                postId={post.postId}
                 profilePicture={post.shop.picture}
                 profileName={post.shop.profilename}
                 name={post.shop.name}
@@ -41,6 +38,7 @@ function HomePosts() {
                 time={timeElapsed(post.postedAt)}
                 description={post.description}
                 stars={post.stars}
+                setPosts={setPosts}
               />
             ))
           )}

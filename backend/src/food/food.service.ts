@@ -258,5 +258,5 @@ export class FoodService {
         'Error trying to subtract stock after purchase',
       );
     }
-  }/*este metodo hacia muchas consultas individuales a la bd, tomy ya lo corrigio! */
+  }
 }

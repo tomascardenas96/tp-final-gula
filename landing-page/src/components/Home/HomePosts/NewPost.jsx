@@ -10,7 +10,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import "react-toastify/dist/ReactToastify.css";
 import useGetProfile from "../../../hooks/useGetProfile";
 
-function NewPost() {
+function NewPost({ setPosts }) {
   const { shops, shopsLoading, shopsError, isShopsEmpty } =
     useGetShopsByActiveUser();
 
@@ -26,17 +26,14 @@ function NewPost() {
     handleShopSelect,
     notify,
     inputCharacters,
-  } = useNewPost();
+  } = useNewPost(setPosts);
 
   return (
     <div className="new-post">
       <div className="new-post_divider"></div>
       <form onSubmit={handleSubmitNewPost}>
         <div className="new-post-profile-picture">
-          <img
-            src={userImageURL}
-            alt="new-post-gula"
-          />
+          <img src={userImageURL} alt="new-post-gula" />
         </div>
         <div className="new-post-body">
           <div className="new-post-body_shop-choose">

@@ -1,10 +1,9 @@
 //Custom hook encargado de la logica para crear un nuevo posteo.
 
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { useState } from "react";
 import useGetAlerts from "./useGetAlerts";
 
-function useNewPost() {
+function useNewPost(setPosts) {
   const token = localStorage.getItem("accessToken");
   const [newPostInput, setNewPostInput] = useState({
     description: "",
@@ -17,7 +16,6 @@ function useNewPost() {
 
   async function handleSubmitNewPost(e) {
     e.preventDefault();
-    console.log(newPostInput);
     setNewPostError(null);
     try {
       // Verificamos que haya sido seleccionado al menos un comercio, y nos aseguramos que su valor no sea el que viene por defecto.
@@ -44,6 +42,7 @@ function useNewPost() {
       successNotify("Publicacion enviada con exito");
       setInputCharacters(0);
       setNewPostInput({ description: "" });
+      setPosts((prev) => [data, ...prev]);
     } catch (err) {
       const errorMessage = err.message;
       if (
