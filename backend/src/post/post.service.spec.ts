@@ -56,6 +56,7 @@ describe('PostService', () => {
       createNewShop:jest.fn(),
       getAllShops:jest.fn(),
       getShopByName:jest.fn(),
+      getShopByProfileName:jest.fn(),
       getShopsByActiveUser:jest.fn(),
       findShopByQuery:jest.fn(),
       //puedo ir agregando mas en base se vayan creando
@@ -241,6 +242,45 @@ describe('PostService', () => {
     });
   });
 
+  describe('getPostByShop',()=>{
+    it('should return an array Posts if the shop is found',async ()=>{
+      const profileName='shopname';
+      const shopMock={shopId:1}as Shop;//mock de la tienda
+      const postMock=[{postId:1},{postId:2}]as Post[];//array de post
+
+      //configuracion de la prueba
+      jest.spyOn(shopServiceMock,'getShopByProfileName').mockResolvedValue(shopMock);
+      jest.spyOn(postRepositoryMock,'find').mockResolvedValue(postMock);
+
+      //llamado al metodo del servicio
+      const result=await service.getPostsByShop(profileName);
+      expect(result).toEqual(postMock); 
+    });//final it
+
+
+    it('should throw NotFoundException if the shop is not found', async () => {
+      const profilename = 'noExiste';
+  
+      // Mock de shopService para simular que no se encuentra la tienda
+      jest.spyOn(shopServiceMock, 'getShopByProfileName').mockResolvedValue(null);
+  
+      // Verificamos que se lanza la excepción NotFoundException
+      await expect(service.getPostsByShop(profilename)).rejects.toThrow(NotFoundException);
+    });//final it
+
+    it('should throw BadGatewayException on unexpected errors', async () => {
+      const profilename = 'shopname';
+  
+      // Mock de shopService para lanzar un error inesperado
+      jest.spyOn(shopServiceMock, 'getShopByProfileName').mockRejectedValue(new Error('Unexpected error'));
+  
+      // Verificamos que se lanza la excepción BadGatewayException
+      await expect(service.getPostsByShop(profilename)).rejects.toThrow(BadGatewayException);
+    }); 
+  });//final describe
+
+
+
   describe('deletePost',()=>{
     it('should delete post when user is shop owner', async ()=>{
       //mock de los datos del usuario activo
@@ -304,7 +344,6 @@ describe('PostService', () => {
       //ejecutamos el metodo y verificamos que lanze la excepcion
       //NOTA: comparara los id de Post y del usuario y al ser distintos lanzara la exception
       await expect(service.deletePost(1,activeUser)).rejects.toThrow(UnauthorizedException);
-
     });//final it
 
     it('should throw badGatewayException on unexpected error',async ()=>{
@@ -317,9 +356,8 @@ describe('PostService', () => {
 
       //llamamos al metodo del servicio y verificamos que lanze la excepcion
       await expect(service.deletePost(1,activeUser)).rejects.toThrow(BadGatewayException); 
- 
     });//final it
-  });//final describe
+ });//final describe 
 
 });
 
