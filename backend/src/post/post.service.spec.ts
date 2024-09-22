@@ -15,7 +15,7 @@ import { UserService } from 'src/user/user.service';
 import { ActiveUserInterface } from 'src/common/interface/active-user.interface';
 import { CreatePostDto } from './dto/create-post.dto';
 //excepciones
-import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { error } from 'console';
 import { GulaSocketGateway } from 'src/socket/socket.gateway';
 
@@ -31,18 +31,12 @@ describe('PostService', () => {
     const basePostRepositoryMock={
       newPost:jest.fn(),
       getAllPosts:jest.fn(),
-      recommendPost:jest.fn(),
-      unrecommendPost:jest.fn(),
+      //recommendPost:jest.fn(),
+      //unrecommendPost:jest.fn(),
+      getPostsByShop:jest.fn(),
+      deletePost:jest.fn(),
     }
-    // Mock como debe quedar generado el nuevo Post
-  //  const newPost:Post={
-  //    postId:1,
-  //    description:'new mockDescription',
-  //    stars:3,
-  //    image:'new imagen',
-  //    postedAt: new Date,
-  //    shop: new Shop
-  //  };
+    
     //creamos una extencion del objeto basePostRepositoryMock para
     //agregar metodos que son propios de nest y para agregarlos y utilizarlos
     //en PostRepositoryMock
@@ -51,7 +45,9 @@ describe('PostService', () => {
       find:jest.fn(),
       create:jest.fn(),
       save:jest.fn(),
-      trim:jest.fn()
+      trim:jest.fn(),
+      findOne:jest.fn(),
+      delete:jest.fn(),
     //agregar metodos que se van necesitando
     };
 
@@ -71,6 +67,7 @@ describe('PostService', () => {
       findByEmailWithPassword: jest.fn(),
       findByUserName: jest.fn(),
       findUserByQuery: jest.fn(),
+      getActiveUser:jest.fn(),
       // Defino todos los métodos que necesito en el mock de user.service
     };
     socketsGatewaymock={
@@ -244,9 +241,91 @@ describe('PostService', () => {
     });
   });
 
+  describe('deletePost',()=>{
+    it('should delete post when user is shop owner', async ()=>{
+      //mock de los datos del usuario activo
+      const activeUser={userId:1 }as ActiveUserInterface;
+
+      const user={userId:activeUser.userId} as User;
+      //mock de la publicacion que se desea eliminar
+
+      const mockPost= {
+        postId:1,
+        shop:{
+          user:{userId:1}as User 
+        }as Shop
+      }as Post
+
+      //configuracion de la prueba
+      //cuando se llame al metodo getActiveUser debe resolver con un usuario
+      jest.spyOn(userServiceMock,'getActiveUser').mockResolvedValue(user);
+      //cuando se llame al metodo findOne de typeOMR resolvera encontrando un Post
+      jest.spyOn(postRepositoryMock,'findOne').mockResolvedValue(mockPost);
+
+      //ejecutamos el metodo delete del servicio con los aprametros indicados
+      const result=await service.deletePost(1,activeUser);//Id que se desea borrar e interface de usuario activo
+
+      //verificamos que se haya llamado al emtodo delete con el postId correcto
+      expect(postRepositoryMock.delete).toHaveBeenCalledWith(1);//numero de ID 
+      expect(result).toEqual(mockPost)//verificamos que el resultado es el esperado
+    });//final it
+
+    it('should throw NotFoundException if post not found', async()=>{
+      //mock del susuario
+      const activeUser={userId:1}as ActiveUserInterface;
+
+      //configuracion de la prueba
+      //cuando se utilize el metodo de TypeOmr findOne no encontara un post
+      //entonces devolvera null
+      jest.spyOn(postRepositoryMock,'findOne').mockResolvedValue(null);
+
+      //ejecutamos el metodo y verificamos que lanze la excepcion
+      await expect(service.deletePost(1,activeUser)).rejects.toThrow(NotFoundException);
+    });//final IT
+
+    it('should throw unauthorizedException if user is not the shop owner',async ()=>{
+      //mock de usuariuo activo
+      const activeUser={userId:1} as ActiveUserInterface;
+      const user={userId:activeUser.userId} as User;
+      //mock de una publicacion donde el dueño de la tienda es diferente
+      const mockPost={
+        postId:1,
+        shop:{
+          user:{userId:2} as User //el ID de este usuario es diferente al activo
+        }as Shop
+      }as Post;
+      
+      //configuracion de la prueba
+      //cuando se utiliza el metodo findOne encuntra el post que se desea borrar
+      jest.spyOn(postRepositoryMock,'findOne').mockResolvedValue(mockPost);
+      //utilizara los parametros para buscar el ussuario activo.
+      jest.spyOn(userServiceMock,'getActiveUser').mockResolvedValue(user);
+      
+      //ejecutamos el metodo y verificamos que lanze la excepcion
+      //NOTA: comparara los id de Post y del usuario y al ser distintos lanzara la exception
+      await expect(service.deletePost(1,activeUser)).rejects.toThrow(UnauthorizedException);
+
+    });//final it
+
+    it('should throw badGatewayException on unexpected error',async ()=>{
+      //mock del usuario activo
+      const activeUser={userId:1}as ActiveUserInterface;
+
+      //configuracion de la prueba
+      //al utilizar findOne lanzara un error inesperado
+      jest.spyOn(postRepositoryMock,'findOne').mockRejectedValue(new Error('Unexpected error'));
+
+      //llamamos al metodo del servicio y verificamos que lanze la excepcion
+      await expect(service.deletePost(1,activeUser)).rejects.toThrow(BadGatewayException); 
+ 
+    });//final it
+  });//final describe
+
 });
 
 
 //=========================================================
 //FALTA TESTEAR
+//unrecommenderpost
+//recommenderPost
 //=========================================================
