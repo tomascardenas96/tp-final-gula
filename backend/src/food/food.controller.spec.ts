@@ -225,4 +225,39 @@ describe('FoodController', () => {
       expect(service.findFoodsByshopyId).toHaveBeenCalledWith(shopId);
     });
   });//final describe
+
+  describe('filterFood',()=>{
+    it('should call food.service.filterFood with the correct parameters',async()=>{
+      //mock de los parametros a utilizar
+      const name='pizza';
+      const category='minutas';
+      const maxprice=5700;
+
+      const mockResponse=[
+        {
+          foodId: 1,
+          description: "Pizza",
+          price: 5000,
+          stock: 20,
+          shop: {
+            shopId: 1,
+            name: "Pizza Place",
+            location: "Benito Juarez",
+            user: {
+              userId: 1,
+              name: "Adrian Calo",
+            }
+          }
+        }
+      ]as Food[]; 
+
+      //conficguracion: llamado al servicio debe devolver un array de objetos
+      jest.spyOn(service,'filterFood').mockResolvedValue(mockResponse);
+
+      //pasamos los parametros al metodo del controlador
+      await controller.filterFood(name,category,maxprice); 
+      //esperamos que el servicio sea llamado con el parametro correcto
+      expect(service.filterFood).toHaveBeenCalledWith(name,category,maxprice);
+    });//final it
+  });//final describe
 });//final

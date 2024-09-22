@@ -22,7 +22,7 @@ import { WebhookModule } from './webhook/webhook.module';
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      database: 'tp-gula-2',
+      database: 'tp-gula',
       username: 'root',
       password: 'root',
       entities: [join(__dirname, '/**/*.entity{.ts,.js}')],

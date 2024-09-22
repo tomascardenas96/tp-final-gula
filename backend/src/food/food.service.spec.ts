@@ -916,6 +916,11 @@ describe('FoodService', () => {
       });//final it
     });//final describe
 
+
+    
+/*ACA VA EL METODO  FINDFOODSBYID*/
+
+
 describe('subtractFromStockAfterPurchase',()=>{
   it('should subtract stock correctly for each item in cart', async()=>{
     
@@ -965,6 +970,24 @@ describe('subtractFromStockAfterPurchase',()=>{
       new BadRequestException('Not enough stock for food1'),
     ); 
 
+  });//final it
+
+  it('should throw badGatewayException if un error occurs',async()=>{
+    //mock de una comida dentro de un carrito
+    const foodOnCart=[
+      {food:{foodId:1}as Food, amount:3},
+    ]as FoodOnCart[];
+
+    //simulamos que findFoodsById lanza error
+    jest.spyOn(service,'findFoodsById').mockRejectedValue(new Error('Database error'));
+
+    //verificamos que se lanze la excepcion badGateway
+    await expect(service.subtractFromStockAfterPurchase(foodOnCart)).rejects.toThrow(
+      new BadGatewayException('Error trying to subtract stock after purchase'),
+    );
+
+    //verificamos que no se haya llamado al metodo save
+    expect(foodServiceMock.save).not.toHaveBeenCalled();
   });//final it
 
 });//final describe
